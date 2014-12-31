@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        eClassO2O Student
+    </title>
+</head>
+<body>
+    <header id="header"></header>
+    <section id="content"
+                data-bind="router: { cacheViews: true }"></section>
+    <div class="loader" data-bind="css: { active: router.isNavigating }">
+        <img class="fa-spinner" src="Content/images/loader.gif" />
+    </div>
+    <footer id="footer"></footer>
+</body>
+</html>
