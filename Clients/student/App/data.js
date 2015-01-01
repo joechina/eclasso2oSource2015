@@ -1,11 +1,10 @@
 ﻿define([
     'breeze',
     'jquery',
-    'q',
-    'services/global'],
-    function (breeze, $, Q, global) {
-        var manager = new breeze.EntityManager(global.datahost + 'breeze/eClassO2OApi');
-        var host = global.datahost;
+    'q'],
+    function (breeze, $, Q) {
+        var host = 'http://localhost:64123/';
+        var manager = new breeze.EntityManager(host + 'breeze/eClassO2OApi');
         var islocal = false;
         var isconnected = true;
         var data = {
@@ -26,7 +25,7 @@
         function canDeactivate() {
             if (manager.hasChanges()) {
                 var msg = 'Do you want to leave and discharge changes?';
-                return app.showMessage(msg, global.current(), ['Yes', 'No'])
+                return app.showMessage(msg, 'Warning', ['Yes', 'No'])
                     .then(function (selectedOption) {
                         if (selectedOption === 'Yes') {
                             manager.rejectChanges();

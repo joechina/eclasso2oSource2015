@@ -1,5 +1,5 @@
-﻿define(['plugins/router', 'knockout', 'data'],
-    function (system, router, logger, ko, data, shell) {
+﻿define(['plugins/router', 'knockout', 'data','logger'],
+    function (router, ko, data, logger) {
         var username = ko.observable();
         var password = ko.observable();
         var rememberme = ko.observable();
@@ -8,14 +8,15 @@
             username: username,
             password: password,
             rememberme: rememberme,
-            signin: signin
+            signin: signin,
+            router: router
         };
 
         return login;
 
         //#region Internal Methods
         function activate() {
-            shell.backbutton(false);
+            logger.log('home activated');
         }
 
         function signin() {

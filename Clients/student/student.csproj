@@ -59,10 +59,13 @@
   <ItemGroup>
     <Content Include="App\data.js" />
     <Content Include="App\global.js" />
+    <Content Include="App\logger.js" />
     <Content Include="App\main.js" />
+    <Content Include="App\viewmodels\home.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\viewmodels\signin.js" />
     <Content Include="App\views\Shell.html" />
+    <Content Include="App\views\signin.html" />
     <Content Include="Content\images\loader.gif" />
     <Content Include="packages.config" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />

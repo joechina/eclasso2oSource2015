@@ -1,2 +1,15 @@
-﻿body {
+﻿.loader {
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.splash {
+    text-align: center;
+    margin: 10% 0 0 0;
+}
+
+.loader.active {
+    visibility: visible;
 }

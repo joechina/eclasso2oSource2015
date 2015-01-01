@@ -1,26 +1,28 @@
-﻿define(['durandal/app', 'plugins/router', 'knockout', 'data', 'global'],
-    function (app, router, ko, data, global) {
+﻿define(['durandal/app', 'plugins/router', 'knockout', 'global', 'logger'],
+    function (app, router, ko, global,logger) {
         var vm = {
             app:app,
             activate: activate,
-            canActivate:canActivate,
             router: router,
         };
-
-        function canActivate() {
-            if (!data.getAccessToken()) {
-                router.navigate('/#signin');
-                return false;
-            }
-            else {
-                datacontext.configureBreeze();
-                return true;
-            }
-        }
+        return vm;
 
         function activate() {
             return boot();
         }
 
-        return vm;
+        function boot() {
+            logger.log('started', '','');
+            router.on('router:route:not-found', function (fragment) {
+                logError('No Route Found', fragment, true);
+            });
+
+            var routes = global.routes;
+
+            return router.makeRelative({ moduleId: 'viewmodels' }) // router will look here for viewmodels by convention
+                .map(routes)            // Map the routes
+                .buildNavigationModel() // Finds all nav routes and readies them
+                .activate();            // Activate the router
+        }
+        
     });

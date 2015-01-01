@@ -1,12 +1,12 @@
 ﻿require.config({
     paths: {
-        'text': '../js/text',
-        'durandal': '../js/durandal',
-        'plugins': '../js/durandal/plugins',
-        'transitions': '../js/durandal/transitions',
-        'moment': '../js/moment',
-        'jqueryUI': '../js/jquery-ui.min-1.11.1',
-        'datacontext': 'services/dummydatacontext'
+        'text': '../scripts/text',
+        'durandal': '../scripts/durandal',
+        'plugins': '../scripts/durandal/plugins',
+        'transitions': '../scripts/durandal/transitions',
+        'moment': '../scripts/moment',
+        'jqueryUI': '../scripts/jquery-ui.min-1.11.1',
+        'logger':'./logger'
     }
 });
 
@@ -16,9 +16,9 @@ define('q', function () { return Q; });
 define('breeze', function () { return breeze; });
 
 
-define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'plugins/router', 'services/logger'], boot);
+define(['durandal/app', 'durandal/viewLocator', 'durandal/system', 'plugins/router'], boot);
 
-function boot(app, viewLocator, system, router, logger) {
+function boot(app, viewLocator, system, router) {
 
     // Enable debug message to show in the console 
     system.debug(true);

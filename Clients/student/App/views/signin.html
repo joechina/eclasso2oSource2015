@@ -1,0 +1,41 @@
+﻿<h2><span data-bind="text: router.navigationModel()[1].title"></span></h2>
+<div style="padding:30px;margin:0 auto;width:300px">
+    <form>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="control-label" for="username">User Name</label>
+            <div>
+                <input id="username" name="textinput" type="text" data-bind="value: username" placeholder="UserName" class="form-control input-md">
+            </div>
+        </div>
+
+        <!-- Password input-->
+        <div class="form-group">
+            <label class="control-label" for="password">Password</label>
+            <div>
+                <input id="password" name="textinput" type="password" data-bind="value: password" placeholder="Password" class="form-control input-md">
+            </div>
+        </div>
+
+        <!-- Multiple Checkboxes -->
+        <!--<div class="form-group">
+            <label class="control-label" for="checkboxes">Remember me</label>
+            <div>
+                <div class="checkbox">
+                    <label for="checkboxes-0">
+                        <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
+                    </label>
+                </div>
+            </div>
+        </div>-->
+        <!-- Button -->
+        <div class="form-group">
+            <div>
+                <button id="signin" name="singlebutton" class="btn btn-primary" data-bind="click: signin">Sign In</button>
+            </div>
+        </div>
+    </form>
+    <div>
+        <a href="#register" style="text-decoration:underline;">Register</a>
+    </div>
+</div>
