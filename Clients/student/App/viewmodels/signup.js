@@ -3,30 +3,29 @@
         var errs = ko.observableArray();
         var username = ko.observable();
         var password = ko.observable();
+        var password2 = ko.observable();
         var rememberme = ko.observable();
-        var login = {
+        var vm = {
             activate: activate,
             username: username,
             password: password,
-            rememberme: rememberme,
-            signin: signin,
+            password2: password2,
+            signup: signup,
             router: router,
             errs: errs
         };
 
-        return login;
+        return vm;
 
         //#region Internal Methods
         function activate() {
             logger.log('home activated');
         }
 
-        function signin() {
+        function signup() {
             validate();
             if (errs().length === 0) {
-                data.signin(username(), password(),errs).then(function (result) {
-                    router.navigate('/#');
-                })
+                data.register(username(), password(), password2(), errs, function () { });
             }
         }
 
@@ -37,6 +36,12 @@
             }
             if (!password() || password().length === 0) {
                 errs.push('missing Password');
+            }
+            if (!password2() || password2().length === 0) {
+                errs.push('missing Confirm Password');
+            }
+            if (password() && password2() && password() !== password2()) {
+                errs.push('Passwords do not match');
             }
         }
         //#endregion

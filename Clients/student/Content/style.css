@@ -13,3 +13,8 @@
 .loader.active {
     visibility: visible;
 }
+
+.error
+{
+    color: red;
+}

@@ -61,9 +61,11 @@
     <Content Include="App\global.js" />
     <Content Include="App\logger.js" />
     <Content Include="App\main.js" />
+    <Content Include="App\viewmodels\signup.js" />
     <Content Include="App\viewmodels\home.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\viewmodels\signin.js" />
+    <Content Include="App\views\signup.html" />
     <Content Include="App\views\Shell.html" />
     <Content Include="App\views\signin.html" />
     <Content Include="Content\images\loader.gif" />
