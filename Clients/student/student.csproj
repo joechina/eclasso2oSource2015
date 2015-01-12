@@ -61,10 +61,13 @@
     <Content Include="App\global.js" />
     <Content Include="App\logger.js" />
     <Content Include="App\main.js" />
+    <Content Include="App\viewmodels\question.js" />
     <Content Include="App\viewmodels\signup.js" />
     <Content Include="App\viewmodels\home.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\viewmodels\signin.js" />
+    <Content Include="App\views\home.html" />
+    <Content Include="App\views\question.html" />
     <Content Include="App\views\signup.html" />
     <Content Include="App\views\Shell.html" />
     <Content Include="App\views\signin.html" />
@@ -184,7 +187,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>30080</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:30080/</IISUrl>
+          <IISUrl>http://localhost:30081/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

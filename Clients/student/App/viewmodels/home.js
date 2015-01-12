@@ -17,12 +17,14 @@
             }
             else {
                 server.configureBreeze();
-                return server.getUser().then(function () { return true; });
+                server.getUser();
+                return true;
             }
         }
 
         function activate() {
             logger.log('Home View Activated', null, 'Home', false);
+            router.navigate('/#questions')
         }
         //#endregion
     });

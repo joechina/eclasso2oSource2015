@@ -25,7 +25,9 @@
         function signup() {
             validate();
             if (errs().length === 0) {
-                data.register(username(), password(), password2(), errs, function () { });
+                data.register(username(), password(), password2(), errs).then(function () {
+                    data.signin(username(), password(), errs);
+                });
             }
         }
 

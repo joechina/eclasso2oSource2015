@@ -7,6 +7,7 @@
         var manager = new breeze.EntityManager(host + 'breeze/eClassO2OApi');
         var islocal = false;
         var isconnected = true;
+        var user = ko.observable();
         var data = {
             metadataStore: manager.metadataStore,
             initalize: initalize,
@@ -17,7 +18,9 @@
             register: register,
             signin: signin,
             canDeactivate: canDeactivate,
-            save: save
+            save: save,
+            getUser: getCurrentUser,
+            getquestions: getquestions,
         }
 
         return data;
@@ -43,7 +46,16 @@
 
         function getCurrentUser() {
             var query = breeze.EntityQuery.from('currentUser');
-            return manager.(query);
+            return manager.executeQuery(query).then(function (result) {
+                user(result);
+            }).fail(function (err) {
+                alert(err.message);
+            });
+        }
+
+        function getquestions() {
+            var query = breeze.EntityQuery.from('Questions');
+            return manager.executeQuery(query);
         }
 
         function save(entity) {
@@ -63,7 +75,7 @@
                 }).done(function (result) {
                     if (result.access_token) {
                         setAccessToken(result.access_token);
-                        getCurrentUser();
+                        //getCurrentUser();
                     }
                 });
             }
@@ -73,7 +85,7 @@
             }
         }
 
-        function register(username, password, password2, errs,callback) {
+        function register(username, password, password2, errs) {
             return $.ajax({
                 url: host + 'api/account/register',
                 type: 'POST',
@@ -84,9 +96,6 @@
                     'password': password,
                     'confirmPassword': password2,
                     'role':'S'
-                },
-                success: function (result) {
-                    callback(result);
                 },
                 error: function (err) {
                     errs.push(err.responseJSON.error_description);
