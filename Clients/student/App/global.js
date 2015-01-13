@@ -1,4 +1,5 @@
-﻿define(['knockout','data'], function (ko,data) {
+﻿//to define global variables here
+define(['knockout', 'data'], function (ko, data) {
     function routes() {
         var routes = [
                     { route: '', moduleId: 'home', title: 'Class List', nav: 1 },

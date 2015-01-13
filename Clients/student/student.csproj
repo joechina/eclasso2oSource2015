@@ -71,8 +71,10 @@
     <Content Include="App\views\signup.html" />
     <Content Include="App\views\Shell.html" />
     <Content Include="App\views\signin.html" />
+    <Content Include="tou.html" />
     <Content Include="Content\images\loader.gif" />
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\eclasso2oclient.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
