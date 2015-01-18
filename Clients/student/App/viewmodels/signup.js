@@ -26,7 +26,9 @@
             validate();
             if (errs().length === 0) {
                 data.register(username(), password(), password2(), errs).then(function () {
-                    data.signin(username(), password(), errs);
+                    data.signin(username(), password(), errs).then(function (result) {
+                        router.navigate('/#');
+                    });
                 });
             }
         }

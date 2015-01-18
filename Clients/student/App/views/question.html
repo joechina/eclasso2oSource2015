@@ -11,7 +11,7 @@
     <!--ko if: question()-->
         <h4 data-bind="text:question().QuestionDetail"></h4>
         <div>
-            <span data-bind="text:question().Answer"></span>
+            <span data-bind="html:question().Answer"></span>
         </div>
         <a href="#" data-bind="click: backtolist">Back</a>
     <!--/ko-->
