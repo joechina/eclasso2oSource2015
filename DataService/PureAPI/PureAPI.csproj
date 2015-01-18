@@ -153,7 +153,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="App_Data\local.mdf" />
+    <Content Include="App_Data\local_log.ldf">
+      <DependentUpon>local.mdf</DependentUpon>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BreezeWebApiConfig.cs" />
@@ -170,8 +176,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Properties\PublishProfiles\eclasso2o %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\eclasso2o %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\eclasso2o.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -180,9 +184,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Parrot.Model\Parrot.Model.csproj">
       <Project>{43f68d87-8335-4c2e-9bc4-cfcd9548fd60}</Project>

@@ -4,6 +4,8 @@ using Parrot.Model;
 using PureAPI.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -44,14 +46,61 @@ namespace PureAPI.Controllers
         public List<User> Test()
         {
             var repo = new Repository();
-            try {
+            try
+            {
                 return repo.Users.ToList();
+            }
+            catch (Exception ex)
+            {
+                User u = new User();
+                u.UserGuid = ex.Message;
+                List<User> result = new List<User>();
+                result.Add(u);
+                return result;
             }
             finally
             {
                 repo.Dispose();
             }
             
+        }
+
+        [AllowAnonymous]
+        [Route("LoadData")]
+        [HttpGet]
+        public Ok LoadData()
+        {
+            DataContext repo = new DataContext();
+            Ok result;
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["source"].ConnectionString))
+            {
+                con.Open();
+                var command = con.CreateCommand();
+                command.CommandText = "Select [QuestionDetail],[Answer],[Create] from dbo.Questions";
+                var rdr = command.ExecuteReader();
+                while (rdr.Read())
+                {
+                    var q = new Question();
+                    q.Answer = rdr.GetString(1);
+                    q.QuestionDetail = rdr.GetString(0);
+                    q.Create = rdr.GetDateTime(2);
+                    q.IsPublic = true;
+                    q.UserId = 1;
+                    repo.Questions.Add(q);
+                }
+                try
+                {
+                    repo.SaveChanges();
+                    result= new Ok() { Result = "Done"};
+                    
+                }
+                catch (Exception ex)
+                {
+                    result = new Ok() { Result = ex.Message};
+                }
+                return result;
+            }
+
         }
 
         // POST api/Account/Register
