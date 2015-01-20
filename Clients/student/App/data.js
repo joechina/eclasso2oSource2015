@@ -3,8 +3,8 @@
     'jquery',
     'q'],
     function (breeze, $, Q) {
-        //var host = 'http://localhost:56360/';
-        var host = 'http://eclasso2o.azurewebsites.net/';
+        var host = 'http://localhost:56360/';
+        //var host = 'http://eclasso2o.azurewebsites.net/';
         var manager = new breeze.EntityManager(host + 'breeze/eClassO2OApi');
         var islocal = false;
         var isconnected = true;
@@ -56,6 +56,11 @@
 
         function getquestions() {
             var query = breeze.EntityQuery.from('Questions');
+            return manager.executeQuery(query);
+        }
+
+        function getannouncements() {
+            var query = breeze.EntityQuery.from('Announcements');
             return manager.executeQuery(query);
         }
 
