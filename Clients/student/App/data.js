@@ -22,6 +22,7 @@
             save: save,
             getUser: getCurrentUser,
             getquestions: getquestions,
+            getannouncements:getannouncements
         }
 
         return data;

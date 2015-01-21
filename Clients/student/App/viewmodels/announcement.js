@@ -1,7 +1,7 @@
 ﻿define(['plugins/router', 'knockout', 'data', 'logger'],
     function (router, ko, data, logger) {
         var announcement = ko.observable();
-        var annoucements = ko.observableArray();
+        var announcements = ko.observableArray();
         var login = {
             announcement: announcement,
             announcements: announcements,
