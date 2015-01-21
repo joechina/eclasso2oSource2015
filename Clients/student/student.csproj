@@ -62,12 +62,14 @@
     <Content Include="App\logger.js" />
     <Content Include="App\main.js" />
     <Content Include="App\viewmodels\announcement.js" />
+    <Content Include="App\viewmodels\exersize.js" />
     <Content Include="App\viewmodels\question.js" />
     <Content Include="App\viewmodels\signup.js" />
     <Content Include="App\viewmodels\home.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\viewmodels\signin.js" />
     <Content Include="App\views\announcement.html" />
+    <Content Include="App\views\exersize.html" />
     <Content Include="App\views\home.html" />
     <Content Include="App\views\question.html" />
     <Content Include="App\views\signup.html" />

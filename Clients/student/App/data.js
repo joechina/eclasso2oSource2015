@@ -22,7 +22,8 @@
             save: save,
             getUser: getCurrentUser,
             getquestions: getquestions,
-            getannouncements:getannouncements
+            getannouncements: getannouncements,
+            getexersizes:getexersizes
         }
 
         return data;
@@ -62,6 +63,11 @@
 
         function getannouncements() {
             var query = breeze.EntityQuery.from('Announcements');
+            return manager.executeQuery(query);
+        }
+
+        function getexersizes () {
+            var query = breeze.EntityQuery.from('Exersizes');
             return manager.executeQuery(query);
         }
 
