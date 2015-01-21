@@ -1,0 +1,20 @@
+﻿<div style="padding:30px;margin:0 auto;width:300px">
+    <h2><span data-bind="text: router.navigationModel()[6].title"></span></h2>
+
+    <div>
+        <!--ko ifnot: question()-->
+        <ul data-bind="foreach: announcements">
+            <li>
+                <a href="#" data-bind="text:Title, click: $parent.openmsg"></a>
+            </li>
+        </ul>
+        <!--/ko-->
+        <!--ko if: question()-->
+        <h4 data-bind="text:announcement().Title"></h4>
+        <div>
+            <span data-bind="html:announcement().Content"></span>
+        </div>
+        <a href="#" data-bind="click: backtolist">Back</a>
+        <!--/ko-->
+    </div>
+</div>
