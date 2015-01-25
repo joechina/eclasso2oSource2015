@@ -8,7 +8,8 @@
             activate: activate,
             openanswer: openanswer,
             router: router,
-            backtolist: backtolist
+            backtolist: backtolist,
+            searchAnswers:searchAnswers
         };
 
         return login;
@@ -30,5 +31,15 @@
         function backtolist() {
             question(undefined);
         }
+
+        function searchAnswers (q) {
+            data.searchQuestion(q).then (function (data) {
+                answers(data.results);
+            })
+        }
+
+        function askQuestion(clazz, question, okFunc, errFunc) {
+            setTimeout(okFunc, 3000);
+        };
         //#endregion
     });

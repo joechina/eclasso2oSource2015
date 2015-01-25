@@ -23,7 +23,8 @@
             getUser: getCurrentUser,
             getquestions: getquestions,
             getannouncements: getannouncements,
-            getexersizes:getexersizes
+            getexersizes: getexersizes,
+            getclasses:getclasses
         }
 
         return data;
@@ -61,6 +62,13 @@
             return manager.executeQuery(query);
         }
 
+        function searchQuestion (q) {
+            var query = breeze.EntityQuery.from("Questions")
+                            .where("QuestionDetail", "contains", q)	// how to search contains all from keywords array?
+                            .orderBy("Create DESC");
+            return manager.executeQuery(query);
+        };
+
         function getannouncements() {
             var query = breeze.EntityQuery.from('Announcements');
             return manager.executeQuery(query);
@@ -68,6 +76,11 @@
 
         function getexersizes () {
             var query = breeze.EntityQuery.from('Exersizes');
+            return manager.executeQuery(query);
+        }
+
+        function getclasses() {
+            var query = breeze.EntityQuery.from('Classes');
             return manager.executeQuery(query);
         }
 

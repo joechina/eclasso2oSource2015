@@ -18,3 +18,128 @@
 {
     color: red;
 }
+
+h1,h2 {
+    text-align:center;
+    font-family:sans-serif;
+}
+
+select {
+    font-family:sans-serif;
+}
+
+#topPane {
+height: 70px;
+position: relative;
+background-color:azure;
+}
+
+.centerContainer{
+    float:left;
+    position:absolute;
+    left:50%;
+}
+
+#menuDropdown {
+float: left;
+position: relative;
+left: -50%;
+height: 2em;
+margin-top: 1.2em;
+line-height: 2em;
+font-weight: normal;
+font-size: 100%;
+color: #000;
+padding: 0 3em 0 1em;
+font-weight: normal;
+cursor: pointer;
+}
+
+.smoothButton {
+    background-image:url(/Content/images/logo.png);
+    box-shadow:0 2px 6px rgba(40,20,0,.6);
+    white-space:nowrap;
+}
+
+.ui-content {
+
+}
+
+        .ui-radio .ui-btn, .ui-checkbox {
+            font-weight: normal;
+        }
+
+        .ui-state-disabled {
+            border: none;
+			box-shadow: none;
+			-webkit-box-shadow: none;
+            opacity: 1;
+            filter: Alpha(Opacity=100);
+        }
+
+        .list_read * {
+            font-weight: normal;
+        }
+
+        .tab_content {
+        	left: 1em;
+        	right: 1em;
+        	bottom: 0;
+        	height: 100%;
+        	position: absolute;
+        	display: none;
+        }
+
+        .title-dropdown-icon {
+            position: absolute;
+            top: 0.5em;
+            margin-left: 0.5em;
+        }
+
+        .ui-header .ui-title-align-left {
+            margin-left: 5.5em;
+            text-align: left;
+        }
+
+        .ui-page-theme-a .footer-transparent {
+            background-color: transparent;
+            border-color: transparent;
+        }
+
+		.ui-page-theme-a .footer-transparent a.ui-btn {
+			margin: 0.5em;
+			top: 0;
+			right: 0;
+		}
+
+        a[data-transition].ui-icon-star:after {
+            background-color: #ff8080;
+        }
+
+		#intruduceImage {
+			position: absolute;
+			left: 1em;
+			right: 1em;
+			bottom: 1em;
+			background: -webkit-radial-gradient(
+							center,
+							ellipse cover,
+							rgba(255,255,255,0) 40%,
+							rgba(250,250,250,1) 80%
+						),
+						url(images/introduce.jpg);
+		}
+
+        .wrong_answer {
+            color: #ff0000 !important;
+            font-weight: 700 !important;
+        }
+
+		.wrong_answer.extra {
+			text-decoration: line-through !important;
+		}
+
+        .fill_blank {
+            text-decoration: underline;
+        }
+

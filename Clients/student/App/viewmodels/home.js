@@ -24,8 +24,9 @@
 
         function activate() {
             logger.log('Home View Activated', null, 'Home', false);
-            //router.navigate('/#questions')
-            router.navigate('/#exersizes')
+            router.navigate('/#questions')
+            //router.navigate('/#announcements')
+
         }
         //#endregion
     });

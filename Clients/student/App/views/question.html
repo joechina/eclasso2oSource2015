@@ -1,20 +1,50 @@
-﻿<div style="padding:30px;margin:0 auto;width:300px">
-<h2><span data-bind="text: router.navigationModel()[4].title"></span></h2>
-<div>
-    <!--ko ifnot: question()-->
-        <ul data-bind="foreach: questions">
-            <li>
-                <a href="#" data-bind="text: QuestionDetail, click: $parent.openanswer"></a>
-            </li>
-        </ul>
-    <!--/ko-->
-    <!--ko if: question()-->
-        <h4 data-bind="text:question().QuestionDetail"></h4>
-        <div>
-            <span data-bind="html:question().Answer"></span>
-        </div>
-        <a href="#" data-bind="click: backtolist">Back</a>
-    <!--/ko-->
-</div>    
+﻿
+<div data-role="page" tabindex="0" class="ui-page-theme-a ui-page-theme-a ui-page-header-fixed ui-page-footer-fixed ui-page-active" style="padding-top:44px; padding-bottom:58px;min-height:209px">
+    <div data-role="header" data-position="fixed" role="banner" class="ui-header ui-bar-inherit ui-header-fixed slidedown ui-fixed-hidden">
+        <h1 class="ui-title" role="heading" aria-level="1" data-bind="text: router.navigationModel()[4].title"></h1>
+        <a data-icon="gear" data-iconpos="notext" data-transition="pop" href="#setting" class="ui-btn-right ui-link ui-btn ui-icon-gear ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">
+        </a>
+    </div>
 
+    <div data-role="content" style="position: relative; height: 177px;" class="ui-content" role="main">
+        <!--search bar-->
+        <div class="tab_content" style="display: block;">
+            <table>
+                <tbody>
+                    <tr>
+                        <td style="width:100%;padding-right:1em">
+                            <div class="ui-input-search ui-body-inherit ui-corner-all ui-shadow-inset ui-input-has-clear">
+                                <input id="qaSearch" data-type="search" value="" style="width:100%">
+                                <a href="#" tabindex="-1" aria-hidden="true" class="ui-input-clear ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all ui-input-clear-hidden" title="Clear text">Clear text</a>
+                            </div>
+                        </td>
+                        <td><a id="qaBtnAskq" href="#qaAskqPage" data-role="button" data-transition="pop" style="border: 1px solid rgb(221, 221, 221); opacity: 0.3;" class="lang ui-state-disabled ui-link ui-btn ui-shadow ui-corner-all" role="button">提问</a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="margin-top: 1em; padding: 1em; overflow-y: auto; overflow-x: hidden; height: 95px;">
+                <ul id="qaList" class="ui-listview"></ul>
+            </div>
+
+            <!-- list of Q&A -->
+            <!--ko ifnot: question()-->
+            <ul data-bind="foreach: questions">
+                <li>
+                    <a href="#" data-bind="text:QuestionDetail, click: $parent.openanswer"></a>
+                </li>
+            </ul>
+            <!--/ko-->
+            <!--ko if: question()-->
+            <h4 data-bind="text:question().QuestionDetail"></h4>
+            <div>
+                <span data-bind="html:question().Answer"></span>
+
+            </div>
+            <a href="#" data-bind="click: backtolist">Back</a>
+            <!--/ko-->
+        </div>
+
+
+    </div>
 </div>
