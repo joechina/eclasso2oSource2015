@@ -51,7 +51,7 @@ namespace Parrot.Model
         {
             get
             {
-                return (DbQuery<Announcement>)Context.Announcements;
+                return (DbQuery<Announcement>)Context.Announcements.Include("Users");
             }
         }
 

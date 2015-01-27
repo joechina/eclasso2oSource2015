@@ -1,0 +1,21 @@
+﻿<div style="padding:30px;margin:0 auto;width:300px">
+    <h2><span data-bind="text: router.navigationModel()[7].title"></span></h2>
+
+    <div>
+        <!--ko ifnot: exersize()-->
+        <ul data-bind="foreach: classes">
+            <li>
+                <a href="#" data-bind="text:Name, click: $parent.openclass"></a>
+            </li>
+        </ul>
+        <!--/ko-->
+        <!--ko if: exersize()-->
+        <h4 data-bind="text:clazz().Name"></h4>
+        <div>
+            <span data-bind="html:clazz().Description"></span>
+
+        </div>
+        <a href="#" data-bind="click: backtolist">Back</a>
+        <!--/ko-->
+    </div>
+</div>

@@ -1,20 +1,63 @@
-﻿<div style="padding:30px;margin:0 auto;width:300px">
-    <h2><span data-bind="text: router.navigationModel()[6].title"></span></h2>
+﻿
+<div data-role="page" tabindex="0" class="ui-page-theme-a ui-page-theme-a ui-page-header-fixed ui-page-footer-fixed ui-page-active" style="padding-top:44px; padding-bottom:58px;min-height:209px">
+    <div data-role="header" data-position="fixed" role="banner" class="ui-header ui-bar-inherit ui-header-fixed slidedown ui-fixed-hidden">
+       
+        <h2 class="ui-title" role="heading" aria-level="1"><span class="lang" data-bind="text:router.navigationModel()[5].title" /></h2>
+        <a data-icon="gear" data-iconpos="notext" data-transition="pop" href="setting.html" class="ui-btn-right ui-link ui-btn ui-icon-gear ui-btn-icon-notext ui-shadow ui-corner-all" data-role="button" role="button">
+        </a>
+    </div>
 
-    <div>
-        <!--ko ifnot: question()-->
-        <ul data-bind="foreach: announcements">
-            <li>
-                <a href="#" data-bind="text:Title, click: $parent.openmsg"></a>
-            </li>
-        </ul>
-        <!--/ko-->
-        <!--ko if: question()-->
-        <h4 data-bind="text:announcement().Title"></h4>
-        <div>
-            <span data-bind="html:announcement().Content"></span>
+    <div data-role="content" style="position: relative; height: 175px;" class="ui-content" role="main">
+        <div class="tab_content" style="display: block;">
+            <!--form class="ui-filterable">
+                <div class="ui-input-search ui-shadow-inset ui-input-has-clear ui-body-inherit ui-corner-all">
+                    <input data-type="search" placeholder="Filter items..." data-lastval="">
+                    <a href="#" tabindex="-1" aria-hidden="true" class="ui-input-clear ui-btn ui-icon-delete ui-btn-icon-notext ui-corner-all ui-input-clear-hidden" title="Clear text">Clear text</a>
+                </div>
+            </!--form-->
+
+            <!--ko ifnot: announcement()-->
+            <ul id="inboxList" class="ui-listview" data-bind="foreach: announcements">
+
+                <li class="ui-first-child ui-last-child">
+
+                    <a href="#" data-bind="text: Title, click: $parent.openmsg" data-transition="slide" class="ui-btn ui-btn-icon-left ui-nodisc-icon list_unread">
+                    </a>
+                </li>
+            </ul>
+            <!--/ko-->
+            <!--ko if: announcement()-->
+            <div>
+                Title: <span data-bind="text:announcement().Title"></span>
+                <br /><br />
+                Date: <span data-bind="text:announcement().CreateDate"></span>
+                <br /><br />
+                <span data-bind="html:announcement().Content"></span>
+            </div>
+            <!--/ko-->
+            
         </div>
-        <a href="#" data-bind="click: backtolist">Back</a>
-        <!--/ko-->
     </div>
 </div>
+<!--div style="padding:30px;margin:0 auto;width:300px">
+    <h2><span data-bind="text: router.navigationModel()[5].title"></span></h2>
+
+    <div-->
+<!--ko ifnot: announcement()-->
+<!--ul data-bind="foreach: announcements">
+    <li>
+        <a href="#" data-bind="text:Title, click: $parent.openmsg"></a>
+    </li>
+</!--ul-->
+<!--/ko-->
+<!--ko if: announcement()-->
+<!--h4 data-bind="text:announcement().Title"></!--h4>
+<div>
+    <span data-bind="html:announcement().Content"></span>
+    <span data-bind="html:announcement().CreateDate"></span>
+    <span data-bind="html:announcement().UserId"></span>
+</div>
+<a href="#" data-bind="click: backtolist">Back</a>
+<!--/ko-->
+<!--/div>
+</!--div-->
