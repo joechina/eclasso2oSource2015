@@ -1,47 +1,43 @@
-﻿<div style="padding:30px;margin:0 auto;width:300px">
-<h2><span data-bind="text: router.navigationModel()[1].title"></span></h2>
-
-    <div class="error">
-        <ul data-bind="foreach: errs">
-            <li title="error messages:">
-                <span data-bind="text: $data"></span>
-            </li>
-        </ul>
-    </div>
-
-    <div data-role="page" id="loginPage">
-        <div data-role="content" style="position: relative">
-            <form>
-                <table align="center">
-                    <tr>
-                        <td class="lang">User ID:</td>
-                        <td><input id="username" name="textinput" type="text" data-bind="value: username" class="form-control input-md"></td>
-                    </tr>
-                    <tr><td><br /></td></tr>
-                    <tr>
-                        <td class="lang">Password:</td>
-                        <td><input id="password" name="textinput" type="password" data-bind="value: password" class="form-control input-md"></td>
-                        
-                    </tr>
-                    <tr><td><br /></td></tr>
-                    <tr>
-                        <td></td>
-                        <td><button id="signin" name="singlebutton" class="btn btn-primary" data-bind="click: signin">Sign In</button></td>
-                       
-                    </tr>
-                    <tr><td><br /></td></tr>
-                    <tr>
-                           <td></td>
-                        <td><a href="#signup" style="text-decoration:underline;">Register</a></td>
-
-                    </tr>
-                </table>
-            </form>
-            <div id="intruduceImage"></div>
+﻿<div class="container withbackground">
+    <div style="padding:30px;margin:0 auto;width:300px;" class="front">
+        <div class="error">
+            <ul data-bind="foreach: errs">
+                <li title="error messages:">
+                    <span data-bind="text: $data"></span>
+                </li>
+            </ul>
         </div>
+        <div data-role="page" id="loginPage">
+            <div data-role="content" style="position: relative">
+                <form>
+                    <table align="center">
+                        <tr>
+                            <td class="lang">User ID:</td>
+                            <td><input id="username" name="textinput" type="text" data-bind="value: username" class="form-control input-md"></td>
+                        </tr>
+                        <tr><td><br /></td></tr>
+                        <tr>
+                            <td class="lang">Password:</td>
+                            <td><input id="password" name="textinput" type="password" data-bind="value: password" class="form-control input-md"></td>
 
-        <div data-role="footer" data-position="fixed">
+                        </tr>
+                        <tr><td><br /></td></tr>
+                        <tr>
+                            <td></td>
+                            <td><button id="signin" name="singlebutton" class="btn btn-primary" data-bind="click: signin">Sign In</button></td>
+
+                        </tr>
+                        <tr><td><br /></td></tr>
+                        <tr>
+                            <td></td>
+                            <td><a href="#signup" style="text-decoration:underline;">Register</a></td>
+                        </tr>
+                    </table>
+                </form>
+                <div id="intruduceImage"></div>
+            </div>
+            <div data-role="footer" data-position="fixed">
+            </div>
         </div>
     </div>
-
 </div>

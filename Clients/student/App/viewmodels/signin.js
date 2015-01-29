@@ -11,7 +11,7 @@
             rememberme: rememberme,
             signin: signin,
             router: router,
-            errs: errs
+            errs: errs,
         };
 
         return login;

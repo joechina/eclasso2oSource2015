@@ -1,52 +1,51 @@
-﻿<div style="padding:30px;margin:0 auto;width:300px">
-<h2><span data-bind="text: router.navigationModel()[2].title"></span></h2>
-    <div class="error">
-        <ul data-bind="foreach: errs">
-            <li><span data-bind="text: $data"></span></li>
-        </ul>
-    </div>
-    <form>
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="control-label" for="username">User Name</label>
-            <div>
-                <input id="username" name="textinput" type="text" data-bind="value: username" placeholder="UserName" class="form-control input-md">
-            </div>
+﻿<div class="container withbackground">
+    <div style="padding:30px;margin:0 auto;width:300px" class="front">
+        <div class="error">
+            <ul data-bind="foreach: errs">
+                <li><span data-bind="text: $data"></span></li>
+            </ul>
         </div>
-
-        <!-- Password input-->
-        <div class="form-group">
-            <label class="control-label" for="password">Password</label>
-            <div>
-                <input id="password" name="textinput" type="password" data-bind="value: password" placeholder="Password" class="form-control input-md">
-            </div>
-        </div>
-
-        <!-- Password input-->
-        <div class="form-group">
-            <label class="control-label" for="password">Confirm Password</label>
-            <div>
-                <input id="password1" name="textinput" type="password" data-bind="value: password2" placeholder="Password" class="form-control input-md">
-            </div>
-        </div>
-        <!-- Multiple Checkboxes -->
-        <!--<div class="form-group">
-            <label class="control-label" for="checkboxes">Remember me</label>
-            <div>
-                <div class="checkbox">
-                    <label for="checkboxes-0">
-                        <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
-                    </label>
+        <form>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="control-label" for="username">User Name</label>
+                <div>
+                    <input id="username" name="textinput" type="text" data-bind="value: username" placeholder="UserName" class="form-control input-md">
                 </div>
             </div>
-        </div>-->
-        <!-- Button -->
-        <div class="form-group">
-            <div>
-                <button id="signin" name="singlebutton" class="btn btn-primary" data-bind="click: signup">Register</button>
-                <br />
-                <span>By clicking Register button, you agree with<a href="../../tou.html"> the term of use </a></span>
+            <!-- Password input-->
+            <div class="form-group">
+                <label class="control-label" for="password">Password</label>
+                <div>
+                    <input id="password" name="textinput" type="password" data-bind="value: password" placeholder="Password" class="form-control input-md">
+                </div>
             </div>
-        </div>
-    </form>
+            <!-- Password input-->
+            <div class="form-group">
+                <label class="control-label" for="password">Confirm Password</label>
+                <div>
+                    <input id="password1" name="textinput" type="password" data-bind="value: password2" placeholder="Password" class="form-control input-md">
+                </div>
+            </div>
+            <!-- Multiple Checkboxes -->
+            <!--<div class="form-group">
+                <label class="control-label" for="checkboxes">Remember me</label>
+                <div>
+                    <div class="checkbox">
+                        <label for="checkboxes-0">
+                            <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
+                        </label>
+                    </div>
+                </div>
+            </div>-->
+            <!-- Button -->
+            <div class="form-group">
+                <div>
+                    <button id="signin" name="singlebutton" class="btn btn-primary" data-bind="click: signup">Register</button>
+                    <br />
+                    <span>By clicking Register button, you agree with<a href="../../tou.html"> the term of use </a></span>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

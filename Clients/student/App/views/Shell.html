@@ -2,16 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>eClassO2O Student</title>
-
 </head>
-
 <body>
-    <header id="header"></header>
-
+    <div data-bind="compose: { view: 'header'}"></div>
     <section id="content" data-bind="router: { cacheViews: true }"></section>
+    <!--<footer data-bind="compose: { view: 'footer' },visible: router.activeInstruction() && router.activeInstruction().config.nav > 0"></footer>-->
+    <footer data-bind="compose: { view: 'footer' }"></footer>
     <div class="loader" data-bind="css: { active: router.isNavigating }">
-        <img class="fa-spinner" src="Content/images/loader.gif" />
+        <img src="../../Content/images/loader.gif" />
     </div>
-    <footer id="footer"></footer>
 </body>
 </html>
