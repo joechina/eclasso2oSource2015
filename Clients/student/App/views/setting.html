@@ -1,1 +1,15 @@
 ﻿
+<div>
+    <b>设置页面</b>
+    <!-- list of messages -->
+    <!--ko ifnot: announcement()-->
+    <ul id="inboxList" class="ui-listview" data-bind="foreach: announcements">
+
+        <li class="ui-first-child ui-last-child">
+
+            <a href="#" data-bind="text: Title, click: $parent.openmsg" data-transition="slide" class="ui-btn ui-btn-icon-left ui-nodisc-icon list_unread">
+            </a>
+        </li>
+    </ul>
+    <!--/ko-->
+</div>

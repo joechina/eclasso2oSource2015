@@ -25,7 +25,7 @@
         function activate() {
             logger.log('Home View Activated', null, 'Home', false);
             router.navigate('/#questions')
-            //router.navigate('/#announcements')
+            //router.navigate('/#Classes')
 
         }
         //#endregion

@@ -1,0 +1,29 @@
+﻿
+<div>
+    <!-- list of Classes -->
+    <!--ko ifnot: Class()-->
+    <ul id="classList" class="ui-listview" data-bind="foreach: Classes">
+
+        <li class="ui-first-child ui-last-child">
+
+            <a href="#" data-bind="text: Name, click: $parent.openClass" data-transition="slide" class="ui-btn ui-btn-icon-left ui-nodisc-icon list_unread">
+            </a>
+        </li>
+    </ul>
+    <!--/ko-->
+    <!--ko if: Class()-->
+    <div>
+        <b>Name:</b>
+        <span data-bind="text:Class().Name"></span>
+        <br />
+        <br />
+        <b>ClassNumber:</b>
+        <span data-bind="text:Class().ClassNumber"></span>
+        <br />
+        <br />
+        <b>Description：</b>
+        <span data-bind="text:Class().Description"></span>
+    </div>
+    <!--/ko-->
+
+</div>
