@@ -24,7 +24,8 @@
             getquestions: getquestions,
             getannouncements: getannouncements,
             getexersizes: getexersizes,
-            getclasses:getclasses
+            getClasses: getClasses,
+            getsettings:getsettings
         }
 
         return data;
@@ -79,8 +80,13 @@
             return manager.executeQuery(query);
         }
 
-        function getclasses() {
+        function getClasses() {
             var query = breeze.EntityQuery.from('Classes');
+            return manager.executeQuery(query);
+        }
+
+        function getsettings() {
+            var query=breeze.EntityQuery.from('Users');
             return manager.executeQuery(query);
         }
 

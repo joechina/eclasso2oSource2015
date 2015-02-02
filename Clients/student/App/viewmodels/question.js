@@ -58,7 +58,7 @@
             })
         }
 
-        function askQuestion(clazz, question, okFunc, errFunc) {
+        function askQuestion(Class, question, okFunc, errFunc) {
             setTimeout(okFunc, 3000);
         };
         //#endregion

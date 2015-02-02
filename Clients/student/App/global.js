@@ -7,9 +7,9 @@
                     { route: 'term', moduleId: 'term', title: 'Legal Term', nav: 2 },
                     { route: 'settings', moduleId: 'setting', title: 'Settings', nav: 3 },
                     { route: 'announcements', moduleId: 'announcement', title: 'Inbox', nav: 11 },
-                    { route: 'classes', moduleId: 'clazz', title: 'Classes', nav: 12 },
-                    { route: 'exersizes', moduleId: 'exersize', title: 'Exersizes', nav: 13 },
-                    { route: 'questions', moduleId: 'question', title: 'Q&A', nav: 14 }
+                    { route: 'exersizes', moduleId: 'exersize', title: 'Exersizes', nav: 12 },
+                    { route: 'questions', moduleId: 'question', title: 'Q&A', nav: 13 },
+                    { route: 'Classes', moduleId: 'Class', title: 'Classes', nav: 14 }
                     ];
         return routes
     }

@@ -1,12 +1,12 @@
 ﻿define(['plugins/router', 'knockout', 'data', 'logger'],
     function (router, ko, data, logger) {
-        var announcement = ko.observable();
-        var announcements = ko.observableArray();
+        var setting = ko.observable();
+        var settings = ko.observableArray();
         var login = {
-            clazz: clazz,
-            classes: classes,
+            announcement: announcement,
+            announcements: announcements,
             activate: activate,
-            openclass: openclass,
+            openmsg: openmsg,
             router: router,
             backtolist: backtolist
         };
@@ -17,18 +17,18 @@
         function activate(id) {
             //var questionid = parseInt(id)
             //if (questionid > 0)
-            data.classes().then(function (data) {
-                classes(data.results);
+            data.getannouncements().then(function (data) {
+                announcements(data.results);
             });
-            logger.log('classes activated');
+            logger.log('announcements activated');
         }
 
-        function openclass(selected) {
-            clazz(selected);
+        function openmsg(selected) {
+            announcement(selected);
         }
 
         function backtolist() {
-            clazz(undefined);
+            announcement(undefined);
         }
         //#endregion
     });
