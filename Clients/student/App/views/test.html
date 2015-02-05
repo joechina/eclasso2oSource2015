@@ -1,0 +1,20 @@
+﻿<div class="container">
+    <div data-role="content" style="position: relative">
+        <form>
+            <div class="form-group">
+                <label class="control-label" for="username">File</label>
+                <div>
+                    <input id="mp3file" name="textinput" type="file" class="form-control input-md">
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <button id="signin" name="singlebutton" class="btn btn-primary" data-bind="click: upload">Upload</button>
+                </div>
+            </div>
+            <div>
+                <audio controls data-bind="attr: {src: audio}" />
+            </div>
+        </form>
+    </div>
+</div>

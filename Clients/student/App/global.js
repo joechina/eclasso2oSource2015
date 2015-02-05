@@ -9,7 +9,8 @@
                     { route: 'announcements', moduleId: 'announcement', title: 'Inbox', nav: 11 },
                     { route: 'exersizes', moduleId: 'exersize', title: 'Exersizes', nav: 12 },
                     { route: 'questions', moduleId: 'question', title: 'Q&A', nav: 13 },
-                    { route: 'Classes', moduleId: 'Class', title: 'Classes', nav: 14 }
+                    { route: 'Classes', moduleId: 'Class', title: 'Classes', nav: 14 },
+                    { route: 'test', moduleId: 'test', title: 'Test Mp3', nav: 15 }
                     ];
         return routes
     }

@@ -66,6 +66,7 @@
     <Content Include="App\viewmodels\exersize.js" />
     <Content Include="App\viewmodels\question.js" />
     <Content Include="App\viewmodels\setting.js" />
+    <Content Include="App\viewmodels\test.js" />
     <Content Include="App\viewmodels\signup.js" />
     <Content Include="App\viewmodels\home.js" />
     <Content Include="App\viewmodels\shell.js" />
@@ -78,6 +79,7 @@
     <Content Include="App\views\home.html" />
     <Content Include="App\views\question.html" />
     <Content Include="App\views\setting.html" />
+    <Content Include="App\views\test.html" />
     <Content Include="App\views\signup.html" />
     <Content Include="App\views\Shell.html" />
     <Content Include="App\views\signin.html" />
