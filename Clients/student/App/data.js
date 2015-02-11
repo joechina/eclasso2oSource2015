@@ -25,10 +25,15 @@
             getannouncements: getannouncements,
             getexersizes: getexersizes,
             getClasses: getClasses,
-            getsettings:getsettings
+            getsettings: getsettings,
+            create: create
         }
 
         return data;
+
+        function create(entityname) {
+            return manager.createEntity(entityname);
+        }
 
         function canDeactivate() {
             if (manager.hasChanges()) {
