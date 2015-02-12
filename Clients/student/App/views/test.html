@@ -8,7 +8,7 @@
                         <label class="control-label">Exercise name:</label>
                         <input data-bind="value: Name" class="form-control input-md">
                         <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addSection">Add section</button>
-                        <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteSection">Delete section</button>
+                        
                     </li>
                     <li>
                         <ul class="section" data-bind="foreach: Sections">
@@ -16,7 +16,7 @@
                                 <label class="control-label">Section <span data-bind="text:$index"></span></label>
                                 <input data-bind="value: Name" class="form-control input-md">
                                 <button id="problem" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addProblem">Add Problem</button>
-                                <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteSection">Delete Problem</button>
+                                <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteSection">Delete section</button>
                             </li>
                             <li>
                                 <ul class="problem" data-bind="foreach: Problems">
@@ -24,18 +24,19 @@
                                         <label class="control-label">Problem <span data-bind="text:$index() + '_' + $parentContext.$index()"></span></label>
                                         <input data-bind="value: GeneralInfo" class="form-control input-md">
                                         <button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addQuiz">Add Quiz</button>
-                                        <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteQuiz">Delete Quiz</button>
+                                        <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteProblem">Delete Problem</button>
                                     </li>
                                     <li>
                                         <ul class="quiz" data-bind="foreach: Quizzes">
                                             <li>
                                                 <label class="control-label">Quiz <span data-bind="text:$index() + '_' + $parentContext.$index() + '_' + $parentContext.$parentContext.$index()"></span></label>
                                                 <input data-bind="value: Challenge" class="form-control input-md">
+                                                <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteQuiz">Delete Quiz</button>
                                             </li>
                                             <li>
                                                 <label class="control-label" for="username">Audio File</label>
-                                                <input id="mp3file" name="textinput" type="file" class="form-control input-md" data-bind="event: { change: function() { uploadimage($element.files[0]) } }">
-                                                <audio controls data-bind="attr: {src: audio}" />
+                                                <input id="mp3file" name="textinput" type="file" class="form-control input-md" data-bind="event: { change: function() { $root.uploadimage($data,$element.files[0]) } }">
+                                                <audio controls data-bind="attr: {src: QuizDetail}" />
                                             </li>
                                         </ul>
                                     </li>

@@ -9,8 +9,9 @@
         var islocal = false;
         var isconnected = true;
         var user = ko.observable();
+        var store;
         var data = {
-            metadataStore: manager.metadataStore,
+            metadataStore: store,
             initalize: initalize,
             switchconnection: switchconnection,
             setAccessToken: setAccessToken,
@@ -162,6 +163,7 @@
         }
 
         function initalize() {
+            //store = manager.metadataStore;
         }
 
         function configureBreeze() {

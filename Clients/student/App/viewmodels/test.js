@@ -36,10 +36,13 @@
             //},
 
             addSection: addSection,
+            deleteSection: deleteSection,
+            deleteProblem: deleteProblem,
+            deleteQuiz:deleteQuiz,
             addProblem: addProblem,
             addQuiz: addQuiz,
             upload: upload,
-            readfile: readFile
+            uploadimage: readFile
         };
 
         return vm;
@@ -62,7 +65,7 @@
                 var resultdata = e.target.result;
                 quiz.QuizDetail(resultdata);
             };
-            FR.readAsDataURL(this.files[0]);
+            FR.readAsDataURL(file);
         }
 
         function upload() {
@@ -73,16 +76,34 @@
 
         function addProblem(sec) {
             var newprob = data.create('Problem');
+            newprob.ExersizeSection(sec);
             sec.Problems.push(newprob);
+        }
+
+        function deleteProblem(prob) {
+            prob.ExersizeSection().Problems.remove(prob);
+            prob.entityAspect.setDeleted();
+        }
+
+        function deleteSection(sec) {
+            sec.Exersize().Sections.remove(sec);
+            sec.entityAspect.setDeleted();
+        }
+
+        function deleteQuiz(quiz) {
+            quiz.Problem().Quizzes.remove(quiz);
+            quiz.entityAspect.setDeleted();
         }
 
         function addSection(exec) {
             var newsec = data.create('ExersizeSection');
+            newsec.Exersize(exec);
             exec.Sections.push(newsec);
         }
 
         function addQuiz(prob) {
             var newquiz = data.create('Quiz');
+            newquiz.Problem(prob);
             prob.Quizzes.push(newquiz);
         }
         //#endregion
