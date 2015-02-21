@@ -1,44 +1,58 @@
-﻿<div class="container">
+﻿
+<div class="container">
     <div data-role="content" style="position: relative">
         <form>
             <div class="form-group">
 
                 <ul data-bind="with: exercise">
                     <li>
-                        <label class="control-label">Exercise name:</label>
-                        <input data-bind="value: Name" class="form-control input-md">
+                        <label class="control-label">
+                            Exercise name:<input data-bind="value: Name" class="form-control input-md">
+                        </label>
+
                         <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addSection">Add section</button>
-                        
+
                     </li>
-                    <li>
+                    <li data-bind="visible: Sections().length > 0">
                         <ul class="section" data-bind="foreach: Sections">
                             <li>
-                                <label class="control-label">Section <span data-bind="text:$index"></span></label>
-                                <input data-bind="value: Name" class="form-control input-md">
+                                <label class="control-label">
+                                    Section <span data-bind="text:$index"></span> Name:
+                                    <input data-bind="value: Name" class="form-control input-md">
+                                </label>
+
                                 <button id="problem" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addProblem">Add Problem</button>
                                 <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteSection">Delete section</button>
                             </li>
-                            <li>
+                            <li data-bind="visible: Problems().length > 0">
                                 <ul class="problem" data-bind="foreach: Problems">
                                     <li>
-                                        <label class="control-label">Problem <span data-bind="text:$index() + '_' + $parentContext.$index()"></span></label>
-                                        <input data-bind="value: GeneralInfo" class="form-control input-md">
+                                        <label class="control-label">
+                                            Problem <span data-bind="text:$index() + '_' + $parentContext.$index()"></span> Name:
+                                            <input data-bind="value: GeneralInfo" class="form-control input-md">
+                                        </label>
+
+                                        <br />
+                                        <label class="control-label" for="username">
+                                            Audio File
+                                            <input id="mp3file" name="textinput" type="file" class="form-control input-md" data-bind="event: { change: function() { $root.uploadimage($data,$element.files[0]) } }">
+                                            <audio controls data-bind="attr: {src: Media.Content}" />
+                                        </label>
+
                                         <button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addQuiz">Add Quiz</button>
                                         <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteProblem">Delete Problem</button>
                                     </li>
-                                    <li>
+                                    <li data-bind="visible: Quizzes().length > 0">
                                         <ul class="quiz" data-bind="foreach: Quizzes">
                                             <li>
                                                 <label class="control-label">Quiz <span data-bind="text:$index() + '_' + $parentContext.$index() + '_' + $parentContext.$parentContext.$index()"></span></label>
-                                                <input data-bind="value: Challenge" class="form-control input-md">
                                                 <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteQuiz">Delete Quiz</button>
-                                            </li>
-                                            <li>
-                                                <label class="control-label" for="username">Audio File</label>
-                                                <input id="mp3file" name="textinput" type="file" class="form-control input-md" data-bind="event: { change: function() { $root.uploadimage($data,$element.files[0]) } }">
-                                                <audio controls data-bind="attr: {src: QuizDetail}" />
-                                            </li>
+                                                <br />
+                                                <label>Challege: <input data-bind="value: Challenge" class="form-control input-md"></label>
+                                                <br />
+                                                <label>Answer: <input data-bind="value:Answer" class="form-control input-md" /></label>
                                         </ul>
+
                                     </li>
                                 </ul>
                             </li>

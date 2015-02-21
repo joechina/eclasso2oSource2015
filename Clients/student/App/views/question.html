@@ -29,17 +29,15 @@
     </div>
     <!--/ko-->
     <!--ko if: question()-->
-    <div class="submenu navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-            <li>
+    <div class="container main">
+
                 <a href="#" data-bind="click: backtolist">
                     <span class="glyphicon glyphicon-arrow-left"></span>
                 </a>
-            </li>
-            <li>
-                <span data-bind="text:question().QuestionDetail"></span>
-            </li>
-        </ul>
+
+                <h3  data-bind="text:question().QuestionDetail"></h3>
+            
+        
     </div>
     <div class="container main">
         <span data-bind="html:question().Answer"></span>
