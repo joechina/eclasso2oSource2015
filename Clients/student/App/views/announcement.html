@@ -4,9 +4,11 @@
     <!--ko ifnot: announcement()-->
     <ul id="inboxList" class="ui-listview" data-bind="foreach: announcements">
 
-        <li class="ui-first-child ui-last-child">
+        <li>
 
-            <a href="#" data-bind="text: Title, click: $parent.openmsg" data-transition="slide" class="ui-btn ui-btn-icon-left ui-nodisc-icon list_unread">
+            <a href="#" data-bind="click: $parent.openmsg">
+                <span data-bind="text: Title"></span>
+                <span data-bind="text:CreateDate" style="text-align:right"></span>
             </a>
         </li>
     </ul>

@@ -1,15 +1,36 @@
-﻿
+﻿<!--list of setting: Classes, UI language, login/logout, account info, etc. -->
+<!-- Classes setting-->
+
 <div>
-    <b>设置页面</b>
-    <!-- list of messages -->
-    <!--ko ifnot: announcement()-->
-    <ul id="inboxList" class="ui-listview" data-bind="foreach: announcements">
+ 
+        <h4>
+            Classes:
+        </h4>
 
-        <li class="ui-first-child ui-last-child">
+        <!--ko ifnot: Class()-->
+        <ul id="classList" data-bind="foreach: Classes">
 
-            <a href="#" data-bind="text: Title, click: $parent.openmsg" data-transition="slide" class="ui-btn ui-btn-icon-left ui-nodisc-icon list_unread">
-            </a>
-        </li>
-    </ul>
-    <!--/ko-->
+            <li>
+                <a href="#" data-bind="text: Name, click: $parent.openClass" data-transition="slide">
+                </a>
+            </li>
+        </ul>
+        <!--/ko-->
+        <!--ko if: Class()-->
+        <div>
+            <b>Name:</b>
+            <span data-bind="text:Class().Name"></span>
+            <br />
+            <br />
+            <b>ClassNumber:</b>
+            <span data-bind="text:Class().ClassNumber"></span>
+            <br />
+            <br />
+            <b>Description：</b>
+            <span data-bind="text:Class().Description"></span>
+        </div>
+        <!--/ko-->
+ 
+
+
 </div>

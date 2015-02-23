@@ -62,7 +62,6 @@
     <Content Include="App\logger.js" />
     <Content Include="App\main.js" />
     <Content Include="App\viewmodels\announcement.js" />
-    <Content Include="App\viewmodels\Class.js" />
     <Content Include="App\viewmodels\exersize.js" />
     <Content Include="App\viewmodels\question.js" />
     <Content Include="App\viewmodels\setting.js" />
@@ -72,7 +71,6 @@
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\viewmodels\signin.js" />
     <Content Include="App\views\announcement.html" />
-    <Content Include="App\views\Class.html" />
     <Content Include="App\views\exersize.html" />
     <Content Include="App\views\footer.html" />
     <Content Include="App\views\header.html" />
