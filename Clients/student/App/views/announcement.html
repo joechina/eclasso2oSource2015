@@ -1,5 +1,5 @@
 ﻿
-<div>
+<div class="container main">
     <!-- list of messages -->
     <!--ko ifnot: announcement()-->
     <ul id="inboxList" class="ui-listview" data-bind="foreach: announcements">
@@ -12,9 +12,17 @@
             </a>
         </li>
     </ul>
+    <br/>
+    <button id="new" name="singlebutton" class="btn btn-primary" data-bind="click:newmsg">New Message</button>
+
     <!--/ko-->
     <!--ko if: announcement()-->
-    <div>
+    <div class="main">
+        <a href="#" data-bind="click: backtolist">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
+        <br />
+
         <b>Title:</b>
         <span data-bind="text:announcement().Title"></span>
         <br />

@@ -8,7 +8,8 @@
             activate: activate,
             openmsg: openmsg,
             router: router,
-            backtolist: backtolist
+            backtolist: backtolist,
+            newmsg:newmsg
         };
 
         return login;
@@ -29,6 +30,10 @@
 
         function backtolist() {
             announcement(undefined);
+        }
+
+        function newmsg() {
+            router.navigate('/#newmsg');
         }
         //#endregion
     });

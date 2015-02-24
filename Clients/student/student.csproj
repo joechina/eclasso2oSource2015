@@ -63,6 +63,7 @@
     <Content Include="App\main.js" />
     <Content Include="App\viewmodels\announcement.js" />
     <Content Include="App\viewmodels\exersize.js" />
+    <Content Include="App\viewmodels\newmsg.js" />
     <Content Include="App\viewmodels\question.js" />
     <Content Include="App\viewmodels\setting.js" />
     <Content Include="App\viewmodels\test.js" />
@@ -75,6 +76,7 @@
     <Content Include="App\views\footer.html" />
     <Content Include="App\views\header.html" />
     <Content Include="App\views\home.html" />
+    <Content Include="App\views\newmsg.html" />
     <Content Include="App\views\question.html" />
     <Content Include="App\views\setting.html" />
     <Content Include="App\views\test.html" />
