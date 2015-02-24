@@ -11,7 +11,7 @@
             openClass: openClass,
             router: router,
             backtolist: backtolist,
-           
+           joinClass: joinClass
         };
 
         return login;
@@ -29,6 +29,10 @@
 
         function openClass(selected) {
             Class(selected);
+        }
+
+        function joinClass() {
+
         }
 
         function backtolist() {
