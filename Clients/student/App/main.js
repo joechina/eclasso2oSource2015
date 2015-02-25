@@ -26,7 +26,8 @@ function boot(app, viewLocator, system, router) {
     app.title = 'eClassO2O Student';
 
     app.configurePlugins({
-        router: true
+        router: true,
+        widget: true
     });
 
     app.start().then(function () {

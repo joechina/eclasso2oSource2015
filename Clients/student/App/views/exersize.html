@@ -7,11 +7,19 @@
             </li>
         </ul>
         <!--/ko-->
-        <!--ko if: exersize()-->
+        <!--ko if: exersize() -->
         <h4 data-bind="text:exersize().Name"></h4>
         <div>
-            <span data-bind="html:exersize().Description"></span>
-           
+            <ul data-bind="foreach: exersize().Sections">
+                <li>
+                    <h3 data-bind="text:Name"></h3>
+                    <ul data-bind="foreach: Problems">
+                        <li>
+                            <a href="#" data-bind="text:GeneralInfo, attr: {href: '#problem/' + Id()}"></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
         <a href="#" data-bind="click: backtolist">Back</a>
         <!--/ko-->

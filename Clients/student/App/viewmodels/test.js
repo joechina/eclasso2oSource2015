@@ -1,7 +1,7 @@
 ﻿define(['plugins/router', 'knockout', 'data','logger'],
     function (router, ko, data, logger) {
         var audio = ko.observable();
-
+        
         var vm = {
             activate: activate,
             //compositionComplete: compositionComplete,
@@ -24,7 +24,7 @@
         //#region Internal Methods
         function activate() {
             vm.exercise = data.create('Exersize');
-
+            
             logger.log('input activated');
             return true;
         }
@@ -40,7 +40,12 @@
                 var newmedia = data.create('Media');
                 newmedia.Content(resultdata);
                 newmedia.Type("mp3");
-                prob.Media(newmedia);
+                data.save(newmedia).then(function(){
+                    prob.MediaId(newmedia.Id());
+                    audio.Content = resultdata;
+                });
+                
+                //prob.Media(newmedia);
                
             };
             FR.readAsDataURL(file);

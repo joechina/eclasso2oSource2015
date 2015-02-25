@@ -14,7 +14,7 @@
         function boot() {
             logger.log('started', '','');
             router.on('router:route:not-found', function (fragment) {
-                logError('No Route Found', fragment, true);
+                logger.logError('No Route Found', fragment, true);
             });
 
             var routes = global.routes;

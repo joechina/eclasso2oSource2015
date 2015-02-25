@@ -25,6 +25,8 @@
             getquestions: getquestions,
             getannouncements: getannouncements,
             getexersizes: getexersizes,
+            getproblem: getproblem,
+            getmedia:getmedia,
             getClasses: getClasses,
             getsettings: getsettings,
             create: create
@@ -81,6 +83,17 @@
             return manager.executeQuery(query);
         }
 
+        function getproblem(id) {
+            var query = breeze.EntityQuery.from('Problems')
+                            .where("Id", "==", id);
+            return manager.executeQuery(query);
+        }
+
+        function getmedia(id) {
+            var query = breeze.EntityQuery.from('Media')
+                            .where("Id", "==", id);
+            return manager.executeQuery(query);
+        }
         function getexersizes () {
             var query = breeze.EntityQuery.from('Exersizes');
             return manager.executeQuery(query);
@@ -182,7 +195,18 @@
             }
 
             var store = manager.metadataStore;
-            
+            store.registerEntityTypeCtor("Quiz", null, QuizInit);
         }
 
+        function QuizInit(self) {
+            self.type = ko.computed(function () {
+                switch(self.QuizType())
+                {
+                    case 0:
+                        return 'fillblank';
+                    case 1:
+                        return 'multipleselection';
+                }
+            });
+        }
     });

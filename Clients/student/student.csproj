@@ -62,6 +62,7 @@
     <Content Include="App\logger.js" />
     <Content Include="App\main.js" />
     <Content Include="App\viewmodels\announcement.js" />
+    <Content Include="App\viewmodels\problem.js" />
     <Content Include="App\viewmodels\exersize.js" />
     <Content Include="App\viewmodels\newmsg.js" />
     <Content Include="App\viewmodels\question.js" />
@@ -72,6 +73,7 @@
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\viewmodels\signin.js" />
     <Content Include="App\views\announcement.html" />
+    <Content Include="App\views\problem.html" />
     <Content Include="App\views\exersize.html" />
     <Content Include="App\views\footer.html" />
     <Content Include="App\views\header.html" />
@@ -83,6 +85,8 @@
     <Content Include="App\views\signup.html" />
     <Content Include="App\views\Shell.html" />
     <Content Include="App\views\signin.html" />
+    <Content Include="App\widgets\fillblank\view.html" />
+    <Content Include="App\widgets\fillblank\viewmodel.js" />
     <Content Include="Content\images\introduce.jpg" />
     <Content Include="Content\images\loader.gif" />
     <Content Include="Content\images\logo.png" />

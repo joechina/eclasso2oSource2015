@@ -17,9 +17,11 @@
         function activate(id) {
             //var questionid = parseInt(id)
             //if (questionid > 0)
-            data.getexersizes().then(function (data) {
-                exersizes(data.results);
-            });
+            if (!exersize()) {
+                data.getexersizes().then(function (data) {
+                    exersizes(data.results);
+                });
+            }
             logger.log('exersizes activated');
         }
 
@@ -27,8 +29,11 @@
             exersize(selected);
         }
 
+        
         function backtolist() {
             exersize(undefined);
         }
+
+        
         //#endregion
     });
