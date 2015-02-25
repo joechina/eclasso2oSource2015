@@ -96,6 +96,14 @@ namespace Parrot.Controllers
 
         }
 
+        [HttpGet]
+        public IQueryable<Problem> Problems()
+        {
+            _repository = new Repository();
+            return _repository.Problems;
+
+        }
+
         [HttpPost]
         public SaveResult SaveChanges(JObject saveBundle)
         {

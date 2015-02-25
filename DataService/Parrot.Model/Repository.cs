@@ -59,7 +59,15 @@ namespace Parrot.Model
         {
             get
             {
-                return (DbQuery<Exersize>)Context.Exersizes.Include("Sections").Include("Sections.Problems").Include("Sections.Problems.Quizzes").Include("Sections.Problems.Media");
+                return (DbQuery<Exersize>)Context.Exersizes.Include("Sections").Include("Sections.Problems");
+            }
+        }
+
+        public DbQuery<Problem> Problems
+        {
+            get
+            {
+                return (DbQuery<Problem>)Context.Problems.Include("Quizzes");
             }
         }
 
