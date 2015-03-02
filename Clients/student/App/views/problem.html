@@ -5,11 +5,13 @@
         <audio controls data-bind="attr: {src: problem().Media().Content}" />
         <ul data-bind="foreach: problem().Quizzes">
             <li>
+                
                 <div data-bind="widget: { kind: type(), item: $data}"></div>
             </li>
         </ul>
         <div id="buttons">
-            <button id="" name="singlebutton" class="btn btn-success" data-bind="click:submitanswer">Confirm</button>
+            <button id="" name="singlebutton" class="btn btn-success" data-bind="click:submitanswer">Submit</button>
+            <button id="" name="singlebutton" class="btn btn-primary" data-bind="click:backtolist">Back</button>
         </div>
         <!-- /ko-->
     </div>

@@ -94,6 +94,12 @@
                             .where("Id", "==", id);
             return manager.executeQuery(query);
         }
+
+        function getquizs(id) {
+            var query = breeze.EntityQuery.from('Quizs')
+                            .where("Id", "==", id);
+            return manager.executeQuery(query);
+        }
         function getexersizes () {
             var query = breeze.EntityQuery.from('Exersizes');
             return manager.executeQuery(query);

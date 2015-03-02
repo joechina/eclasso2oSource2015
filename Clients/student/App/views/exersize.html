@@ -9,6 +9,7 @@
         <!--/ko-->
         <!--ko if: exersize() -->
         <h4 data-bind="text:exersize().Name"></h4>
+        
         <div>
             <ul data-bind="foreach: exersize().Sections">
                 <li>
@@ -21,7 +22,7 @@
                 </li>
             </ul>
         </div>
-        <a href="#" data-bind="click: backtolist">Back</a>
+        <button id="" name="singlebutton" class="btn btn-success" data-bind="click:backtolist">Back</button>
         <!--/ko-->
     </div>
 </div>

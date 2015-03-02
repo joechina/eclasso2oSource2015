@@ -1,13 +1,16 @@
 ﻿define(['plugins/router', 'knockout', 'data', 'logger'],
     function (router, ko, data, logger) {
         var problem = ko.observable();
+        var quizs = ko.observableArray();
+
         var vm = {
             problem: problem,
             activate: activate,
             submitanswer:submitanswer,
             router: router,
             backtolist: backtolist,
-            quiztypename: quiztypename
+            quiztypename: quiztypename,
+                        
         };
 
         return vm;
@@ -27,20 +30,35 @@
         }
         
         function quiztypename(id) {
+            // 0 - 填空题，1-是非题， 2-单选题，3-多选题
             switch (id) {
                 case 0:
                     return 'fillblank';
                     break;
                 case 1:
+                    return 'truefalse';
+                    break;
+                case 2:
+                    return 'singleselection';
+                    break;
+                case 3:
+                    return 'multiselection';
                     break;
             }
         }
+
         function backtolist() {
-            exersize(undefined);
+            router.navigateBack();
         }
 
         function submitanswer() {
-            alert('confirm an answer');
+            var userQuiz = data.create("UserQuizs");
+           
+            userQuiz.UserId = 1;
+            userQuiz.QuizId = Id;
+            userQuiz.Answer = answer;
+
+            alert('submit an answer');
             router.navigateBack();
         }
         //#endregion

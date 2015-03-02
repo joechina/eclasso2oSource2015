@@ -27,9 +27,7 @@
             clearsearch: function () {
                 search('');
             },
-            submitquestion: function() {
-                alert('submit quesiont:' + search());
-            }
+
         };
 
         return login;

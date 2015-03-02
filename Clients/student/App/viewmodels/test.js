@@ -16,7 +16,8 @@
             addProblem: addProblem,
             addQuiz: addQuiz,
             upload: upload,
-            uploadimage: readFile
+            uploadimage: readFile,
+            back:back
         };
 
         return vm;
@@ -54,6 +55,7 @@
         function upload() {
             data.save(vm.exercise).then(function () {
                 Alert('Exercise Uploaded. Please check database');
+
             }).fail(function (err) {
                 for (var i = 0; i < err.length; i++) {
                     alert(err[i]);
@@ -93,6 +95,10 @@
             var newquiz = data.create('Quiz');
             newquiz.Problem(prob);
             prob.Quizzes.push(newquiz);
+        }
+
+        function back() {
+            router.navigate('/#questions');
         }
         //#endregion
     });
