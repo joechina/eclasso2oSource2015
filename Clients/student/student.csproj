@@ -87,6 +87,12 @@
     <Content Include="App\views\signin.html" />
     <Content Include="App\widgets\fillblank\view.html" />
     <Content Include="App\widgets\fillblank\viewmodel.js" />
+    <Content Include="App\widgets\multiselection\view.html" />
+    <Content Include="App\widgets\multiselection\viewmodel.js" />
+    <Content Include="App\widgets\singleselection\view.html" />
+    <Content Include="App\widgets\singleselection\viewmodel.js" />
+    <Content Include="App\widgets\truefalse\view.html" />
+    <Content Include="App\widgets\truefalse\viewmodel.js" />
     <Content Include="Content\images\introduce.jpg" />
     <Content Include="Content\images\loader.gif" />
     <Content Include="Content\images\logo.png" />

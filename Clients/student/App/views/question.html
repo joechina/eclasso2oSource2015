@@ -7,7 +7,7 @@
         <div class="input__text" id="searchcretiria">
             <div class="flexi">
                 <div class="flexi__col">
-                    <input class="form-control" id="search" name="search" data-bind="value:search,valueUpdate: 'keyup'" placeholder=" enter your question" type="search">
+                    <input class="form-control" id="search" name="search" data-bind="value:search,valueUpdate: 'keyup'" placeholder="搜索关键字" type="search">
                     <a class="js-inputclear" href="#" aria-controls="search" data-bind="click:clearsearch">
                         <span id="searchclear" class="glyphicon glyphicon-remove"></span>
                     </a>
@@ -22,9 +22,10 @@
                 </li>
             </ul>
             <!--/ko-->
-            <!--ko if: displayquestions().length == 0-->
+
+            <!--if: displayquestions().length == 0 => submit questionn move to the up-right shortcut item>
             <button id="submit" name="singlebutton" class="btn btn-primary" data-bind="click: submitquestion">Submit a new question</button>
-            <!--/ko-->
+            <!--/-->
         </div>
     </div>
     <!--/ko-->
