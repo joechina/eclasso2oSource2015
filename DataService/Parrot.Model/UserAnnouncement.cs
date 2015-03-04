@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 namespace Parrot.Model
 {
     [Serializable]
-    [DataContract(IsReference = true)]
     public class UserAnnouncement
     {
         [Key]
@@ -26,8 +25,8 @@ namespace Parrot.Model
         
         public DateTime? ReadTs { get; set; }
 
-        public virtual User TargetUser { get; set; }
-        public virtual Announcement Announcement { get; set; }
+        //public virtual User User { get; set; }
+        //public virtual Announcement Announcement { get; set; }
 
 
     }

@@ -21,7 +21,7 @@ namespace Parrot.Model
         {
             get
             {
-                return (DbQuery<User>)Context.Users.Include("Exersizes").Include("Classes").Include("Announcements");
+                return (DbQuery<User>)Context.Users;
             }
         }
 

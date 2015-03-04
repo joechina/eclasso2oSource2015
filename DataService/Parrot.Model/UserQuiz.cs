@@ -17,12 +17,12 @@ namespace Parrot.Model
         [ForeignKey("User")]
         public int UserId { get; set; }
 
-        public virtual User User { get; set; }
+        //public virtual User User { get; set; }
 
         [ForeignKey("Quiz")]
         public int QuizId { get; set; }
 
-        public virtual Quiz Quiz { get; set; }
+        //public virtual Quiz Quiz { get; set; }
 
         public string Answer { get; set;}
 

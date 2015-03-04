@@ -20,7 +20,7 @@ namespace Parrot.Model
         public bool IsOwner { get; set; }
         public int UserId { get; set; }
         public int ExersizeId { get; set; }
-        public virtual User User { get; set; }
-        public virtual Exersize Exersize { get; set; }
+        //public virtual User User { get; set; }
+        //public virtual Exersize Exersize { get; set; }
     }
 }
