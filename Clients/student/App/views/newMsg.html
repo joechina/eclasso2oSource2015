@@ -3,29 +3,42 @@
 
     <form>
         
-        <div class="form-group" data-bind="with:msg">
+        <div class="form-group">
             <label>发送给: </label>
-            <input id="target" list="classes" data-bind="value:Target" required="required">
-            <datalist id="classes" data-bind="foreach: $root.classes">
-                <option data-bind="text: Name"></option>
-            </datalist>
+            <div class="form-group">
+                <select id='targettype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: targets,
+                                                                                                            value: msg().Target,
+                                                                                                            optionsCaption: '请选择...'"></select>
+            </div>
+            <div class="form-group">
+                <select id='itemtype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: targetDetails,
+                                                                                                            optionsText: 'Name',
+                                                                                                            value: target,
+                                                                                                            optionsCaption: '请选择...'"></select>
+            </div>
             <br />
-            <label>Date: <span data-bind="text:CreateDate"></span></label>
+            <label>Date: <span data-bind="text:msg().CreateDate"></span></label>
             <br/>
             <label class="control-label">
-                主题:
-                <input data-bind="value: Title" class="form-control input-md">
+                是否重要:
             </label>
+            <input data-bind="checked: isHighPriority" type="checkbox" class="form-control input-md">
             <br />
-            <label class="control-label" >
-                内容:
-                <input data-bind="value: Content" class="form-control input-md">
+            <label class="control-label">
+                主题:
             </label>
+            <input data-bind="value: msg().Title" class="form-control input-md">
+            <br />
+            <label class="control-label">
+                内容:
+            </label>
+            <textarea rows="3" data-bind="value: msg().Content" class="form-control input-md">
+            </textarea>
         </div>
 
         <div class="main">
-            <button id="send" name="singlebutton" class="btn btn-primary" data-bind="click:send">Send</button>
-            <button id="cancel" name="singlebutton" class="btn btn-primary" data-bind="click:back">Cancel</button>
+            <button id="send" class="btn btn-primary" data-bind="click:send">Send</button>
+            <button class="btn btn-primary" data-bind="click:back">Cancel</button>
         </div>
     </form>
 

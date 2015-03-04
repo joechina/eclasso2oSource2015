@@ -28,6 +28,7 @@
             getproblem: getproblem,
             getmedia:getmedia,
             getClasses: getClasses,
+            getUsers: getUsers,
             getsettings: getsettings,
             create: create
         }
@@ -107,6 +108,11 @@
 
         function getClasses() {
             var query = breeze.EntityQuery.from('Classes');
+            return manager.executeQuery(query);
+        }
+
+        function getUsers() {
+            var query = breeze.EntityQuery.from('Users');
             return manager.executeQuery(query);
         }
 
