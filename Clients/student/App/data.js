@@ -21,16 +21,19 @@
             signin: signin,
             canDeactivate: canDeactivate,
             save: save,
-            getUser: getCurrentUser,
+            getCurrentUser: getCurrentUser,
             getquestions: getquestions,
             getannouncements: getannouncements,
+            getuserannouncements:getuserannouncements,
             getexersizes: getexersizes,
             getproblem: getproblem,
             getmedia:getmedia,
             getClasses: getClasses,
             getUsers: getUsers,
+            getTeachers:getTeachers,
             getsettings: getsettings,
-            create: create
+            create: create,
+            user:user,
         }
 
         return data;
@@ -84,6 +87,11 @@
             return manager.executeQuery(query);
         }
 
+        function getuserannouncements(id) {
+            var query = breeze.EntityQuery.from('UserAnnouncements').where("UserId", "==", id);
+            return manager.executeQuery(query);
+        }
+
         function getproblem(id) {
             var query = breeze.EntityQuery.from('Problems')
                             .where("Id", "==", id);
@@ -113,6 +121,11 @@
 
         function getUsers() {
             var query = breeze.EntityQuery.from('Users');
+            return manager.executeQuery(query);
+        }
+
+        function getTeachers() {
+            var query = breeze.EntityQuery.from('Users').where("Role","==","T");
             return manager.executeQuery(query);
         }
 

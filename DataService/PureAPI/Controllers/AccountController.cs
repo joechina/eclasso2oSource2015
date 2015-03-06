@@ -164,7 +164,7 @@ namespace PureAPI.Controllers
 
             return null;
         }
-
+        /*
         [HttpPost]
 
         public JToken PublishAnouncement(int Id, string Target)
@@ -203,5 +203,6 @@ namespace PureAPI.Controllers
                 repo.Dispose();
             }
         }
+         * */
     }
 }

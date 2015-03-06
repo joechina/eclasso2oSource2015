@@ -2,11 +2,13 @@
     function (router, ko, data, logger) {
         var Class = ko.observable();
         var Classes = ko.observableArray();
+        var account = ko.observable();
        
 
-        var login = {
+        var me = {
             Class: Class,
-            Classes: Classes,
+            Classes:Classes,
+            account:account,
             activate: activate,
             openClass: openClass,
             router: router,
@@ -14,15 +16,20 @@
            joinClass: joinClass
         };
 
-        return login;
+        return me;
 
         //#region Internal Methods
         function activate(id) {
            
-
             data.getClasses().then(function (data) {
                 Classes(data.results);
             });
+
+            data.getCurrentUser().then(function (data) {
+                account(data.result);
+            });
+
+            $("#goback").css({ display: "none" });
 
             logger.log('Classes activated');
         }

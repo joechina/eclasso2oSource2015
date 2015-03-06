@@ -18,20 +18,17 @@
     <!--/ko-->
     <!--ko if: announcement()-->
     <div class="main">
-        <a href="#" data-bind="click: backtolist">
-            <span class="glyphicon glyphicon-arrow-left"></span>
-        </a>
-        <br />
+        
 
-        <b>Title:</b>
+        <b>主题:</b>
         <span data-bind="text:announcement().Title"></span>
         <br />
         <br />
-        <b>Date:</b>
+        <b>日期:</b>
         <span data-bind="html:announcement().CreateDate"></span>
         <br />
         <br />
-        <b>Content：</b>
+        <b>内容：</b>
         <span data-bind="html:announcement().Content"></span>
     </div>
     <!--/ko-->

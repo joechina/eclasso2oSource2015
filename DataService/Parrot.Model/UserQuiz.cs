@@ -14,12 +14,12 @@ namespace Parrot.Model
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
-        [ForeignKey("User")]
+        //[ForeignKey("User")]
         public int UserId { get; set; }
 
         //public virtual User User { get; set; }
 
-        [ForeignKey("Quiz")]
+        //[ForeignKey("Quiz")]
         public int QuizId { get; set; }
 
         //public virtual Quiz Quiz { get; set; }

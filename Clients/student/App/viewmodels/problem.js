@@ -10,6 +10,8 @@
             router: router,
             backtolist: backtolist,
             quiztypename: quiztypename,
+            previous: previous,
+            next:next
                         
         };
 
@@ -26,6 +28,7 @@
                     })
                 }
             });
+            
             logger.log('problem activated');
         }
         
@@ -51,6 +54,13 @@
             router.navigateBack();
         }
 
+        function previous() {
+
+        }
+
+        function next() {
+
+        }
         function submitanswer() {
             var userQuiz = data.create("UserQuizs");
            

@@ -22,6 +22,9 @@
                     exersizes(data.results);
                 });
             }
+
+            $("#goback").css({ display: "none" });
+
             logger.log('exersizes activated');
         }
 

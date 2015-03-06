@@ -39,15 +39,19 @@
             data.getquestions().then(function (data) {
                 questions(data.results);
             });
+
+            $("#goback").css({ display: "none" });
             logger.log('question activated');
         }
 
         function openanswer(selected) {
             question(selected);
+            
+            $("#goback").css({ display: "block" });
         }
 
         function backtolist() {
-            question(undefined);
+            question(undefined); 
         }
 
         function searchAnswers (q) {
