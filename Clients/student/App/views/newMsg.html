@@ -19,21 +19,22 @@
             <br />
             <label>日期: <span data-bind="text:msg().CreateDate"></span></label>
             <br/>
+            <br />
             <label class="control-label">
-                优先级高: <input data-bind="checked: isHighPriority" type="checkbox" class="form-control input-md">
+                优先级高: <input data-bind="checked: isHighPriority" type="checkbox" >
             </label>
-            
+            <br />
             <br />
             <label class="control-label">
                 主题:
             </label>
             <input data-bind="value: msg().Title" class="form-control input-md">
             <br />
+            <br />
             <label class="control-label">
                 内容:
             </label>
-            <textarea rows="3" data-bind="value: msg().Content" class="form-control input-md">
-            </textarea>
+            <textarea rows="3" data-bind="value: msg().Content" class="form-control input-md"></textarea>
         </div>
 
         <div class="main">

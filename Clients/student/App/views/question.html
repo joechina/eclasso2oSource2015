@@ -1,6 +1,6 @@
 ﻿
 <div>
-
+    <p data-bind="visible: !questions">Fetching data ... </p>
     <!-- list of Q&A -->
     <!--ko ifnot: question()-->
     <div class="container main">
@@ -32,7 +32,7 @@
     <!--ko if: question()-->
     <div class="container main">
 
-                <h3  data-bind="text:question().QuestionDetail"></h3>
+                <h3  data-bind="text:question().QuestionDetail" style="text-align:center"></h3>
             
         
     </div>

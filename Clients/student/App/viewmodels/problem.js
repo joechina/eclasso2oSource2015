@@ -33,16 +33,16 @@
         }
         
         function quiztypename(id) {
-            // 0 - 填空题，1-是非题， 2-单选题，3-多选题
+            // 0 - 填空题，1-单选题， 2-是非题，3-多选题
             switch (id) {
                 case 0:
                     return 'fillblank';
                     break;
                 case 1:
-                    return 'truefalse';
+                    return 'singleselection';
                     break;
                 case 2:
-                    return 'singleselection';
+                    return 'truefalse';
                     break;
                 case 3:
                     return 'multiselection';
@@ -61,8 +61,9 @@
         function next() {
 
         }
+
         function submitanswer() {
-            var userQuiz = data.create("UserQuizs");
+            var userQuiz = data.create("UserQuiz");
            
             userQuiz.UserId = 1;
             userQuiz.QuizId = Id;

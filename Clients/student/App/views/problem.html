@@ -1,17 +1,16 @@
-﻿<div style="padding:30px;margin:0 auto;width:300px">
+﻿<div style="padding:50px;margin:0 auto;width:300px">
     <div>
         <!-- ko if: problem()-->
         <h4 data-bind="text:problem().GeneralInfo"></h4>
         <audio controls data-bind="attr: {src: problem().Media().Content}" />
         <ul data-bind="foreach: problem().Quizzes">
-            <li>
-                
+            <li>                
                 <div data-bind="widget: { kind: type(), item: $data}"></div>
             </li>
         </ul>
-        <div id="buttons">
-            <button id="submit" name="singlebutton" class="btn btn-primary glyphicon glyphicon-send" data-bind="click:submitanswer">&nbsp;递交</button>
+        <div id="buttons" class="btn btn-group">            
             <button id="previous" name="singlebutton" class="btn btn-primary glyphicon glyphicon-triangle-left" data-bind="click:previous">&nbsp;上一题</button>
+            <button id="submit" name="singlebutton" class="btn btn-primary glyphicon glyphicon-send" data-bind="click:submitanswer">&nbsp;递交</button>
             <button id="next" name="singlebutton" class="btn btn-primary glyphicon glyphicon-triangle-right" data-bind="click:next">&nbsp;下一题</button>
         </div>
         <!-- /ko-->

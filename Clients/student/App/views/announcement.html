@@ -1,6 +1,22 @@
 ﻿
 <div class="container main">
     <!-- list of messages -->
+    <!--ko ifnot: usermsg()-->
+    <ul id="inboxList" class="ui-listview" data-bind="foreach: usermsg">
+
+        <li>
+
+            <a href="#">
+                <span data-bind="text: UserId"></span>
+                <span data-bind="text:AnnouncementId"></span>
+            </a>
+        </li>
+    </ul>
+    <br />
+    <button id="new" name="singlebutton" class="btn btn-primary" data-bind="click:newmsg">New Message</button>
+
+    <!--/ko-->
+
     <!--ko ifnot: announcement()-->
     <ul id="inboxList" class="ui-listview" data-bind="foreach: announcements">
 

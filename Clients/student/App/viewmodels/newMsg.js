@@ -60,35 +60,20 @@
             var newmsg = vm.msg();
             switch (newmsg.Target()) {
                 case '我的班级':
-                    
-                    var tid = target().Id();
-                    //newmsg.Target(newmsg.Target() + '-' + tid);
-                    newmsg.Target('Classes-' + tid);
-                    
-                    var usermsg = data.create('UserAnnouncement');
-                    usermsg.UserId(tid);
-                    usermsg.AnnouncementId(newmsg.Id());
-                    usermsg.HighPriority(isHighPriority());
-                    newmsg.Users.push(usermsg);
-
-                    /*
+                    var c = target();
                     for (var i = 0; i < c.Users().length; i++) {
                         var usermsg = data.create('UserAnnouncement');
                         usermsg.UserId(c.Users()[i].UserId());
                         usermsg.AnnouncementId(newmsg.Id());
                         usermsg.HighPriority(isHighPriority());
                         newmsg.Users.push(usermsg);
-                    }*/
-
+                    }
                     break;
                 case '老师':
                     var tid = target().Id();
-                    var sid = data.user().UserName;
-                    alert(sid);
-                    //newmsg.Target(newmsg.Target() + '-' + tid);   
-                    newmsg.Target('Teacher-' + tid);
+                    newmsg.Target(newmsg.Target() + '-' + tid);
                     var usermsg = data.create('UserAnnouncement');
-                    usermsg.UserId(sid);
+                    usermsg.UserId(tid);
                     usermsg.AnnouncementId(newmsg.Id());
                     usermsg.HighPriority(isHighPriority());
                     newmsg.Users.push(usermsg);

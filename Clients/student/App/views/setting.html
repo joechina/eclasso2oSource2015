@@ -1,55 +1,53 @@
 ﻿<!--list of setting: Classes, UI language, login/logout, account info, etc. -->
-<!-- Classes setting-->
 
 <div>
-    <div class="container main" >
-        <h4>Account info:</h4>
+
+    <div class="container main">
+        <h4><b>个人信息：</b></h4>
+        <br />
+        <label>登录名：<span data-bind="text: user().UserId()"></span></label>
+        <br />
+        <label>名字：<span data-bind="text: user().Name()"></span></label>
+        <br />
+        <label>邮箱：<span id="email" data-bind="text: user().Email()" /></label>
+        <br />
+        <label>手机：<span id="mobile" data-bind="text: user().Phone()" /></label>
+        <br />
         <br />
 
-        <label><span data-bind="text:account()[0].Name"></span></label>
+        <button class="btn btn-primary" data-bind="click:editprofile">编辑个人信息</button>
     </div>
 
     <div class="container main">
 
-        <!--ko ifnot: Class()-->
-        <h4>
-            加入的课程:
-        </h4>
+        <h4>已加入 <span data-bind='text: myClasses().length'>&nbsp;</span> 课程:   </h4>
 
-        
-        <ul id="classList" data-bind="foreach: Classes">
+        <ul id="classList" data-bind="foreach: myClasses">
 
             <li>
-                <a href="#" data-bind="text: Name, click: $parent.openClass" data-transition="slide">
-                </a>
+                <a href="#" data-bind="text: Name"></a>
+                <br />
+                <b>课程号码:</b>
+                <span data-bind="text:ClassNumber"></span>
+                <br />
+                <br />
+                <b>描述：</b>
+                <span data-bind="text:Description"></span>
+                <br />
+                <b>开始时间：</b>
+                <span data-bind="text:Start.get"></span>
+                <br />
+                <b>结束时间：</b>
+                <span data-bind="text:End"></span>
+                <br />
+                <b>参课学生：</b>
+                <ul data-bind="foreach: Users()">
+                    <li>
+                        <span data-bind="text:UserId"></span>
+                        <br />
+                    </li>
+                </ul>
             </li>
-
         </ul>
-
-        <button id="join" name="singlebutton" class="btn btn-primary" data-bind="click: joinClass">加入课程</button>
-        <!--/ko-->
-        <!--ko if: Class()-->
-        <div class="main" style="margin-left:30px;">
-            <b>课程名称</b>
-            <span data-bind="text:Class().Name"></span>
-            <br />
-            <br />
-            <b>课程号码:</b>
-            <span data-bind="text:Class().ClassNumber"></span>
-            <br />
-            <br />
-            <b>描述：</b>
-            <span data-bind="text:Class().Description"></span>
-            <br/>
-            <b>开始时间：</b>
-            <span data-bind="text:Class().Start"></span>
-            <br/>
-            <b>结束时间：</b>
-            <span data-bind="text:Class().End"></span>
-            <br/>
-        </div>
-        <!--/ko-->
-
-
     </div>
 </div>
