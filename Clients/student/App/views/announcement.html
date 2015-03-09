@@ -1,6 +1,22 @@
 ﻿
 <div class="container main">
     <!-- list of messages -->
+    <!--ko ifnot: usermsg()-->
+    <ul id="inboxList" class="ui-listview" data-bind="foreach: usermsg">
+
+        <li>
+
+            <a href="#">
+                <span data-bind="text: UserId"></span>
+                <span data-bind="text:AnnouncementId"></span>
+            </a>
+        </li>
+    </ul>
+    <br />
+    <button id="new" name="singlebutton" class="btn btn-primary" data-bind="click:newmsg">New Message</button>
+
+    <!--/ko-->
+
     <!--ko ifnot: announcement()-->
     <ul id="inboxList" class="ui-listview" data-bind="foreach: announcements">
 
@@ -18,20 +34,17 @@
     <!--/ko-->
     <!--ko if: announcement()-->
     <div class="main">
-        <a href="#" data-bind="click: backtolist">
-            <span class="glyphicon glyphicon-arrow-left"></span>
-        </a>
-        <br />
+        
 
-        <b>Title:</b>
+        <b>主题:</b>
         <span data-bind="text:announcement().Title"></span>
         <br />
         <br />
-        <b>Date:</b>
+        <b>日期:</b>
         <span data-bind="html:announcement().CreateDate"></span>
         <br />
         <br />
-        <b>Content：</b>
+        <b>内容：</b>
         <span data-bind="html:announcement().Content"></span>
     </div>
     <!--/ko-->

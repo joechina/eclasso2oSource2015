@@ -156,3 +156,9 @@ $RECYCLE.BIN/
 # Mac desktop service store files
 .DS_Store
 *.txt
+*.mdf
+*.ldf
+*.mdf
+*.ldf
+DataService/PureAPI/App_Data/local.mdf
+DataService/PureAPI/App_Data/local_log.ldf

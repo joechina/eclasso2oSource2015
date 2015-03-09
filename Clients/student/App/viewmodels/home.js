@@ -17,15 +17,16 @@
             }
             else {
                 server.configureBreeze();
-                server.getUser();
+                server.getCurrentUser();
                 return true;
             }
         }
 
         function activate() {
             logger.log('Home View Activated', null, 'Home', false);
+            $("#shortcut").css({ display: "block" }); //display shortcut menu at top right
             router.navigate('/#questions')
-            //router.navigate('/#Classes')
+           
 
         }
         //#endregion

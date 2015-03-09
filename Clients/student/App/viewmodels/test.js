@@ -16,7 +16,8 @@
             addProblem: addProblem,
             addQuiz: addQuiz,
             upload: upload,
-            uploadimage: readFile,
+            uploadmedia: uploadmedia,
+            uploadtext: uploadtext,
             back:back
         };
 
@@ -34,22 +35,35 @@
         //    document.getElementById('mp3file').addEventListener("change", readFile, false);
         //}
 
-        function readFile(prob, file) {
+        function uploadmedia(prob, file) {
             var FR = new FileReader();
             FR.onload = function (e) {
                 var resultdata = e.target.result;
                 var newmedia = data.create('Media');
                 newmedia.Content(resultdata);
-                newmedia.Type("mp3");
+                newmedia.Type('mp3');
                 data.save(newmedia).then(function(){
                     prob.MediaId(newmedia.Id());
+                    prob.Media(newmedia);
                     audio.Content = resultdata;
                 });
                 
                 //prob.Media(newmedia);
                
             };
+
             FR.readAsDataURL(file);
+
+        }
+
+        function uploadtext(prob) {
+            var newmedia = data.create('Media');
+            newmedia.Type('txt');
+            newmedia.Content($("#txt").val());
+            data.save(newmedia).then(function () {
+                prob.MediaId(newmedia.Id());
+                prob.Media(newmedia);
+            });
         }
 
         function upload() {
@@ -96,6 +110,8 @@
             newquiz.Problem(prob);
             prob.Quizzes.push(newquiz);
         }
+
+
 
         function back() {
             router.navigate('/#questions');

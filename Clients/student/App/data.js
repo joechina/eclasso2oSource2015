@@ -21,16 +21,19 @@
             signin: signin,
             canDeactivate: canDeactivate,
             save: save,
-            getUser: getCurrentUser,
+            getCurrentUser: getCurrentUser,
             getquestions: getquestions,
-            getannouncements: getannouncements,
+            getallannouncements: getallannouncements,
+            getuserannouncements: getuserannouncements,            
             getexersizes: getexersizes,
             getproblem: getproblem,
             getmedia:getmedia,
             getClasses: getClasses,
             getUsers: getUsers,
+            getTeachers:getTeachers,
             getsettings: getsettings,
-            create: create
+            create: create,
+            user:user,
         }
 
         return data;
@@ -61,14 +64,14 @@
         function getCurrentUser() {
             var query = breeze.EntityQuery.from('currentUser');
             return manager.executeQuery(query).then(function (result) {
-                user(result);
+                user(result.results[0]);
             }).fail(function (err) {
                 alert(err.message);
             });
         }
 
         function getquestions() {
-            var query = breeze.EntityQuery.from('Questions');
+            var query = breeze.EntityQuery.from('Questions').orderBy("QuestionDetail");
             return manager.executeQuery(query);
         }
 
@@ -79,8 +82,14 @@
             return manager.executeQuery(query);
         };
 
-        function getannouncements() {
+        function getallannouncements() {
             var query = breeze.EntityQuery.from('Announcements');
+            return manager.executeQuery(query);
+        }
+
+        function getuserannouncements(id) {
+            
+            var query = breeze.EntityQuery.from('UserAnnouncements');
             return manager.executeQuery(query);
         }
 
@@ -107,12 +116,18 @@
         }
 
         function getClasses() {
+            var uid = user().Id();
             var query = breeze.EntityQuery.from('Classes');
             return manager.executeQuery(query);
         }
 
         function getUsers() {
             var query = breeze.EntityQuery.from('Users');
+            return manager.executeQuery(query);
+        }
+
+        function getTeachers() {
+            var query = breeze.EntityQuery.from('Users').where("Role","==","T");
             return manager.executeQuery(query);
         }
 

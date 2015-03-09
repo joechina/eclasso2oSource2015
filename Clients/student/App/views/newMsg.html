@@ -17,28 +17,29 @@
                                                                                                             optionsCaption: '请选择...'"></select>
             </div>
             <br />
-            <label>Date: <span data-bind="text:msg().CreateDate"></span></label>
+            <label>日期: <span data-bind="text:msg().CreateDate"></span></label>
             <br/>
+            <br />
             <label class="control-label">
-                是否重要:
+                优先级高: <input data-bind="checked: isHighPriority" type="checkbox" >
             </label>
-            <input data-bind="checked: isHighPriority" type="checkbox" class="form-control input-md">
+            <br />
             <br />
             <label class="control-label">
                 主题:
             </label>
             <input data-bind="value: msg().Title" class="form-control input-md">
             <br />
+            <br />
             <label class="control-label">
                 内容:
             </label>
-            <textarea rows="3" data-bind="value: msg().Content" class="form-control input-md">
-            </textarea>
+            <textarea rows="3" data-bind="value: msg().Content" class="form-control input-md"></textarea>
         </div>
 
         <div class="main">
-            <button id="send" class="btn btn-primary" data-bind="click:send">Send</button>
-            <button class="btn btn-primary" data-bind="click:back">Cancel</button>
+            <button id="send" name="singlebutton" class="btn btn-primary glyphicon glyphicon-send" data-bind="click:send">&nbsp;发送</button>
+            <button id="cancel" name="singlebutton" class="btn btn-primary glyphicon glyphicon-trash" data-bind="click:back">&nbsp;取消</button>
         </div>
     </form>
 
