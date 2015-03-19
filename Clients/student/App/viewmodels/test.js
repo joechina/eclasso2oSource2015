@@ -19,10 +19,10 @@
             uploadmedia: uploadmedia,
             uploadtext: uploadtext,
             back: back,
-            quizTypes: [{ value: 0, label: 'fillblank' },
-                        { value: 1, label: 'singleselection' },
-                        { value: 2, label: 'truefalse' },
-                        { value: 3, label: 'multiselection' }]
+            quizTypes: [{ value: 0, label: '填空题' },
+                        { value: 1, label: '单选题' },
+                        { value: 2, label: '对错题' },
+                        { value: 3, label: '多选题' }]
         };
 
         return vm;
