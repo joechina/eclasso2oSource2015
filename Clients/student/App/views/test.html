@@ -1,9 +1,6 @@
-﻿
-<div class="container">
-    <div data-role="content" style="position: relative">
-        <form>
+﻿<div class="container">
+    <div>
             <div class="form-group">
-
                 <ul data-bind="with: exercise">
                     <li>
                         <label class="control-label">
@@ -34,24 +31,11 @@
                                             Problem <span data-bind="text:$parentContext.$index()+'_'+$index() "></span> Name:
                                             <input data-bind="value: GeneralInfo" class="form-control input-md">
                                         </label>
-
-                                        <br />
-
                                         <label class="control-label" for="audioinput">
                                             Audio File
                                             <input id="mp3file" name="audioinput" type="file" class="form-control input-md" data-bind="event: { change: function() { $root.uploadmedia($data, $element.files[0]) } }">
-                                            <audio controls data-bind="attr: {src: Media.Content}" />
+                                            <audio controls id='audio' />
                                         </label>
-                                        <br />
-
-                                        <label class="control-label" for="textinput">
-                                            Text content
-                                            <textarea id="txt" name="textinput" style="height:200px;width:300px" class="form-control input-md" data-bind="event: { change: function() { $root.uploadtext($data) } }"></textarea>
-
-                                        </label>
-                                        
-                                        <br />
-
                                         <button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addQuiz">Add Quiz</button>
                                         <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteProblem">Delete Problem</button>
                                     </li>
@@ -59,42 +43,28 @@
                                         <ul class="quiz" data-bind="foreach: Quizzes">
                                             <li>
                                                 <label class="control-label">Quiz <span data-bind="text:$parentContext.$parentContext.$index()+'_'+ $parentContext.$index() +'_'+ $index()"></span></label>
-                                                <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteQuiz">Delete Quiz</button>
-                                                <br />
+                                                <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteQuiz" style="margin-left:30px;">Delete Quiz</button>
                                                 <label>
-                                                    Quiz Detail:
-                                                    <textarea rows="3" data-bind="value:QuizDetail" />
+                                                    Quiz type: 
+                                                    <select id='quiztype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: $root.quizTypes,
+                                                                                                                                                optionsText: 'label',
+                                                                                                                                                optionsValue: 'value',
+                                                                                                                                                value: QuizType,
+                                                                                                                                                optionsCaption: '请选择...'"></select>
                                                 </label>
-                                                <br />
-                                                <label>
-                                                    Quiz type: <input id="type" list="quizTypes" data-bind="value:QuizType" required="required">
-                                                    <datalist id="quizTypes">
-                                                        <option label="填空题" value="0"></option>
-                                                        <option label="单选题" value="1"></option>
-                                                        <option label="是非题" value="2"></option>
-                                                        <option label="多选题" value="3"></option>
-                                                    </datalist>
-                                                </label>
-                                                <br />
-                                                <label>Challege: <input data-bind="value: Challenge" class="form-control input-md"></label>
-                                                <br />
-                                                <label>Key: <input data-bind="value: Key" class="form-control input-md"></label>
-                                                <br />
-                                                <label>Answer: <input data-bind="value:Answer" class="form-control input-md" /></label>
+                                                <div data-bind="widget: { kind: $root.global.quiztypename($data.QuizType()), item: $data, isediting:true}"></div>
                                         </ul>
-
                                     </li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
                 </ul>
-                <div id="buttons">
-                    <button id="quiz" name="singlebutton" class="btn btn-success" data-bind="click:upload">Upload</button>
-                    <button id="back" name="singlebutton" class="btn btn-success" data-bind="click:back">Back</button>
-                    <button id="new" name="singlebutton" class="btn btn-success" type="reset">Reset</button>
-                </div>
             </div>
-        </form>
+            <div id="buttons">
+                <button id="quiz" name="singlebutton" class="btn btn-success" data-bind="click:upload">Upload</button>
+                <button id="back" name="singlebutton" class="btn btn-success" data-bind="click:back">Back</button>
+                <button id="new" name="singlebutton" class="btn btn-success" type="reset">Reset</button>
+            </div>
     </div>
 </div>

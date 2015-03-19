@@ -32,23 +32,7 @@
             logger.log('problem activated');
         }
         
-        function quiztypename(id) {
-            // 0 - 填空题，1-单选题， 2-是非题，3-多选题
-            switch (id) {
-                case 0:
-                    return 'fillblank';
-                    break;
-                case 1:
-                    return 'singleselection';
-                    break;
-                case 2:
-                    return 'truefalse';
-                    break;
-                case 3:
-                    return 'multiselection';
-                    break;
-            }
-        }
+        
 
         function backtolist() {
             router.navigateBack();

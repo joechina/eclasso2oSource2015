@@ -1,5 +1,5 @@
-﻿define(['plugins/router', 'knockout', 'data','logger'],
-    function (router, ko, data, logger) {
+﻿define(['plugins/router', 'knockout', 'data','logger','global'],
+    function (router, ko, data, logger, global) {
         var audio = ko.observable();
         
         var vm = {
@@ -8,7 +8,7 @@
             upload: upload,
             router: router,
             audio: audio,
-
+            global:global,
             addSection: addSection,
             deleteSection: deleteSection,
             deleteProblem: deleteProblem,
@@ -18,7 +18,11 @@
             upload: upload,
             uploadmedia: uploadmedia,
             uploadtext: uploadtext,
-            back:back
+            back: back,
+            quizTypes: [{ value: 0, label: 'fillblank' },
+                        { value: 1, label: 'singleselection' },
+                        { value: 2, label: 'truefalse' },
+                        { value: 3, label: 'multiselection' }]
         };
 
         return vm;
@@ -42,10 +46,12 @@
                 var newmedia = data.create('Media');
                 newmedia.Content(resultdata);
                 newmedia.Type('mp3');
-                data.save(newmedia).then(function(){
+                data.save(newmedia).then(function () {
+                    var audio = document.getElementById('audio');
                     prob.MediaId(newmedia.Id());
+                    newmedia.Content(resultdata);
                     prob.Media(newmedia);
-                    audio.Content = resultdata;
+                    audio.src = resultdata;
                 });
                 
                 //prob.Media(newmedia);
@@ -80,7 +86,7 @@
 
         function addProblem(sec) {
             var newprob = data.create('Problem');
-            newprob.ExersizeSection(sec);
+            //newprob.ExersizeSection(sec);
             sec.Problems.push(newprob);
         }
 
@@ -101,13 +107,13 @@
 
         function addSection(exec) {
             var newsec = data.create('ExersizeSection');
-            newsec.Exersize(exec);
+            //newsec.Exersize(exec);
             exec.Sections.push(newsec);
         }
 
         function addQuiz(prob) {
             var newquiz = data.create('Quiz');
-            newquiz.Problem(prob);
+            //newquiz.Problem(prob);
             prob.Quizzes.push(newquiz);
         }
 

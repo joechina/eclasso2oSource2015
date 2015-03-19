@@ -1,4 +1,9 @@
 ﻿<div class="widget">
+    <!--ko if: isediting()-->
+    <label>Single Selection</label>
+    <!-- /ko-->
+    <!--ko ifnot: isediting()-->
     <span data-bind="text:settings.item.Challenge()"></span>
     <input data-bind="value: settings.item.Answer" class="form-control input-md">
+    <!-- /ko-->
 </div>

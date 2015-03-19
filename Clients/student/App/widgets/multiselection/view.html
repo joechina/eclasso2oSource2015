@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+﻿<div class="widget">
+    <!--ko if: isediting()-->
+    <label>Multiple Selection</label>
+    <!-- /ko-->
+    <!--ko ifnot: isediting()-->
+    <span data-bind="text:settings.item.Challenge()"></span>
+    <input data-bind="value: settings.item.Answer" class="form-control input-md">
+    <!-- /ko-->
+</div>
