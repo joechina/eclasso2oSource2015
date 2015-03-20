@@ -1,9 +1,14 @@
-﻿<div class="widget">
-    <!--ko if: isediting()-->
-    <label>True or False</label>
-    <!-- /ko-->
+﻿<!--对错题只需填写问题-->
+
+<div class="widget">
     <!--ko ifnot: isediting()-->
+    <label>True or False</label>
     <span data-bind="text:settings.item.Challenge()"></span>
     <input data-bind="value: settings.item.Answer" class="form-control input-md">
+    <!-- /ko-->
+    <!--ko if: isediting()-->
+
+    <br />
+    <label>问题: <input data-bind="value: settings.item.Challenge" class="form-control input-md"></label>
     <!-- /ko-->
 </div>

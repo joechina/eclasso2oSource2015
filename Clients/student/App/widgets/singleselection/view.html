@@ -1,9 +1,19 @@
-﻿<div class="widget">
-    <!--ko if: isediting()-->
-    <label>Single Selection</label>
-    <!-- /ko-->
+﻿<!--单选题需填写问题，选项 (Key) 和答案。选项用分号　＂；＂　分隔-->
+
+<div class="widget">
     <!--ko ifnot: isediting()-->
+    <label>Single Selection</label>
     <span data-bind="text:settings.item.Challenge()"></span>
     <input data-bind="value: settings.item.Answer" class="form-control input-md">
+    <!-- /ko-->
+
+    <!--ko if: isediting()-->
+    <br />
+    <label>问题: <input data-bind="value: settings.item.Challenge" class="form-control input-md"></label>
+    <br />
+    <label>选项: <input data-bind="value: settings.item.Key" class="form-control input-md"></label>
+    <br />
+    <label>答案: <input data-bind="value:settings.item.Answer" class="form-control input-md" /></label>
+
     <!-- /ko-->
 </div>
