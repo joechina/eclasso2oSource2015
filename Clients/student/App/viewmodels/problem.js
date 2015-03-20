@@ -1,5 +1,5 @@
-﻿define(['plugins/router', 'knockout', 'data', 'logger'],
-    function (router, ko, data, logger) {
+﻿define(['plugins/router', 'knockout', 'data', 'logger','global'],
+    function (router, ko, data, logger, global) {
         var problem = ko.observable();
         var quizs = ko.observableArray();
 
@@ -9,7 +9,7 @@
             submitanswer:submitanswer,
             router: router,
             backtolist: backtolist,
-            quiztypename: quiztypename,
+            quiztypename: global.quiztypename,
             previous: previous,
             next:next
                         
@@ -26,6 +26,9 @@
                         p.Media(mdata.results[0]);
                         problem(p);
                     })
+                }
+                else {
+                    problem(p);
                 }
             });
             

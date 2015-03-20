@@ -2,10 +2,12 @@
     <div>
         <!-- ko if: problem()-->
         <h4 data-bind="text:problem().GeneralInfo"></h4>
+        <!-- ko if: problem().Media()-->
         <audio controls data-bind="attr: {src: problem().Media().Content}" />
+        <!-- /ko-->
         <ul data-bind="foreach: problem().Quizzes">
             <li>                
-                <div data-bind="widget: { kind: type(), item: $data}"></div>
+                <div data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data}"></div>
             </li>
         </ul>
         <div id="buttons" class="btn btn-group">            

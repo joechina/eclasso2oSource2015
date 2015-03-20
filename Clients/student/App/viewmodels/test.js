@@ -73,8 +73,30 @@
         }
 
         function upload() {
+            vm.exercise.Sections().forEach(function (s) {
+                s.Problems().forEach(function (p) {
+                    p.Quizzes().forEach(function (q) {
+                        switch(q.QuizType())
+                        {
+                            case 0:
+                                break;
+                            case 1:
+                                var d = [];
+                                for (var j = 0; j < q.options().length; j++) {
+                                    d.push(q.options()[j].text());
+                                }
+                                q.QuizDetail(d.join(','));
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                        }
+                    })
+                })
+            });
             data.save(vm.exercise).then(function () {
-                Alert('Exercise Uploaded. Please check database');
+                alert('Exercise Uploaded. Please check database');
 
             }).fail(function (err) {
                 for (var i = 0; i < err.length; i++) {

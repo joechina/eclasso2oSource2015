@@ -4,16 +4,20 @@
     <!--ko ifnot: isediting()-->
     <label>Single Selection</label>
     <span data-bind="text:settings.item.Challenge()"></span>
-    <input data-bind="value: settings.item.Answer" class="form-control input-md">
+    <!--<input data-bind="value: settings.item.Answer" class="form-control input-md">-->
+    <ul data-bind="foreach: options" class="options">
+        <li class="selectionoption"><input type="radio" name="group1" data-bind="attr: {value: $data},checked: $parent.settings.answer" /><span data-bind="text:text"></span></li>
+    </ul>
     <!-- /ko-->
 
     <!--ko if: isediting()-->
-    <br />
-    <label>问题: <input data-bind="value: settings.item.Challenge" class="form-control input-md"></label>
-    <br />
-    <label>选项: <input data-bind="value: settings.item.Key" class="form-control input-md"></label>
-    <br />
-    <label>答案: <input data-bind="value:settings.item.Answer" class="form-control input-md" /></label>
+    <label class="block">问题: <input data-bind="value: settings.item.Challenge" class="form-control input-md"></label>
+    <label class="block">选项:<button id="quiz" name="singlebutton" class="btn btn-success" data-bind="click:addoptions">加选项</button></label>
+    <ul data-bind="foreach: options" class="options">
+        <li class="selectionoption"><input type="text" data-bind="value: text" class="optioninput form-control input-md" /><a href="#" id="quiz" name="singlebutton" class="btn btn-success" data-bind="click:$parent.deleteoption">删除</a></li>
+    </ul>
+    
+    <label class="block">答案: <input data-bind="value:settings.item.Answer" class="form-control input-md" /></label>
 
     <!-- /ko-->
 </div>
