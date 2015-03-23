@@ -2,17 +2,20 @@
 
 <div class="widget">
     <!--ko ifnot: isediting()-->
-    <label>Multiple Selection</label>
+    <label>多选题：</label>
     <span data-bind="text:settings.item.Challenge()"></span>
     <input data-bind="value: settings.item.Answer" class="form-control input-md">
         <!-- /ko-->
 
     <!--ko if: isediting()-->
     <br />
-    <label>问题: <input data-bind="value: settings.item.Challenge" class="form-control input-md"></label>
-    <br />
-    <label>选项: <input data-bind="value: settings.item.Key" class="form-control input-md"></label>
-    <br />
-    <label>答案: <input data-bind="value:settings.item.Answer" class="form-control input-md" /></label>
+    <label class="block">问题: <input data-bind="value: settings.item.Challenge" class="form-control input-md"></label>
+    <label class="block">选项:<button id="quiz" name="multibutton" class="btn btn-success" data-bind="click:addoptions">加选项</button></label>
+    <ul data-bind="foreach: options" class="options">
+        <li class="selectionoption"><input type="text" data-bind="value: text" class="optioninput form-control input-md" /><a href="#" id="quiz" name="multibutton" class="btn btn-success" data-bind="click:$parent.deleteoption">删除</a></li>
+    </ul>
+
+    <label>标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-md" /></label>
+
     <!-- /ko-->
 </div>

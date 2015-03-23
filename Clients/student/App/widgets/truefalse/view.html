@@ -2,7 +2,7 @@
 
 <div class="widget">
     <!--ko ifnot: isediting()-->
-    <label>True or False</label>
+    <label>是非题：</label>
     <span data-bind="text:settings.item.Challenge()"></span>
     <input data-bind="value: settings.item.Answer" class="form-control input-md">
     <!-- /ko-->
@@ -10,5 +10,10 @@
 
     <br />
     <label>问题: <input data-bind="value: settings.item.Challenge" class="form-control input-md"></label>
+    <label class="block">标准答案: </label>
+    <select>
+        <option value="true">对</option>
+        <option value="false">错</option>
+    </select>
     <!-- /ko-->
 </div>

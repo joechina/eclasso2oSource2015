@@ -2,6 +2,7 @@
     function (router, ko, data, logger, global) {
         var problem = ko.observable();
         var quizs = ko.observableArray();
+        var answer = ko.observable();
 
         var vm = {
             problem: problem,
@@ -11,7 +12,8 @@
             backtolist: backtolist,
             quiztypename: global.quiztypename,
             previous: previous,
-            next:next
+            next: next,
+            answer: answer
                         
         };
 
@@ -31,32 +33,54 @@
                     problem(p);
                 }
             });
-            
+           
+            $("#goback").css({ display: "block" });
+
             logger.log('problem activated');
         }
         
         
 
         function backtolist() {
-            router.navigateBack();
+            //router.navigateBack();
+            router.navigate('/#exersizes')
         }
 
         function previous() {
-
+            this.backtolist();
         }
 
         function next() {
 
         }
 
-        function submitanswer() {
-            var userQuiz = data.create("UserQuiz");
-           
-            userQuiz.UserId = 1;
-            userQuiz.QuizId = Id;
-            userQuiz.Answer = answer;
 
-            alert('submit an answer');
+        function submitanswer() {
+
+            for (i = 0; i < problem().Quizzes().length;i++) {
+                var userQuiz = data.create("UserQuiz");
+                var uid = data.user().Id(); // get current user id
+
+                var q = problem().Quizzes()[i];
+
+                userQuiz.UserId(uid);
+                userQuiz.QuizId(q.Id());
+                userQuiz.Answer(q.answer);
+            
+                /*
+                data.save(userQuiz).then(function () {
+                    alert('userQuiz saved');
+                    
+                }).fail(function (err) {
+                    for (var i = 0; i < err.length; i++) {
+                        alert(err[i]);
+                        logger.log(err[i]);
+                    }
+                });
+                */
+
+                alert('submit an answer');
+            }
             router.navigateBack();
         }
         //#endregion

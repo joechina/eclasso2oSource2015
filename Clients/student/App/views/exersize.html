@@ -1,4 +1,4 @@
-﻿<div style="padding:30px;margin:0 auto;width:300px">
+﻿<div style="padding:30px;margin:0 auto;width:500px">
     <div>
         <!--ko ifnot: exersize()-->
         <ul data-bind="foreach: exersizes">
@@ -8,12 +8,12 @@
         </ul>
         <!--/ko-->
         <!--ko if: exersize() -->
-        <h4 data-bind="text:exersize().Name"></h4>
+        <h4 style="text-align:center" data-bind="text:exersize().Name"></h4>
         
         <div>
             <ul data-bind="foreach: exersize().Sections">
                 <li>
-                    <h3 data-bind="text:Name"></h3>
+                    <span data-bind="text:Name"></span>
                     <ul data-bind="foreach: Problems">
                         <li>
                             <a href="#" data-bind="text:GeneralInfo, attr: {href: '#problem/' + Id()}"></a>
@@ -22,7 +22,7 @@
                 </li>
             </ul>
         </div>
-        <button id="" name="singlebutton" class="btn btn-success" data-bind="click:backtolist">Back</button>
+        <button id="" name="singlebutton" class="btn btn-primary" data-bind="click:backtolist">返回</button>
         <!--/ko-->
     </div>
 </div>
