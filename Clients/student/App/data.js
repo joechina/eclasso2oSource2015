@@ -226,6 +226,7 @@
         }
 
         function QuizInit(self) {
+            self.options = ko.observableArray();
             self.type = ko.computed(function () {
                 switch(self.QuizType())
                 {

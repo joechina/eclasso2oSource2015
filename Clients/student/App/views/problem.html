@@ -2,25 +2,27 @@
     <div>
         <!-- ko if: problem()-->
         <h4 data-bind="text:problem().GeneralInfo"></h4>
-        <!-- ko if: problem().Media().Type() == 'mp3'-->
+        <!-- ko if: problem().Media() && problem().Media().Type() == 'mp3'-->
         <br>
         <audio controls data-bind="attr: {src: problem().Media().Content}" />
         <br/><br/>
         <!-- /ko-->
-        <!-- ko if: problem().Media().Type() == 'txt'-->
+        <!-- ko if: problem().Media() && problem().Media().Type() == 'txt'-->
         <br/>
         <label data-bind="html:problem().Media().Content()" />
         <br/><br/>
         <!-- /ko-->
-        <ul data-bind="foreach: problem().Quizzes">
-            <li>
-                <div data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false}"></div>
-            </li>
-        </ul>
+        <!--<ul data-bind="foreach: problem().Quizzes">-->
+            <!--<li>-->
+        <!-- ko with: currentQuiz-->
+        <div data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false,answer: $parent.answer}"></div>
+        <!-- /ko -->
+            <!--</li>-->
+        <!--</ul>-->
         <div>
-            <button id="previous" name="singlebutton" class="btn btn-primary glyphicon glyphicon-triangle-left" data-bind="click:previous">&nbsp;返回</button>
+            <button id="previous" name="singlebutton" class="btn btn-primary glyphicon glyphicon-triangle-left" data-bind="click:previous">&nbsp;上一题</button>
             <button id="submit" name="singlebutton" class="btn btn-primary glyphicon glyphicon-send" data-bind="click:submitanswer">&nbsp;递交</button>
-            <!--button id="next" name="singlebutton" class="btn btn-primary glyphicon glyphicon-triangle-right" data-bind="click:next">&nbsp;下一题</!--button>-->
+            <button id="next" name="singlebutton" class="btn btn-primary glyphicon glyphicon-triangle-right" data-bind="click:next">&nbsp;下一题</button>
         </div>
         <!-- /ko-->
     </div>

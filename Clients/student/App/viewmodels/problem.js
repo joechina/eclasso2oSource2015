@@ -3,6 +3,7 @@
         var problem = ko.observable();
         var quizs = ko.observableArray();
         var answer = ko.observable();
+        var current = ko.observable(0);
 
         var vm = {
             problem: problem,
@@ -13,9 +14,17 @@
             quiztypename: global.quiztypename,
             previous: previous,
             next: next,
-            answer: answer
-                        
+            answer: answer,
+            currentQuiz: ko.computed(function () {
+                if (problem()) {
+                    return problem().Quizzes()[current()];
+                }
+            })            
         };
+
+        answer.subscribe(function(newValue) {
+            alert(newValue);
+        });
 
         return vm;
 
@@ -47,11 +56,13 @@
         }
 
         function previous() {
-            this.backtolist();
+            //Need to check range
+            current(current() - 1);
         }
 
         function next() {
-
+            //Need to check range
+            current(current() + 1);
         }
 
 
