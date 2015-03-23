@@ -1,8 +1,8 @@
-﻿<!--单选题需填写问题，选项 (Key) 和答案。选项用分号　＂；＂　分隔-->
+﻿<!--单选题需填写问题，选项 (Key) 和答案。选项用逗号　＂,＂　分隔-->
 
 <div class="widget">
     <!--ko ifnot: isediting()-->
-    <label>Single Selection</label>
+    <label>单选题</label>
     <span data-bind="text:settings.item.Challenge()"></span>
     <!--<input data-bind="value: settings.item.Answer" class="form-control input-md">-->
     <ul data-bind="foreach: options" class="options">
@@ -17,7 +17,7 @@
         <li class="selectionoption"><input type="text" data-bind="value: text" class="optioninput form-control input-md" /><a href="#" id="quiz" name="singlebutton" class="btn btn-success" data-bind="click:$parent.deleteoption">删除</a></li>
     </ul>
     
-    <label class="block">答案: <input data-bind="value:settings.item.Answer" class="form-control input-md" /></label>
+    <label class="block">标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-md" /></label>
 
     <!-- /ko-->
 </div>

@@ -1,35 +1,18 @@
 ﻿
 <div class="container main">
     <!-- list of messages -->
-    <!--ko ifnot: usermsg()-->
-    <ul id="inboxList" class="ui-listview" data-bind="foreach: usermsg">
-
-        <li>
-
-            <a href="#">
-                <span data-bind="text: UserId"></span>
-                <span data-bind="text:AnnouncementId"></span>
-            </a>
-        </li>
-    </ul>
-    <br />
-    <button id="new" name="singlebutton" class="btn btn-primary" data-bind="click:newmsg">New Message</button>
-
-    <!--/ko-->
-
+  
     <!--ko ifnot: announcement()-->
     <ul id="inboxList" class="ui-listview" data-bind="foreach: announcements">
-
         <li>
-
             <a href="#" data-bind="click: $parent.openmsg">
-                <span data-bind="text: Title"></span>
-                <span data-bind="text:CreateDate" style="text-align:right"></span>
+                <span data-bind="text: Title"></span>&mdash;&nbsp;
+                <span data-bind="text: CreateDate().getFullYear()+ '/' + CreateDate().getMonth() + '/' + CreateDate().getDate()"></span>
             </a>
         </li>
     </ul>
     <br/>
-    <button id="new" name="singlebutton" class="btn btn-primary" data-bind="click:newmsg">New Message</button>
+    <!--button id="new" name="singlebutton" class="btn btn-primary" data-bind="click:newmsg">创建消息</!--button>-->
 
     <!--/ko-->
     <!--ko if: announcement()-->
@@ -46,6 +29,7 @@
         <br />
         <b>内容：</b>
         <span data-bind="html:announcement().Content"></span>
+        <button id="" name="singlebutton" class="btn btn-primary glyphicon glyphicon-arrow-left" data-bind="click:backtolist">&nbsp;返回</button>
     </div>
     <!--/ko-->
 

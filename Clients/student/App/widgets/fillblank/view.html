@@ -2,15 +2,16 @@
 
 <div class="widget">
     <!--ko ifnot: isediting()-->
-    <label>Fill Blank</label>
+    <label>填空题：</label><br/>
     <span data-bind="text:settings.item.Challenge()"></span>
-    <input data-bind="value: settings.item.Answer" class="form-control input-md">
+    <input data-bind="value: $parent.answer" class="form-control input-md">
+    <br/>
     <!-- /ko-->
     
     <!--ko if: isediting()-->
-        <br />
+    
     <label>问题: <input data-bind="value: settings.item.Challenge" class="form-control input-md"></label>
     <br />
-    <label>答案: <input data-bind="value:settings.item.Answer" class="form-control input-md" /></label>
+    <label>标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-md" /></label>
     <!-- /ko-->
 </div>

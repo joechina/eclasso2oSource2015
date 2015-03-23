@@ -3,7 +3,7 @@
         var announcement = ko.observable();
         var announcements = ko.observableArray();
         var myannouncements = ko.observableArray();
-        var usermsg = ko.observableArray();
+        //var usermsg = ko.observableArray();
 
         var login = {
             announcement: announcement,
@@ -13,7 +13,7 @@
             router: router,
             backtolist: backtolist,
             newmsg: newmsg,
-            usermsg:usermsg
+           // usermsg:usermsg
         };
 
         return login;
@@ -23,13 +23,19 @@
             //var questionid = parseInt(id)
             //if (questionid > 0)
 
+            /*
             var uid = data.user().Id(); // get current user id
             var usermsg = ko.observableArray();
 
             data.getuserannouncements(uid).then(function (data) {
                 usermsg(data.results);
             });
-            
+            */
+
+            data.getallannouncements().then(function (data) {
+                announcements(data.results);
+            });
+
             $("#goback").css({ display: "none" });
             logger.log('announcements activated');
         }
@@ -41,7 +47,7 @@
 
         function backtolist() {
             announcement(undefined);
-            router.navigateBack();
+            
             $("#goback").css({ display: "none" });
         }
 

@@ -1,51 +1,60 @@
-﻿<div class="container">
+﻿<div class="container" style="height:600px; overflow:auto">
     <div>
             <div class="form-group">
                 <ul data-bind="with: exercise">
                     <li>
                         <label class="control-label">
-                            Exercise name:<input data-bind="value: Name" class="form-control input-md" autofocus="autofocus">
+                            习题名称:<input data-bind="value: Name" class="form-control input-md" autofocus="autofocus">
                         </label>
                         <label class="control-label">
-                            Exercise description:<input data-bind="value: Description" class="form-control input-md">
+                            习题描述:<input data-bind="value: Description" class="form-control input-md">
                         </label>
 
-                        <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addSection">Add section</button>
+                        <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addSection">增加题项</button>
 
                     </li>
                     <li data-bind="visible: Sections().length > 0">
                         <ul class="section" data-bind="foreach: Sections">
                             <li>
                                 <label class="control-label">
-                                    Section <span data-bind="text:$index"></span> Name:
+                                    题项 <span data-bind="text:$index"></span> 名称:
                                     <input data-bind="value: Name" class="form-control input-md">
                                 </label>
 
-                                <button id="problem" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addProblem">Add Problem</button>
-                                <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteSection">Delete section</button>
+                                <button id="problem" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addProblem">增加问题</button>
+                                <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteSection">删除题项</button>
                             </li>
                             <li data-bind="visible: Problems().length > 0">
                                 <ul class="problem" data-bind="foreach: Problems">
                                     <li>
                                         <label class="control-label">
-                                            Problem <span data-bind="text:$parentContext.$index()+'_'+$index() "></span> Name:
+                                            问题 <span data-bind="text:$parentContext.$index()+'_'+$index() "></span> 描述:
                                             <input data-bind="value: GeneralInfo" class="form-control input-md">
                                         </label>
                                         <label class="control-label" for="audioinput">
-                                            Audio File
+                                            音频文件
                                             <input id="mp3file" name="audioinput" type="file" class="form-control input-md" data-bind="event: { change: function() { $root.uploadmedia($data, $element.files[0]) } }">
                                             <audio controls id='audio' />
                                         </label>
-                                        <button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addQuiz">Add Quiz</button>
-                                        <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteProblem">Delete Problem</button>
+                                        </br>
+                                        <label class="control-label" for="textinput">
+                                            阅读题
+                                            <textarea id="txt" name="textinput" style="height:200px;width:300px" class="form-control input-md" data-bind="event: { change: function() { $root.uploadtext($data) } }"></textarea>
+
+                                        </label>
+
+                                        <br />
+
+                                        <button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addQuiz">增加提问</button>
+                                        <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteProblem">删除问题</button>
                                     </li>
                                     <li data-bind="visible: Quizzes().length > 0">
                                         <ul class="quiz" data-bind="foreach: Quizzes">
                                             <li>
-                                                <label class="control-label">Quiz <span data-bind="text:$parentContext.$parentContext.$index()+'_'+ $parentContext.$index() +'_'+ $index()"></span></label>
-                                                <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteQuiz" style="margin-left:30px;">Delete Quiz</button>
+                                                <label class="control-label">提问 <span data-bind="text:$parentContext.$parentContext.$index()+'_'+ $parentContext.$index() +'_'+ $index()"></span></label>
+                                                <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteQuiz" style="margin-left:30px;">删除提问</button>
                                                 <label>
-                                                    Quiz type: 
+                                                    提问类型: 
                                                     <select id='quiztype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: $root.quizTypes,
                                                                                                                                                 optionsText: 'label',
                                                                                                                                                 optionsValue: 'value',
