@@ -1,8 +1,8 @@
-﻿<!--单选题需填写问题，选项 (Key) 和答案。选项用逗号　＂,＂　分隔-->
+﻿<!--单选题需填写问题，选项 (Key) 和答案。选项用逗号　","　分隔-->
 
 <div class="widget">
     <!--ko ifnot: isediting()-->
-    <label>单选题</label>
+    <label>单选题</label><br/>
     <span data-bind="text:settings.item.Challenge()"></span>
     <ul data-bind="foreach: settings.item.options" class="options">
         <li class="selectionoption"><input type="radio" name="group1" data-bind="attr: {value: $data.text},checked: $parent.settings.answer" /><span data-bind="text:text"></span></li>
@@ -11,9 +11,10 @@
 
     <!--ko if: isediting()-->
     <label class="block">问题: <input data-bind="value: settings.item.Challenge" class="form-control input-md"></label>
-    <label class="block">选项:<button id="quiz" name="singlebutton" class="btn btn-success" data-bind="click:addoptions">加选项</button></label>
+    <label class="block">选项:<button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:addoptions">加选项</button></label>
     <ul data-bind="foreach: settings.item.options" class="options">
-        <li class="selectionoption"><input type="text" data-bind="value: text" class="optioninput form-control input-md" /><a href="#" id="quiz" name="singlebutton" class="btn btn-success" data-bind="click:$parent.deleteoption">删除</a></li>
+        <li class="selectionoption"><input type="text" data-bind="value: text" class="optioninput form-control input-md" />
+        <a href="#" id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:$parent.deleteoption">删除</a></li>
     </ul>
     
     <label class="block">标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-md" /></label>

@@ -32,9 +32,13 @@
     };
 
     ctor.prototype.compositionComplete = function () {
+        var choice = "";
         $('input[type="radio"]').on('click change', function(e) {
-            this.settings.answer(e.target.value);
+            choice= e.target.value;
         });
+
+        if (this.settings.answer !=null)
+            this.settings.answer(choice);
     }
     return ctor;
 });

@@ -138,9 +138,7 @@
             //newquiz.Problem(prob);
             prob.Quizzes.push(newquiz);
         }
-
-
-
+        
         function back() {
             router.navigate('/#questions');
         }
