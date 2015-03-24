@@ -2,7 +2,6 @@
     function (router, ko, data, logger, global) {
         var problem = ko.observable();
         var quizs = ko.observableArray();
-        var answer = ko.observable();
         var current = ko.observable(0);
 
         var vm = {
@@ -14,7 +13,6 @@
             quiztypename: global.quiztypename,
             previous: previous,
             next: next,
-            answer: answer,
             currentQuiz: ko.computed(function () {
                 if (problem()) {
                     
@@ -23,9 +21,9 @@
             })            
         };
 
-        answer.subscribe (function (newValue) {           
-            answer(newValue);
-        });
+        //answer.subscribe (function (newValue) {           
+        //    problem().Quizzes()[current()].answer = newValue;
+        //});
 
         return vm;
 
@@ -61,7 +59,6 @@
             }
 
             current(current() - 1);
-        
             if (current() == 0) {
                 document.getElementById('previous').disabled = true;
                 document.getElementById('next').disabled = false;
@@ -76,7 +73,7 @@
                 document.getElementById('previous').disabled = false;
 
             current(current() + 1);
-            
+
             if (current() == problem().Quizzes().length-1) {
                 document.getElementById('next').disabled = true;
                 $("#submit").css({ visibility: "visible" });               

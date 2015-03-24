@@ -5,7 +5,7 @@
     <label>单选题</label><br/>
     <span data-bind="text:settings.item.Challenge()"></span>
     <ul data-bind="foreach: settings.item.options" class="options">
-        <li class="selectionoption"><input type="radio" name="group1" data-bind="attr: {value: $data.text},checked: $parent.settings.answer" /><span data-bind="text:text"></span></li>
+        <li class="selectionoption"><input type="radio" name="group1" data-bind="attr: {value: $data.text},checked: $parent.settings.item.answer" /><span data-bind="text:text"></span></li>
     </ul>
     <!-- /ko-->
 

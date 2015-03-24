@@ -6,6 +6,9 @@
 
     ctor.prototype.activate = function (settings) {
         this.settings = settings;
+        if (!this.settings.item.answer) {
+            this.settings.item.answer = ko.observable();
+        }
         if (settings.isediting) {
             this.isediting(settings.isediting);
         }

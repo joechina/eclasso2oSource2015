@@ -15,6 +15,9 @@
 
     ctor.prototype.activate = function (settings) {
         this.settings = settings;
+        if (!this.settings.item.answer) {
+            this.settings.item.answer = ko.observable();
+        }
         var details = settings.item.QuizDetail();
         if (details && settings.item.options().length===0) {
             var detailbd = details.split(',');
@@ -31,14 +34,14 @@
         
     };
 
-    ctor.prototype.compositionComplete = function () {
-        var choice = "";
-        $('input[type="radio"]').on('click change', function(e) {
-            choice= e.target.value;
-        });
+    //ctor.prototype.compositionComplete = function () {
+    //    var choice = "";
+    //    $('input[type="radio"]').on('click change', function(e) {
+    //        choice= e.target.value;
+    //    });
 
-        if (this.settings.answer !=null)
-            this.settings.answer(choice);
-    }
+    //    if (this.settings.answer !=null)
+    //        this.settings.answer(choice);
+    //}
     return ctor;
 });
