@@ -17,13 +17,14 @@
             answer: answer,
             currentQuiz: ko.computed(function () {
                 if (problem()) {
+                    
                     return problem().Quizzes()[current()];
                 }
             })            
         };
 
-        answer.subscribe(function(newValue) {
-            alert(newValue);
+        answer.subscribe (function (newValue) {           
+            answer(newValue);
         });
 
         return vm;
@@ -44,55 +45,71 @@
             });
            
             $("#goback").css({ display: "block" });
-
             logger.log('problem activated');
         }
         
-        
-
         function backtolist() {
             //router.navigateBack();
             router.navigate('/#exersizes')
         }
 
         function previous() {
-            //Need to check range
+            //Need to check range          
+            if (current() == problem().Quizzes().length-1) {
+                document.getElementById('next').disabled = false;
+                $("#submit").css({ visibility: "hidden" });
+            }
+
             current(current() - 1);
+        
+            if (current() == 0) {
+                document.getElementById('previous').disabled = true;
+                document.getElementById('next').disabled = false;
+            }
+
+            //Todo: need to set back previous answer value if any
         }
 
         function next() {
             //Need to check range
+            if (current() == 0)
+                document.getElementById('previous').disabled = false;
+
             current(current() + 1);
+            
+            if (current() == problem().Quizzes().length-1) {
+                document.getElementById('next').disabled = true;
+                $("#submit").css({ visibility: "visible" });               
+            }
         }
-
-
+        
         function submitanswer() {
+            //TODO: Need to remind users when a quiz is not answered, and get confirmed for submission.
 
             for (i = 0; i < problem().Quizzes().length;i++) {
+
                 var userQuiz = data.create("UserQuiz");
                 var uid = data.user().Id(); // get current user id
 
-                var q = problem().Quizzes()[i];
+                var q = problem().Quizzes()[current()];
 
                 userQuiz.UserId(uid);
                 userQuiz.QuizId(q.Id());
-                userQuiz.Answer(q.answer);
-            
-                /*
+                
+                userQuiz.Answer(answer());                
+                                
                 data.save(userQuiz).then(function () {
-                    alert('userQuiz saved');
+                    logger.log ('userQuiz saved');
                     
                 }).fail(function (err) {
                     for (var i = 0; i < err.length; i++) {
-                        alert(err[i]);
                         logger.log(err[i]);
                     }
                 });
-                */
+                
+                logger.log('submit an answer:' + answer());
 
-                alert('submit an answer');
             }
-            router.navigateBack();
         }
         //#endregion
     });

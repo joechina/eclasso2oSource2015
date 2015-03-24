@@ -10,9 +10,10 @@
     <!--ko if: isediting()-->
     <br />
     <label class="block">问题: <input data-bind="value: settings.item.Challenge" class="form-control input-md"></label>
-    <label class="block">选项:<button id="quiz" name="multibutton" class="btn btn-success" data-bind="click:addoptions">加选项</button></label>
+    <label class="block">选项:<button id="quiz" name="multibutton" class="btn btn-primary" data-bind="click:addoptions">加选项</button></label>
     <ul data-bind="foreach: options" class="options">
-        <li class="selectionoption"><input type="text" data-bind="value: text" class="optioninput form-control input-md" /><a href="#" id="quiz" name="multibutton" class="btn btn-success" data-bind="click:$parent.deleteoption">删除</a></li>
+        <li class="selectionoption"><input type="text" data-bind="value: text" class="optioninput form-control input-md" />
+        <a href="#" id="quiz" name="multibutton" class="btn btn-primary" data-bind="click:$parent.deleteoption">删除</a></li>
     </ul>
 
     <label>标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-md" /></label>

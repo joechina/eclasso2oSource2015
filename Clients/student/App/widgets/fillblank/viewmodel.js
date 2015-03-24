@@ -10,5 +10,6 @@
             this.isediting(settings.isediting);
         }
     };
+
     return ctor;
 });
