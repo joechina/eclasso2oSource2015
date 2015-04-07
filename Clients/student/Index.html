@@ -12,8 +12,16 @@
     <link href="Content/jquery.mobile-icon-extend.css" rel="stylesheet" />-->
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/durandal.css" rel="stylesheet" />
+    <link href="Content/ionic.css" rel="stylesheet" />
     
     <title>eClassO2O 学生版</title>
+    <script type="text/javascript" src="../scripts/tinymce/tinymce.js"></script>
+    <script type="text/javascript">
+
+    tinymce.init({
+        selector: "textarea"
+    });
+    </script>
 
 </head>
 
@@ -36,6 +44,7 @@
         <script src="Scripts/breeze.min.js"></script>
         <script src="Scripts/require.js" data-main="App/main"></script>
         <script src="Scripts/tinymce/tinymce.min.js"></script>
+        
     </section>
 </body>
 </html>

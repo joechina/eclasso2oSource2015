@@ -3,6 +3,7 @@
         var announcement = ko.observable();
         var announcements = ko.observableArray();
         var myannouncements = ko.observableArray();
+        var msgDate = ko.observable();
         //var usermsg = ko.observableArray();
 
         var login = {
@@ -13,6 +14,7 @@
             router: router,
             backtolist: backtolist,
             newmsg: newmsg,
+            msgDate:msgDate,
            // usermsg:usermsg
         };
 
@@ -42,6 +44,8 @@
 
         function openmsg(selected) {
             announcement(selected);
+            var date = announcement().CreateDate();
+            msgDate = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate();
             $("#goback").css({ display: "block" });
         }
 

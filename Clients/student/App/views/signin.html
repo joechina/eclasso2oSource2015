@@ -1,43 +1,25 @@
-﻿<div class="container withbackground">
-    <div style="padding:30px;margin:0 auto;width:300px;" class="front">
-        <div class="error">
-            <ul data-bind="foreach: errs">
-                <li title="error messages:">
-                    <span data-bind="text: $data"></span>
-                </li>
-            </ul>
-        </div>
-        <div data-role="page" id="loginPage">
-            <div data-role="content" style="position: relative">
-                <form>
-                    <table align="center">
-                        <tr>
-                            <td class="lang">User ID:</td>
-                            <td><input id="username" name="textinput" type="text" data-bind="value: username" class="form-control input-md" required="required"></td>
-                        </tr>
-                        <tr><td><br /></td></tr>
-                        <tr>
-                            <td class="lang">Password:</td>
-                            <td><input id="password" name="textinput" type="password" data-bind="value: password" class="form-control input-md" required="required"></td>
-
-                        </tr>
-                        <tr><td><br /></td></tr>
-                        <tr>
-                            <td></td>
-                            <td><button id="signin" name="singlebutton" class="btn btn-primary" data-bind="click: signin">登录</button></td>
-
-                        </tr>
-                        <tr><td><br /></td></tr>
-                        <tr>
-                            <td></td>
-                            <td><a href="#signup" style="text-decoration:underline;">注册</a></td>
-                        </tr>
-                    </table>
-                </form>
-                <div id="intruduceImage"></div>
-            </div>
-            <div data-role="footer" data-position="fixed">
-            </div>
-        </div>
+﻿
+<div class="container-fluid">
+    <!--div style="padding:30px;margin:0 auto;width:300px;" class="front">-->
+    <div class="error">
+        <ul data-bind="foreach: errs">
+            <li title="error messages:">
+                <span data-bind="text: $data"></span>
+            </li>
+        </ul>
     </div>
+
+    <div class="form-group">
+
+        <input id="username" type="text" data-bind="value: username" placeholder="登录名" class="form-control input-md" required="required">
+        <br />
+        <input id="password" type="password" data-bind="value: password" placeholder="密码" class="form-control input-md" required="required">
+        <br />
+        <button id="signin" name="singlebutton" style="width:100%" class="btn btn-primary" data-bind="click: signin">登录</button>
+        <br />
+        <br />
+        <a href="#signup" style="text-decoration:underline;">免费注册</a>
+
+    </div>
+
 </div>

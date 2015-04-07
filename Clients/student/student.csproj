@@ -67,11 +67,12 @@
     <Content Include="App\viewmodels\newmsg.js" />
     <Content Include="App\viewmodels\question.js" />
     <Content Include="App\viewmodels\setting.js" />
-    <Content Include="App\viewmodels\test.js" />
+    <Content Include="App\viewmodels\uploadEx.js" />
     <Content Include="App\viewmodels\signup.js" />
     <Content Include="App\viewmodels\home.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\viewmodels\signin.js" />
+    <Content Include="App\viewmodels\uploadQA.js" />
     <Content Include="App\views\announcement.html" />
     <Content Include="App\views\problem.html" />
     <Content Include="App\views\exersize.html" />
@@ -81,10 +82,11 @@
     <Content Include="App\views\newmsg.html" />
     <Content Include="App\views\question.html" />
     <Content Include="App\views\setting.html" />
-    <Content Include="App\views\test.html" />
+    <Content Include="App\views\uploadEx.html" />
     <Content Include="App\views\signup.html" />
     <Content Include="App\views\Shell.html" />
     <Content Include="App\views\signin.html" />
+    <Content Include="App\views\uploadQA.html" />
     <Content Include="App\widgets\fillblank\view.html" />
     <Content Include="App\widgets\fillblank\viewmodel.js" />
     <Content Include="App\widgets\multiselection\view.html" />
@@ -98,7 +100,7 @@
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\jquery.mobile-1.4.4.min.css" />
     <Content Include="Content\jquery.mobile-icon-extend.css" />
-    <Content Include="packages.config" />
+    <Content Include="Scripts\packages.config" />
     <None Include="Properties\PublishProfiles\eclasso2oclient.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />

@@ -1,33 +1,28 @@
 ﻿
 <header class="navbar navbar-default navbar-static-top" role="banner">
-    <div class="nav-inner">
-        <div class="container" id="header">
 
-            <!--a href="#" class="nav pull-left" id="goback" style="display:none">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </!--a>
-            <br /-->
+    <div class="container-fluid" id="header">
 
-            <button id="goback" name="singlebutton" class="btn btn-link glyphicon glyphicon-chevron-left pull-left" data-bind="click: this.backtolist" style="display:none">
-                <span data-bind="text: router.activeInstruction().config.title"></span>
-            </button>            
-                        
-            <span id="title" class="title" data-bind="text: router.activeInstruction().config.title"></span>
+        <a id="goback" class="arrow" href="#" role="button" aria-expanded="false" data-bind="click:backtolist" style="display:none">
+            <span class="glyphicon glyphicon-chevron-left pull-left"></span>
+        </a>
 
-            <!--a list of shortcuts: new message, classes, feedbacks, etc.-->
-            <ul id="shortcut" class="nav pull-right" style="display:none">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#newMsg">新消息</a></li>
-                        <li><a href="#">选择课程</a></li>
-                        <li><a href="#">用户反馈</a></li>
-                        <li><a href="#">退出登录</a></li>
-                        <!--li class="divider"></!--li>
-                <li class="nav-header">blablabla</li-->
-                    </ul>
-                </li>
-            </ul>
-        </div>
+        <span id="title" class="title" data-bind="text: router.activeInstruction().config.title"></span>
+
+        <!--a list of shortcuts: new message, classes, feedbacks, etc.-->
+        <ul id="shortcut" class="nav pull-right" style="display:none">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></a>
+                <ul class="dropdown-menu pull-left">
+                    <li><a href="#newMsg">新消息</a></li>
+                    <li><a href="#">选择课程</a></li>
+                    <li><a href="#">用户反馈</a></li>
+                    <li><a href="#">退出登录</a></li>
+                    <!--li class="divider"></!--li>
+                    <li class="nav-header">blablabla</li-->
+                </ul>
+            </li>
+        </ul>
     </div>
+
 </header>

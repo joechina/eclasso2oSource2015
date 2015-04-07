@@ -1,9 +1,8 @@
 ﻿
 <div>
-    <p data-bind="visible: !questions">Fetching data ... </p>
-    <!-- list of Q&A -->
+        <!-- list of Q&A -->
     <!--ko ifnot: question()-->
-    <div class="container main">
+    <div class="container-fluid">
         <div class="input__text" id="searchcretiria">
             <div class="flexi">
                 <div class="flexi__col">
@@ -30,14 +29,15 @@
     </div>
     <!--/ko-->
     <!--ko if: question()-->
-    <div class="container main">
+    <div class="container-fluid">
 
                 <h3  data-bind="text:question().QuestionDetail" style="text-align:center"></h3>
             
         
     </div>
-    <div class="container main">
+    <div class="container-fluid">
         <span data-bind="html:question().Answer"></span>
+        <button id="" name="singlebutton" class="btn btn-primary" data-bind="click:backtolist">返回</button>
     </div>
     <!--/ko-->
 </div>

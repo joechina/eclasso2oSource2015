@@ -51,8 +51,8 @@
         }
 
         function backtolist() {
-            //question(undefined); 
-            router.navigateBack();
+            question(undefined); 
+            //router.navigateBack();
         }
 
         function searchAnswers (q) {
