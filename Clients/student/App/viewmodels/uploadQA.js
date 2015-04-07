@@ -1,5 +1,5 @@
-﻿define(['plugins/router', 'knockout', 'data', 'logger', 'global','tinymce'],
-    function (router, ko, data, logger, global,tinymce) {
+﻿define(['plugins/router', 'knockout', 'data', 'logger', 'global'],
+    function (router, ko, data, logger, global) {
        
         var vm = {
             activate: activate,
@@ -11,10 +11,6 @@
             reset:reset
         };
 
-        tinymce.init({
-            selector: "textarea"
-        });
-           
         return vm;
 
 

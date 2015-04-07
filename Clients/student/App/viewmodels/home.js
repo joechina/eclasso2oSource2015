@@ -1,5 +1,5 @@
-﻿define(['durandal/system', 'plugins/router', 'logger', 'knockout', 'global','tinymce'],
-    function (system, router, logger, ko, global,tinymce) {
+﻿define(['durandal/system', 'plugins/router', 'logger', 'knockout', 'global'],
+    function (system, router, logger, ko, global) {
         var server = global.data;
         var home = {
             activate: activate,
