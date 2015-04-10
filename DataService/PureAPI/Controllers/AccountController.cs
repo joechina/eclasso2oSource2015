@@ -43,18 +43,18 @@ namespace PureAPI.Controllers
         [AllowAnonymous]
         [Route("Test")]
         [HttpGet]
-        public List<Announcement> Test()
+        public List<User> Test()
         {
             var repo = new Repository();
             try
             {
-                return repo.Announcements.ToList();
+                return repo.Users.ToList();
             }
             catch (Exception ex)
             {
-                Announcement u = new Announcement();
-                u.Content = ex.Message;
-                List<Announcement> result = new List<Announcement>();
+                User u = new User();
+                u.Name = ex.Message;
+                List<User> result = new List<User>();
                 result.Add(u);
                 return result;
             }
@@ -66,9 +66,9 @@ namespace PureAPI.Controllers
         }
 
         [AllowAnonymous]
-        [Route("LoadData")]
+        [Route("LoadQuestion")]
         [HttpGet]
-        public Ok LoadData()
+        public Ok LoadQuestion()
         {
             DataContext repo = new DataContext();
             Ok result;
@@ -102,6 +102,305 @@ namespace PureAPI.Controllers
             }
 
         }
+
+        [AllowAnonymous]
+        [Route("LoadMessage")]
+        [HttpGet]
+        public Ok LoadMessage()
+        {
+            DataContext repo = new DataContext();
+            Ok result;
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["source"].ConnectionString))
+            {
+                con.Open();
+                var command = con.CreateCommand();
+                command.CommandText = "Select [Content],[CreateDate],[Target],[Title] from dbo.Announcements";
+                var rdr = command.ExecuteReader();
+                while (rdr.Read())
+                {
+                    var msg = new Announcement();
+                    msg.Content = rdr.GetString(0);
+                    msg.CreateDate = rdr.GetDateTime(1);
+                    msg.Target = rdr.GetString(2);
+                    msg.Title = rdr.GetString(3);
+                    msg.Priority = 0;
+
+                    repo.Announcements.Add(msg);
+                }
+                try
+                {
+                    repo.SaveChanges();
+                    result = new Ok() { Result = "Done" };
+
+                }
+                catch (Exception ex)
+                {
+                    result = new Ok() { Result = ex.Message };
+                }
+                return result;
+            }
+
+        }
+
+        [AllowAnonymous]
+        [Route("LoadQuizs")]
+        [HttpGet]
+        public Ok LoadQuizs()
+        {
+            DataContext repo = new DataContext();
+            Ok result;
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["source"].ConnectionString))
+            {
+                con.Open();
+                var command = con.CreateCommand();
+                command.CommandText = "Select [ProblemId],[seq],[QuizType],[QuizDetail],[Challenge],[Score],[Key],[Answer] from dbo.Quizs";
+                var rdr = command.ExecuteReader();
+                while (rdr.Read())
+                {
+                    var quiz = new Quiz();
+                    int pId = rdr.GetInt32(0);
+                    switch (pId) {
+                        case 1:
+                            quiz.ProblemId = 1;
+                            break;
+                        case 1003:
+                            quiz.ProblemId = 2;
+                            break;
+                        case 1004:
+                            quiz.ProblemId = 3;
+                            break;
+                        case 1005:
+                            quiz.ProblemId = 4;
+                            break;
+                    }
+                    
+                    quiz.seq = rdr.GetInt32(1);
+                    quiz.QuizType = rdr.GetInt32(2);
+                    if (!rdr.IsDBNull(rdr.GetOrdinal("QuizDetail")))
+                        quiz.QuizDetail = rdr.GetString(3);
+                    quiz.Challenge = rdr.GetString(4);
+                    quiz.Score = rdr.GetInt32(5);
+                    if (!rdr.IsDBNull(rdr.GetOrdinal("Key")))
+                        quiz.Key = rdr.GetString(6);
+                    if (!rdr.IsDBNull(rdr.GetOrdinal("Answer")))
+                        quiz.Answer = rdr.GetString(7);
+
+                    repo.Quizzes.Add(quiz);
+                }
+                try
+                {
+                    repo.SaveChanges();
+                    result = new Ok() { Result = "LoadQuiz Done" };
+
+                }
+                catch (Exception ex)
+                {
+                    result = new Ok() { Result = ex.Message };
+                }
+                return result;
+            }
+
+        }
+
+        [AllowAnonymous]
+        [Route("LoadExersizes")]
+        [HttpGet]
+        public Ok LoadExersizes()
+        {
+            DataContext repo = new DataContext();
+            Ok result;
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["source"].ConnectionString))
+            {
+                con.Open();
+                var command = con.CreateCommand();
+                command.CommandText = "Select [Name],[Description],[IsExam] from dbo.Exersizes";
+                var rdr = command.ExecuteReader();
+                while (rdr.Read())
+                {
+                    var ex = new Exersize();
+                    ex.Name = rdr.GetString(0);
+                    if (!rdr.IsDBNull(rdr.GetOrdinal("Description")))
+                        ex.Description = rdr.GetString(1);
+                    ex.IsExam = rdr.GetBoolean(2);
+
+                    repo.Exersizes.Add(ex);
+                }
+                try
+                {
+                    repo.SaveChanges();
+                    result = new Ok() { Result = "LoadExersizes Done" };
+
+                }
+                catch (Exception ex)
+                {
+                    result = new Ok() { Result = ex.Message };
+                }
+                return result;
+            }
+
+        }
+
+        [AllowAnonymous]
+        [Route("LoadExersizeSections")]
+        [HttpGet]
+        public Ok LoadExersizeSections()
+        {
+            DataContext repo = new DataContext();
+            Ok result;
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["source"].ConnectionString))
+            {
+                con.Open();
+                var command = con.CreateCommand();
+                command.CommandText = "Select [Name],[ExersizeId] from dbo.ExersizeSections";
+                var rdr = command.ExecuteReader();
+                while (rdr.Read())
+                {
+                    var ex = new ExersizeSection();
+                    if (!rdr.IsDBNull(rdr.GetOrdinal("Name")))
+                        ex.Name = rdr.GetString(0);
+
+                    int exId = rdr.GetInt32(1);
+                    switch (exId) {
+                        case 1:
+                            ex.ExersizeId = 5;
+                            break;
+                        case 1003:
+                            ex.ExersizeId = 6;
+                            break;
+                        case 1004:
+                            ex.ExersizeId = 7;
+                            break;
+                        case 1005:
+                            ex.ExersizeId = 8;
+                            break;
+
+                    }
+                    
+
+                    repo.ExersizeSections.Add(ex);
+                }
+                try
+                {
+                    repo.SaveChanges();
+                    result = new Ok() { Result = "LoadExersizeSections Done" };
+
+                }
+                catch (Exception ex)
+                {
+                    result = new Ok() { Result = ex.Message };
+                }
+                return result;
+            }
+
+        }
+
+        [AllowAnonymous]
+        [Route("LoadMedia")]
+        [HttpGet]
+        public Ok LoadMedia()
+        {
+            DataContext repo = new DataContext();
+            Ok result;
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["source"].ConnectionString))
+            {
+                con.Open();
+                var command = con.CreateCommand();
+                command.CommandText = "Select [Type],[isCompressed],[Content] from dbo.Media";
+                var rdr = command.ExecuteReader();
+                while (rdr.Read())
+                {
+                    var m = new Media();
+                    m.Type = rdr.GetString(0);
+                    m.isCompressed = rdr.GetBoolean(1);
+                    m.Content = rdr.GetString(2);
+
+                    repo.Media.Add(m);
+                }
+                try
+                {
+                    repo.SaveChanges();
+                    result = new Ok() { Result = "LoadMedia Done" };
+
+                }
+                catch (Exception ex)
+                {
+                    result = new Ok() { Result = ex.Message };
+                }
+                return result;
+            }
+
+        }
+
+        [AllowAnonymous]
+        [Route("LoadProblems")]
+        [HttpGet]
+        public Ok LoadProblems()
+        {
+            DataContext repo = new DataContext();
+            Ok result;
+            using (SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["source"].ConnectionString))
+            {
+                con.Open();
+                var command = con.CreateCommand();
+                command.CommandText = "Select [GeneralInfo],[MediaId],[ExersizeSectionId] from dbo.Problems";
+                var rdr = command.ExecuteReader();
+                while (rdr.Read())
+                {
+                    var m = new Problem();
+                    m.GeneralInfo = rdr.GetString(0);
+
+                    if (!rdr.IsDBNull(rdr.GetOrdinal("MediaId")))
+                    {
+                        int mId = rdr.GetInt32(1);
+                        switch (mId)
+                        {
+                            case 1:
+                                m.MediaId = 4;
+                                break;
+                            case 4:
+                                m.MediaId = 5;
+                                break;
+                            case 5:
+                                m.MediaId = 6;
+                                break;
+                        }
+                    }
+
+                    int secId = rdr.GetInt32(2);
+                    switch (secId)
+                    {
+                        case 1:
+                            m.ExersizeSectionId = 3;
+                            break;
+                        case 1003:
+                            m.ExersizeSectionId = 4;
+                            break;
+                        case 1004:
+                            m.ExersizeSectionId = 5;
+                            break;
+                        case 1005:
+                            m.ExersizeSectionId = 6;
+                            break;
+                    }
+                    
+
+                    repo.Problems.Add(m);
+                }
+                try
+                {
+                    repo.SaveChanges();
+                    result = new Ok() { Result = "LoadProblems Done" };
+
+                }
+                catch (Exception ex)
+                {
+                    result = new Ok() { Result = ex.Message };
+                }
+                return result;
+            }
+
+        }
+
 
         // POST api/Account/Register
         [AllowAnonymous]

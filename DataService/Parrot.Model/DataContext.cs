@@ -17,6 +17,7 @@ namespace Parrot.Model
         public DbSet<User> Users { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Exersize> Exersizes { get; set; }
+        public DbSet<ExersizeSection> ExersizeSections { get; set; }
         public DbSet<Problem> Problems { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
