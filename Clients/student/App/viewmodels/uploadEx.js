@@ -15,7 +15,6 @@
             deleteQuiz:deleteQuiz,
             addProblem: addProblem,
             addQuiz: addQuiz,
-            upload: upload,
             uploadmedia: uploadmedia,
             uploadtext: uploadtext,
             back: back,
@@ -31,7 +30,7 @@
         function activate() {
             vm.exercise = data.create('Exersize');
             
-            logger.log('input activated');
+            logger.log('upload Ex activated');
             return true;
         }
 

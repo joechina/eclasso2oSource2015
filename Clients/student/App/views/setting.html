@@ -2,23 +2,23 @@
 
 <div>
 
-    <div class="container main">
+    <div class="container-fluid">
         <h4><b>个人信息：</b></h4>
         <br />
         <label>登录名：<span data-bind="text: user().UserId()"></span></label>
         <br />
-        <label>名字：<span data-bind="text: user().Name()"></span></label>
+        <label>本人姓名：<span data-bind="text: user().Name()"></span></label>
         <br />
-        <label>邮箱：<span id="email" data-bind="text: user().Email()" /></label>
+        <label>邮箱地址：<span id="email" data-bind="text: user().Email()" /></label>
         <br />
-        <label>手机：<span id="mobile" data-bind="text: user().Phone()" /></label>
+        <label>手机号码：<span id="mobile" data-bind="text: user().Phone()" /></label>
         <br />
         <br />
 
         <button class="btn btn-primary" data-bind="click:editprofile">编辑个人信息</button>
     </div>
 
-    <div class="container main">
+    <div class="container-fluid">
 
         <h4>已加入 <span data-bind='text: myClasses().length'>&nbsp;</span> 课程:   </h4>
 
