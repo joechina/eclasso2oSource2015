@@ -82,18 +82,18 @@
         
         function submitanswer() {
             //TODO: Need to remind users when a quiz is not answered, and get confirmed for submission.
-
+          
             for (i = 0; i < problem().Quizzes().length;i++) {
 
                 var userQuiz = data.create("UserQuiz");
                 var uid = data.user().Id(); // get current user id
 
-                var q = problem().Quizzes()[current()];
+                var q = problem().Quizzes()[i];
 
                 userQuiz.UserId(uid);
                 userQuiz.QuizId(q.Id());
-                
-                userQuiz.Answer(answer());                
+               
+                userQuiz.Answer(q.answer());                
                                 
                 data.save(userQuiz).then(function () {
                     logger.log ('userQuiz saved');
@@ -104,7 +104,7 @@
                     }
                 });
                 
-                logger.log('submit an answer:' + answer());
+                logger.log('submit an answer:' + q.answer());
 
             }
         }

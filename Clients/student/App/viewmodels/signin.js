@@ -18,7 +18,8 @@
 
         //#region Internal Methods
         function activate() {
-            logger.log('home activated');
+            $("#goback").css({ display: "none" });
+            logger.log('signin activated');
         }
 
         function signin() {

@@ -5,7 +5,7 @@
         'plugins': '../scripts/durandal/plugins',
         'transitions': '../scripts/durandal/transitions',
         'moment': '../scripts/moment',
-        'jqueryUI': '../scripts/jquery-ui.min-1.11.1',
+        'jqueryUI': '../scripts/jquery-ui.min-1.11.1',       
         'logger':'./logger'
     }
 });

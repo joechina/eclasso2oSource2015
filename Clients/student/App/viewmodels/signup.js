@@ -12,6 +12,7 @@
             password2: password2,
             signup: signup,
             router: router,
+            backtolist: backtolist,
             errs: errs
         };
 
@@ -19,7 +20,8 @@
 
         //#region Internal Methods
         function activate() {
-            logger.log('home activated');
+            $("#goback").css({ display: "block" });
+            logger.log('signup activated');
         }
 
         function signup() {
@@ -31,6 +33,10 @@
                     });
                 });
             }
+        }
+
+        function backtolist() {
+            router.navigateBack();
         }
 
         function validate() {

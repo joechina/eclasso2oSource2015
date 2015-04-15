@@ -1,7 +1,11 @@
-﻿<nav class="navbar navbar-default navbar-fixed-bottom navbar-footer">
-    <div id="navbar" class="navbar-collapse collapse" data-bind="if: router.activeInstruction() && router.activeInstruction().config.nav > 10">
+﻿
+<nav class="navbar navbar-default navbar-fixed-bottom navbar-footer">
+    <div id="navbar" class="navbar-inner" data-bind="if: router.activeInstruction() && router.activeInstruction().config.nav > 10">
+
+        <!--div id="navbar" class="navbar-inner navbar-collapse collapse" data-bind="if: router.activeInstruction() && router.activeInstruction().config.nav > 10">-->
         <div class="menucontainer">
-            <ul class="nav navbar-nav menu" data-bind="foreach: router.navigationModel">
+
+            <ul class="nav nav-pills" role="navigation" data-bind="foreach: router.navigationModel">
                 <!-- ko if: nav > 10-->
                 <li data-bind="css: { active: isActive }">
                     <a data-bind="attr: { href: hash }, html: title"></a>
@@ -16,3 +20,5 @@
         </div>
     </div>
 </nav>
+
+<!--navbar-nav menu-->
