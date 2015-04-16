@@ -17,7 +17,6 @@
             addQuiz: addQuiz,
             uploadmedia: uploadmedia,
             uploadtext: uploadtext,
-            uploadimage: uploadimage,
             back: back,
             quizTypes: [{ value: 0, label: '填空题' },
                         { value: 1, label: '单选题' },
@@ -56,29 +55,6 @@
                 
                 //prob.Media(newmedia);
                
-            };
-
-            FR.readAsDataURL(file);
-
-        }
-
-        function uploadimage(prob, file) {
-            var FR = new FileReader();
-            FR.onload = function (e) {
-                var resultdata = e.target.result;
-                var newmedia = data.create('Media');
-                newmedia.Content(resultdata);
-                newmedia.Type('img');
-                data.save(newmedia).then(function () {
-                    var img = document.getElementById('image');
-                    prob.MediaId(newmedia.Id());
-                    newmedia.Content(resultdata);
-                    prob.Media(newmedia);
-                    image.src = resultdata;
-                });
-
-                //prob.Media(newmedia);
-
             };
 
             FR.readAsDataURL(file);

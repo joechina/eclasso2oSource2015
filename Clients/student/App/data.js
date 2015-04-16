@@ -30,8 +30,7 @@
             getmedia:getmedia,
             getClasses: getClasses,
             getUsers: getUsers,
-            getTeachers: getTeachers,
-            getStudents:getStudents,
+            getTeachers:getTeachers,
             getsettings: getsettings,
             create: create,
             user:user,
@@ -128,12 +127,7 @@
         }
 
         function getTeachers() {
-            var query = breeze.EntityQuery.from('Users').where("Role", "==", "T");
-            return manager.executeQuery(query);
-        }
-
-        function getStudents() {
-            var query = breeze.EntityQuery.from('Users').where("Role", "==", "S");
+            var query = breeze.EntityQuery.from('Users').where("Role","==","T");
             return manager.executeQuery(query);
         }
 
@@ -169,17 +163,17 @@
             }
         }
 
-        function register(userid, username, password, password2, errs, role) {
+        function register(username, password, password2, errs) {
             return $.ajax({
                 url: host + 'api/account/register',
                 type: 'POST',
                 dataType: 'json',
                 data: {
-                    'username': userid,
+                    'username': username,
                     'name': username,
                     'password': password,
                     'confirmPassword': password2,
-                    'role':role
+                    'role':'S'
                 },
                 error: function (err) {
                     errs.push(err.responseText);

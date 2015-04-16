@@ -29,6 +29,7 @@
                 classes(data.results);
             });
             
+           
             data.getTeachers().then(function (data) {
                 teachers(data.results);
             })
