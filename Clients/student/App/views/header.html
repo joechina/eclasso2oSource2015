@@ -3,11 +3,15 @@
 
     <div class="container-fluid" id="header">
 
-        <a id="goback" class="arrow" href="#" role="button" aria-expanded="false" data-bind="click:backtolist" style="display:none">
+        <!--a id="goback" class="arrow" href="#" role="button" aria-expanded="false" data-bind="click:backtolist" style="display:none">
             <span class="glyphicon glyphicon-chevron-left pull-left"></span>
-        </a>
+        </!--a>-->
 
-        <span id="title" class="title" data-bind="text: router.activeInstruction().config.title"></span>
+        <button id="goback" name="singlebutton" class="btn btn-link glyphicon glyphicon-chevron-left pull-left" data-bind="click: this.backtolist" style="display:none">
+        </button>   
+
+        <!--span id="title" class="title" data-bind="text: router.activeInstruction().config.title"></!--span>-->
+        <span data-bind="text:title"></span>
 
         <!--a list of shortcuts: new message, classes, feedbacks, etc.-->
         <ul id="shortcut" class="nav pull-right" style="display:none">
