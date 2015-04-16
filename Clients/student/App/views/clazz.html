@@ -1,0 +1,28 @@
+﻿<div>
+    <!--ko ifnot: clazz()-->
+    <div class="container-fluid">
+
+        <div class="main" style="height:400px; overflow:auto">
+
+            <ul data-bind="foreach: clazzes">
+                <li>
+                    <a href="#" data-bind="text:Name, click: $parent.openclazz"></a>
+                </li>
+            </ul>
+
+            <button id="" name="singlebutton" class="btn btn-primary" data-bind="click:newclazz">新添课程</button>
+        </div>
+    </div>
+    <!--/ko-->
+    <!--ko if: clazz()-->
+    <div class="container-fluid">
+        课程名称：<span data-bind="text:clazz().Name" style="text-align:center"></span>
+        <br/>
+        课程描述：<span data-bind="text:clazz().Description"></span>
+        <br/>
+        课程时间：<span data-bind="html:clazz().Start"></span> - <span data-bind="text:clazz().End"></span>
+        <br/>
+        <button id="" name="singlebutton" class="btn btn-primary" data-bind="click:backtolist">返回</button>
+    </div>
+    <!--/ko-->
+</div>

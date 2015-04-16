@@ -5,8 +5,11 @@
         var password = ko.observable();
         var password2 = ko.observable();
         var rememberme = ko.observable();
+        var userid = ko.observable();
+
         var vm = {
             activate: activate,
+            userid:userid,
             username: username,
             password: password,
             password2: password2,
@@ -27,8 +30,8 @@
         function signup() {
             validate();
             if (errs().length === 0) {
-                data.register(username(), password(), password2(), errs).then(function () {
-                    data.signin(username(), password(), errs).then(function (result) {
+                data.register(userid(), username(), password(), password2(), errs,'S').then(function () {
+                    data.signin(userid(), password(), errs).then(function (result) {
                         router.navigate('/#');
                     });
                 });
@@ -41,6 +44,9 @@
 
         function validate() {
             errs.removeAll();
+            if (!userid() || userid().length === 0) {
+                errs.push('missing UserName');
+            }
             if (!username() || username().length === 0) {
                 errs.push('missing UserName');
             }

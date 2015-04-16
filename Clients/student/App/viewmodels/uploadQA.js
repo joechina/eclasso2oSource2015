@@ -18,7 +18,6 @@
         function activate() {
             vm.question = data.create('Question');
 
-
             logger.log('upload QA activated');
             return true;
         }

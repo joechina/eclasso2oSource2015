@@ -6,13 +6,12 @@
     <ul id="inboxList" class="ui-listview" style="list-style" data-bind="foreach: announcements">
         <li>
             <a href="#" data-bind="click: $parent.openmsg">
-                <span class="pull-left" data-bind="text: Title"></span>
+                <span data-bind="text: Title"></span>
                 <span class="pull-right" data-bind="text: CreateDate().getFullYear()+ '/' + CreateDate().getMonth() + '/' + CreateDate().getDate()"></span>
             </a>
         </li>
     </ul>
     <br/>
-    <!--button id="new" name="singlebutton" class="btn btn-primary" data-bind="click:newmsg">创建消息</!--button>-->
 
     <!--/ko-->
     <!--ko if: announcement()-->

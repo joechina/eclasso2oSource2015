@@ -28,7 +28,6 @@
                 .map(routes)            // Map the routes
                 .buildNavigationModel(); // Finds all nav routes and readies them
             return result.activate(); // Activate the route
-            
         }
         
     });
