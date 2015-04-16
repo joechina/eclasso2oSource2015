@@ -36,28 +36,25 @@
                                             <input id="mp3file" name="audioinput" type="file" class="form-control input-md" data-bind="event: { change: function() { $root.uploadmedia($data, $element.files[0]) } }">
                                             <audio controls id='audio' />
                                         </label>
-                                        <br/>
+                                        </br>
                                         <label class="control-label" for="textinput">
                                             阅读题
                                             <textarea id="txt" name="textinput" style="height:200px;width:300px" class="form-control input-md" data-bind="event: { change: function() { $root.uploadtext($data) } }"></textarea>
+
                                         </label>
-                                        <br />
-                                        <label class="control-label" for="imageinput">
-                                            图像
-                                            <textarea id="image" name="imageinput" style="height:200px;width:300px" data-bind="event: { change: function() {  $root.uploadimage($data, $element.files[0])} }"></textarea>
-                                        </label>
+
                                         <br />
 
-                                        <button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addQuiz">增加问题</button>
+                                        <button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addQuiz">增加提问</button>
                                         <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteProblem">删除问题</button>
                                     </li>
                                     <li data-bind="visible: Quizzes().length > 0">
                                         <ul class="quiz" data-bind="foreach: Quizzes">
                                             <li>
-                                                <label class="control-label">问题 <span data-bind="text:$parentContext.$parentContext.$index()+'_'+ $parentContext.$index() +'_'+ $index()"></span></label>
+                                                <label class="control-label">提问 <span data-bind="text:$parentContext.$parentContext.$index()+'_'+ $parentContext.$index() +'_'+ $index()"></span></label>
                                                 <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteQuiz" style="margin-left:30px;">删除提问</button>
                                                 <label>
-                                                    问题类型: 
+                                                    提问类型: 
                                                     <select id='quiztype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: $root.quizTypes,
                                                                                                                                                 optionsText: 'label',
                                                                                                                                                 optionsValue: 'value',
@@ -74,9 +71,9 @@
                 </ul>
             </div>
             <div id="buttons">
-                <button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:upload">上传</button>
-                <button id="back" name="singlebutton" class="btn btn-primary" data-bind="click:back">返回</button>
-                <button id="new" name="singlebutton" class="btn btn-primary" type="reset">清除</button>
+                <button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:upload">Upload</button>
+                <button id="back" name="singlebutton" class="btn btn-primary" data-bind="click:back">Back</button>
+                <button id="new" name="singlebutton" class="btn btn-primary" type="reset">Reset</button>
             </div>
     </div>
 </div>

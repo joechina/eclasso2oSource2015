@@ -3,41 +3,48 @@
         var clazz = ko.observable();
         var teachers = ko.observableArray();
         var students = ko.observableArray();
-        var teacher = ko.observable();
-        var selectedStudents = ko.observableArray();
-        var startDate = ko.observable();
-        var endDate = ko.observable();
 
         var vm = {
             clazz: clazz,
-            teachers: teachers,
-            teacher: teacher,
-            students: students,
-            selectedStudents:selectedStudents,
             activate: activate,
             router: router,
             back: back,
             save: save,
+            targets: ['所有班级', '我的班级', '老师'],
+            target: target,
+            isHighPriority: isHighPriority
         };
 
         return vm;
 
         function activate() {
-            vm.clazz(data.create('Class'));
-            startDate(new Date());
-            endDate(new Date());
+            vm.msg(data.create('Announcement'));
+            vm.msg().CreateDate(new Date());
+
+            data.getClasses().then(function (data) {
+                classes(data.results);
+            });
+
 
             data.getTeachers().then(function (data) {
                 teachers(data.results);
             })
 
-            data.getStudents().then(function (data) {
-                students(data.results);
-            })
+            vm.targetDetails = ko.computed(function () {
+                switch (vm.msg().Target()) {
+                    case '我的班级':
+                        return classes();
+                    case '老师':
+                        return teachers();
+                        break;
+                    default:
+                        return [];
+                }
+            });
 
             $("#goback").css({ display: "none" });
 
-            logger.log('new clazz activated');
+            logger.log('new msg activated');
             return true;
         }
 
@@ -46,11 +53,40 @@
         }
 
         function save() {
-            var c = vm.clazz();
-
-            data.save(c).then(function () {
-                alert('Clazz created');
-                router.navigate('/#clazz')
+            var newmsg = vm.msg();
+            switch (newmsg.Target()) {
+                case '我的班级':
+                    var c = target();
+                    for (var i = 0; i < c.Users().length; i++) {
+                        var usermsg = data.create('UserAnnouncement');
+                        usermsg.UserId(c.Users()[i].UserId());
+                        usermsg.AnnouncementId(newmsg.Id());
+                        usermsg.HighPriority(isHighPriority());
+                        newmsg.Users.push(usermsg);
+                    }
+                    break;
+                case '老师':
+                    var tid = target().Id();
+                    newmsg.Target(newmsg.Target() + '-' + tid);
+                    var usermsg = data.create('UserAnnouncement');
+                    usermsg.UserId(tid);
+                    usermsg.AnnouncementId(newmsg.Id());
+                    usermsg.HighPriority(isHighPriority());
+                    newmsg.Users.push(usermsg);
+                    break;
+                default:
+                    for (i = 0; i < users().length; i++) {
+                        var usermsg = data.create('UserAnnouncement');
+                        usermsg.UserId(users()[i].Id());
+                        usermsg.AnnouncementId(newmsg.Id());
+                        usermsg.HighPriority(isHighPriority());
+                        newmsg.Users.push(usermsg);
+                    }
+                    break;
+            }
+            data.save(newmsg).then(function () {
+                alert('Message sent');
+                router.navigate('/#announcements')
             }).fail(function (err) {
                 for (var i = 0; i < err.length; i++) {
                     alert(err[i]);
@@ -61,4 +97,3 @@
         }
 
     });
-

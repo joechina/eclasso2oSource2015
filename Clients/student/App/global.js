@@ -5,7 +5,7 @@
                     { route: 'signin', moduleId: 'signin', title: '登录', nav: 0 },
                     { route: 'signup', moduleId: 'signup', title: '免费注册', nav: 0 },
                     { route: 'newmsg', moduleId: 'newmsg', title: '新消息', nav: 1 },
-                    { route: 'newclazz', moduleId: 'newclazz',title:'新添课程', nav:3},
+                    {route:'newclazz', moduleId: 'newclazz',title:'新添课程', nav:1},
                     { route: 'problem/:id', moduleId: 'problem', title: '问题', nav: 2 },
                     { route: 'announcements', moduleId: 'announcement', title: '通知', nav: 11 },
                     { route: 'exersizes', moduleId: 'exersize', title: '练习题', nav: 12 },
