@@ -44,7 +44,7 @@
         }
 
         function newclazz() {
-            router.navigate("#newclazz")
+            router.navigate('/#newclazz');
         }
         //#endregion
     });

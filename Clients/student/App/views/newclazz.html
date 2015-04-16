@@ -9,24 +9,46 @@
             <br />
             <label class="control-label">
                 课程描述:
+
+                <textarea data-bind="value: clazz().Description" class="form-control input-md"></textarea>
             </label>
-            <textarea rows="3" data-bind="value: clazz().Description" class="form-control input-md"></textarea>
+            <br />
+            <br />
             <label class="control-label">
-                课程时间:
+                课程开始时间:
+
+                <input data-bind="value: startDate" type="date" />
             </label>
-            <textarea rows="3" data-bind="value: msg().Content" class="form-control input-md"></textarea>
 
             <label class="control-label">
-                授课老师：
-            </label>
+                课程结束时间:
 
-            <label class="control-label">
-                参与学生：
+                <input data-bind="value: endDatez()" type="date" />
             </label>
+            <br />
+            <br />
+            <div class="form-group">
+                <label class="control-label">
+                    授课老师：
+                </label>
+                <select id='itemtype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: teachers, 
+                                                                                                            value: teacher,
+                                                                                                            optionsCaption: '请选择...'"></select>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label class="control-label">
+                    参与学生：
+                </label>
+                <select id='itemtype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: students,
+                                                                                                            value: selectedStudents,
+                                                                                                            optionsCaption: '请选择...'"></select>
+            </div>
         </div>
 
         <div>
-            <button id="send" name="singlebutton" class="btn btn-primary glyphicon glyphicon-send" data-bind="click:save">&nbsp;保存</button>
+            <button id="save" name="singlebutton" class="btn btn-primary glyphicon glyphicon-send" data-bind="click:save">&nbsp;创建</button>
             <button id="cancel" name="singlebutton" class="btn btn-primary glyphicon glyphicon-trash" data-bind="click:back">&nbsp;取消</button>
         </div>
     </form>

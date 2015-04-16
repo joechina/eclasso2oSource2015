@@ -1,47 +1,45 @@
-﻿
-<div class="container-fluid">
+﻿<div class="container-fluid">
 
     <form>
-        
+
         <div class="form-group">
-            <label>发送给: </label>
+            <label>选择班级: </label>
             <div class="form-group">
                 <select id='targettype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: targets,
-                                                                                                            value: msg().Target,
+                                                                                                            optionsText: '班级',
                                                                                                             optionsCaption: '请选择...'"></select>
             </div>
             <div class="form-group">
                 <select id='itemtype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: targetDetails,
-                                                                                                            optionsText: 'Name',
+                                                                                                            optionsText: '学生',
                                                                                                             value: target,
                                                                                                             optionsCaption: '请选择...'"></select>
             </div>
             <br />
-            <label>日期: <span data-bind="text:msg().CreateDate"></span></label>
-            <br/>
+            <label>习题名称: <span data-bind="text:msg().CreateDate"></span></label>
+            <br />
             <br />
             <label class="control-label">
-                优先级高: <input data-bind="checked: isHighPriority" type="checkbox" >
+                题项: <input data-bind="checked: isHighPriority" type="checkbox">
             </label>
             <br />
             <br />
             <label class="control-label">
-                主题:
+                问题:
             </label>
             <input data-bind="value: msg().Title" class="form-control input-md">
             <br />
             <br />
             <label class="control-label">
-                内容:
+                学生回答:
             </label>
             <textarea rows="3" data-bind="wysiwyg: msg().Content" class="form-control input-md"></textarea>
         </div>
 
         <div>
-            <button id="send" name="singlebutton" class="btn btn-primary glyphicon glyphicon-send" data-bind="click:send">&nbsp;发送</button>
-            <button id="cancel" name="singlebutton" class="btn btn-primary glyphicon glyphicon-trash" data-bind="click:back">&nbsp;取消</button>
+            <button id="send" name="singlebutton" class="btn btn-primary glyphicon glyphicon-send" data-bind="click:save2Word">&nbsp;保存为 Word </button>
+            <button id="cancel" name="singlebutton" class="btn btn-primary glyphicon glyphicon-trash" data-bind="click:back">&nbsp;返回</button>
         </div>
     </form>
 
 </div>
-
