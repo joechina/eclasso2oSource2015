@@ -5,10 +5,11 @@
             activate: activate,
             router: router,
             title: ko.computed(function () {
-                if (router.activeInstruction()) {
-                    return router.activeInstruction().config.title;
-                }
-            })
+                     if (router.activeInstruction()) {
+                                    return router.activeInstruction().config.title;
+                                }
+                          })
+
         };
         return vm;
 
@@ -27,6 +28,7 @@
             var result = router.makeRelative({ moduleId: 'viewmodels' }) // router will look here for viewmodels by convention
                 .map(routes)            // Map the routes
                 .buildNavigationModel(); // Finds all nav routes and readies them
+
             return result.activate(); // Activate the route
         }
         
