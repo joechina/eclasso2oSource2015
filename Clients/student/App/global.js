@@ -14,8 +14,8 @@
                     { route: 'uploadEx', moduleId: 'uploadEx', title: '上传习题', nav: 15 },
                     { route: 'uploadQA', moduleId: 'uploadQA', title: '上传答疑', nav: 16 },
                     { route: 'clazz', moduleId: 'clazz', title: '课程管理', nav: 17 },
+            ];
 
-                    ];
         return routes
     }
     return {

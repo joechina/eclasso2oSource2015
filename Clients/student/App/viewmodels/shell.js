@@ -1,5 +1,5 @@
 ﻿define(['durandal/app', 'plugins/router', 'knockout', 'global', 'logger'],
-    function (app, router, ko, global,logger) {
+    function (app, router, ko, global, logger) {
         var vm = {
             app:app,
             activate: activate,
@@ -9,6 +9,7 @@
                                     return router.activeInstruction().config.title;
                                 }
                           })
+
         };
         return vm;
 

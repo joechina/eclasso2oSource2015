@@ -3,8 +3,10 @@
     'jquery',
     'q'],
     function (breeze, $, Q) {
+
         //var host = 'http://localhost:56360/';
         var host = 'http://eclasso2oasia.azurewebsites.net/';
+
         var manager = new breeze.EntityManager(host + 'breeze/eClassO2OApi');
         var islocal = false;
         var isconnected = true;
