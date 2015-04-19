@@ -13,7 +13,9 @@
             teachers: teachers,
             teacher: teacher,
             students: students,
-            selectedStudents:selectedStudents,
+            selectedStudents: selectedStudents,
+            startDate: startDate,
+            endDate:endDate,
             activate: activate,
             router: router,
             back: back,
@@ -30,6 +32,7 @@
             data.getTeachers().then(function (data) {
                 teachers(data.results);
             })
+
 
             data.getStudents().then(function (data) {
                 students(data.results);

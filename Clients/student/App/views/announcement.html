@@ -1,36 +1,26 @@
 ﻿
-<div class="container-fluid">
+<div>
     <!-- list of messages -->
-  
     <!--ko ifnot: announcement()-->
-    <ul id="inboxList" class="ui-listview" style="list-style" data-bind="foreach: announcements">
-        <li>
-            <a href="#" data-bind="click: $parent.openmsg">
-                <span data-bind="text: Title"></span>
-                <span class="pull-right" data-bind="text: CreateDate().getFullYear()+ '/' + CreateDate().getMonth() + '/' + CreateDate().getDate()"></span>
-            </a>
-        </li>
-    </ul>
-    <br/>
-
-    <!--/ko-->
-    <!--ko if: announcement()-->
-    <div class="main">        
-
-        <b>主题:</b>
-        <span data-bind="text:announcement().Title"></span>
-        <br />
-        <br />
-        <b>日期:</b>
-        <span data-bind="text:msgDate"></span>
-        <br />
-        <br />
-        <b>内容：</b>
-        <span data-bind="html:announcement().Content"></span>
-        <br />
-        <br />
-        <button id="" name="singlebutton" class="btn btn-primary glyphicon glyphicon-arrow-left" data-bind="click:backtolist">&nbsp;返回</button>
+    <div class="list-group list-full-with" data-bind="foreach: announcements">
+        <a class="list-group-item" href="#" data-bind="click: $parent.openmsg">
+            <span data-bind="text: Title"></span>
+            <span class="pull-right" data-bind="text: CreateDate().getFullYear() + '/' + CreateDate().getMonth() + '/' + CreateDate().getDate()"></span>
+        </a>
     </div>
     <!--/ko-->
+    <!--ko if: announcement()-->
+    <div class="container">
+        <div data-bind="with:announcement()">
+            <h3 data-bind="text: Title"></h3>
+            <p class="announcement-date" data-bind="text: CreateDate().getFullYear() + '/' + CreateDate().getMonth() + '/' + CreateDate().getDate()"></p>
+            <p class="announcement-content" data-bind="html: Content"></p>
+        </div>
+        <button id="Button1" name="singlebutton" class="btn btn-primary btn-block" data-bind="click: backtolist">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+            <span>返回通知列表</span>
 
+        </button>
+    </div>
+    <!--/ko-->
 </div>

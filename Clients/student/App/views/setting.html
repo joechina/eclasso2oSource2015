@@ -1,53 +1,98 @@
 ﻿<!--list of setting: Classes, UI language, login/logout, account info, etc. -->
 
 <div>
-
-    <div class="container-fluid">
-        <h4><b>个人信息：</b></h4>
-        <br />
-        <label>登录名：<span data-bind="text: user().UserId()"></span></label>
-        <br />
-        <label>本人姓名：<span data-bind="text: user().Name()"></span></label>
-        <br />
-        <label>邮箱地址：<span id="email" data-bind="text: user().Email()" /></label>
-        <br />
-        <label>手机号码：<span id="mobile" data-bind="text: user().Phone()" /></label>
-        <br />
-        <br />
-
-        <button class="btn btn-primary" data-bind="click:editprofile">编辑个人信息</button>
+    <div class="list-group list-full-with">
+        <div class="list-group-item">
+            <div class="row">
+                <div class="col-xs-3">
+                    登录名
+                </div>
+                <div class="col-xs-9">
+                    <h4 class="list-group-item-heading" data-bind="text: user().UserId()"></h4>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="row">
+                <div class="col-xs-3">
+                    本人姓名
+                </div>
+                <div class="col-xs-9">
+                    <h4 class="list-group-item-heading" data-bind="text: user().Name()"></h4>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="row">
+                <div class="col-xs-3">
+                    邮箱地址
+                </div>
+                <div class="col-xs-9">
+                    <h4 class="list-group-item-heading" data-bind="text: user().Email()"></h4>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="row">
+                <div class="col-xs-3">
+                    手机号码
+                </div>
+                <div class="col-xs-9">
+                    <h4 class="list-group-item-heading" data-bind="text: user().Phone()"></h4>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="container-fluid">
-
+    <div class="container">
         <h4>已加入 <span data-bind='text: myClasses().length'>&nbsp;</span> 课程:   </h4>
-
-        <ul id="classList" data-bind="foreach: myClasses">
-
-            <li>
-                <a href="#" data-bind="text: Name"></a>
-                <br />
-                <b>课程号码:</b>
-                <span data-bind="text:ClassNumber"></span>
-                <br />
-                <br />
-                <b>描述：</b>
-                <span data-bind="text:Description"></span>
-                <br />
-                <b>开始时间：</b>
-                <span data-bind="text:Start.get"></span>
-                <br />
-                <b>结束时间：</b>
-                <span data-bind="text:End"></span>
-                <br />
-                <b>参课学生：</b>
-                <ul data-bind="foreach: Users()">
-                    <li>
-                        <span data-bind="text:UserId"></span>
-                        <br />
-                    </li>
-                </ul>
-            </li>
-        </ul>
+    </div>
+    <div class="list-group list-full-with"  data-bind="foreach: myClasses">
+        <div class="list-group-item">
+            <div class="row">
+                <div class="col-xs-3">
+                    课程号码
+                </div>
+                <div class="col-xs-9">
+                    <h4 class="list-group-item-heading" data-bind="text: ClassNumber"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    描述
+                </div>
+                <div class="col-xs-9">
+                    <h4 class="list-group-item-heading" data-bind="text: Description"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    开始时间
+                </div>
+                <div class="col-xs-9">
+                    <h4 class="list-group-item-heading" data-bind="text: Start.get"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    结束时间
+                </div>
+                <div class="col-xs-9">
+                    <h4 class="list-group-item-heading" data-bind="text: End"></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    参课学生
+                </div>
+                <div class="col-xs-9">
+                    <ul data-bind="foreach: Users()">
+                        <li>
+                            <span data-bind="text: UserId"></span>
+                            <br />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

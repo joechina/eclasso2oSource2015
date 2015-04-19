@@ -22,12 +22,32 @@
         <!-- /ko -->
         <!--</li>-->
         <!--</ul>-->
-        <div>
-            <button id="backtolist" name="singlebutton" class="btn btn-primary" data-bind="click:backtolist">返回</button>
-            <button id="previous" disabled="disabled" name="singlebutton" class="btn btn-primary glyphicon glyphicon-triangle-left" data-bind="click:previous">&nbsp;上一题</button>
-            <button id="next" name="singlebutton" class="btn btn-primary glyphicon glyphicon-triangle-right" data-bind="click:next">&nbsp;下一题</button>
-            <button id="submit" style="visibility:hidden" name="singlebutton" class="btn btn-primary glyphicon glyphicon-send" data-bind="click:submitanswer">&nbsp;递交</button>
+        <div class="row">
+            <div class="col-xs-4">
+                <button id="previous" disabled="disabled" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:previous">
+                    <span class="glyphicon glyphicon-triangle-left"></span>
+                    上一题
+                </button>
+            </div>
+            <div class="col-xs-4">
+                <button id="backtolist" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:backtolist">返回</button>
+            </div>
+            <div class="col-xs-4">
+                <button id="next" name="singlebutton" class="btn btn-primary  btn-block" data-bind="click: next">
+                    <span class="glyphicon glyphicon-triangle-right"></span>
+                    下一题
+                </button>
+            </div>
 
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-xs-12">
+                <button id="submit" style="visibility:hidden" name="singlebutton" class="btn btn-primary btn-block" data-bind="click: submitanswer">
+                    <span class="glyphicon glyphicon-send"></span>
+                    递交
+                </button>
+            </div>
         </div>
         <!-- /ko-->
     </div>
