@@ -95,6 +95,8 @@
     <Content Include="App\views\uploadQA.html" />
     <Content Include="App\widgets\fillblank\view.html" />
     <Content Include="App\widgets\fillblank\viewmodel.js" />
+    <Content Include="App\widgets\htmlfillblank\view.html" />
+    <Content Include="App\widgets\htmlfillblank\viewmodel.js" />
     <Content Include="App\widgets\multiselection\view.html" />
     <Content Include="App\widgets\multiselection\viewmodel.js" />
     <Content Include="App\widgets\singleselection\view.html" />

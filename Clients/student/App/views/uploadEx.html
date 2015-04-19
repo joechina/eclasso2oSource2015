@@ -1,5 +1,5 @@
-﻿<div class="container" style="height:600px; overflow:auto">
-    <div>
+﻿<div class="container" style="height:800px; overflow:auto">
+    <div >
             <div class="form-group">
                 <ul data-bind="with: exercise">
                     <li>
@@ -31,6 +31,7 @@
                                             问题 <span data-bind="text:$parentContext.$index()+'_'+$index() "></span> 描述:
                                             <input data-bind="value: GeneralInfo" class="form-control input-md">
                                         </label>
+                                        <br/>
                                         <label class="control-label" for="audioinput">
                                             音频文件
                                             <input id="mp3file" name="audioinput" type="file" class="form-control input-md" data-bind="event: { change: function() { $root.uploadmedia($data, $element.files[0]) } }">
@@ -38,14 +39,14 @@
                                         </label>
                                         <br/>
                                         <label class="control-label" for="textinput">
-                                            阅读题
-                                            <textarea id="txt" name="textinput" style="height:200px;width:300px" class="form-control input-md" data-bind="event: { change: function() { $root.uploadtext($data) } }"></textarea>
+                                            阅读文章
+                                            <textarea id="txt" name="textinput" class="form-control input-md" data-bind="event: { change: function() { $root.uploadtext($data) } }, wysiwyg:$root.text, wysiwygConfig: { menubar: false }"></textarea>
                                         </label>
                                         <br />
-                                        <label class="control-label" for="imageinput">
+                                        <!--label class="control-label" for="imageinput">
                                             图像
                                             <textarea id="image" name="imageinput" style="height:200px;width:300px" data-bind="event: { change: function() {  $root.uploadimage($data, $element.files[0])} }"></textarea>
-                                        </label>
+                                        </!--label>-->
                                         <br />
 
                                         <button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addQuiz">增加问题</button>
@@ -75,7 +76,7 @@
             </div>
             <div id="buttons">
                 <button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:upload">上传</button>
-                <button id="back" name="singlebutton" class="btn btn-primary" data-bind="click:back">返回</button>
+                <button id="back" name="singlebutton" class="btn btn-primary" data-bind="click:cancel">取消</button>
                 <button id="new" name="singlebutton" class="btn btn-primary" type="reset">清除</button>
             </div>
     </div>

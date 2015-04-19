@@ -1,0 +1,22 @@
+﻿<!--html 填空题: 问题会直接显示为 html 段落，学生直接编辑 html 段落内容。-->
+
+<div class="widget">
+    <!--ko ifnot: isediting()-->
+  
+    <div style="border-style:solid;border-width:1px;padding:15px 15px 15px" data-bind="html:settings.item.Challenge()"></div>
+        <br />
+
+        <h4>答案：</h4>
+
+        <input data-bind="wysiwyg:settings.item.answer, wysiwygConfig: { menubar: false, toolbar:false }" class="form-control input-md">
+        <br />
+    
+    <!-- /ko-->
+    
+    <!--ko if: isediting()-->
+    
+    <label>问题: <input data-bind="wysiwyg: settings.item.Challenge, wysiwygConfig: { menubar: false }" class="form-control input-md"></label>
+    <br />
+    <label>标准答案: <input data-bind="text:settings.item.Answer" class="form-control input-md" /></label>
+    <!-- /ko-->
+</div>

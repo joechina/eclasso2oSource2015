@@ -1,6 +1,7 @@
 ﻿define(['plugins/router', 'knockout', 'data','logger','global'],
     function (router, ko, data, logger, global) {
         var audio = ko.observable();
+        var text = ko.observable();
         
         var vm = {
             activate: activate,
@@ -8,6 +9,7 @@
             upload: upload,
             router: router,
             audio: audio,
+            text:text,
             global:global,
             addSection: addSection,
             deleteSection: deleteSection,
@@ -18,11 +20,12 @@
             uploadmedia: uploadmedia,
             uploadtext: uploadtext,
             uploadimage: uploadimage,
-            back: back,
-            quizTypes: [{ value: 0, label: '填空题' },
+            cancel: cancel,
+            quizTypes: [{ value: 0, label: '纯文本填空题' },
                         { value: 1, label: '单选题' },
                         { value: 2, label: '对错题' },
-                        { value: 3, label: '多选题' }]
+                        { value: 3, label: '多选题' },
+                        { value: 4, label: 'html 填空题' },]
         };
 
         return vm;
@@ -114,6 +117,8 @@
                                 break;
                             case 3:
                                 break;
+                            case 4:
+                                break;
                         }
                     })
                 })
@@ -162,8 +167,8 @@
             prob.Quizzes.push(newquiz);
         }
         
-        function back() {
-            router.navigate('/#questions');
+        function cancel() {
+            router.navigateBack();
         }
         //#endregion
     });

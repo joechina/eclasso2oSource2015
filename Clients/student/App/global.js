@@ -25,7 +25,7 @@
     }
 
     function quiztypename(id) {
-        // 0 - 填空题，1-单选题， 2-是非题，3-多选题
+        // 0 - 纯文本填空题，1-单选题， 2-是非题，3-多选题, 4-html 填空题
         switch (id) {
             case 0:
                 return 'fillblank';
@@ -38,6 +38,9 @@
                 break;
             case 3:
                 return 'multiselection';
+                break;
+            case 4:
+                return 'htmlfillblank';
                 break;
         }
     }
