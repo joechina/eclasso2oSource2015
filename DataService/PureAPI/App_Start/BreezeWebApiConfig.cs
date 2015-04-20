@@ -17,7 +17,6 @@ namespace PureAPI.App_Start {
           name: "BreezeApi",
           routeTemplate: "breeze/{controller}/{action}"
       );
-
     }
   }
 }

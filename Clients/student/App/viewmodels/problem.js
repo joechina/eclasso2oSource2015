@@ -15,7 +15,6 @@
             next: next,
             currentQuiz: ko.computed(function () {
                 if (problem()) {
-                    
                     return problem().Quizzes()[current()];
                 }
             })            
