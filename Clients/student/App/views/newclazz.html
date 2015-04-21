@@ -17,13 +17,13 @@
             <label class="control-label">
                 课程开始时间:
 
-                <input data-bind="value: startDate" type="date" />
+                <input data-bind="value: startDate()" type="date" />
             </label>
 
             <label class="control-label">
                 课程结束时间:
 
-                <input data-bind="value: endDatez()" type="date" />
+                <input data-bind="value: endDate()" type="date" />
             </label>
             <br />
             <br />
@@ -31,8 +31,9 @@
                 <label class="control-label">
                     授课老师：
                 </label>
-                <select id='itemtype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: teachers, 
+                <select id='itemtype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: teachers(),
                                                                                                             value: teacher,
+                                                                                                            optionsText: 'Name',
                                                                                                             optionsCaption: '请选择...'"></select>
             </div>
             <br />
@@ -41,8 +42,9 @@
                 <label class="control-label">
                     参与学生：
                 </label>
-                <select id='itemtype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: students,
-                                                                                                            value: selectedStudents,
+                <select id='itemtype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: students(),
+                                                                                                            value: selectedStudents, 
+                                                                                                            optionsText: 'Name',
                                                                                                             optionsCaption: '请选择...'"></select>
             </div>
         </div>

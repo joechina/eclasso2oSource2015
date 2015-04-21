@@ -15,7 +15,6 @@
             next: next,
             currentQuiz: ko.computed(function () {
                 if (problem()) {
-                    
                     return problem().Quizzes()[current()];
                 }
             })            
@@ -40,9 +39,15 @@
                 else {
                     problem(p);
                 }
+
+                if (p.Quizzes().length == 1) {
+                    $("#submit").css({ visibility: "visible" });
+                    document.getElementById('next').disabled = true;
+                }
             });
            
             $("#goback").css({ display: "block" });
+
             logger.log('problem activated');
         }
         

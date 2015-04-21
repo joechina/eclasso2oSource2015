@@ -1,32 +1,20 @@
 ﻿
-<header class="navbar navbar-default navbar-static-top" role="banner">
-    <div class="nav-inner">
-        <div class="container" id="header">
+<header class="navbar navbar-default navbar-fixed-top">
+    <button class="btn btn-link pull-left nav-back" id="goback" name="singlebutton" data-bind="click:back">
+        <span class="glyphicon glyphicon-menu-left"></span>
+    </button>
 
-            <!--a id="goback" class="arrow" href="#" role="button" aria-expanded="false" data-bind="click:backtolist" style="display:none">
-                <span class="glyphicon glyphicon-chevron-left pull-left"></span>
-            </!--a>-->
+        <span class="title" data-bind="text: title"></span>
 
-            <button id="goback" name="singlebutton" class="btn btn-link glyphicon glyphicon-chevron-left pull-left" data-bind="click: this.backtolist" style="display:none"></button>
-
-            <!--span id="title" class="title" data-bind="text: router.activeInstruction().config.title"></!--span>-->
-            <span data-bind="text:title"></span>
-
-            <!--a list of shortcuts: new message, classes, feedbacks, etc.-->
-            <ul id="shortcut" class="nav pull-right" style="display:none">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></a>
-                    <ul class="dropdown-menu pull-left">
-                        <li><a href="#newMsg">新消息</a></li>
-                        <li><a href="#">选择课程</a></li>
-                        <li><a href="#">用户反馈</a></li>
-                        <li><a href="#">退出登录</a></li>
-                        <!--li class="divider"></!--li>
-                        <li class="nav-header">blablabla</li-->
-                    </ul>
-                </li>
-            </ul>
-
-        </div>
-    </div>
+        <!--<ul id="shortcut" class="nav navbar-nav navbar-right action-nav" style="display:none">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#newMsg">新消息</a></li>
+                    <li><a href="#">选择课程</a></li>
+                    <li><a href="#">用户反馈</a></li>
+                    <li><a href="#">退出登录</a></li>
+                </ul>
+            </li>
+        </ul>-->
 </header>

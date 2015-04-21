@@ -23,7 +23,7 @@ function boot(app, viewLocator, system, router) {
     // Enable debug message to show in the console 
     system.debug(true);
 
-    app.title = 'eClassO2O Student';
+    app.title = 'Parrot Student';
 
     app.configurePlugins({
         router: true,

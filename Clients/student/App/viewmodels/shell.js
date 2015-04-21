@@ -4,12 +4,12 @@
             app:app,
             activate: activate,
             router: router,
+            back:back,
             title: ko.computed(function () {
                      if (router.activeInstruction()) {
                                     return router.activeInstruction().config.title;
                                 }
                           })
-
         };
         return vm;
 
@@ -32,4 +32,7 @@
             return result.activate(); // Activate the route
         }
         
+        function back() {
+            router.navigateBack();
+        }
     });
