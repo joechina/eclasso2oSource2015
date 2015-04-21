@@ -165,4 +165,4 @@ $RECYCLE.BIN/
 *.ldf
 DataService/PureAPI/App_Data/local.mdf
 DataService/PureAPI/App_Data/local_log.ldf
-*.js
+

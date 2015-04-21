@@ -34,7 +34,7 @@
         function activate() {
             vm.exercise = data.create('Exersize');
             
-            logger.log('upload Ex activated');
+            logger.log('upload Exersize activated');
             return true;
         }
 
@@ -123,6 +123,7 @@
                     })
                 })
             });
+
             data.save(vm.exercise).then(function () {
                 alert('Exercise Uploaded. Please check database');
 
