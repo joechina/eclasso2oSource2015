@@ -45,15 +45,15 @@
                     document.getElementById('next').disabled = true;
                 }
             });
-           
+            current(0);
             $("#goback").css({ display: "block" });
 
             logger.log('problem activated');
         }
         
         function backtolist() {
-            //router.navigateBack();
-            router.navigate('/#exersizes')
+            problem(undefined);
+            router.navigateBack();
         }
 
         function previous() {
