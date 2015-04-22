@@ -53,6 +53,7 @@
         function backtolist() {
             question(undefined); 
             //router.navigateBack();
+            $("#goback").css({ display: "none" });
         }
 
         function searchAnswers (q) {

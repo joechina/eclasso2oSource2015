@@ -1,28 +1,65 @@
-﻿<div>
+﻿<!-- list of classes and new/edit class -->
+<div class="container-fluid">
+
     <!--ko ifnot: clazz()-->
-    <div class="container-fluid">
+    <div class="list-group list-full-with" data-bind="foreach: clazzes">
+        <a class="list-group-item" href="#" data-bind="click: $parent.openclazz">
+            <span data-bind="text: Name"></span>
+            <span class="pull-right" data-bind="text: Start"></span>
+            <span class="pull-right" data-bind="text: End"></span>
+        </a>
+    </div>
 
-        <div class="main" style="height:400px; overflow:auto">
-
-            <ul data-bind="foreach: clazzes">
-                <li>
-                    <a href="#" data-bind="text:Name, click: $parent.openclazz"></a>
-                </li>
-            </ul>
-
-            <button id="" name="singlebutton" class="btn btn-primary" data-bind="click:newclazz">新添课程</button>
+    <div class="row">
+        <div class="col-xs-4">
+            <button id="" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:newclazz">新添课程</button>
+        </div>
+        <div class="col-xs-4">
+            <button id="" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:newclazz">编辑课程</button>
+        </div>
+        <div class="col-xs-4">
+            <button id="" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:newclazz">删除课程</button>
         </div>
     </div>
     <!--/ko-->
+
     <!--ko if: clazz()-->
     <div class="container-fluid">
-        课程名称：<span data-bind="text:clazz().Name" style="text-align:center"></span>
-        <br/>
-        课程描述：<span data-bind="text:clazz().Description"></span>
-        <br/>
-        课程时间：<span data-bind="html:clazz().Start"></span> - <span data-bind="text:clazz().End"></span>
-        <br/>
-        <button id="" name="singlebutton" class="btn btn-primary" data-bind="click:backtolist">返回</button>
+        <div data-bind="with:clazz()">
+            <h4>课程名称：<span class="panel panel-default" data-bind="text:Name"></span></h4>
+            <br />
+            <div class="row">
+                <div class="col-xs-3">
+                    课程描述：
+                </div>
+                <div class="col-xs-9">
+                    <span data-bind="text:Description"></span>
+                </div>
+                <div class="col-xs-3">
+                    课程开始时间：
+                </div>
+                <div class="col-xs-9">
+                    <span data-bind="html:clazz().Start"></span>
+                </div>
+                <div class="col-xs-3">
+                    课程结束时间：
+                </div>
+                <div class="col-xs-9">
+                    <span data-bind="text:End"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <button class="btn btn-primary btn-block" data-bind="click:delclazz">删除</button>
+            </div>
+            <div class="col-xs-4">
+                <button class="btn btn-primary btn-block" data-bind="click:editclazz">编辑</button>
+            </div>
+            <div class="col-xs-4">
+                <button class="btn btn-primary btn-block" data-bind="click:backtolist">返回</button>
+            </div>
+        </div>
     </div>
     <!--/ko-->
 </div>
