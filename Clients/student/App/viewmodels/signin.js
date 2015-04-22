@@ -18,17 +18,43 @@
 
         //#region Internal Methods
         function activate() {
-            $("#goback").css({ display: "none" });
-            logger.log('signin activated');
+            if (!autosignin()) {
+                $("#goback").css({ display: "none" });
+                logger.log('signin activated');
+            }
         }
 
-        function signin() {
+        function signin(u, p) {
+            if (!u) {
+                u = username();
+                p = password();
+            }
             validate();
             if (errs().length === 0) {
-                data.signin(username(), password(),errs).then(function (result) {
+                data.signin(username(), password(), errs).then(function (result) {
+                    localStorage.setItem("u", username());
+                    localStorage.setItem("p", password());
+                    localStorage.setItem("lastsignin", (new Date()).getTime());
                     router.navigate('/#');
                 })
             }
+        }
+
+        function autosignin() {
+            var lastsignin = localStorage.getItem("lastsignin");
+            if (lastsignin) {
+                var now = new Date();
+                var dif = (now.getTime() - lastsignin) / 1000 / 60 / 60 / 24;
+                //Valid for 7 days
+                if (dif < 7) {
+                    var user = localStorage.getItem("u", username());
+                    var pwd = localStorage.getItem("p", password());
+                    username(user);
+                    password(pwd);
+                    signin(user, pwd);
+                }
+            }
+            return false;
         }
 
         function validate() {
