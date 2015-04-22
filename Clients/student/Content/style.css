@@ -185,6 +185,7 @@ header .nav-back {
 }
 
 footer .g-nav-bottom {
+    display: -ms-flexbox;
     display: -moz-box;
     display: -webkit-box;
     display: box;
@@ -200,6 +201,7 @@ footer .g-nav-bottom {
 }
 
 footer .g-nav-bottom > li {
+    -ms-flex: 1;   
     display: block;
     -moz-box-flex:1.0;
     -webkit-box-flex:1.0;

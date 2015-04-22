@@ -10,7 +10,7 @@
     </div>
     <!--/ko-->
     <!--ko if: announcement()-->
-    <div class="container">
+    <div class="container-fluid">
         <div data-bind="with:announcement()">
             <h3 data-bind="text: Title"></h3>
             <p class="announcement-date" data-bind="text: CreateDate().getFullYear() + '/' + CreateDate().getMonth() + '/' + CreateDate().getDate()"></p>

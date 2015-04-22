@@ -26,13 +26,14 @@
 
         function activate() {
             vm.clazz(data.create('Class'));
-            startDate(new Date());
-            endDate(new Date());
+            var today = new Date();
+            startDate(today);
+            endDate(today.Clone());
+            endDate.setMonth(endDate.getMonth() + 1);
 
             data.getTeachers().then(function (data) {
                 teachers(data.results);
             })
-
 
             data.getStudents().then(function (data) {
                 students(data.results);
@@ -49,11 +50,9 @@
         }
 
         function save() {
-            var c = vm.clazz();
-
-            data.save(c).then(function () {
+            data.save(vm.clazz).then(function () {
                 alert('Clazz created');
-                router.navigate('/#clazz')
+                router.navigateBack();
             }).fail(function (err) {
                 for (var i = 0; i < err.length; i++) {
                     alert(err[i]);

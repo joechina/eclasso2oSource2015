@@ -14,6 +14,8 @@
             teachers:teachers,
             activate: activate,
             openclazz: openclazz,
+            delclazz: delclazz,
+            editclazz:editclazz,
             router: router,
             backtolist: backtolist,
             newclazz:newclazz
@@ -45,6 +47,14 @@
 
         function newclazz() {
             router.navigate('/#newclazz');
+        }
+
+        function delclazz() {
+
+        }
+
+        function editclazz() {
+
         }
         //#endregion
     });

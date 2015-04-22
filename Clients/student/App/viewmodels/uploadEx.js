@@ -99,8 +99,15 @@
         }
 
         function upload() {
+
+            vm.exercise.Sections().reverse();
+
             vm.exercise.Sections().forEach(function (s) {
+                s.Problems().reverse();
+
                 s.Problems().forEach(function (p) {
+                    p.Quizzes().reverse();
+
                     p.Quizzes().forEach(function (q) {
                         switch(q.QuizType())
                         {
@@ -112,6 +119,7 @@
                                     d.push(q.options()[j].text());
                                 }
                                 q.QuizDetail(d.join(','));
+
                                 break;
                             case 2:
                                 break;
@@ -121,12 +129,12 @@
                                 break;
                         }
                     })
-                })
+                })                
             });
 
             data.save(vm.exercise).then(function () {
                 alert('Exercise Uploaded. Please check database');
-
+                router.navigateBack();
             }).fail(function (err) {
                 for (var i = 0; i < err.length; i++) {
                     alert(err[i]);
