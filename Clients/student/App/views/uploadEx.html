@@ -41,17 +41,20 @@
                                         <audio controls id='audio' />
                                     </div>
                                     <br />
-                                    <div>
+                                    <!--div>
                                         <label class="control-label" for="textinput">
                                             阅读文章
                                         </label>
                                         <textarea id="txt" name="textinput" class="form-control input-md" data-bind="event: { change: function() { $root.uploadtext($data) } }, wysiwyg:$root.text, wysiwygConfig: { menubar: false }"></textarea>
-                                    </div>
+                                    </!--div>-->
                                     <br />
-                                    <!--label class="control-label" for="imageinput">
-                                        图像
-                                        <textarea id="image" name="imageinput" style="height:200px;width:300px" data-bind="event: { change: function() {  $root.uploadimage($data, $element.files[0])} }"></textarea>
-                                    </!--label>-->
+                                    <div>
+                                        <label class="control-label" for="imageinput">
+                                            图像
+                                        </label>
+                                        <input id="picfile" type="file" class="form-control input-md" data-bind="event: { change: function() {  $root.uploadimage($data, $element.files[0])} }">
+                                        <img id="image" />
+                                    </div>
                                     <br />
 
                                     <button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addQuiz">增加提问</button>

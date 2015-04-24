@@ -28,7 +28,8 @@
             getallannouncements: getallannouncements,
             getuserannouncements: getuserannouncements,            
             getexersizes: getexersizes,
-            getproblem: getproblem,
+            getproblem:getproblem,
+            getsections: getsections,
             getmedia:getmedia,
             getClasses: getClasses,
             getUsers: getUsers,
@@ -93,6 +94,11 @@
         function getuserannouncements(id) {
             
             var query = breeze.EntityQuery.from('UserAnnouncements');
+            return manager.executeQuery(query);
+        }
+
+        function getsections() {
+            var query = breeze.EntityQuery.from('ExersizeSections');
             return manager.executeQuery(query);
         }
 

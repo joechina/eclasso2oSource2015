@@ -1,20 +1,18 @@
-﻿<div>
-    <!--ko ifnot: exersize()-->
+﻿
+<div>
+    <!--ko ifnot: section()-->
     <div class="label label-info">习题的答案在递交之后会发到老师那里进行批改</div>
-    <div data-bind="foreach: exersizes" class="list-group list-full-with">
-        <a href="#" data-bind="text: Name, click: $parent.openexersize" class="list-group-item">
+    <div data-bind="foreach: sections" class="list-group list-full-with">
+        <a href="#" data-bind="text: Name, click: $parent.opensection" class="list-group-item">
             <h4 class="list-group-item-heading" data-bind="text: Name"></h4>
         </a>
     </div>
     <!--/ko-->
-    <!--ko if: exersize() -->
-    <h4 style="text-align:center" data-bind="text:exersize().Name"></h4>
+    <!--ko if: section() -->
+    <div data-bind="with:section()">
+        <h4 style="text-align:center" data-bind="text:Name"></h4>
 
-    <div class="panel panel-default" data-bind="foreach: exersize().Sections">
-        <div class="panel-heading">
-            <span data-bind="text: Name"></span>
-        </div>
-        <div class="list-group" data-bind="foreach: Problems">
+        <div class="list-group" data-bind="foreach:Problems">
             <a class="list-group-item" href="#" data-bind="text: GeneralInfo, attr: { href: '#problem/' + Id() }"></a>
         </div>
     </div>

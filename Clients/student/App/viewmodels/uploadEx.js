@@ -50,19 +50,15 @@
                 newmedia.Content(resultdata);
                 newmedia.Type('mp3');
                 data.save(newmedia).then(function () {
-                    var audio = document.getElementById('audio');
                     prob.MediaId(newmedia.Id());
-                    newmedia.Content(resultdata);
                     prob.Media(newmedia);
+
+                    var audio = document.getElementById('audio');
                     audio.src = resultdata;
                 });
-                
-                //prob.Media(newmedia);
-               
+
             };
-
             FR.readAsDataURL(file);
-
         }
 
         function uploadimage(prob, file) {
@@ -73,19 +69,14 @@
                 newmedia.Content(resultdata);
                 newmedia.Type('img');
                 data.save(newmedia).then(function () {
-                    var img = document.getElementById('image');
                     prob.MediaId(newmedia.Id());
-                    newmedia.Content(resultdata);
                     prob.Media(newmedia);
-                    image.src = resultdata;
+                    var pic = document.getElementById('image');
+                    pic.src = resultdata;
                 });
 
-                //prob.Media(newmedia);
-
             };
-
             FR.readAsDataURL(file);
-
         }
 
         function uploadtext(prob) {
@@ -100,13 +91,9 @@
 
         function upload() {
 
-            vm.exercise.Sections().reverse();
-
             vm.exercise.Sections().forEach(function (s) {
-                s.Problems().reverse();
 
                 s.Problems().forEach(function (p) {
-                    p.Quizzes().reverse();
 
                     p.Quizzes().forEach(function (q) {
                         switch(q.QuizType())

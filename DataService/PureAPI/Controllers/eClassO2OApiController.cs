@@ -81,6 +81,14 @@ namespace Parrot.Controllers
         }
 
         [HttpGet]
+        public IQueryable<ExersizeSection> ExersizeSections()
+        {
+            _repository = new Repository();
+            return _repository.ExersizeSections;
+
+        }
+
+        [HttpGet]
         public IQueryable<Media> Media()
         {
             _repository = new Repository();

@@ -63,6 +63,14 @@ namespace Parrot.Model
             }
         }
 
+        public DbQuery<ExersizeSection> ExersizeSections
+        {
+            get
+            {
+                return (DbQuery<ExersizeSection>)Context.ExersizeSections.Include("Problems");
+            }
+        }
+
         public DbQuery<Problem> Problems
         {
             get
