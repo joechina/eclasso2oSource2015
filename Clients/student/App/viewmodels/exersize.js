@@ -32,11 +32,11 @@
             exersize(selected);
         }
 
-        
+
         function backtolist() {
             exersize(undefined);
         }
 
-        
+
         //#endregion
     });

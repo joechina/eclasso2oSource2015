@@ -20,6 +20,7 @@
             uploadmedia: uploadmedia,
             uploadtext: uploadtext,
             uploadimage: uploadimage,
+            init:init,
             cancel: cancel,
             quizTypes: [{ value: 0, label: '纯文本填空题' },
                         { value: 1, label: '单选题' },
@@ -38,6 +39,14 @@
             return true;
         }
 
+        function init() {
+            vm.exercise = data.create('Exersize');
+
+            logger.log('exersize initialized');
+
+            return true;
+        }
+
         //function compositionComplete() {
         //    document.getElementById('mp3file').addEventListener("change", readFile, false);
         //}
@@ -50,19 +59,15 @@
                 newmedia.Content(resultdata);
                 newmedia.Type('mp3');
                 data.save(newmedia).then(function () {
-                    var audio = document.getElementById('audio');
                     prob.MediaId(newmedia.Id());
-                    newmedia.Content(resultdata);
                     prob.Media(newmedia);
+
+                    var audio = document.getElementById('audio');
                     audio.src = resultdata;
                 });
-                
-                //prob.Media(newmedia);
-               
+
             };
-
             FR.readAsDataURL(file);
-
         }
 
         function uploadimage(prob, file) {
@@ -73,19 +78,14 @@
                 newmedia.Content(resultdata);
                 newmedia.Type('img');
                 data.save(newmedia).then(function () {
-                    var img = document.getElementById('image');
                     prob.MediaId(newmedia.Id());
-                    newmedia.Content(resultdata);
                     prob.Media(newmedia);
-                    image.src = resultdata;
+                    var pic = document.getElementById('image');
+                    pic.src = resultdata;
                 });
 
-                //prob.Media(newmedia);
-
             };
-
             FR.readAsDataURL(file);
-
         }
 
         function uploadtext(prob) {
@@ -100,13 +100,9 @@
 
         function upload() {
 
-            vm.exercise.Sections().reverse();
-
             vm.exercise.Sections().forEach(function (s) {
-                s.Problems().reverse();
 
                 s.Problems().forEach(function (p) {
-                    p.Quizzes().reverse();
 
                     p.Quizzes().forEach(function (q) {
                         switch(q.QuizType())
@@ -134,7 +130,7 @@
 
             data.save(vm.exercise).then(function () {
                 alert('Exercise Uploaded. Please check database');
-                router.navigateBack();
+                init();
             }).fail(function (err) {
                 for (var i = 0; i < err.length; i++) {
                     alert(err[i]);
@@ -177,6 +173,7 @@
         }
         
         function cancel() {
+            init();
             router.navigateBack();
         }
         //#endregion
