@@ -20,6 +20,7 @@
             uploadmedia: uploadmedia,
             uploadtext: uploadtext,
             uploadimage: uploadimage,
+            init:init,
             cancel: cancel,
             quizTypes: [{ value: 0, label: '纯文本填空题' },
                         { value: 1, label: '单选题' },
@@ -35,6 +36,14 @@
             vm.exercise = data.create('Exersize');
             
             logger.log('upload Exersize activated');
+            return true;
+        }
+
+        function init() {
+            vm.exercise = data.create('Exersize');
+
+            logger.log('exersize initialized');
+
             return true;
         }
 
@@ -121,7 +130,7 @@
 
             data.save(vm.exercise).then(function () {
                 alert('Exercise Uploaded. Please check database');
-                router.navigateBack();
+                init();
             }).fail(function (err) {
                 for (var i = 0; i < err.length; i++) {
                     alert(err[i]);
@@ -164,6 +173,7 @@
         }
         
         function cancel() {
+            init();
             router.navigateBack();
         }
         //#endregion

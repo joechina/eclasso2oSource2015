@@ -4,8 +4,8 @@
     'q'],
     function (breeze, $, Q) {
 
-        var host = 'http://localhost:56360/';
-        //var host = 'http://eclasso2oasia.azurewebsites.net/';
+        //var host = 'http://localhost:56360/';
+        var host = 'http://eclasso2oasia.azurewebsites.net/';
 
         var manager = new breeze.EntityManager(host + 'breeze/eClassO2OApi');
         var islocal = false;
@@ -163,7 +163,9 @@
                     password: password
                 }).fail(function (err) {
                     console.log('signin err', err);
-                    errs.push(err.responseJSON.error_description);
+                    if (err.responseJSON != undefined) {
+                        errs.push(err.responseJSON.error_description);
+                    }
                 }).done(function (result) {
                     if (result.access_token) {
                         setAccessToken(result.access_token);

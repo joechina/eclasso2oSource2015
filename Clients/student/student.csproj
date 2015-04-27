@@ -62,7 +62,7 @@
     <Content Include="App\logger.js" />
     <Content Include="App\main.js" />
     <Content Include="App\viewmodels\announcement.js" />
-    <Content Include="App\viewmodels\exReport.js" />
+    <Content Include="App\viewmodels\report.js" />
     <Content Include="App\viewmodels\clazz.js" />
     <Content Include="App\viewmodels\newclazz.js" />
     <Content Include="App\viewmodels\problem.js" />
@@ -78,7 +78,7 @@
     <Content Include="App\viewmodels\uploadQA.js" />
     <Content Include="App\views\announcement.html" />
     <Content Include="App\views\clazz.html" />
-    <Content Include="App\views\exReport.html" />
+    <Content Include="App\views\report.html" />
     <Content Include="App\views\newclazz.html" />
     <Content Include="App\views\problem.html" />
     <Content Include="App\views\exersize.html" />

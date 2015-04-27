@@ -2,15 +2,11 @@
     function (router, ko, data, logger) {
         var exersize = ko.observable();
         var exersizes = ko.observableArray();
-        var section = ko.observable();
-        var sections = ko.observableArray();
-
         var login = {
-            section: section,
-            sections: sections,
+            exersize: exersize,
+            exersizes: exersizes,
             activate: activate,
             openexersize: openexersize,
-            opensection:opensection,
             router: router,
             backtolist: backtolist
         };
@@ -21,11 +17,10 @@
         function activate(id) {
             //var questionid = parseInt(id)
             //if (questionid > 0)
-            if (!section()) {
-                data.getsections().then(function (data) {
-                    sections(data.results);
+            if (!exersize()) {
+                data.getexersizes().then(function (data) {
+                    exersizes(data.results);
                 });
-
             }
 
             $("#goback").css({ display: "none" });
@@ -37,13 +32,11 @@
             exersize(selected);
         }
 
-        function opensection(selected) {
-            section(selected);
-        }
+
         function backtolist() {
-            section(undefined);
+            exersize(undefined);
         }
 
-        
+
         //#endregion
     });
