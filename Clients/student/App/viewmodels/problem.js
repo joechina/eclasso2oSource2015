@@ -7,6 +7,7 @@
         var vm = {
             problem: problem,
             activate: activate,
+            detached: detached,
             submitanswer:submitanswer,
             router: router,
             backtolist: backtolist,
@@ -51,6 +52,10 @@
             logger.log('problem activated');
         }
         
+        function detached() {
+            $('audio').each(function(){ this.pause() });
+        }
+
         function backtolist() {
             problem(undefined);
             router.navigateBack();
