@@ -6,17 +6,12 @@
         var user = ko.observable();
        
         var me = {
-            Class: Class,
-            Classes:Classes,
-            myClasses:myClasses,
-            user:user,
+            Classes: Classes,
+            user: user,
+            myprofile:myprofile,
             activate: activate,
-            openClass: openClass,
             router: router,
-            backtolist: backtolist,
-            joinClass: joinClass,
-            editprofile: editprofile,
-            myClasses: myClasses
+            logout:logout,
         };
 
         return me;
@@ -28,6 +23,7 @@
                 Classes(data.results);
             });
 
+            /*
             for (i=0; i< Classes().length;i++) {
                 var c = Classes()[0];
                 var uid = data.user().Id();
@@ -38,7 +34,9 @@
                     }
                 }
             }
-            
+            */
+
+            //get current sign in user
             user(data.user());
 
             $("#goback").css({ display: "none" });
@@ -46,24 +44,14 @@
             logger.log('Classes activated');
         }
 
-        function openClass(selected) {
-            Class(selected);
-        }
-
-        function joinClass() {
-
-        }
-
-        function backtolist() {
-            Class(undefined);
-        }
-
-        function editprofile() {
-
+        function myprofile() {
+            router.navigate('/#myprofile');
         }
 
         function logout() {
-
+            router.navigate('/#signin');
+            data.setAccessToken(undefined);
+            
         }
         //#endregion
     });

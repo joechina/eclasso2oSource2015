@@ -1,61 +1,38 @@
 ﻿
 <div class="container-fluid">
 
-    <form>
-
-        <div class="form-group">
-            <label>选择班级: </label>
-            <div class="form-group">
-                <select id='targettype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: targets,
-                                                                                                            optionsText: 'Name',
+    <div class="form-group">
+        <label>选择学生: </label>
+        <select id='user' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: students(),
+                                                                                                            optionsText:'Name',
+                                                                                                            value:student,
                                                                                                             optionsCaption: '请选择...'"></select>
-            </div>
-            <div class="form-group">
-                <select id='itemtype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: targetDetails,
+    </div>
+    <div class="form-group">
+        <label>选择习题: </label>
+        <select id='exersize' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: exersizes(),
                                                                                                             optionsText: 'Name',
-                                                                                                            value: target,
+                                                                                                            value: exersize,
                                                                                                             optionsCaption: '请选择...'"></select>
-            </div>
-            <br />
-            <!--ko ifnot: exercise()-->
-            <div class="container-fluid">
-
-                <div class="main" style="height:400px; overflow:auto">
-
-                    <ul data-bind="foreach: exercises">
-                        <li>
-                            <a href="#" data-bind="text:Name, click: $parent.openexercise"></a>
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
-            <!--/ko-->
-            <!--ko if: clazz()-->
-            <label>习题名称: <span data-bind="text:exercise().Name"></span></label>
-            <br />
-            <br />
-            <label class="control-label">
-                题项: <input data-bind="text: isHighPriority" type="checkbox">
-            </label>
-            <br />
-            <br />
-            <label class="control-label">
-                问题:
-            </label>
-            <input data-bind="value: msg().Title" class="form-control input-md">
-            <br />
-            <br />
-            <label class="control-label">
-                学生回答:
-            </label>
-            <textarea rows="3" data-bind="wysiwyg: msg().Content" class="form-control input-md"></textarea>
+    </div>
+    <br />
+    <!-- if: exersize()-->
+    <div class="list-group list-full-with" data-bind="foreach: exersize().ExersizeSection">
+        <div class="list-group-item" href="#" data-bind="foreach: Problem">
+            <a class="list-group-item" href="#" data-bind="foreach: Quizze">
+                <span data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false}"></span>
+            </a>
         </div>
-        <!--/ko-->
-        <div>
-            <button id="send" name="singlebutton" class="btn btn-primary glyphicon glyphicon-send" data-bind="click:save2Word">&nbsp;保存为 Word </button>
-            <button id="cancel" name="singlebutton" class="btn btn-primary glyphicon glyphicon-trash" data-bind="click:back">&nbsp;返回</button>
+    </div>
+
+    <!--/-->
+    <div class="row">
+        <div class="col-xs-6">
+        <button class="btn btn-primary btn-block" data-bind="click:displayanswer">&nbsp;查看</button>
+            </div>
+        <div class="col-xs-6">
+            <button class="btn btn-primary btn-block" data-bind="click:back">&nbsp;返回</button>
         </div>
-    </form>
+    </div>
 
 </div>

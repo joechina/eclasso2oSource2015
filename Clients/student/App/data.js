@@ -36,6 +36,7 @@
             getTeachers: getTeachers,
             getStudents:getStudents,
             getsettings: getsettings,
+            getUserAnswer:getUserAnswer,
             create: create,
             user:user,
         }
@@ -119,6 +120,20 @@
                             .where("Id", "==", id);
             return manager.executeQuery(query);
         }
+
+        function getUserAnswer(uid, qid) {
+            var Predicate = breeze.Predicate;
+            var p1 = Predicate.create("UserId", "==", uid);
+            var p2 = Predicate.create("QuizId", "==", qid);
+            var whereClause = p1.and(p2);
+
+            var query = breeze.EntityQuery.from('UserQuizs')
+                            .where(whereClause);
+
+            var result = manager.executeQuery(query);
+            return manager.executeQuery(query);
+        }
+
         function getexersizes () {
             var query = breeze.EntityQuery.from('Exersizes');
             return manager.executeQuery(query);
@@ -163,7 +178,7 @@
                     password: password
                 }).fail(function (err) {
                     console.log('signin err', err);
-                    if (err.responseJSON != undefined) {
+                    if (err.responseJSON != undefined) { // in case of network connection failure, responseJSON will return null
                         errs.push(err.responseJSON.error_description);
                     }
                 }).done(function (result) {

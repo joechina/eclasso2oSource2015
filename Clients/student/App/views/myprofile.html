@@ -1,11 +1,9 @@
-﻿<!--list of setting: Classes, UI language, login/logout, account info, etc. -->
-
-<div class="container-fluid">
+﻿<div>
     <div class="list-group list-full-with">
         <div class="list-group-item">
-            <div class="row" data-bind="click:myprofile">
+            <div class="row" data-bind="click:editid">
                 <div class="col-xs-4">
-                    个人资料
+                    登录名
                 </div>
                 <div class="col-xs-5">
                     <h4 class="list-group-item-heading" data-bind="text: user().UserId()"></h4>
@@ -16,12 +14,12 @@
             </div>
         </div>
         <div class="list-group-item">
-            <div class="row">
+            <div class="row" data-bind="click:editname">
                 <div class="col-xs-4">
-                    已加入课程
+                    本人姓名
                 </div>
                 <div class="col-xs-5">
-                    <h4 class="list-group-item-heading" data-bind="text: Classes().length"></h4>
+                    <h4 class="list-group-item-heading" data-bind="text: user().Name()"></h4>
                 </div>
                 <div class="col-xs-3">
                     <span class="glyphicon glyphicon-menu-right" />
@@ -29,25 +27,33 @@
             </div>
         </div>
         <div class="list-group-item">
-            <div class="row">
+            <div class="row" data-bind="click:editemail">
                 <div class="col-xs-4">
-                    设置
+                    邮箱地址
                 </div>
                 <div class="col-xs-5">
-                    <h4 class="list-group-item-heading"></h4>
+                    <h4 class="list-group-item-heading" data-bind="text: user().Email()"></h4>
                 </div>
                 <div class="col-xs-3">
                     <span class="glyphicon glyphicon-menu-right" />
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-6">
-            <button class="btn btn-primary btn-block" data-bind="click:logout">登出</button>
+        <div class="list-group-item">
+            <div class="row" data-bind="click:editmobile">
+                <div class="col-xs-4">
+                    手机号码
+                </div>
+                <div class="col-xs-5">
+                    <h4 class="list-group-item-heading" data-bind="text: user().Phone()"></h4>
+                </div>
+                <div class="col-xs-3">
+                    <span class="glyphicon glyphicon-menu-right" />
+                </div>
+            </div>
         </div>
-        <div class="col-xs-6">
-            <button class="btn btn-primary btn-block" data-bind="click:back">返回</button>
-        </div>
+
+        <br/>
+        <button class="btn btn-primary btn-block" data-bind="click:logout">退出登录</button>
     </div>
 </div>
