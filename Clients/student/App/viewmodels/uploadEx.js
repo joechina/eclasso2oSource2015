@@ -42,7 +42,7 @@
         function init() {
             vm.exercise = data.create('Exersize');
 
-            logger.log('exersize initialized');
+            logger.log('upload exersize initialized');
 
             return true;
         }

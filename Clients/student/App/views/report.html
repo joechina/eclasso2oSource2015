@@ -15,21 +15,43 @@
                                                                                                             value: exersize,
                                                                                                             optionsCaption: '请选择...'"></select>
     </div>
+
+    <!-- ko if: exersize()-->
     <br />
-    <!-- if: exersize()-->
-    <div class="list-group list-full-with" data-bind="foreach: exersize().ExersizeSection">
-        <div class="list-group-item" href="#" data-bind="foreach: Problem">
-            <a class="list-group-item" href="#" data-bind="foreach: Quizze">
-                <span data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false}"></span>
-            </a>
+    <div data-bind="with:exersize">
+        <span data-bind="text:Name()"></span>
+        <br/>
+        <div class="list-group list-full-with" data-bind="foreach:Sections">
+            <span data-bind="text:Name()"></span>
+            <br/>
+            <div class="list-group-item" href="#" data-bind="foreach:Problems">
+                <span data-bind="text:GeneralInfo()"></span>
+                <!-- ko if: Media() && Media().Type() == 'mp3'-->
+                <br>
+                <audio controls data-bind="attr: {src: Media().Content}" />
+                <br />
+                <br />
+                <!-- /ko-->
+                <!-- ko if: Media() && Media().Type() == 'txt'-->
+                <br />
+                <label data-bind="html:Media().Content()" />
+                <br />
+                <br />
+                <!-- /ko-->
+
+                <br/>
+                <div class="list-group-item" href="#" data-bind="foreach:Quizzes">
+                    <div data-bind="widget: { kind: $root.global.quiztypename($data.QuizType()), item: $data, isediting:false}"></div>
+                </div>
+            </div>
         </div>
     </div>
+    <!--/ko-->
 
-    <!--/-->
     <div class="row">
         <div class="col-xs-6">
-        <button class="btn btn-primary btn-block" data-bind="click:displayanswer">&nbsp;查看</button>
-            </div>
+            <button class="btn btn-primary btn-block" data-bind="click:displayanswer">&nbsp;查看</button>
+        </div>
         <div class="col-xs-6">
             <button class="btn btn-primary btn-block" data-bind="click:back">&nbsp;返回</button>
         </div>

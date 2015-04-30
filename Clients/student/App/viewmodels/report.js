@@ -53,10 +53,17 @@
         }
 
         function displayanswer() {
-            var uid = student().Id();
-            //var qid = quiz().Id();
-            data.getUserAnswer(uid, 52).then(function (data) {
-                userAnswer(data.results);
-            });
+            if (student() == undefined) {
+                alert('请选择学生');
+            }
+            else if (exersize() == undefined)
+                alert('请选择习题');
+            else {
+                var uid = student().Id();
+                var qid = exersize().Id();
+                data.getUserAnswer(uid, qid).then(function (data) {
+                    userAnswer(data.results);
+                });
+            }
         }
     });

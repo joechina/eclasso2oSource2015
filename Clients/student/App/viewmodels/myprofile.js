@@ -6,10 +6,7 @@
             user: user,
             activate: activate,
             router: router,
-            editid: editid,
-            editname: editname,
-            editemail: editemail,
-            editmobile:editmobile,
+            editprofile: editprofile,
             logout: logout,
         };
 
@@ -21,25 +18,13 @@
             //get current sign in user
             user(data.user());
 
-            $("#goback").css({ display: "none" });
+            $("#goback").css({ display: "block" });
 
-            logger.log('Classes activated');
+            logger.log('my profile page activated');
         }
 
-        function editid() {
-            router.navigate('/#editid')
-        }
-
-        function editname() {
-            router.navigate('/#editname')
-        }
-
-        function editemail() {
-            router.navigate('/#editemail')
-        }
-
-        function editmobile() {
-            router.navigate('/#editmobile')
+        function editprofile() {
+            router.navigate('/#editprofile');
         }
 
         function logout() {

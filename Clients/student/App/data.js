@@ -34,8 +34,8 @@
             getClasses: getClasses,
             getUsers: getUsers,
             getTeachers: getTeachers,
-            getStudents:getStudents,
-            getsettings: getsettings,
+            getStudents: getStudents,
+            getuser:getuser,
             getUserAnswer:getUserAnswer,
             create: create,
             user:user,
@@ -130,7 +130,6 @@
             var query = breeze.EntityQuery.from('UserQuizs')
                             .where(whereClause);
 
-            var result = manager.executeQuery(query);
             return manager.executeQuery(query);
         }
 
@@ -160,11 +159,11 @@
             return manager.executeQuery(query);
         }
 
-        function getsettings() {
-            var query=breeze.EntityQuery.from('Users');
+        function getuser(id) {
+            var query = breeze.EntityQuery.from('Users').where("UserId", "==", id);
             return manager.executeQuery(query);
         }
-
+        
         function save(entity) {
             manager.attachEntity(entity, entity.entityAspect.entityState);
             return manager.saveChanges();

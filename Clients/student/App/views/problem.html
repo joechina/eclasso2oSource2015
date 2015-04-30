@@ -2,7 +2,11 @@
 <div class="container-fluid">
     <div>
         <!-- ko if: problem()-->
-        <h4 data-bind="text:problem().GeneralInfo"></h4>
+        <h4>
+            <span data-bind="text:problem().GeneralInfo"></span>
+            <span>(共&nbsp;<span data-bind="text:total"></span>&nbsp;题)</span>
+        </h4>
+
         <!-- ko if: problem().Media() && problem().Media().Type() == 'mp3'-->
         <br>
         <audio controls data-bind="attr: {src: problem().Media().Content}" />

@@ -41,7 +41,7 @@
 
             $("#goback").css({ display: "none" });
 
-            logger.log('Classes activated');
+            logger.log('setting page activated');
         }
 
         function myprofile() {
