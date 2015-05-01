@@ -160,7 +160,7 @@
         }
 
         function getuser(id) {
-            var query = breeze.EntityQuery.from('Users').where("UserId", "==", id);
+            var query = breeze.EntityQuery.from('Users').where("Id", "==", id);
             return manager.executeQuery(query);
         }
         
