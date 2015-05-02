@@ -3,7 +3,6 @@
         var msg = ko.observable();
         var classes = ko.observableArray();        
         //var users = ko.observableArray();
-        var target = ko.observable();
         var teachers = ko.observableArray();
         var isHighPriority = ko.observable(false);
 
@@ -15,7 +14,6 @@
             back: back,
             send: send,
             targets: ['所有班级', '我的班级', '老师'],
-            target: target,
             isHighPriority:isHighPriority
         };
 
@@ -96,7 +94,5 @@
                     logger.log(err[i]);
                 }
             });
-
         }
-    
     });

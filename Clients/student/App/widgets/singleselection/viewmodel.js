@@ -5,7 +5,7 @@
         this.isediting = ko.observable(false);
         //this.options = options;
         this.addoptions = function () {
-            var newoption = {text:ko.observable('new option')};
+            var newoption = {text:ko.observable()};
             self.settings.item.options.push(newoption);
         }
         this.deleteoption = function (o) {

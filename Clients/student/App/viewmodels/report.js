@@ -1,20 +1,28 @@
-﻿define(['plugins/router', 'knockout', 'data', 'logger'],
-    function (router, ko, data, logger) {
+﻿define(['plugins/router', 'knockout', 'data', 'logger', 'global'],
+    function (router, ko, data, logger,global) {
         var clazz = ko.observable();
         var classes = ko.observableArray();
         var student = ko.observable();
         var students = ko.observableArray();
-        var excersizes = ko.observableArray();
+        var exersizes = ko.observableArray();
+        var exersize = ko.observable();
         var sections = ko.observableArray();
-        var quizs = ko.observableArray();
+        var quiz = ko.observable();
+        var target = ko.observable();
+        var userAnswer = ko.observable();
 
         var vm = {
             exersizes: exersizes,
+            exersize:exersize,
             classes: classes,
+            students: students,
+            student:student,
             activate: activate,
             router: router,
+            quiztypename: global.quiztypename,
             back: back,
-            save: save,
+            quiz:quiz,
+            displayanswer: displayanswer
 
         };
 
@@ -26,25 +34,17 @@
                 classes(data.results);
             });
 
-            data.getTeachers().then(function (data) {
-                teachers(data.results);
-            })
+            data.getStudents().then(function (data) {
+                students(data.results);
+            });
 
-            vm.targetDetails = ko.computed(function () {
-                switch (vm.msg().Target()) {
-                    case '我的班级':
-                        return classes();
-                    case '老师':
-                        return teachers();
-                        break;
-                    default:
-                        return [];
-                }
+            data.getexersizes().then(function (data) {
+                exersizes(data.results);
             });
 
             $("#goback").css({ display: "none" });
 
-            logger.log('new msg activated');
+            logger.log('new report activated');
             return true;
         }
 
@@ -52,48 +52,18 @@
             router.navigateBack();
         }
 
-        function save2Word() {
-            var newmsg = vm.msg();
-            switch (newmsg.Target()) {
-                case '我的班级':
-                    var c = target();
-                    for (var i = 0; i < c.Users().length; i++) {
-                        var usermsg = data.create('UserAnnouncement');
-                        usermsg.UserId(c.Users()[i].UserId());
-                        usermsg.AnnouncementId(newmsg.Id());
-                        usermsg.HighPriority(isHighPriority());
-                        newmsg.Users.push(usermsg);
-                    }
-                    break;
-                case '老师':
-                    var tid = target().Id();
-                    newmsg.Target(newmsg.Target() + '-' + tid);
-                    var usermsg = data.create('UserAnnouncement');
-                    usermsg.UserId(tid);
-                    usermsg.AnnouncementId(newmsg.Id());
-                    usermsg.HighPriority(isHighPriority());
-                    newmsg.Users.push(usermsg);
-                    break;
-                default:
-                    for (i = 0; i < users().length; i++) {
-                        var usermsg = data.create('UserAnnouncement');
-                        usermsg.UserId(users()[i].Id());
-                        usermsg.AnnouncementId(newmsg.Id());
-                        usermsg.HighPriority(isHighPriority());
-                        newmsg.Users.push(usermsg);
-                    }
-                    break;
+        function displayanswer() {
+            if (student() == undefined) {
+                alert('请选择学生');
             }
-            data.save(newmsg).then(function () {
-                alert('Message sent');
-                router.navigate('/#announcements')
-            }).fail(function (err) {
-                for (var i = 0; i < err.length; i++) {
-                    alert(err[i]);
-                    logger.log(err[i]);
-                }
-            });
-
+            else if (exersize() == undefined)
+                alert('请选择习题');
+            else {
+                var uid = student().Id();
+                var qid = exersize().Id();
+                data.getUserAnswer(uid, qid).then(function (data) {
+                    userAnswer(data.results);
+                });
+            }
         }
-
     });

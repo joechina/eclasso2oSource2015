@@ -34,8 +34,9 @@
             getClasses: getClasses,
             getUsers: getUsers,
             getTeachers: getTeachers,
-            getStudents:getStudents,
-            getsettings: getsettings,
+            getStudents: getStudents,
+            getuser:getuser,
+            getUserAnswer:getUserAnswer,
             create: create,
             user:user,
         }
@@ -119,6 +120,19 @@
                             .where("Id", "==", id);
             return manager.executeQuery(query);
         }
+
+        function getUserAnswer(uid, qid) {
+            var Predicate = breeze.Predicate;
+            var p1 = Predicate.create("UserId", "==", uid);
+            var p2 = Predicate.create("QuizId", "==", qid);
+            var whereClause = p1.and(p2);
+
+            var query = breeze.EntityQuery.from('UserQuizs')
+                            .where(whereClause);
+
+            return manager.executeQuery(query);
+        }
+
         function getexersizes () {
             var query = breeze.EntityQuery.from('Exersizes');
             return manager.executeQuery(query);
@@ -145,11 +159,11 @@
             return manager.executeQuery(query);
         }
 
-        function getsettings() {
-            var query=breeze.EntityQuery.from('Users');
+        function getuser(id) {
+            var query = breeze.EntityQuery.from('Users').where("Id", "==", id);
             return manager.executeQuery(query);
         }
-
+        
         function save(entity) {
             manager.attachEntity(entity, entity.entityAspect.entityState);
             return manager.saveChanges();
@@ -163,7 +177,7 @@
                     password: password
                 }).fail(function (err) {
                     console.log('signin err', err);
-                    if (err.responseJSON != undefined) {
+                    if (err.responseJSON != undefined) { // in case of network connection failure, responseJSON will return null
                         errs.push(err.responseJSON.error_description);
                     }
                 }).done(function (result) {

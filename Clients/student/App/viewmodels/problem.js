@@ -3,6 +3,7 @@
         var problem = ko.observable();
         var quizs = ko.observableArray();
         var current = ko.observable(0);
+        var total = ko.observable(0);
 
         var vm = {
             problem: problem,
@@ -14,6 +15,7 @@
             quiztypename: global.quiztypename,
             previous: previous,
             next: next,
+            total:total,
             currentQuiz: ko.computed(function () {
                 if (problem()) {
                     return problem().Quizzes()[current()];
@@ -41,7 +43,9 @@
                     problem(p);
                 }
 
-                if (p.Quizzes().length == 1) {
+                total(p.Quizzes().length);
+
+                if (total == 1) {
                     $("#submit").css({ visibility: "visible" });
                     document.getElementById('next').disabled = true;
                 }
