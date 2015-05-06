@@ -28,15 +28,15 @@
 
             var id = user().Id();
 
-            data.getuser(id).then(function (data) {
-                user1(data.results);
-            }).fail(function (err) {
-                alert(err.message);
-            });
+            //data.getuser(id).then(function (data) {
+            //    user1(data.results);
+            //}).fail(function (err) {
+            //    alert(err.message);
+            //});
 
-            user1().Name(user().Name());
+            //user1().Name(user().Name());
 
-            data.save(user1).then(function () {
+            data.save(user()).then(function () {
                 alert('user profile updated');
                 router.navigateBack();
             }).fail(function (err) {
