@@ -15,7 +15,15 @@
     <!--ko if: displayquestions().length > 0-->
     <div class="list-group list-full-with" data-bind="foreach: displayquestions">
         <a class="list-group-item" href="#" data-bind="click: $parent.openanswer">
-            <span data-bind="text: QuestionDetail"></span>
+            <div class="row">
+                <div class="col-xs-9">
+                    <span data-bind="text: QuestionDetail"></span>
+                </div>
+                <div class="col-xs-3">
+                    <span class="glyphicon glyphicon-menu-right"></span>
+                </div>
+            </div>
+            
         </a>
     </div>
     <!--/ko-->

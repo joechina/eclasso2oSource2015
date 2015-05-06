@@ -25,7 +25,7 @@
         function activate() {
             logger.log('Home View Activated', null, 'Home', false);
             $("#shortcut").css({ display: "block" }); //display shortcut menu at top right
-            router.navigate('/#exersizes')
+            router.navigate('/#exersizes');
            
 
         }

@@ -8,14 +8,15 @@
                     { route: 'newclazz', moduleId: 'newclazz',title:'新添课程', nav:3},
                     { route: 'problem/:id', moduleId: 'problem', title: '问题', nav: 2 },
                     { route: 'myprofile', moduleId: 'myprofile', title: '个人信息', nav: 3 },
+                    { route: 'uploadEx', moduleId: 'uploadEx', title: '上传习题', nav: 3 },
                     { route: 'editprofile', moduleId: 'editprofile', title: '编辑个人信息', nav: 3 },
                     { route: 'announcements', moduleId: 'announcement', title: '通知', nav: 11 },
                     { route: 'exersizes', moduleId: 'exersize', title: '练习题', nav: 12 },
                     { route: 'questions', moduleId: 'question', title: '知识库', nav: 13 },
                     { route: 'settings', moduleId: 'setting', title: '我', nav: 14 },
-                    { route: 'uploadEx', moduleId: 'uploadEx', title: '上传习题', nav: 15 },
-                    { route: 'uploadQA', moduleId: 'uploadQA', title: '上传答疑', nav: 16 },
-                    { route: 'clazz', moduleId: 'clazz', title: '课程管理', nav: 17 },
+                    { route: 'msgEx', moduleId: 'msgEx', title: '习题管理', nav: 15 },
+                    { route: 'uploadQA', moduleId: 'uploadQA', title: '答疑管理', nav: 16 },
+                    { route: 'msgclazz', moduleId: 'msgclazz', title: '课程管理', nav: 17 },
                     { route: 'report', moduleId: 'report', title: '习题报告', nav: 18 },
             ];
 

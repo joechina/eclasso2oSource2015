@@ -34,7 +34,7 @@
         //#region Internal Methods
         function activate() {
             vm.exercise = data.create('Exersize');
-            
+            $("#goback").css({ display: "block" });
             logger.log('upload Exersize activated');
             return true;
         }
@@ -107,9 +107,9 @@
                     p.Quizzes().forEach(function (q) {
                         switch(q.QuizType())
                         {
-                            case 0:
+                            case 0: //纯文本填空题
                                 break;
-                            case 1:
+                            case 1: //单选题
                                 var d = [];
                                 for (var j = 0; j < q.options().length; j++) {
                                     d.push(q.options()[j].text());
@@ -117,11 +117,16 @@
                                 q.QuizDetail(d.join(','));
 
                                 break;
-                            case 2:
+                            case 2: //对错题
                                 break;
-                            case 3:
+                            case 3: //多选题
+                                var d = [];
+                                for (var j = 0; j < q.options().length; j++) {
+                                    d.push(q.options()[j].text());
+                                }
+                                q.QuizDetail(d.join(','));
                                 break;
-                            case 4:
+                            case 4: // html 填空题
                                 break;
                         }
                     })
