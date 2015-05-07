@@ -19,38 +19,35 @@
         <br />
         <br />
         <!-- /ko-->
+        <!-- ko if: problem().Media() && problem().Media().Type() == 'img'-->
+        <br />
+        <img cotrols data-bind="attr: {src: problem().Media().Content}" />
+        <br />
+        <br />
+        <!-- /ko-->
         <!--<ul data-bind="foreach: problem().Quizzes">-->
         <!--<li>-->
         <!-- ko with: currentQuiz-->
-        <div data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false,answer: $parent.answer}"></div>
+        <div data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false, answer: $parent.answer}"></div>
         <!-- /ko -->
         <!--</li>-->
         <!--</ul>-->
         <div class="row">
             <div class="col-xs-4">
-                <button id="previous" disabled="disabled" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:previous">
+                <button id="previous" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:previous, disable: current() == 0">
                     上一题
                 </button>
             </div>
             <div class="col-xs-4">
-                <button id="backtolist" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:backtolist">取消</button>
+                <button id="submit" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:submitanswer, enable: current() == total() -1">递交</button>
             </div>
             <div class="col-xs-4">
-                <button id="next" name="singlebutton" class="btn btn-primary  btn-block" data-bind="click: next">
+                <button id="next" name="singlebutton" class="btn btn-primary  btn-block" data-bind="click: next, disable: current() == total() -1">
                     下一题
                 </button>
             </div>
-
         </div>
         <br />
-        <div class="row">
-            <div class="col-xs-12">
-                <button id="submit" style="visibility:hidden" name="singlebutton" class="btn btn-primary btn-block" data-bind="click: submitanswer">
-                    <span class="glyphicon glyphicon-send"></span>
-                    递交给老师
-                </button>
-            </div>
-        </div>
         <!-- /ko-->
     </div>
 </div>

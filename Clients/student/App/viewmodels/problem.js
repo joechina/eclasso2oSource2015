@@ -1,7 +1,6 @@
 ﻿define(['plugins/router', 'knockout', 'data', 'logger','global'],
     function (router, ko, data, logger, global) {
         var problem = ko.observable();
-        var quizs = ko.observableArray();
         var current = ko.observable(0);
         var total = ko.observable(0);
 
@@ -15,7 +14,8 @@
             quiztypename: global.quiztypename,
             previous: previous,
             next: next,
-            total:total,
+            total: total,
+            current:current,
             currentQuiz: ko.computed(function () {
                 if (problem()) {
                     return problem().Quizzes()[current()];
@@ -45,11 +45,8 @@
 
                 total(p.Quizzes().length);
 
-                if (total == 1) {
-                    $("#submit").css({ visibility: "visible" });
-                    document.getElementById('next').disabled = true;
-                }
             });
+
             current(0);
             $("#goback").css({ display: "block" });
 
@@ -66,61 +63,109 @@
         }
 
         function previous() {
-            //Need to check range          
+            /*        
             if (current() == problem().Quizzes().length-1) {
                 document.getElementById('next').disabled = false;
-                $("#submit").css({ visibility: "hidden" });
+                document.getElementById('submit').disabled = false;
             }
-
+            */
             current(current() - 1);
+
+            /*
             if (current() == 0) {
                 document.getElementById('previous').disabled = true;
                 document.getElementById('next').disabled = false;
             }
-
-            //Todo: need to set back previous answer value if any
+            */
         }
 
         function next() {
-            //Need to check range
+            /*
             if (current() == 0)
                 document.getElementById('previous').disabled = false;
+            */
 
             current(current() + 1);
-
-            if (current() == problem().Quizzes().length-1) {
+            /*
+            if (current() == total()-1) {
                 document.getElementById('next').disabled = true;
-                $("#submit").css({ visibility: "visible" });               
+                document.getElementById('submit').disabled = false;
+      
             }
+            */
         }
         
         function submitanswer() {
-            //TODO: Need to remind users when a quiz is not answered, and get confirmed for submission.
-          
+            //Remind users when a quiz is not answered, and get confirmed for submission.
+            var n = 0;
+            for (i = 0; i < problem().Quizzes().length; i++) {
+                var q = problem().Quizzes()[i];
+                if (q.answer() == null) {
+                    ++n;
+                }
+            }
+            if (n > 0) {
+                var msg = '有' + n + '道题没回答，继续递交吗？'
+                var r = confirm(msg);
+                if (r == false)
+                    return;
+            }
+
+            var $dialog = $(
+                '<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top:15% overflow-y:visible;">' +
+                '<div class="m，课odal-dialog modal-m">' +
+                '<div class="modal-content">' +
+                '<div class="modal-header"><h3 style="margin:0;">递交中...</h3></div>' +
+                '<div class="modal-body">' +
+                '<div class="progress progress-striped active" style="margin-bottom:0;"><div class="progress-bar" style="width: 0%"/></div>' +
+                '</div>' +
+                '</div></div></div>'
+            );
+
+            $dialog.modal();
+
+            // TODO: student might submit part of answers, then re-submit. need to check if an answer exists to avoid duplicated records in UserQuiz table. 
             for (i = 0; i < problem().Quizzes().length;i++) {
+                var text_string = 'width: ' + Math.round(i * 10 / problem().Quizzes().length) * 10 + '%';
+                $dialog.find('.progress-bar').attr('style', text_string);
 
-                var userQuiz = data.create("UserQuiz");
+                var Ok = ko.observable(false);
+
                 var uid = data.user().Id(); // get current user id
-
                 var q = problem().Quizzes()[i];
 
-                userQuiz.UserId(uid);
-                userQuiz.QuizId(q.Id());
-               
-                userQuiz.Answer(q.answer());                
-                                
-                data.save(userQuiz).then(function () {
-                    logger.log ('userQuiz saved');
+                data.getUserAnswer(uid, q.Id()).then(function (data) {
                     
-                }).fail(function (err) {
-                    for (var i = 0; i < err.length; i++) {
-                        logger.log(err[i]);
+                    if (data.results.length == 0) {
+                        Ok(true);
+                    }
+
+                    if (Ok) {
+                        var userQuiz = data.create("UserQuiz");
+
+                        userQuiz.UserId(uid);
+                        userQuiz.QuizId(q.Id());
+
+                        userQuiz.Answer(q.answer());
+
+                        data.save(userQuiz).then(function () {
+                            logger.log('userQuiz saved');
+
+                        }).fail(function (err) {
+                            for (var i = 0; i < err.length; i++) {
+                                logger.log(err[i]);
+                            }
+                        });
+
+                        logger.log('submit an answer:' + q.answer());
                     }
                 });
-                
-                logger.log('submit an answer:' + q.answer());
+
 
             }
+
+            $dialog.modal('hide');
+            backtolist();
         }
         //#endregion
     });

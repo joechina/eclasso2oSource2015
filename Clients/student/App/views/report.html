@@ -6,42 +6,34 @@
         <select id='user' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: students(),
                                                                                                             optionsText:'Name',
                                                                                                             value:student,
-                                                                                                            optionsCaption: '请选择...'"></select>
+                                                                                                            optionsCaption: '所有学生'"></select>
     </div>
     <div class="form-group">
         <label>选择习题: </label>
         <select id='exersize' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: exersizes(),
                                                                                                             optionsText: 'Name',
                                                                                                             value: exersize,
-                                                                                                            optionsCaption: '请选择...'"></select>
+                                                                                                            optionsCaption: '所有习题'"></select>
     </div>
+
+    <!--ko ifnot: exersize()-->
+    <h4><span data-bind="text:student().Name()"></span>&nbsp;所有习题进度总览</h4>
+    <!--/ko-->
 
     <!-- ko if: exersize()-->
     <br />
     <div data-bind="with:exersize">
-        <span data-bind="text:Name()"></span>
-        <br/>
         <div class="list-group list-full-with" data-bind="foreach:Sections">
             <span data-bind="text:Name()"></span>
-            <br/>
+            <br />
             <div class="list-group-item" href="#" data-bind="foreach:Problems">
                 <span data-bind="text:GeneralInfo()"></span>
-                <!-- ko if: Media() && Media().Type() == 'mp3'-->
-                <br>
-                <audio controls data-bind="attr: {src: Media().Content}" />
-                <br />
-                <br />
-                <!-- /ko-->
-                <!-- ko if: Media() && Media().Type() == 'txt'-->
-                <br />
-                <label data-bind="html:Media().Content()" />
-                <br />
-                <br />
-                <!-- /ko-->
 
-                <br/>
+
+                <br />
+
                 <div class="list-group-item" href="#" data-bind="foreach:Quizzes">
-                    <div data-bind="widget: { kind: $root.global.quiztypename($data.QuizType()), item: $data, isediting:false}"></div>
+                    <span data-bind="text:Challenge()"></span> >
                 </div>
             </div>
         </div>
@@ -58,3 +50,19 @@
     </div>
 
 </div>
+
+<!-- ko if: Media() && Media().Type() == 'mp3'-->
+<br>
+<audio controls data-bind="attr: {src: Media().Content}" />
+<br />
+<!-- /ko-->
+<!-- ko if: Media() && Media().Type() == 'txt'-->
+<br />
+<label data-bind="html:Media().Content()" />
+<br />
+<!-- /ko-->
+<!-- ko if: Media() && Media().Type() == 'img'-->
+<br />
+<img cotrols data-bind="attr: {src: problem().Media().Content}" />
+<br />
+<!-- /ko-->

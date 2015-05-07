@@ -2,11 +2,16 @@
     function (router, ko, data, logger) {
         var exersize = ko.observable();
         var exersizes = ko.observableArray();
+
+        var doneexersize = ko.observable();
+        var doneexersizes = ko.observableArray();
+
         var login = {
             exersize: exersize,
             exersizes: exersizes,
             activate: activate,
             openexersize: openexersize,
+            opendoneexersize:opendoneexersize,
             router: router,
             backtolist: backtolist
         };
@@ -32,11 +37,13 @@
             exersize(selected);
         }
 
+        function opendoneexersize(selected) {
+            doneexersize(selected);
+        }
 
         function backtolist() {
             exersize(undefined);
         }
-
 
         //#endregion
     });

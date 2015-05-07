@@ -26,7 +26,9 @@
             getCurrentUser: getCurrentUser,
             getquestions: getquestions,
             getallannouncements: getallannouncements,
-            getuserannouncements: getuserannouncements,            
+            getuserannouncements: getuserannouncements,
+            getexercises4user: getexercises4user,
+            getusers4exercise:getusers4exercise,
             getexersizes: getexersizes,
             getproblem:getproblem,
             getsections: getsections,
@@ -123,18 +125,26 @@
 
         function getUserAnswer(uid, qid) {
             var Predicate = breeze.Predicate;
-            var p1 = Predicate.create("UserId", "==", uid);
-            var p2 = Predicate.create("QuizId", "==", qid);
-            var whereClause = p1.and(p2);
+            var p1 = new Predicate("UserId", "==", uid);
+            var p2 = new Predicate("QuizId", "==", qid);
 
-            var query = breeze.EntityQuery.from('UserQuizs')
-                            .where(whereClause);
+            var query = breeze.EntityQuery.from('UserQuizs').where(p1.and(p2));
 
             return manager.executeQuery(query);
         }
 
         function getexersizes () {
             var query = breeze.EntityQuery.from('Exersizes');
+            return manager.executeQuery(query);
+        }
+
+        function getexercises4user(uid) {
+            var query = breeze.EntityQuery.from('UserExersizes').where("UserId", "==", uid);
+            return manager.executeQuery(query);
+        }
+
+        function getusers4exercise(eid) {
+            var query = breeze.EntityQuery.from('UserExersizes').where("ExersizeId", "==", eid);
             return manager.executeQuery(query);
         }
 

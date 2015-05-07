@@ -2,6 +2,8 @@
     function (router, ko, data, logger) {
         var exersize = ko.observable();
         var exersizes = ko.observableArray();
+        var list_students = ko.observableArray();
+
         var login = {
             exersize: exersize,
             exersizes: exersizes,
@@ -9,7 +11,17 @@
             openexersize: openexersize,
             router: router,
             newex:newex,
-            backtolist: backtolist
+            backtolist: backtolist,
+            studentExercises: ko.computed(function () {
+                if (exersize()) {
+                    
+                    data.getusers4exercise(exersize().Id()).then(function (data) {
+                        list_students(data.results);
+                    });
+
+                    return list_students;
+                }
+            })
         };
 
         return login;

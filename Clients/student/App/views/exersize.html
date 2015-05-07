@@ -1,7 +1,8 @@
 ﻿
 <div>
-    <!--ko ifnot: exersize()-->
+
     <div class="label label-warning">习题的答案在递交之后会发到老师那里进行批改</div>
+    <!--ko ifnot: exersize()-->
     <div data-bind="foreach: exersizes" class="list-group list-full-with">
         <a href="#" data-bind="click: $parent.openexersize" class="list-group-item">
             <div class="row">
