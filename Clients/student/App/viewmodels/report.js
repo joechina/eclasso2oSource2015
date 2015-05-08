@@ -7,9 +7,9 @@
         var exersizes = ko.observableArray();
         var exersize = ko.observable();
         var sections = ko.observableArray();
-        var quiz = ko.observable();
+        var problem = ko.observable();
         var target = ko.observable();
-        var userAnswer = ko.observable();
+        var answer = ko.observable();
 
         var vm = {
             exersizes: exersizes,
@@ -20,10 +20,8 @@
             activate: activate,
             router: router,
             quiztypename: global.quiztypename,
+            displayanswer:displayanswer,
             back: back,
-            quiz:quiz,
-            displayanswer: displayanswer
-
         };
 
         return vm;
@@ -53,17 +51,6 @@
         }
 
         function displayanswer() {
-            if (student() == undefined) {
-                alert('请选择学生');
-            }
-            else if (exersize() == undefined)
-                alert('请选择习题');
-            else {
-                var uid = student().Id();
-                var qid = exersize().Id();
-                data.getUserAnswer(uid, qid).then(function (data) {
-                    userAnswer(data.results);
-                });
-            }
+            
         }
     });
