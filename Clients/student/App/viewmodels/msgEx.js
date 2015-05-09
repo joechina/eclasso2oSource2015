@@ -10,7 +10,8 @@
             activate: activate,
             openexersize: openexersize,
             router: router,
-            newex:newex,
+            newex: newex,
+            assignex:assignex,
             backtolist: backtolist,
             studentExercises: ko.computed(function () {
                 if (exersize()) {
@@ -51,6 +52,10 @@
 
         function newex() {
             router.navigate('/#uploadEx');
+        }
+
+        function assignex() {
+            router.navigate('/#exersizeassign')
         }
         //#endregion
     });
