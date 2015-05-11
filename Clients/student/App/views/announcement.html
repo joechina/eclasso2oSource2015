@@ -6,8 +6,8 @@
         <a class="list-group-item" href="#" data-bind="click: $parent.openmsg">
             <div class="row">
                 <div class="col-xs-9">
-                    <h4 class="list-group-item-heading" data-bind="text: Title"></h4>
-                    <p class="list-group-item-text" data-bind="text: CreateDate().getFullYear() + '/' + CreateDate().getMonth() + '/' + CreateDate().getDate()"></p>
+                    <h4 style="font-size:large" class="list-group-item-heading" data-bind="text: Title"></h4>
+                    <p style="font-size:small" class="list-group-item-text" data-bind="text: CreateDate().getFullYear() + '/' + CreateDate().getMonth() + '/' + CreateDate().getDate()"></p>
                 </div>
                 <div class="col-xs-3">
                     <span class="glyphicon glyphicon-menu-right"></span>
@@ -19,11 +19,12 @@
     <!--ko if: announcement()-->
     <div class="container-fluid">
         <div data-bind="with:announcement()">
-            <h3 data-bind="text: Title"></h3>
-            <p class="announcement-date" data-bind="text: CreateDate().getFullYear() + '/' + CreateDate().getMonth() + '/' + CreateDate().getDate()"></p>
-            <p class="announcement-content" data-bind="html: Content"></p>
+            <span style="font-size:large;color:darkblue" data-bind="text: Title"></span>
+            <p style="font-size:small" class="announcement-date" data-bind="text: CreateDate().getFullYear() + '/' + CreateDate().getMonth() + '/' + CreateDate().getDate()"></p>
+            <br/>
+            <p style="font-size:medium" class="announcement-content" data-bind="html: Content"></p>
         </div>
-        <button id="Button1" name="singlebutton" class="btn btn-primary btn-block" data-bind="click: backtolist">返回</button>
+        <button id="Button1" name="singlebutton" class="btn btn-primary btn-block" data-bind="click: backtolist" style="font-size:medium">返回</button>
     </div>
     <!--/ko-->
 </div>

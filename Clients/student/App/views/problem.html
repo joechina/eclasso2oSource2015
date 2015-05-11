@@ -2,10 +2,10 @@
 <div class="container-fluid">
     <div>
         <!-- ko if: problem()-->
-        <h4>
+        <h2 style="background-color:#add8e6">
             <span data-bind="text:problem().GeneralInfo"></span>
             <span>(共&nbsp;<span data-bind="text:total"></span>&nbsp;题)</span>
-        </h4>
+        </h2>
 
         <!-- ko if: problem().Media() && problem().Media().Type() == 'mp3'-->
         <br>
@@ -28,7 +28,7 @@
         <!--<ul data-bind="foreach: problem().Quizzes">-->
         <!--<li>-->
         <!-- ko with: currentQuiz-->
-        <div data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false, answer: $parent.answer}"></div>
+        <div style="font-size:large" data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false, answer: $parent.answer}"></div>
         <!-- /ko -->
         <!--</li>-->
         <!--</ul>-->
