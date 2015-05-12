@@ -27,9 +27,9 @@
             getquestions: getquestions,
             getallannouncements: getallannouncements,
             getuserannouncements: getuserannouncements,
-            getexercises4user: getexercises4user,
-            getusers4exercise:getusers4exercise,
+            getuserexercises: getuserexercises,
             getallexersizes: getallexersizes,
+            getexersize:getexersize,
             getproblem:getproblem,
             getsections: getsections,
             getmedia:getmedia,
@@ -138,13 +138,13 @@
             return manager.executeQuery(query);
         }
 
-        function getexercises4user(uid) {
+        function getuserexercises(uid) {
             var query = breeze.EntityQuery.from('UserExersizes').where("UserId", "==", uid);
             return manager.executeQuery(query);
         }
 
-        function getusers4exercise(eid) {
-            var query = breeze.EntityQuery.from('UserExersizes').where("ExersizeId", "==", eid);
+        function getexersize(eid) {
+            var query = breeze.EntityQuery.from('Exersizes').where("Id", "==", eid);
             return manager.executeQuery(query);
         }
 

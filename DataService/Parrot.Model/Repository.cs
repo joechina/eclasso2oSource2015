@@ -58,7 +58,7 @@ namespace Parrot.Model
         { 
             get
             {
-                return (DbQuery<UserExersize>)Context.UserExersizes;
+                return (DbQuery<UserExersize>)Context.UserExersizes.Include("Exersize");
             }
         }
 

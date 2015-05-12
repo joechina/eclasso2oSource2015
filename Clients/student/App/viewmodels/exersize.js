@@ -1,7 +1,5 @@
 ﻿define(['plugins/router', 'knockout', 'data', 'logger'],
     function (router, ko, data, logger) {
-        var user = ko.observable();
-
         var exersize = ko.observable();
         var exersizes = ko.observableArray();
 
@@ -21,14 +19,10 @@
         return login;
 
         //#region Internal Methods
-        function activate(id) {
-            //var questionid = parseInt(id)
-            //if (questionid > 0)
-
-            user(data.user());
+        function activate(uid) {
 
             if (!exersize()) {
-                data.getallexersizes().then(function (data) {
+                data.getuserexercises(uid).then(function (data) {
                     exersizes(data.results);
                 });
             }
@@ -39,7 +33,10 @@
         }
 
         function openexersize(selected) {
-            exersize(selected);
+            var id = selected.ExersizeId();
+            data.getexersize(id).then(function (data) {
+                exersize(data.results[0]);
+            });
         }
 
         function opendoneexersize(selected) {

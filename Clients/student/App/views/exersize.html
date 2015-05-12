@@ -7,12 +7,12 @@
         <a href="#" data-bind="click: $parent.openexersize" class="list-group-item" >
             <div class="row">
                 <div class="col-xs-2" >
-                    <span data-bind="if:IsExam"><img src="../../Content/images/alter-ego.jpg" /></span>
-                    <span data-bind="ifnot:IsExam"><img src="../../Content/images/additional.jpg" /></span>
+                    <span data-bind="if:Exersize().IsExam"><img src="../../Content/images/alter-ego.jpg" /></span>
+                    <span data-bind="ifnot:Exersize().IsExam"><img src="../../Content/images/additional.jpg" /></span>
                 </div>
                 <div class="col-xs-8">
-                    <span style="font-size:large" class="list-group-item-heading" data-bind="text: Name"></span>
-                    <p style="font-size:small" data-bind="text:Description"></p>
+                    <span style="font-size:large" class="list-group-item-heading" data-bind="text: Exersize().Name"></span>
+                    <p style="font-size:small" data-bind="text:Exersize().Description"></p>
                 </div>
                 <div class="col-xs-2">
                     <span class="glyphicon glyphicon-menu-right"></span>

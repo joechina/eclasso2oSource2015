@@ -12,7 +12,7 @@
                     { route: 'editprofile', moduleId: 'editprofile', title: '编辑个人信息', nav: 3 },
                     { route: 'exersizeassign', moduleId: 'exersizeassign', title:'分配习题', nav:3 },
                     { route: 'announcements', moduleId: 'announcement', title: '通知', icon: 'glyphicon glyphicon-bell', nav: 11 },
-                    { route: 'exersizes', moduleId: 'exersize', title: '练习题', icon: 'glyphicon glyphicon-list-alt', nav: 12 },
+                    { route: 'exersizes/:uid', moduleId: 'exersize', title: '练习题', icon: 'glyphicon glyphicon-list-alt', nav: 12 },
                     { route: 'questions', moduleId: 'question', title: '知识库', icon: 'glyphicon glyphicon-education', nav: 13 },
                     { route: 'settings', moduleId: 'setting', title: '我', icon: 'glyphicon glyphicon-user', nav: 14 },
                     { route: 'msgEx', moduleId: 'msgEx', title: '习题管理', icon: '', nav: 3 },

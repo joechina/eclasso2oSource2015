@@ -25,9 +25,11 @@
         function activate() {
             logger.log('Home View Activated', null, 'Home', false);
             $("#shortcut").css({ display: "block" }); //display shortcut menu at top right
-            router.navigate('/#exersizes');
-           
 
+            server.getCurrentUser().then(function () {
+                var uid = server.user().Id();
+                router.navigate('/#exersizes/' + uid);
+            })
         }
         //#endregion
     });
