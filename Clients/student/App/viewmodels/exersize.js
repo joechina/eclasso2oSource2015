@@ -1,5 +1,7 @@
 ﻿define(['plugins/router', 'knockout', 'data', 'logger'],
     function (router, ko, data, logger) {
+        var user = ko.observable();
+
         var exersize = ko.observable();
         var exersizes = ko.observableArray();
 
@@ -22,8 +24,11 @@
         function activate(id) {
             //var questionid = parseInt(id)
             //if (questionid > 0)
+
+            user(data.user());
+
             if (!exersize()) {
-                data.getexersizes().then(function (data) {
+                data.getallexersizes().then(function (data) {
                     exersizes(data.results);
                 });
             }

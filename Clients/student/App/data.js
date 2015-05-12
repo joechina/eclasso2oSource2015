@@ -29,7 +29,7 @@
             getuserannouncements: getuserannouncements,
             getexercises4user: getexercises4user,
             getusers4exercise:getusers4exercise,
-            getexersizes: getexersizes,
+            getallexersizes: getallexersizes,
             getproblem:getproblem,
             getsections: getsections,
             getmedia:getmedia,
@@ -133,7 +133,7 @@
             return manager.executeQuery(query);
         }
 
-        function getexersizes () {
+        function getallexersizes () {
             var query = breeze.EntityQuery.from('Exersizes');
             return manager.executeQuery(query);
         }

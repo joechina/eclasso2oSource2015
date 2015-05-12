@@ -24,5 +24,6 @@ namespace Parrot.Model
         public DbSet<Quiz> Quizzes { get; set; }
         public DbSet<Media> Media { get; set; }
         public DbSet<UserAnnouncement> UserAnnouncements { get; set; }
+        public DbSet<UserExersize> UserExersizes { get; set; }
     }
 }

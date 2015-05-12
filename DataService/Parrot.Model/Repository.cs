@@ -54,6 +54,13 @@ namespace Parrot.Model
                 return (DbQuery<Announcement>)Context.Announcements.Include("Users");
             }
         }
+        public DbQuery<UserExersize> UserExersizes
+        { 
+            get
+            {
+                return (DbQuery<UserExersize>)Context.UserExersizes;
+            }
+        }
 
         public DbQuery<Exersize> Exersizes
         {

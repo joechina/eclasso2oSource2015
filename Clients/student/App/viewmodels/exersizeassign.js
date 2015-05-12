@@ -14,6 +14,9 @@
             router: router,
             assign: assign,
             back: back,
+            userex: ko.computed(function () {
+
+            }),
         };
 
         return vm;
@@ -24,7 +27,7 @@
                 allstudents(data.results);
             });
 
-            data.getexersizes().then(function (data) {
+            data.getallexersizes().then(function (data) {
                 allexersizes(data.results);
             });
 

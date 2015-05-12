@@ -36,7 +36,7 @@
                 students(data.results);
             });
 
-            data.getexersizes().then(function (data) {
+            data.getallexersizes().then(function (data) {
                 exersizes(data.results);
             });
 
