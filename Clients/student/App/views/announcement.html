@@ -20,9 +20,9 @@
     <div class="container-fluid">
         <div data-bind="with:announcement()">
             <span style="font-size:large;color:darkblue" data-bind="text: Title"></span>
-            <p style="font-size:small" class="announcement-date" data-bind="text: CreateDate().getFullYear() + '/' + CreateDate().getMonth() + '/' + CreateDate().getDate()"></p>
+            <p class="announcement-date" data-bind="text: CreateDate().getFullYear() + '/' + CreateDate().getMonth() + '/' + CreateDate().getDate()"></p>
             <br/>
-            <p style="font-size:medium" class="announcement-content" data-bind="html: Content"></p>
+            <p class="announcement-content" data-bind="html: Content"></p>
         </div>
         <button id="Button1" name="singlebutton" class="btn btn-primary btn-block" data-bind="click: backtolist" style="font-size:medium">返回</button>
     </div>
