@@ -19,11 +19,10 @@
         return login;
 
         //#region Internal Methods
-        function activate(id) {
-            //var questionid = parseInt(id)
-            //if (questionid > 0)
+        function activate(uid) {
+
             if (!exersize()) {
-                data.getexersizes().then(function (data) {
+                data.getuserexercises(uid).then(function (data) {
                     exersizes(data.results);
                 });
             }
@@ -34,7 +33,10 @@
         }
 
         function openexersize(selected) {
-            exersize(selected);
+            var id = selected.ExersizeId();
+            data.getexersize(id).then(function (data) {
+                exersize(data.results[0]);
+            });
         }
 
         function opendoneexersize(selected) {

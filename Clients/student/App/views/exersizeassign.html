@@ -1,0 +1,31 @@
+﻿
+<div class="container-fluid">
+    <br />
+    <div class="form-group">
+        <label>选择习题: </label>
+        <!--允许多选几个习题-->
+        <select id='user' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: allexersizes(),
+                                                                                                            optionsText:'Name',
+                                                                                                            value:selectedexersizes,
+                                                                                                            optionsCaption: '所有习题'"></select>
+    </div>
+
+    <!--允许多选几个学生-->
+    <div class="form-group">
+        <label>分配给学生: </label>
+        <select id='exersize' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: allstudents(),
+                                                                                                            optionsText: 'Name',
+                                                                                                            value: selectedstudents,
+                                                                                                            optionsCaption: '所有学生'"></select>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <button class="btn btn-primary btn-block" data-bind="click:assign">&nbsp;分配</button>
+        </div>
+        <div class="col-xs-6">
+            <button class="btn btn-primary btn-block" data-bind="click:back">&nbsp;返回</button>
+        </div>
+    </div>
+
+</div>

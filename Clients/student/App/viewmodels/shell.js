@@ -4,7 +4,12 @@
             app:app,
             activate: activate,
             router: router,
-            back:back,
+            back: back,
+            icon: ko.computed(function () {
+                if (router.activeInstruction()) {
+                    return router.activeInstruction().config.icon;
+                }
+            }),
             title: ko.computed(function () {
                      if (router.activeInstruction()) {
                                     return router.activeInstruction().config.title;

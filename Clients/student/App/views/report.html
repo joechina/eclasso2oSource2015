@@ -1,6 +1,6 @@
 ﻿
 <div class="container-fluid">
-
+    <br />
     <div class="form-group">
         <label>选择学生: </label>
         <select id='user' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: students(),
@@ -15,10 +15,6 @@
                                                                                                             value: exersize,
                                                                                                             optionsCaption: '所有习题'"></select>
     </div>
-
-    <!--ko ifnot: exersize()-->
-    <h4><span data-bind="text:student().Name()"></span>&nbsp;所有习题进度总览</h4>
-    <!--/ko-->
 
     <!-- ko if: exersize()-->
     <br />

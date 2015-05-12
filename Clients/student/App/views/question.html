@@ -14,7 +14,7 @@
     </div>
     <!--ko if: displayquestions().length > 0-->
     <div class="list-group list-full-with" data-bind="foreach: displayquestions">
-        <a class="list-group-item" href="#" data-bind="click: $parent.openanswer">
+        <a class="list-group-item" href="#" data-bind="click: $parent.openanswer" style="font-size:large">
             <div class="row">
                 <div class="col-xs-9">
                     <span data-bind="text: QuestionDetail"></span>
@@ -35,10 +35,10 @@
     </div>
     <!--/ko-->
     <!--ko if: question()-->
-    <div class="container-fluid">
-        <h3 data-bind="text:question().QuestionDetail" style="text-align:center"></h3>
+    <div class="container-fluid" style="background-color:#add8e6;">
+        <h2 data-bind="text:question().QuestionDetail" style="text-align:center;color:white;"></h2>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid" style="font-size:medium">
         <span data-bind="html:question().Answer"></span>
         <button id="" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:backtolist">返回</button>
     </div>

@@ -10,7 +10,8 @@
             activate: activate,
             openexersize: openexersize,
             router: router,
-            newex:newex,
+            newex: newex,
+            assignex:assignex,
             backtolist: backtolist,
             studentExercises: ko.computed(function () {
                 if (exersize()) {
@@ -31,12 +32,12 @@
             //var questionid = parseInt(id)
             //if (questionid > 0)
             if (!exersize()) {
-                data.getexersizes().then(function (data) {
+                data.getallexersizes().then(function (data) {
                     exersizes(data.results);
                 });
             }
 
-            $("#goback").css({ display: "none" });
+            $("#goback").css({ display: "block" });
 
             logger.log('exersizes activated');
         }
@@ -51,6 +52,10 @@
 
         function newex() {
             router.navigate('/#uploadEx');
+        }
+
+        function assignex() {
+            router.navigate('/#exersizeassign')
         }
         //#endregion
     });

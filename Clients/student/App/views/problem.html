@@ -2,10 +2,12 @@
 <div class="container-fluid">
     <div>
         <!-- ko if: problem()-->
-        <h4>
-            <span data-bind="text:problem().GeneralInfo"></span>
-            <span>(共&nbsp;<span data-bind="text:total"></span>&nbsp;题)</span>
-        </h4>
+        <div style="background-color:#add8e6">
+            <h2>
+                <span data-bind="text:problem().GeneralInfo"></span>
+                <span>(共&nbsp;<span data-bind="text:total"></span>&nbsp;题)</span>
+            </h2>
+        </div>
 
         <!-- ko if: problem().Media() && problem().Media().Type() == 'mp3'-->
         <br>
@@ -28,21 +30,21 @@
         <!--<ul data-bind="foreach: problem().Quizzes">-->
         <!--<li>-->
         <!-- ko with: currentQuiz-->
-        <div data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false, answer: $parent.answer}"></div>
+        <div style="font-size:large" data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false, answer: $parent.answer}"></div>
         <!-- /ko -->
         <!--</li>-->
         <!--</ul>-->
         <div class="row">
             <div class="col-xs-4">
-                <button id="previous" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:previous, disable: current() == 0">
+                <button id="previous" class="btn btn-primary btn-block" data-bind="click:previous, disable: current() == 0" style="font-size:medium">
                     上一题
                 </button>
             </div>
             <div class="col-xs-4">
-                <button id="submit" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:submitanswer, enable: current() == total() -1">递交</button>
+                <button id="submit" class="btn btn-primary btn-block" data-bind="click:submitanswer, enable: current() == total() -1" style="font-size:medium">提交</button>
             </div>
             <div class="col-xs-4">
-                <button id="next" name="singlebutton" class="btn btn-primary  btn-block" data-bind="click: next, disable: current() == total() -1">
+                <button id="next" class="btn btn-primary btn-block" data-bind="click: next, disable: current() == total() -1" style="font-size:medium">
                     下一题
                 </button>
             </div>
