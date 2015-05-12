@@ -54,7 +54,7 @@
         }
 
         function editclazz() {
-
+            router.navigate('/#editclazz');
         }
         //#endregion
     });
