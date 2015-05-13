@@ -4,8 +4,8 @@
     'q'],
     function (breeze, $, Q) {
 
-        //var host = 'http://localhost:56360/';
-        var host = 'http://eclasso2oasia.azurewebsites.net/';
+        var host = 'http://localhost:56360/';
+        //var host = 'http://eclasso2oasia.azurewebsites.net/';
 
         var manager = new breeze.EntityManager(host + 'breeze/eClassO2OApi');
         var islocal = false;
@@ -34,6 +34,7 @@
             getsections: getsections,
             getmedia:getmedia,
             getClasses: getClasses,
+            getMedia: getMedia,
             getUsers: getUsers,
             getTeachers: getTeachers,
             getStudents: getStudents,
@@ -66,6 +67,12 @@
             else {
                 return Q(true);
             }
+        }
+
+        function getMedia(id) {
+            var query = breeze.EntityQuery.from("Media")
+                            .where("Id", "==", id);
+            return manager.executeQuery(query);
         }
 
         function getCurrentUser() {
@@ -263,6 +270,7 @@
 
             var store = manager.metadataStore;
             store.registerEntityTypeCtor("Quiz", null, QuizInit);
+            store.registerEntityTypeCtor("Problem", null, ProblemInit);
         }
 
         function QuizInit(self) {
@@ -276,5 +284,13 @@
                         return 'multipleselection';
                 }
             });
+        }
+
+        function ProblemInit(self) {
+            //self.Media = ko.observable();
+            self.loadMedia = function () {
+                var query = breeze.EntityQuery.from('Media').where("Id", "==", self.Media);
+                return manager.executeQuery(query);
+            }
         }
     });

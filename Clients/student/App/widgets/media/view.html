@@ -1,0 +1,14 @@
+﻿<div>
+    <!-- ko if: Media() && Media().Type() === 'mp3'-->
+    <audio controls data-bind="attr: {src: Media().Content()}" />
+    <!-- /ko-->
+    <!-- ko if: Media() && Media().Type() === 'txt'-->
+    <label data-bind="html:Media().Content()" />
+    <!-- /ko-->
+    <!-- ko if: Media() && Media().Type() === 'img'-->
+    <img cotrols data-bind="attr: {src: problem().Media().Content()}" />
+    <!-- /ko-->
+    <!-- ko if: Media()-->
+    <!--<span data-bind="text: Media().Type"></span>-->
+    <!-- /ko-->
+</div>

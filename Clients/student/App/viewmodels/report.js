@@ -28,22 +28,29 @@
 
         function activate() {
 
-            data.getClasses().then(function (data) {
-                classes(data.results);
+            //data.getClasses().then(function (data) {
+            //    classes(data.results);
+            //});
+            student.subscribe(function(newValue) {
+                exersizes.removeAll();
+                for (var i = 0; i < newValue.Exersizes().length; i++) {
+                    exersizes.push(newValue.Exersizes()[i]);
+                }
             });
 
-            data.getStudents().then(function (data) {
-                students(data.results);
+            return data.getStudents().then(function (result) {
+                students(result.results);
+                data.getallexersizes().then(function (exe) {
+                    exersizes(exe.results);
+                    $("#goback").css({ display: "none" });
+                    logger.log('new report activated');
+                });
             });
 
-            data.getallexersizes().then(function (data) {
-                exersizes(data.results);
-            });
+            //data.getallexersizes().then(function (data) {
+            //    exersizes(data.results);
+            //});
 
-            $("#goback").css({ display: "none" });
-
-            logger.log('new report activated');
-            return true;
         }
 
         function back() {

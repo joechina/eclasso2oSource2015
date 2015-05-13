@@ -24,12 +24,9 @@
             <br />
             <div class="list-group-item" href="#" data-bind="foreach:Problems">
                 <span data-bind="text:GeneralInfo()"></span>
-
-
-                <br />
-
+                <div data-bind="widget: { kind: 'media', item: $data}"></div>
                 <div class="list-group-item" href="#" data-bind="foreach:Quizzes">
-                    <span data-bind="text:Challenge()"></span> >
+                    <span data-bind="html:Challenge()"></span> >
                 </div>
             </div>
         </div>
@@ -46,19 +43,3 @@
     </div>
 
 </div>
-
-<!-- ko if: Media() && Media().Type() == 'mp3'-->
-<br>
-<audio controls data-bind="attr: {src: Media().Content}" />
-<br />
-<!-- /ko-->
-<!-- ko if: Media() && Media().Type() == 'txt'-->
-<br />
-<label data-bind="html:Media().Content()" />
-<br />
-<!-- /ko-->
-<!-- ko if: Media() && Media().Type() == 'img'-->
-<br />
-<img cotrols data-bind="attr: {src: problem().Media().Content}" />
-<br />
-<!-- /ko-->
