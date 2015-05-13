@@ -21,7 +21,7 @@ namespace Parrot.Model
         {
             get
             {
-                return (DbQuery<User>)Context.Users;
+                return (DbQuery<User>)Context.Users.Include("Exersizes").Include("Exersizes.Exersize");
             }
         }
 
@@ -66,7 +66,7 @@ namespace Parrot.Model
         {
             get
             {
-                return (DbQuery<Exersize>)Context.Exersizes.Include("Sections").Include("Sections.Problems");
+                return (DbQuery<Exersize>)Context.Exersizes.Include("Sections").Include("Sections.Problems").Include("Sections.Problems.Quizzes");
             }
         }
 
@@ -82,7 +82,7 @@ namespace Parrot.Model
         {
             get
             {
-                return (DbQuery<Problem>)Context.Problems.Include("Quizzes");
+                return (DbQuery<Problem>)Context.Problems.Include("Quizzes").Include("Media");
             }
         }
 
