@@ -2,6 +2,7 @@
     var ctor = function () {
         var self = this;
         this.isediting = ko.observable(false);
+        this.isreporting = ko.observable(false);
     }
 
     ctor.prototype.activate = function (settings) {
@@ -11,6 +12,9 @@
         }
         if (settings.isediting) {
             this.isediting(settings.isediting);
+        }
+        if (settings.isreporting) {
+            this.isreporting(settings.isreporting);
         }
     };
 

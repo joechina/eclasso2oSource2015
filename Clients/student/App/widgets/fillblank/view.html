@@ -16,4 +16,12 @@
     <br />
     <label>标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-md" /></label>
     <!-- /ko-->
+
+    <!--ko if: reportig()-->
+
+    <label>问题: <input data-bind="value: settings.item.Challenge()" class="form-control"></label>
+    <br />
+    <lable>学生回答：<span class="form-control"></span></lable>
+    <br />
+    <!-- /ko-->
 </div>
