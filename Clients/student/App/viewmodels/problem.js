@@ -33,24 +33,24 @@
         function activate(id) {
             data.getproblem(id).then(function (pdata) {
                 var p = pdata.results[0];
+
                 if (p.MediaId() > 0) {
-                    data.getmedia(p.MediaId()).then(function (mdata) {
+                    data.getMedia(p.MediaId()).then(function (mdata) {
                         p.Media(mdata.results[0]);
-                        problem(p);
+  
                     })
                 }
-                else {
-                    problem(p);
-                }
+
+                problem(p);
 
                 total(p.Quizzes().length);
 
+                logger.log('problem ' + problem().Id()+' activated');
             });
 
             current(0);
             $("#goback").css({ display: "block" });
 
-            logger.log('problem activated');
         }
         
         function detached() {
@@ -113,7 +113,7 @@
 
             var $dialog = $(
                 '<div class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true" style="padding-top:15% overflow-y:visible;">' +
-                '<div class="m，课odal-dialog modal-m">' +
+                '<div class="modal-dialog modal-m">' +
                 '<div class="modal-content">' +
                 '<div class="modal-header"><h3 style="margin:0;">递交中...</h3></div>' +
                 '<div class="modal-body">' +
@@ -129,43 +129,69 @@
                 var text_string = 'width: ' + Math.round(i * 10 / problem().Quizzes().length) * 10 + '%';
                 $dialog.find('.progress-bar').attr('style', text_string);
 
-                var Ok = ko.observable(false);
-
                 var uid = data.user().Id(); // get current user id
                 var q = problem().Quizzes()[i];
+                var qid = q.Id(); // get current quiz id
 
-                data.getUserAnswer(uid, q.Id()).then(function (data) {
-                    
-                    if (data.results.length == 0) {
-                        Ok(true);
-                    }
+                if (q.answer() != null) {
+                   
+                    submituserquiz(uid, qid, q);
 
-                    if (Ok) {
-                        var userQuiz = data.create("UserQuiz");
-
-                        userQuiz.UserId(uid);
-                        userQuiz.QuizId(q.Id());
-
-                        userQuiz.Answer(q.answer());
-
-                        data.save(userQuiz).then(function () {
-                            logger.log('userQuiz saved');
-
-                        }).fail(function (err) {
-                            for (var i = 0; i < err.length; i++) {
-                                logger.log(err[i]);
-                            }
-                        });
-
-                        logger.log('submit an answer:' + q.answer());
-                    }
-                });
-
-
+                    // check if student has answered the quiz before by querying UserQuiz table
+                }
+                else {
+                    alert('问题: ' + q.Challenge() + ' 没有回答');
+                }
             }
 
             $dialog.modal('hide');
             backtolist();
+        }
+
+        function submituserquiz(uid, qid, q) {
+
+            data.getUserQuizs(uid, qid).then(function (results) {
+                var a = ko.observable();
+                // combine multi selection answer by ","
+                if (q.QuizType() == 3) {
+                    a(q.answer().join(','));
+                }
+                else {
+                    a(q.answer());
+                }
+
+                if (results.results.length == 0) {// if such record does not exit, create a new one
+
+                    var userQuiz = data.create('UserQuiz');
+
+                    userQuiz.UserId(uid);
+                    userQuiz.QuizId(qid);
+
+                    userQuiz.Answer(a());
+
+                    data.save(userQuiz).then(function () {
+                        logger.log('userQuiz:' + uid + '/' + qid + ' with answer: ' + a());
+
+                    }).fail(function (err) {
+                        for (var i = 0; i < err.length; i++) {
+                            logger.log(err[i]);
+                        }
+                    });
+                }
+                else {// if yes, overwirte previous answer
+                    results.results[0].Answer(a());
+                    data.save(results.results[0]).then(function () {
+                        logger.log('userQuiz:' + uid + '/' + qid + ' with answer: ' + a());
+
+                    }).fail(function (err) {
+                        for (var i = 0; i < err.length; i++) {
+                            logger.log(err[i]);
+                        }
+                    });
+                }
+            }).fail(function (err) {
+                alert(err.message);
+            });
         }
         //#endregion
     });

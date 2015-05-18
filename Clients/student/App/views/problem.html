@@ -27,13 +27,11 @@
         <br />
         <br />
         <!-- /ko-->
-        <!--<ul data-bind="foreach: problem().Quizzes">-->
-        <!--<li>-->
+
         <!-- ko with: currentQuiz-->
         <div style="font-size:large" data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false, answer: $parent.answer}"></div>
         <!-- /ko -->
-        <!--</li>-->
-        <!--</ul>-->
+
         <div class="row">
             <div class="col-xs-4">
                 <button id="previous" class="btn btn-primary btn-block" data-bind="click:previous, disable: current() == 0" style="font-size:medium">

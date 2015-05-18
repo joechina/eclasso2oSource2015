@@ -2,7 +2,10 @@
     //var options = ko.observableArray();
     var ctor = function () {
         var self = this;
-        this.isediting = ko.observable(false);
+        this.isediting = ko.observable(null);
+        this.isreporting = ko.observable(null);
+        this.useranswer = ko.observable();
+
         //this.options = options;
         this.addoptions = function () {
             var newoption = {text:ko.observable()};
@@ -28,20 +31,21 @@
             }
         }
         //settings.item.options = options;
-        if (settings.isediting) {
+        if (settings.isediting != null) {
             this.isediting(settings.isediting);
+        }
+
+        if (settings.isreporting != null) {
+            this.isreporting(settings.isreporting);
         }
         
     };
-
-    //ctor.prototype.compositionComplete = function () {
-    //    var choice = "";
-    //    $('input[type="radio"]').on('click change', function(e) {
-    //        choice= e.target.value;
-    //    });
-
-    //    if (this.settings.answer !=null)
-    //        this.settings.answer(choice);
-    //}
+    
+    ctor.prototype.compositionComplete = function () {
+        $('input[type="checkbox"]').on('click change', function (e) {
+            this.settings.item.answer.push(e.target.value);
+        });
+    }
+    
     return ctor;
 });

@@ -1,17 +1,18 @@
 ﻿<!--多选题需填写问题，选项 (Key) 和答案。选项用逗号　","　分隔-->
 <div class="widget">
-    <!--ko ifnot: isediting()-->
+    <!--ko if: isediting() == false -->
     <br />
     <span data-bind="text:settings.item.Challenge()"></span>
     <br />
     <ul data-bind="foreach: settings.item.options" class="options">
         <li class="selectionoption">
-            <input type="checkbox" name="group1" data-bind="attr: {value: $data.text},checked: $parent.settings.item.answer" />
+            <input type="checkbox" name="mgroup" data-bind="attr: {value: $data.text}, checked: $parent.settings.item.answer" />
             <span data-bind="text:text"></span>
         </li>
     </ul>
     <!-- /ko-->
-    <!--ko if: isediting()-->
+
+    <!--ko if: isediting() == true-->
     <label class="block">问题: <input data-bind="value: settings.item.Challenge" class="form-control input-md"></label>
     <label class="block">选项:<button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:addoptions">加选项</button></label>
     <ul data-bind="foreach: settings.item.options" class="options">
@@ -22,5 +23,19 @@
     </ul>
 
     <label class="block">标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-md" /></label>
+    <!-- /ko-->
+
+    <!--ko if: isreporting() == true-->
+    <br />
+    <span data-bind="text:settings.item.Challenge()"></span>
+    <br />
+    <ul data-bind="foreach: settings.item.options" class="options">
+        <li class="selectionoption">
+            <input type="checkbox" name="mgroup" data-bind="attr: {value: $data.text}, checked: $parent.settings.item.answer" />
+            <span data-bind="text:useranswer()"></span>
+        </li>
+    </ul>
+
+    <label class="block">学生回答: <span class="form-control" data-bind="text:useranswer()"></span></label>
     <!-- /ko-->
 </div>

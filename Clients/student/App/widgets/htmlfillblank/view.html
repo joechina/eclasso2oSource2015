@@ -1,7 +1,7 @@
 ﻿<!--html 填空题: 问题会直接显示为 html 段落，学生直接编辑 html 段落内容。-->
 
 <div class="widget">
-    <!--ko ifnot: isediting()-->
+    <!--ko if: isediting()==false -->
   
     <div style="border-style:solid;border-width:1px;padding:15px 15px 15px" data-bind="html:settings.item.Challenge()"></div>
         <br />
@@ -13,10 +13,18 @@
     
     <!-- /ko-->
     
-    <!--ko if: isediting()-->
+    <!--ko if: isediting() == true -->
     
     <label>问题: <input data-bind="wysiwyg: settings.item.Challenge, wysiwygConfig: { menubar: false }" class="form-control input-md"></label>
     <br />
     <label>标准答案: <input data-bind="text:settings.item.Answer" class="form-control input-md" /></label>
+    <!-- /ko-->
+
+    <!--ko if: isreporting() == true -->
+
+    <label>问题: <input data-bind="wysiwyg: settings.item.Challenge, wysiwygConfig: { menubar: false }" class="form-control input-md"></label>
+    <br />
+
+    <label class="block">学生回答: <span class="form-control" data-bind="text:useranswer()"></span></label>
     <!-- /ko-->
 </div>

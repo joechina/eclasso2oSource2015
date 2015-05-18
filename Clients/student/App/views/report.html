@@ -12,7 +12,7 @@
         <label>选择习题: </label>
         <select id='exersize' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: exersizes(),
                                                                                                             optionsText: 'Name',
-                                                                                                            value: exersize,
+                                                                                                            value: ex,
                                                                                                             optionsCaption: '所有习题'"></select>
     </div>
 
@@ -26,7 +26,7 @@
                 <span data-bind="text:GeneralInfo()"></span>
                 <div data-bind="widget: { kind: 'media', item: $data}"></div>
                 <div class="list-group-item" href="#" data-bind="foreach:Quizzes">
-                    <span data-bind="html:Challenge()"></span> >
+                    <div data-bind="widget: { kind: $root.quiztypename(QuizType()), item: $data, isreporting:true, isediting:null}"></div>
                 </div>
             </div>
         </div>

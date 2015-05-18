@@ -54,6 +54,13 @@ namespace Parrot.Model
                 return (DbQuery<Announcement>)Context.Announcements.Include("Users");
             }
         }
+        public DbQuery<UserAnnouncement> UserAnnouncements
+        {
+            get
+            {
+                return (DbQuery<UserAnnouncement>)Context.UserAnnouncements;
+            }
+        }
         public DbQuery<UserExersize> UserExersizes
         { 
             get
@@ -102,6 +109,20 @@ namespace Parrot.Model
             }
         }
 
+        public DbQuery<UserQuiz> UserQuizs
+        {
+            get
+            {
+                return (DbQuery<UserQuiz>)Context.UserQuizs;
+            }
+        }
+        public DbQuery<UserClass> UserClasses
+        {
+            get
+            {
+                return (DbQuery<UserClass>)Context.UserClasses;
+            }
+        }
         public void Dispose()
         {
             Context.Dispose();

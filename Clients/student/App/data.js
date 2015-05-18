@@ -32,14 +32,14 @@
             getexersize:getexersize,
             getproblem:getproblem,
             getsections: getsections,
-            getmedia:getmedia,
             getClasses: getClasses,
             getMedia: getMedia,
             getUsers: getUsers,
             getTeachers: getTeachers,
             getStudents: getStudents,
             getuser:getuser,
-            getUserAnswer:getUserAnswer,
+            getUserQuizs: getUserQuizs,
+            deleteNullExercise: deleteNullExercise,
             create: create,
             user:user,
         }
@@ -118,19 +118,13 @@
             return manager.executeQuery(query);
         }
 
-        function getmedia(id) {
-            var query = breeze.EntityQuery.from('Media')
-                            .where("Id", "==", id);
-            return manager.executeQuery(query);
-        }
-
         function getquizs(id) {
             var query = breeze.EntityQuery.from('Quizs')
                             .where("Id", "==", id);
             return manager.executeQuery(query);
         }
 
-        function getUserAnswer(uid, qid) {
+        function getUserQuizs(uid, qid) {
             var Predicate = breeze.Predicate;
             var p1 = new Predicate("UserId", "==", uid);
             var p2 = new Predicate("QuizId", "==", qid);
@@ -153,6 +147,10 @@
         function getexersize(eid) {
             var query = breeze.EntityQuery.from('Exersizes').where("Id", "==", eid);
             return manager.executeQuery(query);
+        }
+
+        function deleteNullExercise() {
+            //TODO
         }
 
         function getClasses() {
