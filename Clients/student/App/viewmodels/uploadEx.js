@@ -40,9 +40,9 @@
         }
 
         function init() {
-            vm.exercise = data.create('Exersize');
+            vm.exercise = null;
 
-            logger.log('upload exersize initialized');
+            logger.log('exersize reset');
 
             return true;
         }
@@ -134,11 +134,10 @@
             });
 
             data.save(vm.exercise).then(function () {
-                alert('Exercise Uploaded. Please check database');
+                alert('习题已保存');
                 init();
             }).fail(function (err) {
                 for (var i = 0; i < err.length; i++) {
-                    alert(err[i]);
                     logger.log(err[i]);
                 }
             });            
@@ -179,6 +178,7 @@
         
         function cancel() {
             init();
+            data.deleteNullExercise();
             router.navigateBack();
         }
         //#endregion

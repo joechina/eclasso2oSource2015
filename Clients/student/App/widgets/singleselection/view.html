@@ -6,7 +6,7 @@
     <br />
     <ul data-bind="foreach: settings.item.options" class="options">
         <li class="selectionoption">
-            <input type="radio" name="group1" data-bind="attr: {value: $data.text}" />
+            <input type="radio" name="group1" data-bind="attr: {value: $data.text}, checked: $parent.settings.item.answer" />
             <span data-bind="text:text"></span>
         </li>
     </ul>

@@ -1,7 +1,7 @@
 ﻿<!--填空题需填写问题和对应的答案。-->
 
 <div class="widget">
-    <!--ko ifnot: isediting()-->
+    <!--ko if: isediting() == false-->
     <br />
     <span data-bind="text:settings.item.Challenge()"></span>
     <br />
@@ -10,18 +10,18 @@
 
     <br />
     <!-- /ko-->
-    <!--ko if: isediting()-->
+    <!--ko if: isediting() == true -->
 
     <label>问题: <input data-bind="value: settings.item.Challenge" class="form-control input-md"></label>
     <br />
     <label>标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-md" /></label>
     <!-- /ko-->
 
-    <!--ko if: reportig()-->
+    <!--ko if: isreporting()-->
 
     <label>问题: <input data-bind="value: settings.item.Challenge()" class="form-control"></label>
     <br />
-    <lable>学生回答：<span class="form-control"></span></lable>
+    <lable class="block">学生回答：<span class="form-control" data-bind="text:useranswer()"></span></lable>
     <br />
     <!-- /ko-->
 </div>

@@ -38,7 +38,8 @@
             getTeachers: getTeachers,
             getStudents: getStudents,
             getuser:getuser,
-            getUserQuizzes: getUserQuizzes,
+            getUserQuizs: getUserQuizs,
+            deleteNullExercise: deleteNullExercise,
             create: create,
             user:user,
         }
@@ -123,7 +124,7 @@
             return manager.executeQuery(query);
         }
 
-        function getUserQuizzes(uid, qid) {
+        function getUserQuizs(uid, qid) {
             var Predicate = breeze.Predicate;
             var p1 = new Predicate("UserId", "==", uid);
             var p2 = new Predicate("QuizId", "==", qid);
@@ -146,6 +147,10 @@
         function getexersize(eid) {
             var query = breeze.EntityQuery.from('Exersizes').where("Id", "==", eid);
             return manager.executeQuery(query);
+        }
+
+        function deleteNullExercise() {
+            //TODO
         }
 
         function getClasses() {

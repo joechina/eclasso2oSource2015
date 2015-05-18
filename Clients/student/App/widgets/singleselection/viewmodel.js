@@ -31,6 +31,7 @@
                 settings.item.options.push(o);
             }
         }
+
         //settings.item.options = options;
         if (settings.isediting !=null) {
             this.isediting(settings.isediting);

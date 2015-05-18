@@ -25,19 +25,8 @@
         }
 
         function save() {
-
-            var id = user().Id();
-
-            //data.getuser(id).then(function (data) {
-            //    user1(data.results);
-            //}).fail(function (err) {
-            //    alert(err.message);
-            //});
-
-            //user1().Name(user().Name());
-
             data.save(user()).then(function () {
-                alert('user profile updated');
+                alert('个人资料已保存');
                 router.navigateBack();
             }).fail(function (err) {
                 for (var i = 0; i < err.length; i++) {
