@@ -51,7 +51,7 @@
                     </label>
                     <ul style="list-style-type:none" data-bind="foreach:teachers">
                         <li>
-                            <input type="checkbox" data-bind="attr: {value:Id()}, checked:$parent.selectedTeachers">
+                            <input type="checkbox" data-bind="attr: {value:Id()}, checked:$parent.selectedUsers">
                             <span data-bind="text: Name"></span>
                         </li>
                     </ul>
@@ -63,7 +63,7 @@
                     </label>
                     <ul style="list-style-type:none" data-bind="foreach:students">
                         <li>
-                            <input type="checkbox" data-bind="attr: {value:Id()}, checked:$parent.selectedStudents">
+                            <input type="checkbox" data-bind="attr: {value:Id()}, checked:$parent.selectedUsers">
                             <span data-bind="text: Name"></span>
                         </li>
                     </ul>

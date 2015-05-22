@@ -4,14 +4,15 @@
         var clazz = ko.observable();
         var students = ko.observableArray();
         var teachers = ko.observableArray();
-        var selectedTeachers = ko.observableArray();
-        var selectedStudents = ko.observableArray();
+        var selectedUsers = ko.observableArray();
         var showclazz = ko.observable(false);
         var vm = {
             clazzes: clazzes,
             clazz:clazz,
             students: students,
             teachers:teachers,
+            selectedUsers: selectedUsers,
+            showclazz: showclazz,
             activate: activate,
             openclazz: openclazz,
             delclazz: delclazz,
@@ -19,11 +20,6 @@
             router: router,
             backtolist: backtolist,
             newclazz: newclazz,
-            showclazz: showclazz,
-            selectedTeachers: selectedTeachers,
-            selectedStudents: selectedStudents,
-            activate: activate,
-            router: router,
             save: save,
         };
 
@@ -51,29 +47,16 @@
         }
 
         function editclazz() {
-            selectedTeachers([]);
-            selectedStudents([]);
-            var class_mbrs = new Array();
+            selectedUsers([]);
             clazz().Users().forEach(function (user) {
-                class_mbrs.push(user.UserId());
+                selectedUsers.push(user.UserId().toString());
             });
             data.getTeachers().then(function (data) {
                 teachers(data.results);
-                teachers().forEach(function (user) {
-                    if (class_mbrs.indexOf(user.Id()) >= 0)
-                        selectedTeachers.push(user.Id().toString());
-                });
             });
-
             data.getStudents().then(function (data) {
                 students(data.results);
-                students().forEach(function (user) {
-                    if (class_mbrs.indexOf(user.Id()) >= 0)
-                        selectedStudents.push(user.Id().toString());
-                });
             });
-
-
             showclazz(true);
         }
 
@@ -82,7 +65,9 @@
         }
 
         function save() {
-            var user_list = selectedStudents();
+            var user_list = selectedUsers().sort(function (a, b) {
+                return a - b;
+            });
             /*
             clazz().Users(user_list);
             data.save(clazz()).then(function () {
