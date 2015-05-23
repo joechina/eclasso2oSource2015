@@ -26,7 +26,7 @@
                 <span data-bind="text:GeneralInfo()"></span>
                 <div data-bind="widget: { kind: 'media', item: $data}"></div>
                 <div class="list-group-item" href="#" data-bind="foreach:Quizzes">
-                    <div data-bind="widget: { kind: $root.quiztypename(QuizType()), item: $data, isreporting:true, isediting:null}"></div>
+                    <div data-bind="widget: { kind: $root.quiztypename(QuizType()), item: $data, isreporting:true, isediting:null, uid:$root.student().Id()}"></div>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
 
     <div class="row">
         <div class="col-xs-6">
-            <button class="btn btn-primary btn-block" data-bind="click:displayanswer">&nbsp;查看</button>
+            <button class="btn btn-primary btn-block" data-bind="click:print">&nbsp;打印</button>
         </div>
         <div class="col-xs-6">
             <button class="btn btn-primary btn-block" data-bind="click:back">&nbsp;返回</button>

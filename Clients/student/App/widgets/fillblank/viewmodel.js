@@ -18,9 +18,12 @@
             this.isreporting(settings.isreporting);
             var uid = data.user().Id();
             var qid = settings.item.Id();
-            data.getUserQuizzes(uid, qid).then(function (data) {
+            data.getUserQuizs(uid, qid).then(function (data) {
                 if (data.results.length > 0) {
-                    useranswer(data.results[0]);
+                    settings.item.answer(data.results[0].Answer());
+                }
+                else {
+                    settings.item.answer("无回答");
                 }
             }).fail(function (err) {
                 alert(err.message);

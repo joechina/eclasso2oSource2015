@@ -25,7 +25,7 @@
     <label class="block">标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-md" /></label>
     <!-- /ko-->
 
-    <!--ko if: isreporting() == true-->
+    <!--ko if: isreporting()-->
     <br />
     <span data-bind="text:settings.item.Challenge()"></span>
     <br />
@@ -36,6 +36,9 @@
         </li>
     </ul>
 
-    <label class="block">学生回答: <span class="form-control" data-bind="text:useranswer()"></span></label>
+    <label class="block">标准答案: <span data-bind="text:settings.item.Answer()" /></label>
+    <br />
+    <label class="block" style="color:blue">学生回答: <span data-bind="text:settings.item.answer()"></span></label>
+    <br />
     <!-- /ko-->
 </div>

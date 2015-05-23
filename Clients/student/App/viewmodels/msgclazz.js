@@ -22,7 +22,6 @@
             showclazz: showclazz,
             selectedTeachers: selectedTeachers,
             selectedStudents: selectedStudents,
-            activate: activate,
             router: router,
             save: save,
         };
@@ -36,7 +35,7 @@
                 clazzes(data.results);
             });
 
-            $("#goback").css({ display: "none" });
+            $("#goback").css({ display: "block" });
             logger.log('clazzes activated');
         }
 
