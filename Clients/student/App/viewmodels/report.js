@@ -22,7 +22,7 @@
             activate: activate,
             router: router,
             quiztypename: global.quiztypename,
-            displayanswer:displayanswer,
+            print:print,
             back: back,
         };
 
@@ -33,25 +33,30 @@
             //data.getClasses().then(function (data) {
             //    classes(data.results);
             //});
-            student.subscribe(function(newValue) {
-                exersizes.removeAll();
-                for (var i = 0; i < newValue.Exersizes().length; i++) {
-                    exersizes.push(newValue.Exersizes()[i].Exersize());
+            student.subscribe(function (newValue) {
+                if (newValue != null) {
+                    exersizes.removeAll();
+                    for (var i = 0; i < newValue.Exersizes().length; i++) {
+                        exersizes.push(newValue.Exersizes()[i].Exersize());
+                    }
                 }
             });
 
             ex.subscribe(function (newValue) {
-                var eid = newValue.Id();
+                if (newValue != null) {
+                    var eid = newValue.Id();
 
-                data.getexersize(eid).then(function (data) {
-                    exersize(data.results[0]);
-                })
-           });
+                    data.getexersize(eid).then(function (data) {
+                        exersize(data.results[0]);
+                    })
+                }
+            });
+
+            $("#goback").css({ display: "block" });
 
             return data.getStudents().then(function (result) {
                 students(result.results);
 
-                $("#goback").css({ display: "none" });
                 logger.log('new report activated');
 
             });
@@ -66,7 +71,7 @@
             router.navigateBack();
         }
 
-        function displayanswer() {
-            
+        function print() {
+
         }
     });
