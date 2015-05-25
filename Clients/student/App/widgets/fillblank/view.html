@@ -19,11 +19,9 @@
 
     <!--ko if: isreporting()-->
 
-    <span data-bind="text:settings.item.Challenge()"></span>
+    <label>问题: <input data-bind="value: settings.item.Challenge()" class="form-control"></label>
     <br />
-    <label class="block">标准答案: <span data-bind="text:settings.item.Answer()" /></label>
-    <br/>
-    <label class="block" style="color:blue">学生回答: <span data-bind="text:settings.item.answer()"></span></label>
+    <lable class="block">学生回答：<span class="form-control" data-bind="text:useranswer()"></span></lable>
     <br />
     <!-- /ko-->
 </div>

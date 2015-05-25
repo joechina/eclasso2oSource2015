@@ -22,13 +22,9 @@
             this.isreporting(settings.isreporting);
             var uid = data.user().Id();
             var qid = settings.item.Id();
-            data.getUserQuizs(uid, qid).then(function (data) {
+            data.getUserQuizzes(uid, qid).then(function (data) {
                 if (data.results.length > 0) {
-                    settings.item.answer(data.results[0].Answer());
-                    logger.log(settings.item.answer());
-                }
-                else {
-                    settings.item.answer("无回答");
+                    useranswer(data.results[0]);
                 }
             }).fail(function (err) {
                 alert(err.message);
