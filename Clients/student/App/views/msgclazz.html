@@ -1,14 +1,12 @@
 ﻿<!-- list of classes and new/edit class -->
 <div class="container-fluid">
-
     <!--ko ifnot: showclazz()-->
     <div class="list-group list-full-with" data-bind="foreach: clazzes">
         <input type="radio" data-bind="click: $parent.openclazz">
-            <span data-bind="text: Name"></span>
-            <span class="pull-right" data-bind="text: Start"></span>
-            <span class="pull-right" data-bind="text: End"></span>
+        <span data-bind="text: Name"></span>
+        <span class="pull-right" data-bind="text: Start"></span>
+        <span class="pull-right" data-bind="text: End"></span>
     </div>
-
     <div class="row">
         <div class="col-xs-4">
             <button id="" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:newclazz">新添课程</button>
@@ -21,58 +19,57 @@
         </div>
     </div>
     <!--/ko-->
-
     <!--ko if: showclazz()-->
     <div class="container-fluid">
         <div class="form-group">
-                <label>课程名称：</label>
-                <input data-bind="value: clazz().Name" class="form-control input-md">
-                <br />
-                <br />
+            <label>课程名称：</label>
+            <input data-bind="value: clazz().Name" class="form-control input-md">
+            <br />
+            <br />
+            <label class="control-label">
+                课程描述：
+                <textarea data-bind="value: clazz().Description" class="form-control input-md"></textarea>
+            </label>
+            <br />
+            <br />
+            <label class="control-label">
+                课程开始时间：
+                <input data-bind="value: clazz().Start" type="date" />
+            </label>
+            <label class="control-label">
+                课程结束时间：
+                <input data-bind="value: clazz().End" type="date" />
+            </label>
+            <br />
+            <br />
+            <div class="form-group">
                 <label class="control-label">
-                    课程描述：
-                    <textarea data-bind="value: clazz().Description" class="form-control input-md"></textarea>
+                    授课老师：
                 </label>
-                <br />
-                <br />
-                <label class="control-label">
-                    课程开始时间：
-                    <input data-bind="value: clazz().Start" type="date" />
-                </label>
-                <label class="control-label">
-                    课程结束时间：
-                    <input data-bind="value: clazz().End" type="date" />
-                </label>
-                <br />
-                <br />
-                <div class="form-group">
-                    <label class="control-label">
-                        授课老师：
-                    </label>
-                    <ul style="list-style-type:none" data-bind="foreach:teachers">
-                        <li>
-                            <input type="checkbox" data-bind="attr: {value:Id()}, checked:$parent.selectedTeachers">
-                            <span data-bind="text: Name"></span>
-                        </li>
-                    </ul>
-                </div>
-                <br />
-                <div class="form-group">
-                    <label class="control-label">
-                        参与学生：
-                    </label>
-                    <ul style="list-style-type:none" data-bind="foreach:students">
-                        <li>
-                            <input type="checkbox" data-bind="attr: {value:Id()}, checked:$parent.selectedStudents">
-                            <span data-bind="text: Name"></span>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <button id="save" name="singlebutton" class="btn btn-primary glyphicon glyphicon-send" data-bind="click:save">&nbsp;保存并返回</button>
-                    <button id="cancel" name="singlebutton" class="btn btn-primary glyphicon glyphicon-trash" data-bind="click:backtolist">&nbsp;取消</button>
-                </div>
+                <ul style="list-style-type:none" data-bind="foreach:teachers">
+                    <li>
+                        <input type="checkbox" data-bind="attr: {value:Id()}, checked:$parent.selectedUsers">
+                        <span data-bind="text: Name"></span>
+                    </li>
+                </ul>
             </div>
+            <br />
+            <div class="form-group">
+                <label class="control-label">
+                    参与学生：
+                </label>
+                <ul style="list-style-type:none" data-bind="foreach:students">
+                    <li>
+                        <input type="checkbox" data-bind="attr: {value:Id()}, checked:$parent.selectedUsers">
+                        <span data-bind="text: Name"></span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <button id="save" name="singlebutton" class="btn btn-primary glyphicon glyphicon-send" data-bind="click:save">&nbsp;保存并返回</button>
+                <button id="cancel" name="singlebutton" class="btn btn-primary glyphicon glyphicon-trash" data-bind="click:backtolist">&nbsp;取消</button>
+            </div>
+        </div>
     </div>
     <!--/ko-->
 </div>
