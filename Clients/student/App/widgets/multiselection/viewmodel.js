@@ -11,15 +11,25 @@
             var newoption = {text:ko.observable()};
             self.settings.item.options.push(newoption);
         }
+
         this.deleteoption = function (o) {
             self.settings.item.options.remove(o);
+        }
+
+        this.compositionComplete = function () {
+            $('input[type="checkbox"]').on('click change', function (e) {
+                self.settings.item.answer.push(e.target.value);
+            });
         }
     }
 
     ctor.prototype.activate = function (settings) {
         this.settings = settings;
         if (!this.settings.item.answer) {
-            this.settings.item.answer = ko.observable();
+            this.settings.item.answer = ko.observableArray();
+        }
+        else {
+            this.settings.item.answer.removeAll();
         }
         var details = settings.item.QuizDetail();
         if (details && settings.item.options().length===0) {
@@ -37,15 +47,27 @@
 
         if (settings.isreporting != null) {
             this.isreporting(settings.isreporting);
+
+                        var uid = data.user().Id();
+            var qid = settings.item.Id();
+            data.getUserQuizs(uid, qid).then(function (data) {
+                if (data.results.length > 0) {
+   
+                    settings.item.answer(data.results[0].Answer());
+                    logger.log(settings.item.answer());
+                }
+                else {
+                    settings.item.answer("无回答");
+                }
+
+            }).fail(function (err) {
+                    alert(err.message);
+            });
         }
         
     };
     
-    ctor.prototype.compositionComplete = function () {
-        $('input[type="checkbox"]').on('click change', function (e) {
-            this.settings.item.answer.push(e.target.value);
-        });
-    }
+
     
     return ctor;
 });

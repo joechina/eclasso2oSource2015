@@ -20,11 +20,14 @@
     <label>标准答案: <input data-bind="text:settings.item.Answer" class="form-control input-md" /></label>
     <!-- /ko-->
 
-    <!--ko if: isreporting() == true -->
+    <!--ko if: isreporting() -->
 
-    <label>问题: <input data-bind="wysiwyg: settings.item.Challenge, wysiwygConfig: { menubar: false }" class="form-control input-md"></label>
+    <span data-bind="html: settings.item.Challenge()" ></span>
     <br />
 
-    <label class="block">学生回答: <span class="form-control" data-bind="text:useranswer()"></span></label>
+    <label class="block">标准答案: <span data-bind="text:settings.item.Answer()" /></label>
+    <br />
+    <label class="block" style="color:blue">学生回答: <span data-bind="text:settings.item.answer()"></span></label>
+    <br />
     <!-- /ko-->
 </div>
