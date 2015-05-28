@@ -17,7 +17,7 @@
         }
 
         this.compositionComplete = function () {
-            $('input[type="checkbox"]').on('click change', function (e) {
+            $('input[type="checkbox"]').on('change', function (e) {
                 self.settings.item.answer.push(e.target.value);
             });
         }
