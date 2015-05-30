@@ -23,7 +23,6 @@
         if (!this.settings.item.answer) {
             this.settings.item.answer = ko.observable();
         }
-        
 
         var details = settings.item.QuizDetail();
         if (details && settings.item.options().length===0) {

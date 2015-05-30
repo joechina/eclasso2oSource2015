@@ -3,7 +3,6 @@
         var self = this;
         this.isediting = ko.observable(null);
         this.isreporting = ko.observable(null);
-        this.useranswer = ko.observable();
     }
 
     ctor.prototype.activate = function (settings) {

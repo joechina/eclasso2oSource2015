@@ -6,7 +6,7 @@
     <br />
     <ul data-bind="foreach: settings.item.options" class="options">
         <li class="selectionoption">
-            <input type="checkbox" name="mgroup" data-bind="attr: {value: $data.text}, checked: $parent.settings.item.answer" />
+            <input type="checkbox" name="mgroup" data-bind="attr: {value: $data.text}" />
             <span data-bind="text:text"></span>
         </li>
     </ul>
@@ -31,8 +31,8 @@
     <br />
     <ul data-bind="foreach: settings.item.options" class="options">
         <li class="selectionoption">
-            <input type="checkbox" name="mgroup" data-bind="attr: {value: $data.text}, checked: $parent.settings.item.answer" />
-            <span data-bind="text:useranswer()"></span>
+            <input type="checkbox" name="mgroup" data-bind="attr: {value: $data.text}" />
+            <span data-bind="text:text"></span>
         </li>
     </ul>
 
