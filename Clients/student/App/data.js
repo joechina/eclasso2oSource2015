@@ -28,6 +28,7 @@
             getquestions: getquestions,
             getallannouncements: getallannouncements,
             getuserannouncements: getuserannouncements,
+            getuserexercise: getuserexercise,
             getuserexercises: getuserexercises,
             getallexersizes: getallexersizes,
             getexersize:getexersize,
@@ -145,6 +146,15 @@
             return manager.executeQuery(query);
         }
 
+        function getuserexercise(uid, eid) {
+            var Predicate = breeze.Predicate;
+            var p1 = new Predicate("UserId", "==", uid);
+            var p2 = new Predicate("ExersizeId", "==", eid);
+
+            var query = breeze.EntityQuery.from('UserExersizes').where(p1.and(p2));
+            return manager.executeQuery(query);
+        }
+
         function getexersize(eid) {
             var query = breeze.EntityQuery.from('Exersizes').where("Id", "==", eid);
             return manager.executeQuery(query);
@@ -155,7 +165,6 @@
         }
 
         function getClasses() {
-            var uid = user().Id();
             var query = breeze.EntityQuery.from('Classes');
             return manager.executeQuery(query);
         }

@@ -16,7 +16,7 @@
             studentExercises: ko.computed(function () {
                 if (exersize()) {
                     
-                    data.getusers4exercise(exersize().Id()).then(function (data) {
+                    data.getuserexercises(exersize().Id()).then(function (data) {
                         list_students(data.results);
                     });
 
