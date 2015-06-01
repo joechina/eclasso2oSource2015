@@ -20,5 +20,6 @@ namespace Parrot.Model
         public bool IsExam { get; set; }
         public virtual List<ExersizeSection> Sections { get; set; }
 
+        public int TotalQuizzes { get; set; }
     }
 }
