@@ -280,8 +280,23 @@
             }
 
             var store = manager.metadataStore;
+            store.registerEntityTypeCtor("Exersize", null, ExersizeInit);
             store.registerEntityTypeCtor("Quiz", null, QuizInit);
             store.registerEntityTypeCtor("Problem", null, ProblemInit);
+        }
+
+        function ExersizeInit(self) {
+            self.quizCount = ko.computed(function () {
+                var result = 0;
+                for (var i = 0; i < self.Sections().length; i++) {
+                    var sectionproblems = self.Sections()[i].Problems();
+                    for (var j = 0; j < sectionproblems.length; j++) {
+                        var problem = sectionproblems[j];
+                        result = result + problem.Quizzes().length;
+                    }
+                }
+                return result;
+            })
         }
 
         function QuizInit(self) {
