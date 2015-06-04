@@ -178,7 +178,6 @@
         
         function cancel() {
             init();
-            data.deleteNullExercise();
             router.navigateBack();
         }
         //#endregion

@@ -8,7 +8,7 @@
             problem: problem,
             activate: activate,
             detached: detached,
-            submitanswer:submitanswer,
+            saveanswer: saveanswer,
             router: router,
             backtolist: backtolist,
             quiztypename: global.quiztypename,
@@ -95,7 +95,7 @@
             */
         }
         
-        function submitanswer() {
+        function saveanswer() {
             //Remind users when a quiz is not answered, and get confirmed for submission.
             var n = 0;
             for (i = 0; i < problem().Quizzes().length; i++) {

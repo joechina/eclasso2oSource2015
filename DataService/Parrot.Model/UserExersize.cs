@@ -23,5 +23,6 @@ namespace Parrot.Model
         public int ExersizeId { get; set; }
         //public virtual User User { get; set; }
         public virtual Exersize Exersize { get; set; }
+        public int? ClassId { get; set; }
     }
 }

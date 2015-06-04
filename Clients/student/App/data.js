@@ -4,9 +4,9 @@
     'q'],
     function (breeze, $, Q) {
 
-        var host = 'http://localhost:56360/';
+        //var host = 'http://localhost:56360/';
         //var host = 'http://eclasso2oasia.azurewebsites.net/';
-        //var host = 'http://eclasso2o.chinacloudsites.cn/';
+        var host = 'http://eclasso2o.chinacloudsites.cn/';
 
         var manager = new breeze.EntityManager(host + 'breeze/eClassO2OApi');
         var islocal = false;
@@ -28,8 +28,8 @@
             getquestions: getquestions,
             getallannouncements: getallannouncements,
             getuserannouncements: getuserannouncements,
-            getuserexercise: getuserexercise,
-            getuserexercises: getuserexercises,
+            getuserexersize: getuserexersize,
+            getuserexersizes: getuserexersizes,
             getallexersizes: getallexersizes,
             getexersize:getexersize,
             getproblem:getproblem,
@@ -41,7 +41,6 @@
             getStudents: getStudents,
             getuser:getuser,
             getUserQuizs: getUserQuizs,
-            deleteNullExercise: deleteNullExercise,
             create: create,
             user:user,
         }
@@ -141,12 +140,12 @@
             return manager.executeQuery(query);
         }
 
-        function getuserexercises(uid) {
-            var query = breeze.EntityQuery.from('UserExersizes').where("UserId", "==", uid);
+        function getuserexersizes(uid) {
+            var query = breeze.EntityQuery.from('UserExersizes').where("UserId", "==", uid).orderBy('ExersizeId');
             return manager.executeQuery(query);
         }
 
-        function getuserexercise(uid, eid) {
+        function getuserexersize(uid, eid) {
             var Predicate = breeze.Predicate;
             var p1 = new Predicate("UserId", "==", uid);
             var p2 = new Predicate("ExersizeId", "==", eid);
@@ -158,10 +157,6 @@
         function getexersize(eid) {
             var query = breeze.EntityQuery.from('Exersizes').where("Id", "==", eid);
             return manager.executeQuery(query);
-        }
-
-        function deleteNullExercise() {
-            //TODO
         }
 
         function getClasses() {

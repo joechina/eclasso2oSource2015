@@ -124,7 +124,7 @@
 
             for (var i = 0; i < exer_ids.length; ++i) {
                 for (var j = 0; j < student_ids.length; ++j) {
-                    data.getuserexercise(student_ids[j], exer_ids[i]).then(function (result) {
+                    data.getuserexersize(student_ids[j], exer_ids[i]).then(function (result) {
                         if (result.results.length > 0) {//re-assigne?
                             var userExersize = results.results[0];
                         }
