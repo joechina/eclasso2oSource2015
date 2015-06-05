@@ -3,16 +3,13 @@
         var self = this;
         this.isediting = ko.observable(null);
         this.isreporting = ko.observable(null);
-        this.useranswer = ko.observable();
     }
 
     ctor.prototype.activate = function (settings) {
         this.settings = settings;
         if (!this.settings.item.answer) {
-            this.settings.item.answer = ko.observable(this.settings.item.Challenge());
+            this.settings.item.answer = ko.observable();
         }
-        else
-            this.settings.item.answer(this.settings.item.Challenge());
 
         if (settings.isediting != null) {
             this.isediting(settings.isediting);

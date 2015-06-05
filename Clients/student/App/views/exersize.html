@@ -4,28 +4,33 @@
     <div class="label label-warning">习题的答案在递交之后会发到老师那里进行批改</div>
     <!--ko ifnot: exersize()-->
     <div data-bind="foreach: exersizes" class="list-group list-full-with">
-        <a href="#" data-bind="click: $parent.openexersize" class="list-group-item" >
-            <div class="row">
-                <div class="col-xs-2" >
-                    <span data-bind="if:Exersize().IsExam"><img src="../../Content/images/alter-ego.jpg" /></span>
-                    <span data-bind="ifnot:Exersize().IsExam"><img src="../../Content/images/additional.jpg" /></span>
-                </div>
-                <div class="col-xs-8">
-                    <span style="font-size:large" class="list-group-item-heading" data-bind="text: Exersize().Name"></span>
-                    <p style="font-size:small" data-bind="text:Exersize().Description"></p>
-                </div>
-                <div class="col-xs-2">
-                    <span class="glyphicon glyphicon-menu-right"></span>
+        <div data-bind="with:Exersize()">
+            <div data-bind="click: $parent.openexersize" class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <span data-bind="if:IsExam"><img src="../../Content/images/alter-ego.jpg" /></span>
+                        <span data-bind="ifnot:IsExam"><img src="../../Content/images/additional.jpg" /></span>
+                    </div>
+                    <div class="col-xs-7">
+                        <span style="font-size:large" class="list-group-item-heading" data-bind="text: Name"></span>
+                        <p style="font-size:small" data-bind="text:Description"></p>
+                    </div>
+                    <div class="col-xs-1">
+                        <span style="font-size:large" class="list-group-item-heading">已完成 xxx/total quizs</span>
+                    </div>
+                    <div class="col-xs-2">
+                        <button class="btn btn-primary btn-block" data-bind="disable: $parent.Completed, event: { click: function() {  $root.submit($data)} }" >提交</button>
+                    </div>
                 </div>
             </div>
-        </a>
+        </div>
     </div>
     <!--/ko-->
     <!--ko if: exersize() -->
-    <h2 style="text-align:center; background-color:#add8e6" data-bind="text:exersize().Name" ></h2>
+    <h2 style="text-align:center; background-color:#add8e6" data-bind="text:exersize().Name"></h2>
     <div class="panel panel-default" data-bind="foreach: exersize().Sections">
         <div class="panel-heading" style="font-size:medium;background-color:#ffb6c1">
-            <span data-bind="text: Name" ></span>
+            <span data-bind="text: Name"></span>
         </div>
         <div class="list-group" data-bind="foreach: Problems">
             <a class="list-group-item" href="#" data-bind="attr: { href: '#problem/' + Id() }">

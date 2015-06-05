@@ -4,9 +4,9 @@
     'q'],
     function (breeze, $, Q) {
 
-        var host = 'http://localhost:56360/';
+        //var host = 'http://localhost:56360/';
         //var host = 'http://eclasso2oasia.azurewebsites.net/';
-        //var host = 'http://eclasso2o.chinacloudsites.cn/';
+        var host = 'http://eclasso2o.chinacloudsites.cn/';
 
         var manager = new breeze.EntityManager(host + 'breeze/eClassO2OApi');
         var islocal = false;
@@ -28,7 +28,8 @@
             getquestions: getquestions,
             getallannouncements: getallannouncements,
             getuserannouncements: getuserannouncements,
-            getuserexercises: getuserexercises,
+            getuserexersize: getuserexersize,
+            getuserexersizes: getuserexersizes,
             getallexersizes: getallexersizes,
             getexersize:getexersize,
             getproblem:getproblem,
@@ -40,7 +41,6 @@
             getStudents: getStudents,
             getuser:getuser,
             getUserQuizs: getUserQuizs,
-            deleteNullExercise: deleteNullExercise,
             create: create,
             user:user,
         }
@@ -140,8 +140,17 @@
             return manager.executeQuery(query);
         }
 
-        function getuserexercises(uid) {
-            var query = breeze.EntityQuery.from('UserExersizes').where("UserId", "==", uid);
+        function getuserexersizes(uid) {
+            var query = breeze.EntityQuery.from('UserExersizes').where("UserId", "==", uid).orderBy('ExersizeId');
+            return manager.executeQuery(query);
+        }
+
+        function getuserexersize(uid, eid) {
+            var Predicate = breeze.Predicate;
+            var p1 = new Predicate("UserId", "==", uid);
+            var p2 = new Predicate("ExersizeId", "==", eid);
+
+            var query = breeze.EntityQuery.from('UserExersizes').where(p1.and(p2));
             return manager.executeQuery(query);
         }
 
@@ -150,12 +159,7 @@
             return manager.executeQuery(query);
         }
 
-        function deleteNullExercise() {
-            //TODO
-        }
-
         function getClasses() {
-            var uid = user().Id();
             var query = breeze.EntityQuery.from('Classes');
             return manager.executeQuery(query);
         }

@@ -10,6 +10,14 @@
                                                                                                             optionsCaption: '所有习题'"></select>
     </div>
 
+    <div class="form-group">
+        <label>选择班级: </label>
+        <select id='user' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: allclasses(),
+                                                                                                            optionsText:'Name',
+                                                                                                            value: selectedclass,
+                                                                                                            optionsCaption: '选择班级'"></select>
+    </div>
+    <!--ko ifnot: selectclass()-->
     <!--允许多选几个学生-->
     <div class="form-group">
         <label>分配给学生: </label>
@@ -18,7 +26,20 @@
                                                                                                             value: selectedstudents,
                                                                                                             optionsCaption: '所有学生'"></select>
     </div>
-
+    <!--/ko-->
+    <!--ko if: selectclass()-->
+    <div class="form-group">
+        <label class="control-label">
+            参与学生：
+        </label>
+        <ul style="list-style-type:none" data-bind="foreach:allstudents">
+            <li>
+                <input type="checkbox" data-bind="attr: {value:Id()}, checked:$parent.selectedstudents">
+                <span data-bind="text: Name"></span>
+            </li>
+        </ul>
+    </div>
+    <!--/ko-->
     <div class="row">
         <div class="col-xs-6">
             <button class="btn btn-primary btn-block" data-bind="click:assign">&nbsp;分配</button>

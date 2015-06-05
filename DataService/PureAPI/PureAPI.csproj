@@ -168,7 +168,9 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\eclasso2o - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\eclasso2o.pubxml" />
+    <None Include="Properties\PublishProfiles\eclasso2o.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

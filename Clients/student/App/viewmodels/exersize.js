@@ -11,7 +11,7 @@
             exersizes: exersizes,
             activate: activate,
             openexersize: openexersize,
-            opendoneexersize:opendoneexersize,
+            submit:submit,
             router: router,
             backtolist: backtolist
         };
@@ -20,12 +20,13 @@
 
         //#region Internal Methods
         function activate(uid) {
-
+            //get exersizes assigned to a user
             if (!exersize()) {
-                data.getuserexercises(uid).then(function (data) {
+                data.getuserexersizes(uid).then(function (data) {
                     exersizes(data.results);
                 });
             }
+            
 
             $("#goback").css({ display: "none" });
 
@@ -33,18 +34,54 @@
         }
 
         function openexersize(selected) {
+            exersize(selected);
+            /*
             var id = selected.ExersizeId();
             data.getexersize(id).then(function (data) {
                 exersize(data.results[0]);
             });
-        }
-
-        function opendoneexersize(selected) {
-            doneexersize(selected);
+            */
         }
 
         function backtolist() {
             exersize(undefined);
+        }
+
+        function submit(ex) {
+            var uid = data.user().Id();
+            var eid = ex.Id();
+            data.getuserexersize(uid, eid).then(function (result) {
+                if (result.results.length == 0) {//if not exist, create a new record
+                    var ue = data.create('UserExersize');
+                    ue.UserId(uid);
+                    ue.ExersizeId(eid);
+                    ue.Completed('true');
+
+                    data.save(ue).then(function () {
+                        alert('习题: ' + eid + '已提交');
+                        logger.log('学生: ' + uid + '习题: ' + eid + '已提交');
+
+                    }).fail(function (err) {
+                        for (var i = 0; i < err.length; i++) {
+                            logger.log(err[i]);
+                        }
+                    });
+                
+                }
+                else {// if record exists, update the Completed field
+                    result.results[0].Completed('true');
+
+                    data.save(result.results[0]).then(function () {
+                        alert('习题: ' + eid + '已提交');
+                        logger.log('学生: ' + uid + '习题: ' + eid + '已提交');
+
+                    }).fail(function (err) {
+                        for (var i = 0; i < err.length; i++) {
+                            logger.log(err[i]);
+                        }
+                    });
+                }
+            })
         }
 
         //#endregion

@@ -11,12 +11,13 @@
             openexersize: openexersize,
             router: router,
             newex: newex,
-            assignex:assignex,
+            assignex: assignex,
+            editex: editex,
             backtolist: backtolist,
             studentExercises: ko.computed(function () {
                 if (exersize()) {
                     
-                    data.getusers4exercise(exersize().Id()).then(function (data) {
+                    data.getuserexersizes(exersize().Id()).then(function (data) {
                         list_students(data.results);
                     });
 
@@ -56,6 +57,10 @@
 
         function assignex() {
             router.navigate('/#exersizeassign')
+        }
+
+        function editex() {
+            router.navigate('/#editex')
         }
         //#endregion
     });

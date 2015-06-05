@@ -1,4 +1,4 @@
-﻿define(['durandal/composition', 'jquery', 'knockout', 'data'], function (composition, $, ko, data) {
+﻿define(['durandal/composition', 'jquery', 'knockout', 'data','logger'], function (composition, $, ko, data,logger) {
     //var options = ko.observableArray();
     var ctor = function () {
         var self = this;
@@ -28,9 +28,7 @@
         if (!this.settings.item.answer) {
             this.settings.item.answer = ko.observableArray();
         }
-        else {
-            this.settings.item.answer.removeAll();
-        }
+
         var details = settings.item.QuizDetail();
         if (details && settings.item.options().length===0) {
             var detailbd = details.split(',');
@@ -48,7 +46,7 @@
         if (settings.isreporting != null) {
             this.isreporting(settings.isreporting);
 
-                        var uid = data.user().Id();
+            var uid = data.user().Id();
             var qid = settings.item.Id();
             data.getUserQuizs(uid, qid).then(function (data) {
                 if (data.results.length > 0) {
