@@ -185,6 +185,11 @@
         }
         
         function save(entity) {
+            if (entity.quizCount) {
+                if (entity.quizCount() !== entity.TotalQuizzes()) {
+                    entity.TotalQuizzes(entity.quizCount());
+                }
+            }
             manager.attachEntity(entity, entity.entityAspect.entityState);
             return manager.saveChanges();
         };
