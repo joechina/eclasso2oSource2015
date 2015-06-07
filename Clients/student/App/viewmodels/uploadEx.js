@@ -2,13 +2,14 @@
     function (router, ko, data, logger, global) {
         var audio = ko.observable();
         var text = ko.observable();
-        
+        var exercise = ko.observable();
         var vm = {
             activate: activate,
             //compositionComplete: compositionComplete,
             upload: upload,
             router: router,
             audio: audio,
+            exercise: exercise,
             text:text,
             global:global,
             addSection: addSection,
@@ -32,15 +33,24 @@
         return vm;
 
         //#region Internal Methods
-        function activate() {
-            vm.exercise = data.create('Exersize');
-            $("#goback").css({ display: "block" });
-            logger.log('upload Exersize activated');
+        function activate(eid) {
+            if (eid == -1) {
+                vm.exercise(data.create('Exersize'));
+                $("#goback").css({ display: "block" });
+                logger.log('upload Exersize activated');
+            }
+            else {
+                vm.exercise(null);
+                data.getexersize(eid).then(function (data) {
+                    vm.exercise(data.results[0]);
+                    var cur_eid = vm.exercise().Id();
+                });
+            }
             return true;
         }
 
         function init() {
-            vm.exercise = null;
+            vm.exercise(null);
 
             logger.log('exersize reset');
 
@@ -100,7 +110,7 @@
 
         function upload() {
 
-            vm.exercise.Sections().forEach(function (s) {
+            vm.exercise().Sections().forEach(function (s) {
 
                 s.Problems().forEach(function (p) {
 
@@ -133,7 +143,7 @@
                 })                
             });
 
-            data.save(vm.exercise).then(function () {
+            data.save(vm.exercise()).then(function () {
                 alert('习题已保存');
                 init();
             }).fail(function (err) {

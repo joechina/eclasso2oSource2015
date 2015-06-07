@@ -59,7 +59,8 @@
 
         return vm;
 
-        function activate() {
+        function activate(eid) {
+            if (eid) { }
             selectedclass(null);
             cur_classid = -1;
             selectedstudents([]);
@@ -121,26 +122,41 @@
                     student_ids.push(student.Id());
                 });
             }
-
+            function save_userExersize(userExersize)
+            {
+                var today = new Date();
+                var next_day = new Date(today);
+                next_day.setFullYear(today.getFullYear() + 1);
+                userExersize.Assigned(today);
+                userExersize.Deadline(next_day);
+                userExersize.Progress(0);
+                userExersize.Completed('false');
+                data.save(userExersize).then(function () {
+                    logger.log('userExersize:' + userExersize.UserId() + '/' + userExersize.ExersizeId());
+                }).fail(function (err) {
+                    for (var i = 0; i < err.length; i++) {
+                        logger.log(err[i]);
+                    }
+                });
+            }
+            function callbackCreator(uid, eid) {
+                return function (result) {
+                    if (result.results.length > 0) {//re-assigne?
+                        var userExersize = result.results[0];
+                        save_userExersize(userExersize);
+                    }
+                    else {
+                        var userExersize = data.create('UserExersize');
+                        userExersize.UserId(uid);
+                        userExersize.ExersizeId(eid);
+                        save_userExersize(userExersize);
+                    }
+                }
+            }
             for (var i = 0; i < exer_ids.length; ++i) {
                 for (var j = 0; j < student_ids.length; ++j) {
-                    data.getuserexersize(student_ids[j], exer_ids[i]).then(function (result) {
-                        if (result.results.length > 0) {//re-assigne?
-                            var userExersize = results.results[0];
-                        }
-                        else {
-                            var userExersize = data.create('UserExersize');
-                            userExersize.UserId(student_ids[j]);
-                            userExersize.ExersizeId(exer_ids[i]);
-                            data.save(userExersize).then(function () {
-                                logger.log('userExersize:' + student_ids[j] + '/' + exer_ids[i] );
-                            }).fail(function (err) {
-                                for (var i = 0; i < err.length; i++) {
-                                    logger.log(err[i]);
-                                }
-                            });
-                        }
-                    });
+                    var callback = callbackCreator(student_ids[j], exer_ids[i]);
+                    var record = data.getuserexersize(student_ids[j], exer_ids[i]).then(callback);
                 }
             }
         }

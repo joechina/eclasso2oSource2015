@@ -20,15 +20,22 @@
     </div>
     <!--/ko-->
     <div class="row">
+        <!--ko ifnot: exersize() -->
         <div class="col-xs-4">
             <button name="singlebutton" class="btn btn-primary btn-block" data-bind="click:newex">上传新习题</button>
         </div>
+        <!--/ko-->
         <div class="col-xs-4">
             <button name="singlebutton" class="btn btn-primary btn-block" data-bind="click:assignex">分配习题</button>
         </div>
+        <!--ko if: exersize() -->
         <div class="col-xs-4">
             <button name="singlebutton" class="btn btn-primary btn-block" data-bind="click:editex">编辑习题</button>
         </div>
+        <div class="col-xs-4">
+            <button name="singlebutton" class="btn btn-primary btn-block" data-bind="click:backtolist">返回</button>
+        </div>
+        <!--/ko-->
     </div>
 
 </div>
