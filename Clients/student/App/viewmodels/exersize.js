@@ -34,13 +34,12 @@
         }
 
         function openexersize(selected) {
-            exersize(selected);
-            /*
-            var id = selected.ExersizeId();
+  
+            var id = selected.Id();
             data.getexersize(id).then(function (data) {
                 exersize(data.results[0]);
             });
-            */
+            
         }
 
         function backtolist() {

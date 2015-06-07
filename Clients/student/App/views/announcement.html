@@ -4,27 +4,20 @@
     <!--ko ifnot: announcement()-->
     <div class="list-group list-full-with" data-bind="foreach: announcements">
         <a class="list-group-item" href="#" data-bind="click: $parent.openmsg">
-            <div class="row">
-                <div class="col-xs-9">
-                    <h4 style="font-size:large" class="list-group-item-heading" data-bind="text: Title"></h4>
-                </div>
-                <div class="col-xs-3">
-                    <!--span class="glyphicon glyphicon-menu-right"></!--span>-->
-                    <p style="font-size:small" class="list-group-item-text" data-bind="text:CreateDate().getMonth() + '月' + CreateDate().getDate()+'日'"></p>
-                </div>
-            </div>
+	        <span class="announcement-item-title" data-bind="text: Title"></span>
+	        <span class="announcement-item-date" data-bind="text:CreateDate().getMonth() + '月' + CreateDate().getDate()+'日'"></span>
         </a>
     </div>
     <!--/ko-->
     <!--ko if: announcement()-->
     <div class="container-fluid">
         <div data-bind="with:announcement()">
-            <span style="font-size:large;color:#222222" data-bind="text: Title"></span>
+            <span class="announcement-title" data-bind="text: Title"></span>
             <p class="announcement-date" data-bind="text: CreateDate().getMonth() + '月' + CreateDate().getDate() +'日'"></p>
-            <br/>
             <p class="announcement-content" data-bind="html: Content"></p>
         </div>
-        <button id="Button1" name="singlebutton" class="btn btn-primary btn-block" data-bind="click: backtolist" style="font-size:medium">返回</button>
     </div>
+    <button id="Button1" name="singlebutton" class="btn btn-primary btn-block" data-bind="click: backtolist">返回</button>
+
     <!--/ko-->
 </div>

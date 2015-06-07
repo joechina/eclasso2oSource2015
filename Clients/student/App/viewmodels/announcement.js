@@ -46,13 +46,10 @@
             announcement(selected);
             var date = announcement().CreateDate();
             msgDate = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate();
-            $("#goback").css({ display: "block" });
         }
 
         function backtolist() {
-            announcement(undefined);
-            
-            $("#goback").css({ display: "none" });
+            announcement(undefined);            
         }
 
         function newmsg() {

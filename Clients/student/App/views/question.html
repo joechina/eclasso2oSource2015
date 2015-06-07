@@ -14,7 +14,7 @@
     </div>
     <!--ko if: displayquestions().length > 0-->
     <div class="list-group list-full-with" data-bind="foreach: displayquestions">
-        <a class="list-group-item" href="#" data-bind="click: $parent.openanswer" style="font-size:large">
+        <a class="list-group-item" href="#" data-bind="click: $parent.openanswer">
             <div class="row">
                 <div class="col-xs-9">
                     <span data-bind="text: QuestionDetail"></span>
@@ -23,24 +23,18 @@
                     <span class="glyphicon glyphicon-menu-right"></span>
                 </div>
             </div>
-            
+
         </a>
     </div>
     <!--/ko-->
-    <div class="main">
-
-        <!--if: displayquestions().length == 0 => submit questionn move to the up-right shortcut item>
-        <button id="submit" name="singlebutton" class="btn btn-primary" data-bind="click: submitquestion">Submit a new question</button>
-        <!--/-->
-    </div>
     <!--/ko-->
     <!--ko if: question()-->
-    <div class="container-fluid" style="background-color:#add8e6;">
-        <h2 data-bind="text:question().QuestionDetail" style="text-align:center;color:white;"></h2>
+    <div class="container-fluid">
+        <h2 style="background-color:#add8e6;" data-bind="text:question().QuestionDetail"></h2>
+        <br/>
+        <span class="announcement-content" data-bind="html:question().Answer"></span>
     </div>
-    <div class="container-fluid" style="font-size:medium">
-        <span data-bind="html:question().Answer"></span>
-        <button id="" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:backtolist">返回</button>
-    </div>
+    <button name="singlebutton" class="btn btn-primary btn-block" data-bind="click:backtolist">返回</button>
+
     <!--/ko-->
 </div>
