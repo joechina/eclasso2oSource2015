@@ -10,6 +10,7 @@
                     { route: 'myprofile', moduleId: 'myprofile', title: '个人信息', nav: 3 },
                     { route: 'uploadEx/:id', moduleId: 'uploadEx', title: '上传/编辑习题', nav: 3 },
                     { route: 'editprofile', moduleId: 'editprofile', title: '编辑个人信息', nav: 3 },
+                    { route: 'myclazz', moduleId:'myclazz', title: '我的课程', nav:3 },
                     { route: 'exersizeassign/:eid', moduleId: 'exersizeassign', title:'分配习题', nav:3 },
                     { route: 'announcements', moduleId: 'announcement', title: '通知', icon: 'glyphicon glyphicon-bell', nav: 11 },
                     { route: 'exersizes/:uid', moduleId: 'exersize', title: '练习题', icon: 'glyphicon glyphicon-list-alt', nav: 12 },

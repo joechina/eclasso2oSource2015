@@ -133,6 +133,7 @@
                 userExersize.Completed('false');
                 data.save(userExersize).then(function () {
                     logger.log('userExersize:' + userExersize.UserId() + '/' + userExersize.ExersizeId());
+                    alert('习题已分配结束');
                 }).fail(function (err) {
                     for (var i = 0; i < err.length; i++) {
                         logger.log(err[i]);

@@ -301,8 +301,8 @@ ul.options {
 }
 
 .list-group-item {
-    font-family: 'Microsoft YaHei UI';
-    font-size: 18px !important;
+    font-family: 'Microsoft YaHei UI', Arial, sans-serif;
+    font-size: large !important;
 }
 
 .list-group-item-heading {
@@ -357,7 +357,7 @@ ul.options {
 
 .announcement-item-date {
     display: block;
-    font-size: 13px;
+    font-size: 14px;
     color: #878787;
 }
 
@@ -370,7 +370,7 @@ ul.options {
 }
 
 .announcement-date {
-    font-size: 13px;
+    font-size: 14px;
     color: #878787;
     margin: 0;
 }

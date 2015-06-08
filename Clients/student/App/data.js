@@ -27,6 +27,7 @@
             getCurrentUser: getCurrentUser,
             getquestions: getquestions,
             getallannouncements: getallannouncements,
+            getsentannouncements:getsentannouncements,
             getuserannouncements: getuserannouncements,
             getuserexersize: getuserexersize,
             getuserexersizes: getuserexersizes,
@@ -99,6 +100,11 @@
 
         function getallannouncements() {
             var query = breeze.EntityQuery.from('Announcements');
+            return manager.executeQuery(query);
+        }
+
+        function getsentannouncements() {
+            var query = breeze.EntityQuery.from('Announcements').where("Draft","==","0");
             return manager.executeQuery(query);
         }
 

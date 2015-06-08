@@ -10,6 +10,7 @@
             user: user,
             myprofile:myprofile,
             activate: activate,
+            myclazz:myclazz,
             router: router,
             logout:logout,
         };
@@ -46,6 +47,10 @@
 
         function myprofile() {
             router.navigate('/#myprofile');
+        }
+
+        function myclazz() {
+            router.navigate('/#myclazz');
         }
 
         function logout() {

@@ -1,5 +1,5 @@
 ﻿
-<div>
+<div class="container-fluid">
 
     <div class="label label-warning">习题的答案在递交之后会发到老师那里进行批改</div>
     <!--ko ifnot: exersize()-->
@@ -13,10 +13,10 @@
                     </div>
                     <div class="col-xs-6">
                         <span class="list-group-item-heading" data-bind="text: Name"></span>
-                        <p class="list-inline" data-bind="text:Description"></p>
+                        <p class="announcement-date" data-bind="text:Description"></p>
                     </div>
                     <div class="col-xs-2">
-                        <span class="list-group-item-heading">已完成 xxx/total</span>
+                        <span class="list-group-item-heading">xxx/total</span>
                     </div>
                     <div class="col-xs-2">
                         <button class="btn btn-primary btn-block" data-bind="disable: $parent.Completed, event: { click: function() {  $root.submit($data)} }" >递交</button>
@@ -34,7 +34,7 @@
         </div>
         <div class="list-group" data-bind="foreach: Problems">
             <a class="list-group-item" href="#" data-bind="attr: { href: '#problem/' + Id() }">
-                <div class="row" style="font-size:medium">
+                <div class="row" style="font-size:16px">
                     <div class="col-xs-9">
                         <span data-bind="text: GeneralInfo"></span>
                     </div>

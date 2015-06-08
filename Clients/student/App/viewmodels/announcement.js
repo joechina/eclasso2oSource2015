@@ -34,7 +34,7 @@
             });
             */
 
-            data.getallannouncements().then(function (data) {
+            data.getsentannouncements().then(function (data) {
                 announcements(data.results);
             });
 
