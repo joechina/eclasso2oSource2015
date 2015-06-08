@@ -17,7 +17,7 @@ namespace Parrot.Model
         public string Content { get; set; }
         public DateTime CreateDate { get; set; }
         public string Target { get; set; } //G_A list of user ids(comma deliminated), All, C_ClassId
-        public int Priority { get; set; }
+        public bool Priority { get; set; }
         public string Title { get; set; }
         public bool Draft { get; set; }
         public virtual List<UserAnnouncement> Users { get; set; }

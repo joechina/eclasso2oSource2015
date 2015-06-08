@@ -18,12 +18,12 @@
             </div>
             <br />
             <label class="control-label">
-                日期: <span data-bind="text:today().getYear() + '年'+ today().getMonth() + '月' + today().getDate() +'日'" />
+                日期: <span data-bind="text:today()" />
             </label>
             <br />
             <br />
             <label class="control-label">
-                优先级高: <input data-bind="checked: isHighPriority" type="checkbox">
+                优先级高: <input data-bind="checked: msg().Priority" type="checkbox">
             </label>
             <br />
             <br />

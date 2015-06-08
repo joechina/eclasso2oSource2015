@@ -123,6 +123,14 @@ namespace Parrot.Model
                 return (DbQuery<UserClass>)Context.UserClasses;
             }
         }
+
+        public DbQuery<Feedback> Feedbacks
+        {
+            get
+            {
+                return (DbQuery<Feedback>)Context.Feedbacks;
+            }
+        }
         public void Dispose()
         {
             Context.Dispose();

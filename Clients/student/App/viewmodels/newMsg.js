@@ -3,7 +3,6 @@
         var msg = ko.observable();
         var target = ko.observable();
         var classes = ko.observableArray();        
-        //var users = ko.observableArray();
         var teachers = ko.observableArray();
         var isHighPriority = ko.observable(false);
         var today = ko.observable();
@@ -26,7 +25,12 @@
 
         function activate() {
             vm.msg(data.create('Announcement'));
-            today(new Date());
+
+            vm.msg().CreateDate(new Date());
+            var year = vm.msg().CreateDate().getFullYear();
+            var month = vm.msg().CreateDate().getMonth() + 1; //getMonth()	从 Date 对象返回月份 (0 ~ 11)。
+            var day = vm.msg().CreateDate().getDate();
+            today(year + ' 年 '+ month  + ' 月 ' + day +' 日');
             
             data.getClasses().then(function(data){
                 classes(data.results);
@@ -43,7 +47,7 @@
                     case '老师':
                         return teachers();
                         break;
-                    default:
+                    default: //所有人
                         return [];
                 }
             });
@@ -63,6 +67,7 @@
             switch (newmsg.Target()) {
                 case '我的班级':
                     var c = target();
+                    newmsg.Target(newmsg.Target() + '-' + c.Name());
                     for (var i = 0; i < c.Users().length; i++) {
                         var usermsg = data.create('UserAnnouncement');
                         usermsg.UserId(c.Users()[i].UserId());
@@ -90,7 +95,8 @@
                     }
                     break;
             }
-            newmsg.Draft('0');
+
+            newmsg.Draft(false);
 
             data.save(newmsg).then(function () {
                 alert('Message sent');
@@ -104,42 +110,29 @@
         }
 
         function save() {
-            var newmsg = vm.msg();
-            switch (newmsg.Target()) {
+            vm.msg().Draft(true);
+
+            switch (vm.msg().Target()) {
                 case '我的班级':
                     var c = target();
-                    for (var i = 0; i < c.Users().length; i++) {
-                        var usermsg = data.create('UserAnnouncement');
-                        usermsg.UserId(c.Users()[i].UserId());
-                        usermsg.AnnouncementId(newmsg.Id());
-                        usermsg.HighPriority(isHighPriority());
-                        newmsg.Users.push(usermsg);
-                    }
+                    vm.msg().Target(vm.msg().Target() + '-' + c.Name());
+
                     break;
                 case '老师':
                     var tid = target().Id();
-                    newmsg.Target(newmsg.Target() + '-' + tid);
-                    var usermsg = data.create('UserAnnouncement');
-                    usermsg.UserId(tid);
-                    usermsg.AnnouncementId(newmsg.Id());
-                    usermsg.HighPriority(isHighPriority());
-                    newmsg.Users.push(usermsg);
+                    vm.msg().Target(vm.msg().Target() + '-' + tid);
+
                     break;
                 default:
-                    for (i = 0; i < users().length; i++) {
-                        var usermsg = data.create('UserAnnouncement');
-                        usermsg.UserId(users()[i].Id());
-                        usermsg.AnnouncementId(newmsg.Id());
-                        usermsg.HighPriority(isHighPriority());
-                        newmsg.Users.push(usermsg);
-                    }
                     break;
             }
 
-            newmsg.Draft('1');
+            if (vm.msg().Content() == "") {
+                vm.msg().Content("&nbsp;");
+            }
 
-            data.save(newmsg).then(function () {
-                alert('Message sent');
+            data.save(vm.msg()).then(function () {
+                alert('Message saved');
                 router.navigate('/#announcements')
             }).fail(function (err) {
                 for (var i = 0; i < err.length; i++) {
