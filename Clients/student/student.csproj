@@ -391,6 +391,7 @@
     <Content Include="Scripts\tinymce\themes\modern\theme.min.js" />
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
+    <Content Include="sql.txt" />
     <Content Include="tou.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
