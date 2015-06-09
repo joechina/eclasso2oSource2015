@@ -36,6 +36,8 @@
             getproblem:getproblem,
             getsections: getsections,
             getClasses: getClasses,
+            getClass: getClass,
+            getUserClasses: getUserClasses,
             getMedia: getMedia,
             getUsers: getUsers,
             getTeachers: getTeachers,
@@ -167,6 +169,16 @@
 
         function getClasses() {
             var query = breeze.EntityQuery.from('Classes');
+            return manager.executeQuery(query);
+        }
+
+        function getClass(cid) {
+            var query = breeze.EntityQuery.from('Classes').where("Id", "==", cid);
+            return manager.executeQuery(query);
+        }
+
+        function getUserClasses(id) {
+            var query = breeze.EntityQuery.from('UserClasses').where("UserId", "==", id);
             return manager.executeQuery(query);
         }
 

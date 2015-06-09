@@ -5,17 +5,13 @@
         var students = ko.observableArray();
         var teacher = ko.observable();
         var selectedStudents = ko.observableArray();
-        var startDate = ko.observable();
-        var endDate = ko.observable();
 
         var vm = {
             clazz: clazz,
-            teachers: teachers,
             teacher: teacher,
+            teachers:teachers,
             students: students,
             selectedStudents: selectedStudents,
-            startDate: startDate,
-            endDate:endDate,
             activate: activate,
             router: router,
             back: back,
@@ -25,11 +21,11 @@
         return vm;
 
         function activate() {
-            vm.clazz(data.create('Class'));
-            var today = new Date();
-            startDate(today);
-            endDate(today.Clone());
-            endDate.setMonth(endDate.getMonth() + 1);
+            clazz(data.create('Class'));
+
+            clazz().Start(new Date());
+            clazz().End(new Date());
+            clazz().End().setMonth(clazz().End().getMonth() + 1);
 
             data.getTeachers().then(function (data) {
                 teachers(data.results);
@@ -50,7 +46,8 @@
         }
 
         function save() {
-            data.save(vm.clazz).then(function () {
+            var tid = teacher().Id();
+            data.save(clazz()).then(function () {
                 alert('Clazz created');
                 router.navigateBack();
             }).fail(function (err) {

@@ -25,5 +25,6 @@ namespace Parrot.Model
         public DateTime End { get; set; }
 
         public virtual List<UserClass> Users { get; set; }
+        public int TeacherId { get; set; }
     }
 }

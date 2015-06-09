@@ -69,6 +69,7 @@
     <Content Include="App\viewmodels\myclazz.js" />
     <Content Include="App\viewmodels\myprofile.js" />
     <Content Include="App\viewmodels\msgProb.js" />
+    <Content Include="App\viewmodels\password.js" />
     <Content Include="App\viewmodels\report.js" />
     <Content Include="App\viewmodels\msgclazz.js" />
     <Content Include="App\viewmodels\newclazz.js" />
@@ -76,6 +77,7 @@
     <Content Include="App\viewmodels\exersize.js" />
     <Content Include="App\viewmodels\newmsg.js" />
     <Content Include="App\viewmodels\question.js" />
+    <Content Include="App\viewmodels\me.js" />
     <Content Include="App\viewmodels\setting.js" />
     <Content Include="App\viewmodels\uploadEx.js" />
     <Content Include="App\viewmodels\signup.js" />
@@ -92,6 +94,7 @@
     <Content Include="App\views\myclazz.html" />
     <Content Include="App\views\myprofile.html" />
     <Content Include="App\views\msgProb.html" />
+    <Content Include="App\views\password.html" />
     <Content Include="App\views\report.html" />
     <Content Include="App\views\newclazz.html" />
     <Content Include="App\views\problem.html" />
@@ -101,6 +104,7 @@
     <Content Include="App\views\home.html" />
     <Content Include="App\views\newmsg.html" />
     <Content Include="App\views\question.html" />
+    <Content Include="App\views\me.html" />
     <Content Include="App\views\setting.html" />
     <Content Include="App\views\uploadEx.html" />
     <Content Include="App\views\signup.html" />

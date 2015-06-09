@@ -7,6 +7,7 @@
             activate: activate,
             router: router,
             editprofile: editprofile,
+            chgpwd:chgpwd,
             logout: logout,
         };
 
@@ -25,6 +26,10 @@
 
         function editprofile() {
             router.navigate('/#editprofile');
+        }
+
+        function chgpwd() {
+            router.navigate('/#password');
         }
 
         function logout() {

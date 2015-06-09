@@ -1,9 +1,46 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+﻿<!-- list of classes and new/edit class -->
+<div class="container-fluid">
+    <h2>已加入: <span data-bind="text:userclazzes().length"></span> 门课程 </h2>
+    <div class="list-group list-full-with" data-bind="foreach:clazzes">
+        <div class="list-group-item">
+            <label>
+                课程名称：<span data-bind="text: Name" />
+            </label>
+            <br />
+            <br />
+            <label class="control-label">
+                课程描述：<span data-bind="text: Description"></span>
+            </label>
+            <br />
+            <br />
+            <label class="control-label">
+                课程开始时间：
+                <span data-bind="text: Start().getFullYear() + ' 年 ' + Start().getMonth() + ' 月 ' + Start().getDate() + ' 日'" />
+            </label>
+            <br />
+            <br />
+            <label class="control-label">
+                课程结束时间：
+                <span data-bind="text:End().getFullYear() + ' 年 ' + End().getMonth() + ' 月 ' + End().getDate() + ' 日'" />
+            </label>
+            <br />
+            <br />
+            <label class="control-label">
+                授课老师：
+                <span data-bind="text:teacher"></span>
+            </label>
+        </div>
+        <br />
+        <!--div class="form-group">
+            <label class="control-label">
+                参与学生：
+            </label>
+            <ul style="list-style-type:none" data-bind="foreach:students">
+                <li>
+                    <input type="checkbox" data-bind="attr: {value:Id()}, checked:$parent.selectedUsers">
+                    <span data-bind="text: Name"></span>
+                </li>
+            </ul>
+        </!--div>-->
+    </div>
+</div>

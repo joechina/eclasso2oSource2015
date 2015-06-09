@@ -2,11 +2,26 @@
 <div class="container-fluid">
     <!--ko ifnot: showclazz()-->
     <div class="list-group list-full-with" data-bind="foreach: clazzes">
-        <input type="radio" data-bind="click: $parent.openclazz">
-        <span data-bind="text: Name"></span>
-        <span class="pull-right" data-bind="text: Start"></span>
-        <span class="pull-right" data-bind="text: End"></span>
-    </div>
+        <div class="list-group-item" >
+            <div class="row">
+                <div class="col-xs-2">
+                    <span data-bind="text: Name"></span>
+                </div>
+                <div class="col-xs-2">
+                    <span data-bind="text: ClassNumber"></span>
+                </div>
+                <div class="col-xs-3">
+                    <span data-bind="text: Start().getFullYear() + ' 年 ' + Start().getMonth() + ' 月 ' + Start().getDate() + ' 日' "></span>
+                </div>
+                <div class="col-xs-3">
+                    <span data-bind="text: End().getFullYear() + ' 年 ' + End().getMonth() + ' 月 ' + End().getDate() + ' 日'"></span>
+                </div>
+                <div class="col-xs-2">
+                    <input type="checkbox" data-bind="click:selectclazz" />
+                </div>
+            </div>
+        </div>
+</div>
     <div class="row">
         <div class="col-xs-4">
             <button id="" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:newclazz">新添课程</button>

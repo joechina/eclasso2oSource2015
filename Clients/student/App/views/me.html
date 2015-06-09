@@ -1,0 +1,57 @@
+﻿<!--list of setting: Classes, UI language, login/logout, account info, etc. -->
+
+<div class="container-fluid">
+    <div class="list-group list-full-with">
+        <div class="list-group-item">
+            <div class="row" data-bind="click:myprofile">
+                <div class="col-xs-4">
+                    个人资料
+                </div>
+                <div class="col-xs-5">
+                    <h4 class="list-group-item-heading" data-bind="text: user().UserId()"></h4>
+                </div>
+                <div class="col-xs-3">
+                    <span class="glyphicon glyphicon-menu-right" />
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="row" data-bind="click: myclazz">
+                <div class="col-xs-4">
+                    已加入课程
+                </div>
+                <div class="col-xs-5">
+                    <h4 class="list-group-item-heading" data-bind="text: Classes().length"></h4>
+                </div>
+                <div class="col-xs-3">
+                    <span class="glyphicon glyphicon-menu-right" />
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="row" data-bind="click: feedback">
+                <div class="col-xs-9">
+                    用户反馈
+                </div>
+                <div class="col-xs-3">
+                    <span class="glyphicon glyphicon-menu-right" />
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="row" data-bind="click:aboutparrot">
+                <div class="col-xs-9">
+                    关于 Parrot
+                </div>
+                <div class="col-xs-3">
+                    <span class="glyphicon glyphicon-menu-right" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-primary btn-block" data-bind="click:logout" style="font-size:medium">退出登录</button>
+        </div>
+    </div>
+</div>
