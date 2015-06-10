@@ -11,7 +11,8 @@
             exersizes: exersizes,
             def_exersizes: def_exersizes,
             add_exersizes: add_exersizes,
-            saison_exersizes:saison_exersizes,
+            saison_exersizes: saison_exersizes,
+            other_exersizes:other_exersizes,
             exersize:exersize,
             activate: activate,
             openexersize: openexersize,
@@ -35,7 +36,7 @@
                         if (e.Exersize().Category() == "0") { // Alter Ego+ 习题
                             def_exersizes.push(e);
                         }
-                        else if (e.Exersize().Category() == "1") { // 补充习题
+                        else if (e.Exersize().Category() == "1") { // Festival 习题
                             add_exersizes.push(e);
                         }
                         else if (e.Exersize().Category() == "2") { // Saison 习题

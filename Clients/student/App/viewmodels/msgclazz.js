@@ -27,7 +27,7 @@
         return vm;
 
         //#region Internal Methods
-        function activate(id) {
+        function activate() {
             data.getClasses().then(function (data) {
                 clazzes(data.results);
             });
@@ -65,20 +65,29 @@
         }
 
         function save() {
-            var user_list = selectedUsers().sort(function (a, b) {
+            var cid = clazz().Id();
+
+            /*var user_list = selectedUsers().sort(function (a, b) {
                 return a - b;
             });
-            /*
-            clazz().Users(user_list);
-            data.save(clazz()).then(function () {
-                logger.log('save class');
+            */
 
-            }).fail(function (err) {
-                for (var i = 0; i < err.length; i++) {
-                    logger.log(err[i]);
-                }
-            });
-            var r = user_list[0];*/
+            for (i = 0; i < selectedUsers().length; i++) {
+                var uid = selectedUsers().Id();
+                data.getUserClass(uid, cid).then(function (result) {
+
+                    var uc = result.results[0];
+
+                    data.save(clazz()).then(function () {
+                        logger.log('saved user class');
+                    }).fail(function (err) {
+                        for (var i = 0; i < err.length; i++) {
+                            logger.log(err[i]);
+                        }
+                    });
+                });
+
+            }
             backtolist();
         }
 

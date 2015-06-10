@@ -3,6 +3,8 @@
         var audio = ko.observable();
         var text = ko.observable();
         var exercise = ko.observable();
+        var cat = ko.observable();
+
         var vm = {
             activate: activate,
             //compositionComplete: compositionComplete,
@@ -10,7 +12,8 @@
             router: router,
             audio: audio,
             exercise: exercise,
-            text:text,
+            text: text,
+            cat:cat,
             global:global,
             addSection: addSection,
             deleteSection: deleteSection,
@@ -23,6 +26,7 @@
             uploadimage: uploadimage,
             init:init,
             cancel: cancel,
+            categories: ['Alter Ego+','Festival','Saison'],
             quizTypes: [{ value: 0, label: '纯文本填空题' },
                         { value: 1, label: '单选题' },
                         { value: 2, label: '对错题' },
@@ -142,6 +146,20 @@
                     })
                 })                
             });
+            
+            switch (cat()) {
+                case 'Alter Ego+':
+                    exercise().Category(0);
+                    break;
+                case 'Festival':
+                    exercise().Category(1);
+                    break;
+                case 'Saison':
+                    exercise().Category(2);
+                    break;
+
+            }
+            
 
             data.save(vm.exercise()).then(function () {
                 alert('习题已保存');

@@ -31,6 +31,7 @@
             getuserannouncements: getuserannouncements,
             getuserexersize: getuserexersize,
             getuserexersizes: getuserexersizes,
+            getuserexersizes_status: getuserexersizes_status,
             getallexersizes: getallexersizes,
             getexersize:getexersize,
             getproblem:getproblem,
@@ -153,6 +154,15 @@
             return manager.executeQuery(query);
         }
 
+        function getuserexersizes_status(uid, v) {
+            var Predicate = breeze.Predicate;
+            var p1 = new Predicate("UserId", "==", uid);
+            var p2 = new Predicate("Completed", "==", v);
+
+            var query = breeze.EntityQuery.from('UserExersizes').where(p1.and(p2));
+            return manager.executeQuery(query);
+        }
+
         function getuserexersize(uid, eid) {
             var Predicate = breeze.Predicate;
             var p1 = new Predicate("UserId", "==", uid);
@@ -177,8 +187,17 @@
             return manager.executeQuery(query);
         }
 
-        function getUserClasses(id) {
-            var query = breeze.EntityQuery.from('UserClasses').where("UserId", "==", id);
+        function getUserClass(uid,cid) {
+            var Predicate = breeze.Predicate;
+            var p1 = new Predicate("UserId", "==", uid);
+            var p2 = new Predicate("ClassId", "==", cid);
+
+            var query = breeze.EntityQuery.from('UserClasses').where(p1.and(p2));
+            return manager.executeQuery(query);
+        }
+
+        function getUserClasses(uid) {
+            var query = breeze.EntityQuery.from('UserClasses').where("UserId", "==", uid);
             return manager.executeQuery(query);
         }
 

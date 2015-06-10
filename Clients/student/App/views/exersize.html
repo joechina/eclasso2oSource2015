@@ -1,11 +1,11 @@
 ﻿
-<div class="container-fluid">
+<div class="container-fluid" style="padding-bottom:60px">
 
     <span class="label label-danger" style="font-size:14px">注意：习题的答案在递交之后将无法再修改</span>
     <br />
     <br />
     <!--ko ifnot: exersize()-->
-    <!--ko if : def_exersizes()-->
+    <!--ko if : def_exersizes().length > 0-->
     <span class="label label-info" style="font-size:18px">Alter Ego+ 习题</span>
     <div data-bind="foreach: def_exersizes" class="list-group list-full-with">
         <div data-bind="with:Exersize()">
@@ -32,10 +32,10 @@
         </div>
     </div>
     <!--/ko-->
-    <!--ko if : add_exersizes()-->
+    <!--ko if : add_exersizes().length > 0-->
     <br />
     <br />
-    <span class="label label-info" style="font-size:large">补充习题</span>
+    <span class="label label-info" style="font-size:18px">Festival 习题</span>
     <div data-bind="foreach: add_exersizes" class="list-group list-full-with">
         <div data-bind="with:Exersize()">
             <div data-bind="click: $root.openexersize" class="list-group-item">
@@ -61,11 +61,40 @@
         </div>
     </div>
     <!--/ko-->
-    <!--ko if : saison_exersizes()-->
+    <!--ko if : saison_exersizes().length > 0-->
     <br />
     <br />
-    <span class="label label-info" style="font-size:large">Saison 习题</span>
+    <span class="label label-info" style="font-size:18px">Saison 习题</span>
     <div data-bind="foreach: saison_exersizes" class="list-group list-full-with">
+        <div data-bind="with:Exersize()">
+            <div data-bind="click: $root.openexersize" class="list-group-item">
+                <div class="row">
+                    <!--div class="col-xs-2">
+                        <img src="../../Content/images/additional.jpg" />
+                    </!--div>-->
+                    <div class="col-xs-6">
+                        <span class="list-group-item-heading" data-bind="text: Name"></span>
+                        <p class="announcement-date" data-bind="text:Description"></p>
+                    </div>
+                    <div class="col-xs-3">
+                        <span class="list-group-item-heading">
+                            /
+                            <span data-bind="text:TotalQuizzes"></span>
+                        </span>
+                    </div>
+                    <div class="col-xs-3">
+                        <button class="btn btn-primary btn-block" data-bind="disable: $parent.Completed, event: { click: function() {  $root.submit($data)} }">递交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ko-->
+    <!--ko if : other_exersizes().length > 0-->
+    <br />
+    <br />
+    <span class="label label-info" style="font-size:18px">其它习题</span>
+    <div data-bind="foreach: other_exersizes" class="list-group list-full-with">
         <div data-bind="with:Exersize()">
             <div data-bind="click: $root.openexersize" class="list-group-item">
                 <div class="row">

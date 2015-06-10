@@ -4,13 +4,16 @@
         var Classes = ko.observableArray();
         var myClasses = ko.observableArray();
         var user = ko.observable();
+        var totalex = ko.observable();
        
         var me = {
             Classes: Classes,
             user: user,
-            myprofile:myprofile,
+            myprofile: myprofile,
+            totalex:totalex,
             activate: activate,
             myclazz: myclazz,
+            myreport:myreport,
             aboutparrot: aboutparrot,
             feedback:feedback,
             router: router,
@@ -21,8 +24,10 @@
 
         //#region Internal Methods
         function activate(id) {
-           
-            data.getUserClasses(data.user().Id()).then(function (data) {
+            //get current sign in user
+            user(data.user());
+
+            data.getUserClasses(user().Id()).then(function (data) {
                 Classes(data.results);
             });
 
@@ -39,8 +44,10 @@
             }
             */
 
-            //get current sign in user
-            user(data.user());
+            // get submit exercises number
+            data.getuserexersizes_status(user().Id(), true).then(function (data) {
+                totalex(data.results.length);
+            });
 
             $("#goback").css({ display: "none" });
 
@@ -63,6 +70,10 @@
 
         function feedback() {
             router.navigate('/#feedback');
+        }
+
+        function myreport() {
+            router.navigate('/#myreport');
         }
 
         function aboutparrot() {

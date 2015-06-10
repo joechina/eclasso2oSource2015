@@ -6,10 +6,12 @@
             <ul data-bind="with: exercise">
                 <li>
                     <label class="control-label">
-                        习题类别:<input data-bind="value: Category" class="form-control input-md" autofocus="autofocus">
+                        习题类别:<select class="form-control dropdown" data-observable="DepartmentId" data-bind="options: $parent.categories,
+                                                                                                                value: $parent.cat,
+                                                                                                                optionsCaption: '请选择...'"></select>
                     </label>
                     <label class="control-label">
-                        习题组名称:<input data-bind="value: Name" class="form-control input-md" autofocus="autofocus">
+                        习题组名称:<input data-bind="value: Name" class="form-control input-md col-xs-6" autofocus="autofocus">
                     </label>
                     <label class="control-label">
                         习题组描述:<input data-bind="value: Description" class="form-control input-md">
