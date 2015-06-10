@@ -62,7 +62,7 @@
         }
 
         function feedback() {
-            //router.navigate('/#feedback');
+            router.navigate('/#feedback');
         }
 
         function aboutparrot() {

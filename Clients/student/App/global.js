@@ -13,7 +13,7 @@
                     { route: 'setting', moduleId: 'setting', title:'设置', nav: 3},
                     { route: 'myclazz', moduleId: 'myclazz', title: '我的课程', nav: 3 },
                     { route: 'password', moduleId: 'password', title: '修改密码', nav: 3 },
-                    //{ route: 'feedback', moduleId: 'feedback', title: '用户反馈', nav: 3 },
+                    { route: 'feedback', moduleId: 'feedback', title: '用户反馈', nav: 3 },
                     { route: 'announcements', moduleId: 'announcement', title: '通知', icon: 'glyphicon glyphicon-bell', nav: 11 },
                     { route: 'exersizes/:uid', moduleId: 'exersize', title: '练习题', icon: 'glyphicon glyphicon-list-alt', nav: 12 },
                     { route: 'questions', moduleId: 'question', title: '知识库', icon: 'glyphicon glyphicon-education', nav: 13 },

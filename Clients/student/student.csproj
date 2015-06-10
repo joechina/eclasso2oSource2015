@@ -65,6 +65,7 @@
     <Content Include="App\viewmodels\editclazz.js" />
     <Content Include="App\viewmodels\editprofile.js" />
     <Content Include="App\viewmodels\exersizeassign.js" />
+    <Content Include="App\viewmodels\feedback.js" />
     <Content Include="App\viewmodels\msgEx.js" />
     <Content Include="App\viewmodels\myclazz.js" />
     <Content Include="App\viewmodels\myprofile.js" />
@@ -88,6 +89,7 @@
     <Content Include="App\views\announcement.html" />
     <Content Include="App\views\editclazz.html" />
     <Content Include="App\views\exersizeassign.html" />
+    <Content Include="App\views\feedback.html" />
     <Content Include="App\views\msgclazz.html" />
     <Content Include="App\views\editprofile.html" />
     <Content Include="App\views\msgEx.html" />

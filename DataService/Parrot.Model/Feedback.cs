@@ -18,6 +18,8 @@ namespace Parrot.Model
 
         public string Comment { get; set; }
 
-        public DateTime When { get; set; }
+        public DateTime CreateDate { get; set; }
+        public string Title { get; set; }
+        public string Category { get; set; }
     }
 }
