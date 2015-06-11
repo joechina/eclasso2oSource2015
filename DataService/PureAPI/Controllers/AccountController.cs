@@ -25,13 +25,17 @@ namespace PureAPI.Controllers
         private Repository _repository;
         private string userGuid;
         private AuthRepository _repo = null;
-
+        private User user;
         public AccountController()
         {
             _repo = new AuthRepository();
             try
             {
                 userGuid = ((System.Security.Claims.ClaimsIdentity)User.Identity).FindFirst("Id").Value;
+                if (userGuid != null) {
+                    _repository = new Repository();
+                    user = _repository.Users.Single(u => u.UserGuid == userGuid);
+                }
             
             }
             catch
@@ -401,7 +405,7 @@ namespace PureAPI.Controllers
 
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [Route("ChangePassword")]
         [HttpPost]
         public async Task<IHttpActionResult> ChangePassword(UserModel userModel)
@@ -448,7 +452,18 @@ namespace PureAPI.Controllers
             return Ok(RegisterResult);
         }
 
-        
+        [Authorize]
+        [Route("UserQuizeCompleteCount")]
+        [HttpGet]
+        public int CountComplete(int exersizeId)
+        {
+            var db = new Repository();
+            var result = (from e in db.UserQuizs
+                          join q in db.Quizzes on e.QuizId equals q.Id
+                          where e.UserId == user.Id && q.Problem.ExersizeSection.Exersize.Id == exersizeId
+                          select e).Count();
+            return result;
+        }
 
         protected override void Dispose(bool disposing)
         {

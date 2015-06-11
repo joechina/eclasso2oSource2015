@@ -109,6 +109,14 @@ namespace Parrot.Model
             }
         }
 
+        public DbQuery<Quiz> Quizzes
+        {
+            get
+            {
+                return (DbQuery<Quiz>)Context.Quizzes;
+            }
+        }
+
         public DbQuery<UserQuiz> UserQuizs
         {
             get
