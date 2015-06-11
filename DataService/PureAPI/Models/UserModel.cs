@@ -29,7 +29,9 @@ namespace PureAPI.Models
         public string Phone { get; set; }
 
         public string Email { get; set; }
-
+        [Required]
         public string Role { get; set; }
+
+        public string OldPassword { get; set; }
     }
 }

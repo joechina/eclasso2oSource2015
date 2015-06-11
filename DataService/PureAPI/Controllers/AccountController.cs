@@ -15,6 +15,7 @@ using System.Web.Http;
 namespace PureAPI.Controllers
 {
     [RoutePrefix("api/Account")]
+    
     public class AccountController : ApiController
     {
         public class Ok
@@ -39,22 +40,21 @@ namespace PureAPI.Controllers
             }
         }
 
-        
         [AllowAnonymous]
         [Route("Test")]
         [HttpGet]
-        public List<UserClass> Test()
+        public List<User> Test()
         {
             var repo = new Repository();
             try
             {
-                return repo.UserClasses.ToList();
+                return repo.Users.ToList();
             }
             catch (Exception ex)
             {
-                UserClass u = new UserClass();
+                User u = new User();
                 //u.Progress = ex.Message;
-                List<UserClass> result = new List<UserClass>();
+                List<User> result = new List<User>();
                 result.Add(u);
                 return result;
             }
@@ -401,10 +401,33 @@ namespace PureAPI.Controllers
 
         }
 
+        [AllowAnonymous]
+        [Route("ChangePassword")]
+        [HttpPost]
+        public async Task<IHttpActionResult> ChangePassword(UserModel userModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            IdentityResult result = await _repo.ChangePassword(userGuid, userModel.OldPassword, userModel.Password);
+
+            IHttpActionResult errorResult = GetErrorResult(result);
+
+            if (errorResult != null)
+            {
+                return errorResult;
+            }
+
+            Ok RegisterResult = new Ok() { Result = "Success" };
+            return Ok(RegisterResult);
+        }
 
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
+        [HttpPost]
         public async Task<IHttpActionResult> Register(UserModel userModel)
         {
             if (!ModelState.IsValid)
@@ -424,6 +447,8 @@ namespace PureAPI.Controllers
             Ok RegisterResult = new Ok() { Result = "Success"};
             return Ok(RegisterResult);
         }
+
+        
 
         protected override void Dispose(bool disposing)
         {

@@ -52,6 +52,12 @@ namespace PureAPI
             return user;
         }
 
+        public async Task<IdentityResult> ChangePassword(string userId, string oldpassword, string newpassword)
+        {
+            IdentityResult result = await _userManager.ChangePasswordAsync(userId, oldpassword, newpassword);
+            return result;
+        }
+
         public void Dispose()
         {
             _ctx.Dispose();
