@@ -4,9 +4,9 @@
     'q'],
     function (breeze, $, Q) {
 
-        //var host = 'http://localhost:56360/';
+        var host = 'http://localhost:56360/';
         //var host = 'http://eclasso2oasia.azurewebsites.net/';
-        var host = 'http://eclasso2o.chinacloudsites.cn/';
+        //var host = 'http://eclasso2o.chinacloudsites.cn/';
 
         var manager = new breeze.EntityManager(host + 'breeze/eClassO2OApi');
         var islocal = false;
@@ -21,6 +21,7 @@
             getAccessToken: getAccessToken,
             configureBreeze: configureBreeze,
             register: register,
+            changepassword: changepassword,
             signin: signin,
             canDeactivate: canDeactivate,
             save: save,
@@ -263,6 +264,31 @@
                     'password': password,
                     'confirmPassword': password2,
                     'role':role
+                },
+                error: function (err) {
+                    errs.push(err.responseText);
+                    console.log(err.responseText);
+                }
+            });
+        }
+
+        function changepassword(oldpassword, newpassword) {
+            return $.ajax({
+                url: host + 'api/account/changepassword',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'username': 'dummy',
+                    'name': 'dummy',
+                    'password': newpassword,
+                    'confirmPassword': newpassword,
+                    'role': 'dummy',
+                    'oldpassword': oldpassword
+                },
+                beforeSend: function (xhr) {
+                    if (xhr) {
+                        xhr.setRequestHeader("Authorization", "Bearer " + getAccessToken());
+                    }
                 },
                 error: function (err) {
                     errs.push(err.responseText);

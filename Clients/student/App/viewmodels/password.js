@@ -31,7 +31,7 @@
         function savepwd() {
             validate();
             if (errs().length === 0) {
-                data.register(userid(), username(), password(), password2(), errs, 'S').then(function () {
+                data.changepassword(oldpassword(), password()).then(function () {
                     data.signin(userid(), password(), errs).then(function (result) {
                         router.navigate('/#');
                     });
