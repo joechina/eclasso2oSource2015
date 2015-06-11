@@ -38,6 +38,7 @@
             getsections: getsections,
             getClasses: getClasses,
             getClass: getClass,
+            getClassUserIds: getClassUserIds,
             getUserClasses: getUserClasses,
             getMedia: getMedia,
             getUsers: getUsers,
@@ -46,7 +47,7 @@
             getuser:getuser,
             getUserQuizs: getUserQuizs,
             create: create,
-            user:user,
+            user: user,
         }
 
         return data;
@@ -187,12 +188,8 @@
             return manager.executeQuery(query);
         }
 
-        function getUserClass(uid,cid) {
-            var Predicate = breeze.Predicate;
-            var p1 = new Predicate("UserId", "==", uid);
-            var p2 = new Predicate("ClassId", "==", cid);
-
-            var query = breeze.EntityQuery.from('UserClasses').where(p1.and(p2));
+        function getClassUserIds(cid) {
+            var query = breeze.EntityQuery.from('UserClasses').where("ClassId", "==", cid).select('UserId');
             return manager.executeQuery(query);
         }
 
