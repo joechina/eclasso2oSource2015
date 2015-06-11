@@ -453,15 +453,15 @@ namespace PureAPI.Controllers
         }
 
         [Authorize]
-        [Route("UserQuizeCompleteCount")]
+        [Route("UserQuizzes")]
         [HttpGet]
-        public int CountComplete(int exersizeId)
+        public List<UserQuiz> UserQuizzes(int exersizeId)
         {
             var db = new Repository();
             var result = (from e in db.UserQuizs
                           join q in db.Quizzes on e.QuizId equals q.Id
                           where e.UserId == user.Id && q.Problem.ExersizeSection.Exersize.Id == exersizeId
-                          select e).Count();
+                          select e).ToList();
             return result;
         }
 
