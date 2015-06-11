@@ -47,13 +47,11 @@
         function openanswer(selected) {
             question(selected);
             
-            $("#goback").css({ display: "block" });
         }
 
         function backtolist() {
             question(undefined); 
             //router.navigateBack();
-            $("#goback").css({ display: "none" });
         }
 
         function searchAnswers (q) {

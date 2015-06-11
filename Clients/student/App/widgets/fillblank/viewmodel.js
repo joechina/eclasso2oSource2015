@@ -15,7 +15,7 @@
         }
         if (settings.isreporting) {
             this.isreporting(settings.isreporting);
-            var uid = data.user().Id();
+            var uid = settings.uid;
             var qid = settings.item.Id();
             data.getUserQuizs(uid, qid).then(function (data) {
                 if (data.results.length > 0) {

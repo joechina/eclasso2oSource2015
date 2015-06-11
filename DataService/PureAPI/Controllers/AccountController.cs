@@ -43,18 +43,18 @@ namespace PureAPI.Controllers
         [AllowAnonymous]
         [Route("Test")]
         [HttpGet]
-        public List<UserExersize> Test()
+        public List<UserClass> Test()
         {
             var repo = new Repository();
             try
             {
-                return repo.UserExersizes.ToList();
+                return repo.UserClasses.ToList();
             }
             catch (Exception ex)
             {
-                UserExersize u = new UserExersize();
-                u.Progress = ex.Message;
-                List<UserExersize> result = new List<UserExersize>();
+                UserClass u = new UserClass();
+                //u.Progress = ex.Message;
+                List<UserClass> result = new List<UserClass>();
                 result.Add(u);
                 return result;
             }
@@ -123,7 +123,7 @@ namespace PureAPI.Controllers
                     msg.CreateDate = rdr.GetDateTime(1);
                     msg.Target = rdr.GetString(2);
                     msg.Title = rdr.GetString(3);
-                    msg.Priority = 0;
+                    msg.Priority = false;
 
                     repo.Announcements.Add(msg);
                 }

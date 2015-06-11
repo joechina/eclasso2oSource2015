@@ -27,14 +27,19 @@
             getCurrentUser: getCurrentUser,
             getquestions: getquestions,
             getallannouncements: getallannouncements,
+            getsentannouncements:getsentannouncements,
             getuserannouncements: getuserannouncements,
             getuserexersize: getuserexersize,
             getuserexersizes: getuserexersizes,
+            getuserexersizes_status: getuserexersizes_status,
             getallexersizes: getallexersizes,
             getexersize:getexersize,
             getproblem:getproblem,
             getsections: getsections,
             getClasses: getClasses,
+            getClass: getClass,
+            getClassUserIds: getClassUserIds,
+            getUserClasses: getUserClasses,
             getMedia: getMedia,
             getUsers: getUsers,
             getTeachers: getTeachers,
@@ -42,7 +47,7 @@
             getuser:getuser,
             getUserQuizs: getUserQuizs,
             create: create,
-            user:user,
+            user: user,
         }
 
         return data;
@@ -102,6 +107,11 @@
             return manager.executeQuery(query);
         }
 
+        function getsentannouncements() {
+            var query = breeze.EntityQuery.from('Announcements').where("Draft","==","0");
+            return manager.executeQuery(query);
+        }
+
         function getuserannouncements(id) {
             
             var query = breeze.EntityQuery.from('UserAnnouncements');
@@ -145,6 +155,15 @@
             return manager.executeQuery(query);
         }
 
+        function getuserexersizes_status(uid, v) {
+            var Predicate = breeze.Predicate;
+            var p1 = new Predicate("UserId", "==", uid);
+            var p2 = new Predicate("Completed", "==", v);
+
+            var query = breeze.EntityQuery.from('UserExersizes').where(p1.and(p2));
+            return manager.executeQuery(query);
+        }
+
         function getuserexersize(uid, eid) {
             var Predicate = breeze.Predicate;
             var p1 = new Predicate("UserId", "==", uid);
@@ -161,6 +180,21 @@
 
         function getClasses() {
             var query = breeze.EntityQuery.from('Classes');
+            return manager.executeQuery(query);
+        }
+
+        function getClass(cid) {
+            var query = breeze.EntityQuery.from('Classes').where("Id", "==", cid);
+            return manager.executeQuery(query);
+        }
+
+        function getClassUserIds(cid) {
+            var query = breeze.EntityQuery.from('UserClasses').where("ClassId", "==", cid).select('UserId');
+            return manager.executeQuery(query);
+        }
+
+        function getUserClasses(uid) {
+            var query = breeze.EntityQuery.from('UserClasses').where("UserId", "==", uid);
             return manager.executeQuery(query);
         }
 

@@ -1,0 +1,39 @@
+﻿
+<div class="container-fluid">
+    <form>
+
+        <div class="form-group">
+            <label>问题发生的场景</label>
+            <div class="form-group">
+                <select id='targettype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: categories,
+                                                                                                            value: feedback().Category,
+                                                                                                            optionsCaption: '请选择...'"></select>
+            </div>
+            
+            <br />
+            <label class="control-label">
+                主题:
+            </label>
+            <input data-bind="value: feedback().Title" class="form-control input-md">
+            <br />
+            <br />
+            <label class="control-label">
+                日期: <span data-bind="text:today()" />
+            </label>
+            <br />
+            <br />
+            <label class="control-label">
+                内容:
+            </label>
+            <textarea rows="3" data-bind="wysiwyg: feedback().Comment" class="form-control input-md"></textarea>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <button id="send" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:send">&nbsp;发送</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+

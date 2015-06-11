@@ -1,58 +1,65 @@
-﻿<div class="container-fluid">
+﻿
+<div class="container-fluid">
+    <div class="form-group">
+        <label>课程名称：</label>
+        <input data-bind="value: clazz().Name" class="form-control input-md">
+        <br />
+        <br />
+        <label class="control-label">
+            课程编码:
 
-    <form>
+            <textarea data-bind="value: clazz().ClassNumber" class="form-control input-md"></textarea>
+        </label>
+        <br />
+        <br />
+        <label class="control-label">
+            课程描述:
 
+            <textarea data-bind="value: clazz().Description" class="form-control input-md" placeholder="可选"></textarea>
+        </label>
+        <br />
+        <br />
+        <label class="control-label">
+            课程开始时间:
+
+            <input data-bind="value: clazz().Start" type="date" />
+        </label>
+
+        <label class="control-label">
+            课程结束时间:
+
+            <input data-bind="value: clazz().End" type="date" />
+        </label>
+        <br />
+        <br />
         <div class="form-group">
-            <label>课程名称：</label>
-            <input data-bind="value: clazz().Name" class="form-control input-md">
-            <br />
-            <br />
             <label class="control-label">
-                课程描述:
-
-                <textarea data-bind="value: clazz().Description" class="form-control input-md"></textarea>
+                授课老师：
             </label>
-            <br />
-            <br />
-            <label class="control-label">
-                课程开始时间:
-
-                <input data-bind="value: startDate()" type="date" />
-            </label>
-
-            <label class="control-label">
-                课程结束时间:
-
-                <input data-bind="value: endDate()" type="date" />
-            </label>
-            <br />
-            <br />
-            <div class="form-group">
-                <label class="control-label">
-                    授课老师：
-                </label>
-                <select id='itemtype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: teachers(),
+            <select id='itemtype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: teachers(),
                                                                                                             value: teacher,
                                                                                                             optionsText: 'Name',
                                                                                                             optionsCaption: '请选择...'"></select>
-            </div>
-            <br />
-            <br />
-            <div class="form-group">
-                <label class="control-label">
-                    参与学生：
-                </label>
-                <select id='itemtype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: students(),
-                                                                                                            value: selectedStudents, 
+        </div>
+        <br />
+        <br />
+        <div class="form-group">
+            <label class="control-label">
+                参与学生：
+            </label>
+            <select id='itemtype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: students(),
+                                                                                                            value: selectedStudents,
                                                                                                             optionsText: 'Name',
                                                                                                             optionsCaption: '请选择...'"></select>
-            </div>
         </div>
+    </div>
 
-        <div>
-            <button id="save" name="singlebutton" class="btn btn-primary glyphicon glyphicon-send" data-bind="click:save">&nbsp;创建</button>
-            <button id="cancel" name="singlebutton" class="btn btn-primary glyphicon glyphicon-trash" data-bind="click:back">&nbsp;取消</button>
+    <div class="row">
+        <div class="col-xs-6">
+            <button id="save" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:save">&nbsp;创建</button>
         </div>
-    </form>
-
+        <div class="col-xs-6">
+            <button id="cancel" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:back">&nbsp;取消</button>
+        </div>
+    </div>
 </div>

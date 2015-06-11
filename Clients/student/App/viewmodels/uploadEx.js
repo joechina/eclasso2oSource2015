@@ -2,14 +2,18 @@
     function (router, ko, data, logger, global) {
         var audio = ko.observable();
         var text = ko.observable();
-        
+        var exercise = ko.observable();
+        var cat = ko.observable();
+
         var vm = {
             activate: activate,
             //compositionComplete: compositionComplete,
             upload: upload,
             router: router,
             audio: audio,
-            text:text,
+            exercise: exercise,
+            text: text,
+            cat:cat,
             global:global,
             addSection: addSection,
             deleteSection: deleteSection,
@@ -22,6 +26,7 @@
             uploadimage: uploadimage,
             init:init,
             cancel: cancel,
+            categories: ['Alter Ego+','Festival','Saison'],
             quizTypes: [{ value: 0, label: '纯文本填空题' },
                         { value: 1, label: '单选题' },
                         { value: 2, label: '对错题' },
@@ -32,15 +37,24 @@
         return vm;
 
         //#region Internal Methods
-        function activate() {
-            vm.exercise = data.create('Exersize');
-            $("#goback").css({ display: "block" });
-            logger.log('upload Exersize activated');
+        function activate(eid) {
+            if (eid == -1) {
+                vm.exercise(data.create('Exersize'));
+                $("#goback").css({ display: "block" });
+                logger.log('upload Exersize activated');
+            }
+            else {
+                vm.exercise(null);
+                data.getexersize(eid).then(function (data) {
+                    vm.exercise(data.results[0]);
+                    var cur_eid = vm.exercise().Id();
+                });
+            }
             return true;
         }
 
         function init() {
-            vm.exercise = null;
+            vm.exercise(null);
 
             logger.log('exersize reset');
 
@@ -100,7 +114,7 @@
 
         function upload() {
 
-            vm.exercise.Sections().forEach(function (s) {
+            vm.exercise().Sections().forEach(function (s) {
 
                 s.Problems().forEach(function (p) {
 
@@ -132,8 +146,22 @@
                     })
                 })                
             });
+            
+            switch (cat()) {
+                case 'Alter Ego+':
+                    exercise().Category(0);
+                    break;
+                case 'Festival':
+                    exercise().Category(1);
+                    break;
+                case 'Saison':
+                    exercise().Category(2);
+                    break;
 
-            data.save(vm.exercise).then(function () {
+            }
+            
+
+            data.save(vm.exercise()).then(function () {
                 alert('习题已保存');
                 init();
             }).fail(function (err) {

@@ -34,7 +34,7 @@
             });
             */
 
-            data.getallannouncements().then(function (data) {
+            data.getsentannouncements().then(function (data) {
                 announcements(data.results);
             });
 
@@ -46,13 +46,10 @@
             announcement(selected);
             var date = announcement().CreateDate();
             msgDate = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate();
-            $("#goback").css({ display: "block" });
         }
 
         function backtolist() {
-            announcement(undefined);
-            
-            $("#goback").css({ display: "none" });
+            announcement(undefined);            
         }
 
         function newmsg() {

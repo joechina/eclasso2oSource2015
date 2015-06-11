@@ -22,5 +22,6 @@ namespace Parrot.Model
 
         public int TotalQuizzes { get; set; }
         public bool Visible { get; set; }
+        public int? Category { get; set; }
     }
 }

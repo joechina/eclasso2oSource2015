@@ -52,15 +52,20 @@
         }
 
         function newex() {
-            router.navigate('/#uploadEx');
+            router.navigate('/#uploadEx/-1');
         }
 
         function assignex() {
-            router.navigate('/#exersizeassign')
+            if (exersize()) {
+                var eid = exersize().Id();
+                router.navigate('/#exersizeassign/' + eid);
+            }
+            else
+                router.navigate('/#exersizeassign/-1');
         }
 
         function editex() {
-            router.navigate('/#editex')
+            router.navigate('/#uploadEx/' + exersize().Id());
         }
         //#endregion
     });

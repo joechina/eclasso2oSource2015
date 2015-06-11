@@ -2,13 +2,18 @@
     function (router, ko, data, logger) {
         var exersize = ko.observable();
         var exersizes = ko.observableArray();
-
-        var doneexersize = ko.observable();
-        var doneexersizes = ko.observableArray();
-
+        var def_exersizes = ko.observableArray();
+        var add_exersizes = ko.observableArray();
+        var saison_exersizes = ko.observableArray();
+        var other_exersizes = ko.observableArray();
+        
         var login = {
-            exersize: exersize,
             exersizes: exersizes,
+            def_exersizes: def_exersizes,
+            add_exersizes: add_exersizes,
+            saison_exersizes: saison_exersizes,
+            other_exersizes:other_exersizes,
+            exersize:exersize,
             activate: activate,
             openexersize: openexersize,
             submit:submit,
@@ -20,27 +25,41 @@
 
         //#region Internal Methods
         function activate(uid) {
-            //get exersizes assigned to a user
+
             if (!exersize()) {
                 data.getuserexersizes(uid).then(function (data) {
                     exersizes(data.results);
+
+                    //get exersizes assigned to a user: 0 refers to exercises related to lessons, 1 refers to additional exercises
+                    for (var i = 0; i < exersizes().length; i++) {
+                        var e = exersizes()[i];
+                        if (e.Exersize().Category() == "0") { // Alter Ego+ 习题
+                            def_exersizes.push(e);
+                        }
+                        else if (e.Exersize().Category() == "1") { // Festival 习题
+                            add_exersizes.push(e);
+                        }
+                        else if (e.Exersize().Category() == "2") { // Saison 习题
+                            saison_exersizes.push(e);
+                        }
+                        else
+                            other_exersizes.push(e);
+                    }
                 });
             }
             
-
             $("#goback").css({ display: "none" });
 
             logger.log('exersizes activated');
         }
 
         function openexersize(selected) {
-            exersize(selected);
-            /*
-            var id = selected.ExersizeId();
+  
+            var id = selected.Id();
             data.getexersize(id).then(function (data) {
                 exersize(data.results[0]);
             });
-            */
+            
         }
 
         function backtolist() {

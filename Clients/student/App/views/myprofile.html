@@ -13,7 +13,7 @@
         <div class="list-group-item">
             <div class="row">
                 <div class="col-xs-4">
-                    本人姓名
+                    显示名称
                 </div>
                 <div class="col-xs-8">
                     <h4 class="list-group-item-heading" data-bind="text: user().Name()"></h4>
@@ -43,11 +43,14 @@
 
         <br/>
         <div class="row" >
-            <div class="col-xs-6">
-                <button id="save" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:editprofile" style="font-size:medium">编辑个人资料</button>
+            <div class="col-xs-4">
+                <button id="save" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:editprofile">编辑个人资料</button>
             </div>
-            <div class="col-xs-6">
-                <button id="cancel" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:logout" style="font-size:medium">退出登录</button>
+            <div class="col-xs-4">
+                <button id="cancel" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:chgpwd">修改密码</button>
+            </div>
+            <div class="col-xs-4">
+                <button id="cancel" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:logout">退出登录</button>
             </div>
         </div>
     </div>

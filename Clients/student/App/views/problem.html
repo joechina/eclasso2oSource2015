@@ -2,8 +2,8 @@
 <div class="container-fluid">
     <div>
         <!-- ko if: problem()-->
-        <div style="background-color:#add8e6">
-            <h2>
+        <div style="background-color:#a6daed;">
+            <h2 >
                 <span data-bind="text:problem().GeneralInfo"></span>
                 <span>(共&nbsp;<span data-bind="text:total"></span>&nbsp;题)</span>
             </h2>
@@ -29,20 +29,20 @@
         <!-- /ko-->
 
         <!-- ko with: currentQuiz-->
-        <div style="font-size:large" data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false, answer: $parent.answer}"></div>
+        <div style="font-size:18px" data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false, answer: $parent.answer}"></div>
         <!-- /ko -->
 
         <div class="row">
             <div class="col-xs-4">
-                <button id="previous" class="btn btn-primary btn-block" data-bind="click:previous, disable: current() == 0" style="font-size:medium">
+                <button id="previous" class="btn btn-primary btn-block" data-bind="click:previous, disable: current() == 0" >
                     上一题
                 </button>
             </div>
             <div class="col-xs-4">
-                <button id="submit" class="btn btn-primary btn-block" data-bind="click:saveanswer, enable: current() == total() -1" style="font-size:medium">保存</button>
+                <button id="submit" class="btn btn-primary btn-block" data-bind="click:saveanswer, enable: current() == total() -1" >保存</button>
             </div>
             <div class="col-xs-4">
-                <button id="next" class="btn btn-primary btn-block" data-bind="click: next, disable: current() == total() -1" style="font-size:medium">
+                <button id="next" class="btn btn-primary btn-block" data-bind="click: next, disable: current() == total() -1" >
                     下一题
                 </button>
             </div>
