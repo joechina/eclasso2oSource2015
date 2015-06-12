@@ -33,8 +33,8 @@
         }
 
         function logout() {
+            data.setAccessToken('');
             router.navigate('/#signin');
-            data.setAccessToken(undefined);
         }
         //#endregion
     });

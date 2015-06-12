@@ -65,7 +65,6 @@
         function logout() {
             data.setAccessToken('');
             router.navigate('/#signin');
-
         }
 
         function feedback() {

@@ -1,7 +1,7 @@
 ﻿define(['plugins/router', 'knockout', 'data', 'logger'],
     function (router, ko, data, logger) {
         var errs = ko.observableArray();
-        var username = ko.observable();
+        var username = ko.observable(null);
         var password = ko.observable();
         var password2 = ko.observable();
         var oldpassword = ko.observable();
@@ -14,7 +14,8 @@
             oldpassword:oldpassword,
             password: password,
             password2: password2,
-            savepwd:savepwd,
+            savepwd: savepwd,
+            cancel:cancel,
             router: router,
             errs: errs
         };
@@ -23,8 +24,11 @@
 
         //#region Internal Methods
         function activate() {
-            username(data.user().Name());
-            $("#goback").css({ display: "block" });
+            userid(localStorage.getItem("u"));
+            if (data.user()) {
+                username(data.user().Name());
+            }
+            $("#goback").css({ display: "none" });
             logger.log('password page activated');
         }
 
@@ -37,20 +41,38 @@
                     });
                 });
             }
+            else {
+                alert(errs());
+            }
         }
 
         function validate() {
             errs.removeAll();
  
             if (!password() || password().length === 0) {
-                errs.push('missing Password');
+                errs.push('请输入新密码 ');
             }
             if (!password2() || password2().length === 0) {
-                errs.push('missing Confirm Password');
+                errs.push('请输入确认的新密码 ');
             }
             if (password() && password2() && password() !== password2()) {
-                errs.push('Passwords do not match');
+                errs.push('两次输入的新密码不一致 ');
             }
+            if (oldpassword() == password()) {
+                errs.push('请输入新密码 ');
+            }
+            if (password().length < 6) {
+                errs.push('密码长度至少为 6 个字符');
+            }
+
+            var pwd = localStorage.getItem("p");
+            if (oldpassword() !== pwd) {
+                errs.push('当前密码错误');
+            }
+        }
+
+        function cancel() {
+            router.navigate('/#signup');
         }
         //#endregion
     });
