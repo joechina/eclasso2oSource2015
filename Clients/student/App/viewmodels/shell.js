@@ -1,10 +1,12 @@
 ﻿define(['durandal/app', 'plugins/router', 'knockout', 'global', 'logger'],
     function (app, router, ko, global, logger) {
+        shouter = new ko.subscribable();
         var vm = {
             app:app,
             activate: activate,
             router: router,
             back: back,
+            refresh: refresh,
             icon: ko.computed(function () {
                 if (router.activeInstruction()) {
                     return router.activeInstruction().config.icon;
@@ -39,5 +41,9 @@
         
         function back() {
             router.navigateBack();
+        }
+
+        function refresh() {
+            shouter.notifySubscribers(1, "messageToPublish");
         }
     });
