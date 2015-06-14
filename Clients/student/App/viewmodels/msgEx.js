@@ -38,7 +38,7 @@
                 });
             }
 
-            $("#goback").css({ display: "block" });
+            $("#goback").css({ display: "none" });
 
             logger.log('exersizes activated');
         }

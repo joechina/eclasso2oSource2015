@@ -1,12 +1,12 @@
 ﻿define(['plugins/router', 'knockout', 'data', 'logger'],
     function (router, ko, data, logger) {
-        var exersize = ko.observable();
-        var exersizes = ko.observableArray();
-        var def_exersizes = ko.observableArray();
-        var add_exersizes = ko.observableArray();
-        var saison_exersizes = ko.observableArray();
-        var other_exersizes = ko.observableArray();
-        
+        var exersize = ko.observable(null);
+        var exersizes = ko.observableArray(null);
+        var def_exersizes = ko.observableArray(null);
+        var add_exersizes = ko.observableArray(null);
+        var saison_exersizes = ko.observableArray(null);
+        var other_exersizes = ko.observableArray(null);
+
         var login = {
             exersizes: exersizes,
             def_exersizes: def_exersizes,
@@ -16,17 +16,21 @@
             exersize:exersize,
             activate: activate,
             openexersize: openexersize,
-            submit:submit,
+            submit: submit,
             router: router,
-            backtolist: backtolist
+            backtolist: backtolist,
         };
+        shouter.subscribe(function (newValue) {
+            alert("Refresh")
+        }, this, "messageToPublish");
 
         return login;
 
         //#region Internal Methods
-        function activate(uid) {
-
+        function activate() {
+            var uid = data.user().Id();
             if (!exersize()) {
+                init();
                 data.getuserexersizes(uid).then(function (data) {
                     exersizes(data.results);
 
@@ -49,7 +53,7 @@
             }
             
             $("#goback").css({ display: "none" });
-
+                        
             logger.log('exersizes activated');
         }
 
@@ -60,6 +64,14 @@
                 exersize(data.results[0]);
             });
             
+        }
+
+        function init() {
+            exersizes.removeAll();
+            def_exersizes.removeAll();
+            add_exersizes.removeAll();
+            saison_exersizes.removeAll();
+            other_exersizes.removeAll();
         }
 
         function backtolist() {
@@ -77,7 +89,7 @@
                     ue.Completed('true');
 
                     data.save(ue).then(function () {
-                        alert('习题: ' + eid + '已提交');
+                        alert('习题: ' + eid + ' 已提交');
                         logger.log('学生: ' + uid + '习题: ' + eid + '已提交');
 
                     }).fail(function (err) {
@@ -91,7 +103,7 @@
                     result.results[0].Completed('true');
 
                     data.save(result.results[0]).then(function () {
-                        alert('习题: ' + eid + '已提交');
+                        alert('习题: ' + eid + ' 已提交');
                         logger.log('学生: ' + uid + '习题: ' + eid + '已提交');
 
                     }).fail(function (err) {
@@ -101,6 +113,8 @@
                     });
                 }
             })
+
+            router.navigate('/#exersize');
         }
 
         //#endregion
