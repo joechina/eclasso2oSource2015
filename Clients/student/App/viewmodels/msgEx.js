@@ -13,7 +13,7 @@
             newex: newex,
             assignex: assignex,
             editex: editex,
-            backtolist: backtolist,
+            backtolist:backtolist,
             studentExercises: ko.computed(function () {
                 if (exersize()) {
                     
@@ -38,7 +38,7 @@
                 });
             }
 
-            $("#goback").css({ display: "none" });
+            $("#goback").css({ display: "block" });
 
             logger.log('exersizes activated');
         }

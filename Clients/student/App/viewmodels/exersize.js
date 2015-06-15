@@ -21,7 +21,8 @@
             backtolist: backtolist,
         };
         shouter.subscribe(function (newValue) {
-            alert("Refresh")
+            activate();
+            logger.log('reload exersize');
         }, this, "messageToPublish");
 
         return login;
@@ -53,6 +54,7 @@
             }
             
             $("#goback").css({ display: "none" });
+            $("#refresh").css({display:"inline"});
                         
             logger.log('exersizes activated');
         }

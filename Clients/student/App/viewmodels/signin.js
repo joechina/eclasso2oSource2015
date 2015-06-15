@@ -20,7 +20,9 @@
         function activate() {
             if (!autosignin()) {
                 $("#goback").css({ display: "none" });
+                $("#refresh").css({ display: "none" });
                 logger.log('signin activated');
+                
             }
         }
 

@@ -2,19 +2,20 @@
 
 <div class="widget">
     <!--ko if: isediting() == false-->
+    
     <br />
     <span data-bind="text:settings.item.Challenge()"></span>
     <br />
     <br />
-    <input data-bind="value:settings.item.answer" class="form-control input-md">
+    <input style="font-size:18px" data-bind="value:settings.item.answer" class="form-control input-lg">
 
     <br />
     <!-- /ko-->
     <!--ko if: isediting() == true -->
 
-    <label>问题: <input data-bind="value: settings.item.Challenge" class="form-control input-md"></label>
+    <label>问题: <input data-bind="value: settings.item.Challenge" class="form-control input-lg"></label>
     <br />
-    <label>标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-md" /></label>
+    <label>标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-lg" /></label>
     <!-- /ko-->
 
     <!--ko if: isreporting()-->

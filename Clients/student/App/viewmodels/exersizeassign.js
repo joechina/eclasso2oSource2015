@@ -24,6 +24,7 @@
             router: router,
             assign: assign,
             back: back,
+
             selectclass: ko.computed(function () {
                 if (selectedclass()) {
                     if (studentlist.length == 0 || teacherlist.length == 0)
@@ -57,10 +58,15 @@
             }),
         };
 
+        shouter.subscribe(function (newValue) {
+            activate();
+            logger.log('reload exersize assignment');
+        }, this, "messageToPublish");
+
         return vm;
 
-        function activate(eid) {
-            if (eid) { }
+        function activate() {
+            
             selectedclass(null);
             cur_classid = -1;
             selectedstudents([]);
