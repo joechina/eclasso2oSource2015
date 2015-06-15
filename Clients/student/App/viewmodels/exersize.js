@@ -6,7 +6,7 @@
         var add_exersizes = ko.observableArray(null);
         var saison_exersizes = ko.observableArray(null);
         var other_exersizes = ko.observableArray(null);
-        
+
         var login = {
             exersizes: exersizes,
             def_exersizes: def_exersizes,
@@ -18,8 +18,11 @@
             openexersize: openexersize,
             submit: submit,
             router: router,
-            backtolist: backtolist
+            backtolist: backtolist,
         };
+        shouter.subscribe(function (newValue) {
+            alert("Refresh")
+        }, this, "messageToPublish");
 
         return login;
 
