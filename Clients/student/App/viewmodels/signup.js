@@ -39,7 +39,7 @@
         }
 
         function backtolist() {
-            router.navigateBack();
+            router.navigate('/#signin');
         }
 
         function validate() {

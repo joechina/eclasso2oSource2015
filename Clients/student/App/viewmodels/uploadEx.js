@@ -126,7 +126,12 @@
                             case 1: //单选题
                                 var d = [];
                                 for (var j = 0; j < q.options().length; j++) {
-                                    d.push(q.options()[j].text());
+                                    if (q.options()[j].text) {
+                                        d.push(q.options()[j].text);
+                                    }
+                                    else if (q.options()[j].text()) {
+                                        d.push(q.options()[j].text());
+                                    }
                                 }
                                 q.QuizDetail(d.join(','));
 
@@ -136,7 +141,12 @@
                             case 3: //多选题
                                 var d = [];
                                 for (var j = 0; j < q.options().length; j++) {
-                                    d.push(q.options()[j].text());
+                                    if (q.options()[j].text) {
+                                        d.push(q.options()[j].text);
+                                    }
+                                    else if (q.options()[j].text()) {
+                                        d.push(q.options()[j].text());
+                                    }
                                 }
                                 q.QuizDetail(d.join(','));
                                 break;
