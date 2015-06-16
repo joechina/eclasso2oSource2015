@@ -15,10 +15,10 @@
     
     <!--ko if: isediting() == true -->
     
-    <label>问题: <input data-bind="wysiwyg: settings.item.Challenge, wysiwygConfig: { menubar: false }" class="form-control input-lg"></label>
+    <label>问题: <textarea data-bind="wysiwyg: settings.item.Challenge, wysiwygConfig: { menubar: false }" class="form-control input-lg"/></label>
     <br />
-    <label>标准答案: <input data-bind="text:settings.item.Answer" class="form-control input-lg" /></label>
-    <!-- /ko-->
+    <label>标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-lg" /></label>   
+   <!-- /ko-->
 
     <!--ko if: isreporting() -->
 
