@@ -121,7 +121,7 @@ namespace Parrot.Model
         {
             get
             {
-                return (DbQuery<UserQuiz>)Context.UserQuizs;
+                return (DbQuery<UserQuiz>)Context.UserQuizs.Include("");
             }
         }
         public DbQuery<UserClass> UserClasses

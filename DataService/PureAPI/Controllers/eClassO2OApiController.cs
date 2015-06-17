@@ -121,10 +121,14 @@ namespace Parrot.Controllers
         }
 
         [HttpGet]
-        public IQueryable<UserQuiz> UserQuizs()
+        public IQueryable<UserQuiz> UserQuizs(int userId, int excersizeId)
         {
             _repository = new Repository();
-            return _repository.UserQuizs;
+            var result = (from e in _repository.UserQuizs
+                          join q in _repository.Quizzes on e.QuizId equals q.Id
+                          where e.UserId == userId && q.Problem.ExersizeSection.Exersize.Id == excersizeId
+                          select e).ToList();
+            return result.AsQueryable();
 
         }
 
