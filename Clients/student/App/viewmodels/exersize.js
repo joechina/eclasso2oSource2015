@@ -50,6 +50,7 @@
                         else
                             other_exersizes.push(e);
                     }
+                    exersizes().forEach(loaduserquiz);
                 });
             }
             
@@ -120,4 +121,16 @@
         }
 
         //#endregion
+        function loaduserquiz(exercise) {
+            if (!data.user().userexercizeanswer[exercise.Id()]) {
+                data.getUserExerciseQuizs(data.user().Id(), exercise.Id()).then(function (data) {
+                    var workedarray = data.results;
+                    var userquiz = {};
+                    workedarray.forEach(function (data) {
+                        userquiz[data.Id()] = data;
+                    })
+                    data.user().userexercizeanswer[exercise.Id()] = userquiz;
+                })
+            }
+        }
     });

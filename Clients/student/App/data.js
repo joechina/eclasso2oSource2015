@@ -47,6 +47,7 @@
             getStudents: getStudents,
             getuser:getuser,
             getUserQuizs: getUserQuizs,
+            getUserExerciseQuizs : getUserExerciseQuizs,
             create: create,
             user: user,
         }
@@ -85,7 +86,9 @@
         function getCurrentUser() {
             var query = breeze.EntityQuery.from('currentUser');
             return manager.executeQuery(query).then(function (result) {
-                user(result.results[0]);
+                var curuser = result.results[0];
+                curuser.userexercizeanswer = {};
+                user(curuser);
             }).fail(function (err) {
                 alert(err.message);
             });
@@ -96,7 +99,7 @@
             return manager.executeQuery(query);
         }
 
-        function searchQuestion (q) {
+        function searchQuestion(q) {
             var query = breeze.EntityQuery.from("Questions")
                             .where("QuestionDetail", "contains", q)	// how to search contains all from keywords array?
                             .orderBy("Create DESC");
@@ -378,5 +381,10 @@
                 var query = breeze.EntityQuery.from('Media').where("Id", "==", self.Media);
                 return manager.executeQuery(query);
             }
+        }
+
+        function getUserExerciseQuizs(uid, eid) {
+            var query = breeze.EntityQuery.from('UserQuizs').withParameters({ userId: uid, excersizeId: eid });
+            return manager.executeQuery(query);
         }
     });
