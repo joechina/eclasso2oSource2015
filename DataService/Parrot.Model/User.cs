@@ -24,6 +24,7 @@ namespace Parrot.Model
 
         public string Email { get; set; }
         public string Phone { get; set; }
+        public DateTime lastSignin { get; set; }
         
         public virtual List<UserClass> Classes { get; set; }
         public virtual List<UserExersize> Exersizes { get; set; }

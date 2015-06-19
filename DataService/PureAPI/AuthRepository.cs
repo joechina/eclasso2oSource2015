@@ -39,6 +39,7 @@ namespace PureAPI
             u.Phone = userModel.Phone;
             u.UserGuid = user.Id;
             u.UserId = userModel.UserName;
+            u.lastSignin = new DateTime();
             myctx.Users.Add(u);
             myctx.SaveChanges();
 

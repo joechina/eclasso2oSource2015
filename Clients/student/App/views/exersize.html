@@ -14,7 +14,7 @@
                     <div class="col-xs-2">
                         <img src="../../Content/images/alter-ego.jpg" />
                     </div>
-                    <div class="col-xs-6" data-bind="click: $root.openexersize">
+                    <div class="col-xs-6" data-bind="event: {click: function() {$root.openexersize($data, $parent.Completed)}}">
                         <span class="list-group-item-heading" data-bind="text: Name"></span>
                         <p class="announcement-date" data-bind="text:Description() + ' - 共 ' + TotalQuizzes() + ' 题'"></p>
                     </div>

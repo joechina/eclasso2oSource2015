@@ -3,7 +3,6 @@
         var announcement = ko.observable();
         var announcements = ko.observableArray();
         var myannouncements = ko.observableArray();
-        var msgDate = ko.observable();
         //var usermsg = ko.observableArray();
 
         var login = {
@@ -14,14 +13,17 @@
             router: router,
             backtolist: backtolist,
             newmsg: newmsg,
-            msgDate:msgDate,
            // usermsg:usermsg
         };
+        shouter.subscribe(function (newValue) {
+            activate();
+            logger.log('reload announcement');
+        }, this, "messageToPublish");
 
         return login;
 
         //#region Internal Methods
-        function activate(id) {
+        function activate() {
             //var questionid = parseInt(id)
             //if (questionid > 0)
 
@@ -44,8 +46,6 @@
 
         function openmsg(selected) {
             announcement(selected);
-            var date = announcement().CreateDate();
-            msgDate = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate();
         }
 
         function backtolist() {

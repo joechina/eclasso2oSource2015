@@ -29,11 +29,14 @@
             },
 
         };
-
+        shouter.subscribe(function (newValue) {
+            activate();
+            logger.log('reload QA');
+        }, this, "messageToPublish");
         return login;
 
         //#region Internal Methods
-        function activate(id) {
+        function activate() {
             //var questionid = parseInt(id)
             //if (questionid > 0)
             data.getquestions().then(function (data) {

@@ -5,7 +5,7 @@
     <div class="list-group list-full-with" data-bind="foreach: announcements">
         <a class="list-group-item" href="#" data-bind="click: $parent.openmsg">
             <span class="announcement-item-title" data-bind="text: Title"></span>
-            <span class="announcement-item-date" data-bind="text:CreateDate().getMonth() + '月' + CreateDate().getDate()+'日'"></span>
+            <span class="announcement-item-date" data-bind="text:CreateDate().toLocaleString()"></span>
         </a>
     </div>
     <!--/ko-->
@@ -13,7 +13,7 @@
     <div class="container-fluid">
         <div data-bind="with:announcement()" class="col-xs-12">
             <span class="announcement-title" data-bind="text: Title"></span>
-            <p class="announcement-date" data-bind="text: CreateDate().getMonth() + '月' + CreateDate().getDate() +'日'"></p>
+            <p class="announcement-date" data-bind="text: CreateDate().toLocaleString()"></p>
             <p class="announcement-content" data-bind="html: Content"></p>
         </div>
     </div>

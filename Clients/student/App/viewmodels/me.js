@@ -19,11 +19,15 @@
             router: router,
             logout:logout,
         };
+        shouter.subscribe(function (newValue) {
+            activate();
+            logger.log('reload me');
+        }, this, "messageToPublish");
 
         return me;
 
         //#region Internal Methods
-        function activate(id) {
+        function activate() {
             //get current sign in user
             user(data.user());
 

@@ -60,13 +60,16 @@
             logger.log('exersizes activated');
         }
 
-        function openexersize(selected) {
-  
-            var id = selected.Id();
-            data.getexersize(id).then(function (data) {
-                exersize(data.results[0]);
-            });
-            
+        function openexersize(selected, c) {
+            if (!c()) { // if not completed
+                var id = selected.Id();
+                data.getexersize(id).then(function (data) {
+                    exersize(data.results[0]);
+                });
+            }
+            else {
+                alert('习题已递交，请查看我的报告');
+            }
         }
 
         function init() {
@@ -123,11 +126,11 @@
         //#endregion
         function loaduserquiz(exercise) {
             if (!data.user().userexercizeanswer[exercise.Id()]) {
-                data.getUserExerciseQuizs(data.user().Id(), exercise.Id()).then(function (data) {
-                    var workedarray = data.results;
+                data.getUserExerciseQuizs(data.user().Id(), exercise.Id()).then(function (result1) {
+                    var workedarray = result1.results;
                     var userquiz = {};
-                    workedarray.forEach(function (data) {
-                        userquiz[data.Id()] = data;
+                    workedarray.forEach(function (result2) {
+                        userquiz[data.Id()] = result2;
                     })
                     data.user().userexercizeanswer[exercise.Id()] = userquiz;
                 })
