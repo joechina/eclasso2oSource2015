@@ -31,6 +31,7 @@
 
         //#region Internal Methods
         function activate(id) {
+            //TODO: fetch saved quiz answers from userquiz table so students do not need to re-do existing answers. 
             data.getproblem(id).then(function (pdata) {
                 var p = pdata.results[0];
 
@@ -136,8 +137,6 @@
                 if (q.answer() != null) {
                    
                     submituserquiz(uid, qid, q);
-
-                    // check if student has answered the quiz before by querying UserQuiz table
                 }
                 else {
                     alert('问题: ' + q.Challenge() + ' 没有回答');
@@ -172,6 +171,8 @@
                     data.save(userQuiz).then(function () {
                         logger.log('userQuiz:' + uid + '/' + qid + ' with answer: ' + a());
 
+                        updateProgress(q.Prblem());
+
                     }).fail(function (err) {
                         for (var i = 0; i < err.length; i++) {
                             logger.log(err[i]);
@@ -181,6 +182,7 @@
                 else {// if yes, overwirte previous answer
                     results.results[0].Answer(a());
                     data.save(results.results[0]).then(function () {
+                        updateProgress(q.Problem());
                         logger.log('userQuiz:' + uid + '/' + qid + ' with answer: ' + a());
 
                     }).fail(function (err) {
@@ -191,6 +193,28 @@
                 }
             }).fail(function (err) {
                 alert(err.message);
+            });
+        }
+
+        function updateProgress(problem) {
+            //update progress field for UserExercise
+            var eid = problem.ExersizeSection().ExersizeId();
+            var uid = data.user().Id();
+
+            data.getUserExerciseQuizs(uid, eid).then(function (result) {
+                var workedarray = result.results;
+                data.getuserexersize(uid, eid).then(function (result) {
+                    var ue = result.results[0];
+                    ue.Progress(workedarray.length);
+                    data.save(ue).then(function () {
+                        logger.log(uid + '/' + eid + ' progress updated to: ' + ue.Progress());
+
+                    }).fail(function (err) {
+                        for (var i = 0; i < err.length; i++) {
+                            logger.log(err[i]);
+                        }
+                    });
+                });
             });
         }
         //#endregion

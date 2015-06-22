@@ -95,7 +95,7 @@
                     ue.Completed('true');
 
                     data.save(ue).then(function () {
-                        alert('习题: ' + eid + ' 已提交');
+                        alert('习题 已提交');
                         logger.log('学生: ' + uid + '习题: ' + eid + '已提交');
 
                     }).fail(function (err) {
@@ -125,14 +125,16 @@
 
         //#endregion
         function loaduserquiz(exercise) {
-            if (!data.user().userexercizeanswer[exercise.Id()]) {
-                data.getUserExerciseQuizs(data.user().Id(), exercise.Id()).then(function (result1) {
-                    var workedarray = result1.results;
+            var uid = data.user().Id();
+            var eid = exercise.ExersizeId();
+            if (data.user().userexercizeanswer[eid] == null) {
+                data.getUserExerciseQuizs(uid, eid).then(function (result) {
+                    var workedarray = result.results;
                     var userquiz = {};
-                    workedarray.forEach(function (result2) {
-                        userquiz[data.Id()] = result2;
+                    workedarray.forEach(function (data) {
+                        userquiz[data.Id()] = data;// get related user quiz: data.Id() => userquiz.Id
                     })
-                    data.user().userexercizeanswer[exercise.Id()] = userquiz;
+                    data.user().userexercizeanswer[exercise.ExersizeId()] = userquiz;
                 })
             }
         }
