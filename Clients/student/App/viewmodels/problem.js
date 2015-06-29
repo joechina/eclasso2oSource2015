@@ -15,12 +15,12 @@
             previous: previous,
             next: next,
             total: total,
-            current:current,
+            current: current,
             currentQuiz: ko.computed(function () {
                 if (problem()) {
                     return problem().Quizzes()[current()];
                 }
-            })            
+            })
         };
 
         //answer.subscribe (function (newValue) {           
@@ -86,8 +86,8 @@
             if (current() == 0)
                 document.getElementById('previous').disabled = false;
             */
-
-            current(current() + 1);
+            if (current() != total() - 1)//single selection go to next after checked, block last one.
+                current(current() + 1);
             /*
             if (current() == total()-1) {
                 document.getElementById('next').disabled = true;

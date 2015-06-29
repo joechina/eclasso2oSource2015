@@ -22,7 +22,7 @@
         shouter.subscribe(function (newValue) {
             activate();
             logger.log('reload me');
-        }, this, "messageToPublish");
+        }, this, "refresh_viewmodels/me");
 
         return me;
 

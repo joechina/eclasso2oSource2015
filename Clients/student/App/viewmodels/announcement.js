@@ -18,7 +18,7 @@
         shouter.subscribe(function (newValue) {
             activate();
             logger.log('reload announcement');
-        }, this, "messageToPublish");
+        }, this, "refresh_viewmodels/announcement");
 
         return login;
 

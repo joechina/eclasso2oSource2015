@@ -32,7 +32,7 @@
         shouter.subscribe(function (newValue) {
             activate();
             logger.log('reload QA');
-        }, this, "messageToPublish");
+        }, this, "refresh_viewmodels/question");
         return login;
 
         //#region Internal Methods

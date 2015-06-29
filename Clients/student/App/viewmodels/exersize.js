@@ -23,7 +23,7 @@
         shouter.subscribe(function (newValue) {
             activate();
             logger.log('reload exersize');
-        }, this, "messageToPublish");
+        }, this, "refresh_viewmodels/exersize");
 
         return login;
 

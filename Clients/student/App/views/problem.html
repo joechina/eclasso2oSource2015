@@ -29,7 +29,7 @@
         <!-- /ko-->
 
         <!-- ko with: currentQuiz-->
-        <div data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false, answer: $parent.answer}"></div>
+        <div data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false, answer: $parent.answer, to_next: $parent.next}"></div>
         <!-- /ko -->
 
         <div class="row">

@@ -75,7 +75,7 @@
         shouter.subscribe(function (newValue) {
             activate();
             logger.log('reload exersize assignment');
-        }, this, "messageToPublish");
+        }, this, "refresh_viewmodels/exersizeassign");
 
         return vm;
 

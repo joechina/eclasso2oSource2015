@@ -44,6 +44,7 @@
         }
 
         function refresh() {
-            shouter.notifySubscribers(1, "messageToPublish");
+            var event_str = "refresh_" + router.activeInstruction().config.moduleId.toString();
+            shouter.notifySubscribers(1, event_str);
         }
     });
