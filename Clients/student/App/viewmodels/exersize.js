@@ -66,6 +66,7 @@
                 data.getexersize(id).then(function (data) {
                     exersize(data.results[0]);
                 });
+                $("#refresh").css({ display: "none" });
             }
             else {
                 alert('习题已递交，请查看我的报告');
@@ -82,6 +83,8 @@
 
         function backtolist() {
             exersize(undefined);
+            $("#refresh").css({ display: "inline" });
+
         }
 
         function submit(ex) {

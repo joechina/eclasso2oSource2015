@@ -44,16 +44,19 @@
             });
 
             $("#goback").css({ display: "none" });
+            $("#refresh").css({ display: "inline" });
             logger.log('question activated');
         }
 
         function openanswer(selected) {
             question(selected);
-            
+            $("#refresh").css({ display: "none" });
         }
 
         function backtolist() {
-            question(undefined); 
+            question(undefined);
+            $("#refresh").css({ display: "inline" });
+
             //router.navigateBack();
         }
 

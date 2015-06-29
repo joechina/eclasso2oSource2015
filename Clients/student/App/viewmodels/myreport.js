@@ -43,6 +43,7 @@
             });
 
             $("#goback").css({ display: "block" });
+            $("#refresh").css({ display: "inline" });
 
         }
 

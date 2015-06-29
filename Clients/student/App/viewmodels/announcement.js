@@ -41,15 +41,19 @@
             });
 
             $("#goback").css({ display: "none" });
+            $("#refresh").css({ display: "inline" });
             logger.log('announcements activated');
         }
 
         function openmsg(selected) {
             announcement(selected);
+            $("#refresh").css({ display: "none" });
         }
 
         function backtolist() {
-            announcement(undefined);            
+            announcement(undefined);
+            $("#refresh").css({ display: "inline" });
+
         }
 
         function newmsg() {

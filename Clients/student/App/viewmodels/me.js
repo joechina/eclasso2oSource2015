@@ -54,6 +54,7 @@
             });
 
             $("#goback").css({ display: "none" });
+            $("#refresh").css({ display: "inline" });
 
             logger.log('me page activated');
         }

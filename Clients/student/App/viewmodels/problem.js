@@ -51,6 +51,7 @@
 
             current(0);
             $("#goback").css({ display: "block" });
+            $("#refresh").css({ display: "none" });
 
         }
         

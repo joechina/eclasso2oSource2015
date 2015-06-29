@@ -1,4 +1,7 @@
-﻿select:
+﻿====================================
+total# quizs an exercise contains
+====================================
+select totalquizzes:
 
 select a.Id, count(d.Id) from exersizes a
 inner join exersizesections b on a.id = b.exersizeId
@@ -17,3 +20,15 @@ inner join problems c on b.Id = c.exersizesectionid
 inner join quizs d on c.Id = d.problemId
 group by a.Id) f
 where exersizes.Id = f.Id
+
+====================================
+# quizs students have completed
+====================================
+
+select a.Id, count(d.Id) from exersizes a
+inner join exersizesections b on a.id = b.exersizeId
+inner join problems c on b.Id = c.exersizesectionid
+inner join quizs d on c.Id = d.problemId
+inner join userquizs uq on uq.QuizId = d.Id
+where uq.UserId = 1
+group by a.Id

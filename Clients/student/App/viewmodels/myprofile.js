@@ -20,6 +20,7 @@
             user(data.user());
 
             $("#goback").css({ display: "block" });
+            $("#refresh").css({ display: "none" });
 
             logger.log('my profile page activated');
         }
