@@ -33,7 +33,8 @@
             });
 
             $("#goback").css({ display: "block" });
-            logger.log('clazzes activated');
+            $("#refresh").css({ display: "none" });
+            logger.log('msg clazzes activated');
         }
 
         function openclazz(selected) {

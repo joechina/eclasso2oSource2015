@@ -41,6 +41,7 @@
         
         function back() {
             router.navigateBack();
+            $("#refresh").css({ display: "none" });
         }
 
         function refresh() {
