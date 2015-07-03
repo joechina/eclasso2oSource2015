@@ -5,6 +5,7 @@
         this.isediting = ko.observable(null);
         this.isreporting = ko.observable(null);
         this.useranswer = ko.observable("");
+        this.isChecked = ko.observable();
 
         //this.options = options;
         this.addoptions = function () {
@@ -15,6 +16,10 @@
             self.settings.item.options.remove(o);
         }
 
+        this.isChecked.subscribe(function (newValue) {
+            this.settings.item.answer(newValue);
+            this.settings.to_next();
+        }, this);
     }
 
     ctor.prototype.activate = function (settings) {

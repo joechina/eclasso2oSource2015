@@ -1,4 +1,4 @@
-﻿define(['durandal/composition', 'jquery', 'knockout', 'data', 'global'], function (composition, $, ko, data) {
+﻿define(['durandal/composition', 'jquery', 'knockout', 'data', 'logger'], function (composition, $, ko, data,logger) {
     var ctor = function () {
         var self = this;
         this.isediting = ko.observable(null);

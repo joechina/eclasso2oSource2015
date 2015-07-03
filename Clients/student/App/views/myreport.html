@@ -2,9 +2,23 @@
 <div class="container-fluid">
     <br />
     <div class="form-group">
+        <label>选择习题类型: </label>
+        <select id='exersize' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: categories,
+                                                                                                            optionsText: 'label',
+                                                                                                            optionsValue: 'value',
+                                                                                                            value: cat,
+                                                                                                            optionsCaption: '请选择...'"></select>
+
+    </div>
+    <div class="form-group">
         <label>选择已递交的习题: </label>
         <select id='exersize' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: exersizes(),
-                                                                                                            optionsText: 'Name',
+                                                                                                            optionsText: function(item) {
+                                                                                                                if (item.Description() != null)
+                                                                                                                    return item.Name() + ' - ' + item.Description()
+                                                                                                                else
+                                                                                                                    return item.Name()
+                                                                                                            },
                                                                                                             value: ex,
                                                                                                             optionsCaption: '请选择...'"></select>
     </div>

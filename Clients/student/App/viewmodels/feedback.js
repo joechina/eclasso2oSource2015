@@ -28,6 +28,7 @@
             today(year + ' 年 ' + month + ' 月 ' + day + ' 日');
 
             $("#goback").css({ display: "block" });
+            $("#refresh").css({ display: "none" });
 
             logger.log('feedback activated');
             return true;

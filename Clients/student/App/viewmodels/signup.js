@@ -24,6 +24,7 @@
         //#region Internal Methods
         function activate() {
             $("#goback").css({ display: "block" });
+            $("#refresh").css({ display: "none" });
             logger.log('signup activated');
         }
 
@@ -39,7 +40,7 @@
         }
 
         function backtolist() {
-            router.navigateBack();
+            router.navigate('/#signin');
         }
 
         function validate() {

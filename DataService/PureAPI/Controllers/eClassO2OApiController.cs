@@ -133,6 +133,14 @@ namespace Parrot.Controllers
         }
 
         [HttpGet]
+        public IQueryable<UserQuiz> UserQuizs()
+        {
+            _repository = new Repository();
+            return _repository.UserQuizs;
+
+        }
+
+        [HttpGet]
         public IQueryable<UserClass> UserClasses()
         {
             _repository = new Repository();

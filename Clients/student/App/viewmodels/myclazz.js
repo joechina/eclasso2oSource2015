@@ -43,6 +43,8 @@
             }
             
             $("#goback").css({ display: "block" });
+            $("#refresh").css({ display: "none" });
+
             logger.log('my clazzes activated');
         }
 

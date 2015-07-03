@@ -19,11 +19,15 @@
             router: router,
             logout:logout,
         };
+        shouter.subscribe(function (newValue) {
+            activate();
+            logger.log('reload me');
+        }, this, "refresh_viewmodels/me");
 
         return me;
 
         //#region Internal Methods
-        function activate(id) {
+        function activate() {
             //get current sign in user
             user(data.user());
 
@@ -50,6 +54,7 @@
             });
 
             $("#goback").css({ display: "none" });
+            $("#refresh").css({ display: "inline" });
 
             logger.log('me page activated');
         }

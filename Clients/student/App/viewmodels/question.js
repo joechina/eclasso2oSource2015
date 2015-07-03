@@ -29,11 +29,14 @@
             },
 
         };
-
+        shouter.subscribe(function (newValue) {
+            activate();
+            logger.log('reload QA');
+        }, this, "refresh_viewmodels/question");
         return login;
 
         //#region Internal Methods
-        function activate(id) {
+        function activate() {
             //var questionid = parseInt(id)
             //if (questionid > 0)
             data.getquestions().then(function (data) {
@@ -41,16 +44,19 @@
             });
 
             $("#goback").css({ display: "none" });
+            $("#refresh").css({ display: "inline" });
             logger.log('question activated');
         }
 
         function openanswer(selected) {
             question(selected);
-            
+            $("#refresh").css({ display: "none" });
         }
 
         function backtolist() {
-            question(undefined); 
+            question(undefined);
+            $("#refresh").css({ display: "inline" });
+
             //router.navigateBack();
         }
 

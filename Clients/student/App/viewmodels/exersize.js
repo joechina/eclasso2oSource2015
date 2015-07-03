@@ -21,8 +21,9 @@
             backtolist: backtolist,
         };
         shouter.subscribe(function (newValue) {
-            alert("Refresh")
-        }, this, "messageToPublish");
+            activate();
+            logger.log('reload exersize');
+        }, this, "refresh_viewmodels/exersize");
 
         return login;
 
@@ -54,17 +55,22 @@
             }
             
             $("#goback").css({ display: "none" });
+            $("#refresh").css({display:"inline"});
                         
             logger.log('exersizes activated');
         }
 
-        function openexersize(selected) {
-  
-            var id = selected.Id();
-            data.getexersize(id).then(function (data) {
-                exersize(data.results[0]);
-            });
-            
+        function openexersize(selected, c) {
+            if (!c()) { // if not completed
+                var id = selected.Id();
+                data.getexersize(id).then(function (data) {
+                    exersize(data.results[0]);
+                });
+                $("#refresh").css({ display: "none" });
+            }
+            else {
+                alert('习题已递交，请查看我的报告');
+            }
         }
 
         function init() {
@@ -77,6 +83,8 @@
 
         function backtolist() {
             exersize(undefined);
+            $("#refresh").css({ display: "inline" });
+
         }
 
         function submit(ex) {
@@ -90,7 +98,7 @@
                     ue.Completed('true');
 
                     data.save(ue).then(function () {
-                        alert('习题: ' + eid + ' 已提交');
+                        alert('习题 已提交');
                         logger.log('学生: ' + uid + '习题: ' + eid + '已提交');
 
                     }).fail(function (err) {
@@ -120,14 +128,16 @@
 
         //#endregion
         function loaduserquiz(exercise) {
-            if (!data.user().userexercizeanswer[exercise.Id()]) {
-                data.getUserExerciseQuizs(data.user().Id(), exercise.Id()).then(function (data) {
-                    var workedarray = data.results;
+            var uid = data.user().Id();
+            var eid = exercise.ExersizeId();
+            if (data.user().userexercizeanswer[eid] == null) {
+                data.getUserExerciseQuizs(uid, eid).then(function (result) {
+                    var workedarray = result.results;
                     var userquiz = {};
                     workedarray.forEach(function (data) {
-                        userquiz[data.Id()] = data;
+                        userquiz[data.Id()] = data;// get related user quiz: data.Id() => userquiz.Id
                     })
-                    data.user().userexercizeanswer[exercise.Id()] = userquiz;
+                    data.user().userexercizeanswer[exercise.ExersizeId()] = userquiz;
                 })
             }
         }

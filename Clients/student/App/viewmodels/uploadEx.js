@@ -26,7 +26,7 @@
             uploadimage: uploadimage,
             init:init,
             cancel: cancel,
-            categories: ['Alter Ego+','Festival','Saison'],
+            categories: ['Alter Ego+','Reflets','Saison'],
             quizTypes: [{ value: 0, label: '纯文本填空题' },
                         { value: 1, label: '单选题' },
                         { value: 2, label: '对错题' },
@@ -126,7 +126,12 @@
                             case 1: //单选题
                                 var d = [];
                                 for (var j = 0; j < q.options().length; j++) {
-                                    d.push(q.options()[j].text());
+                                    if (q.options()[j].text) {
+                                        d.push(q.options()[j].text);
+                                    }
+                                    else if (q.options()[j].text()) {
+                                        d.push(q.options()[j].text());
+                                    }
                                 }
                                 q.QuizDetail(d.join(','));
 
@@ -136,7 +141,12 @@
                             case 3: //多选题
                                 var d = [];
                                 for (var j = 0; j < q.options().length; j++) {
-                                    d.push(q.options()[j].text());
+                                    if (q.options()[j].text) {
+                                        d.push(q.options()[j].text);
+                                    }
+                                    else if (q.options()[j].text()) {
+                                        d.push(q.options()[j].text());
+                                    }
                                 }
                                 q.QuizDetail(d.join(','));
                                 break;
@@ -151,7 +161,7 @@
                 case 'Alter Ego+':
                     exercise().Category(0);
                     break;
-                case 'Festival':
+                case 'Reflets':
                     exercise().Category(1);
                     break;
                 case 'Saison':

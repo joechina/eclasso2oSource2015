@@ -72,7 +72,7 @@
         }
 
         function cancel() {
-            router.navigate('/#signup');
+            router.navigate('/#');
         }
         //#endregion
     });

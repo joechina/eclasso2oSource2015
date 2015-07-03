@@ -29,7 +29,7 @@
         <!-- /ko-->
 
         <!-- ko with: currentQuiz-->
-        <div style="font-size:18px" data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false, answer: $parent.answer}"></div>
+        <div data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false, answer: $parent.answer, to_next: $parent.next}"></div>
         <!-- /ko -->
 
         <div class="row">
@@ -39,7 +39,7 @@
                 </button>
             </div>
             <div class="col-xs-4">
-                <button id="submit" class="btn btn-primary btn-block" data-bind="click:saveanswer, enable: current() == total() -1" >保存</button>
+                <button id="submit" class="btn btn-primary btn-block" data-bind="click:saveanswer" >保存</button>
             </div>
             <div class="col-xs-4">
                 <button id="next" class="btn btn-primary btn-block" data-bind="click: next, disable: current() == total() -1" >

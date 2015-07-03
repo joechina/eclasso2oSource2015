@@ -32,6 +32,8 @@
         <label class="control-label">
             参与学生：
         </label>
+        <br/>
+        <input type="checkbox" data-bind="checked:wholeclass"><label>全班同学</label>
         <ul style="list-style-type:none" data-bind="foreach:allstudents">
             <li>
                 <input type="checkbox" data-bind="attr: {value:Id()}, checked:$parent.selectedstudents">

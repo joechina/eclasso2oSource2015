@@ -3,7 +3,6 @@
         var announcement = ko.observable();
         var announcements = ko.observableArray();
         var myannouncements = ko.observableArray();
-        var msgDate = ko.observable();
         //var usermsg = ko.observableArray();
 
         var login = {
@@ -14,14 +13,17 @@
             router: router,
             backtolist: backtolist,
             newmsg: newmsg,
-            msgDate:msgDate,
            // usermsg:usermsg
         };
+        shouter.subscribe(function (newValue) {
+            activate();
+            logger.log('reload announcement');
+        }, this, "refresh_viewmodels/announcement");
 
         return login;
 
         //#region Internal Methods
-        function activate(id) {
+        function activate() {
             //var questionid = parseInt(id)
             //if (questionid > 0)
 
@@ -39,17 +41,19 @@
             });
 
             $("#goback").css({ display: "none" });
+            $("#refresh").css({ display: "inline" });
             logger.log('announcements activated');
         }
 
         function openmsg(selected) {
             announcement(selected);
-            var date = announcement().CreateDate();
-            msgDate = date.getFullYear() + "/" + date.getMonth() + "/" + date.getDate();
+            $("#refresh").css({ display: "none" });
         }
 
         function backtolist() {
-            announcement(undefined);            
+            announcement(undefined);
+            $("#refresh").css({ display: "inline" });
+
         }
 
         function newmsg() {

@@ -291,7 +291,8 @@ ul.options {
 }
 
     ul.options li {
-        margin: 10px 0;
+        margin: 14px 0;
+        font-size:18px;
     }
 
 .list-full-with {
@@ -302,7 +303,8 @@ ul.options {
 
 .list-group-item {
     font-family: 'Microsoft YaHei UI', Arial, sans-serif;
-    font-size: large !important;
+    font-size: 18px !important;
+    line-height:1.5;
 }
 
 .list-group-item-heading {
@@ -396,4 +398,8 @@ ul.options {
     }
 .list-group-item-info {
     background-color:#FFFFFF !important;
+}
+
+.widget {
+    font-size:18px;
 }

@@ -11,10 +11,10 @@
                                                                                                                 optionsCaption: '请选择...'"></select>
                     </label>
                     <label class="control-label">
-                        习题组名称:<input data-bind="value: Name" class="form-control input-md col-xs-6" autofocus="autofocus">
+                        习题组名称:<input data-bind="value: Name" class="form-control input-lg col-xs-6" autofocus="autofocus">
                     </label>
                     <label class="control-label">
-                        习题组描述:<input data-bind="value: Description" class="form-control input-md">
+                        习题组描述:<input data-bind="value: Description" class="form-control input-lg">
                     </label>
                     <label class="control-label">
                         IsExam?&nbsp;<input data-bind="checked: IsExam" type="checkbox">
@@ -30,7 +30,7 @@
                         <li>
                             <label class="control-label">
                                 题项 <span data-bind="text:$index"></span> 名称:
-                                <input data-bind="value: Name" class="form-control input-md">
+                                <input data-bind="value: Name" class="form-control input-lg">
                             </label>
 
                             <button id="problem" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addProblem">增加问题</button>
@@ -41,7 +41,7 @@
                                 <li>
                                     <label class="control-label">
                                         问题 <span data-bind="text:$parentContext.$index()+'_'+$index() "></span> 描述:
-                                        <input data-bind="value: GeneralInfo" class="form-control input-md">
+                                        <input data-bind="value: GeneralInfo" class="form-control input-lg">
                                     </label>
                                     <br />
                                     <div>
@@ -98,7 +98,7 @@
                 <button id="quiz" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:upload">保存</button>
             </div>
             <div class="col-xs-4">
-                <button id="back" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:cancel">取消</button>
+                <button id="back" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:cancel">返回</button>
             </div>
             <div class="col-xs-4">
                 <button id="new" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:init">清除</button>

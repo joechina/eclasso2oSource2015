@@ -15,12 +15,12 @@
             previous: previous,
             next: next,
             total: total,
-            current:current,
+            current: current,
             currentQuiz: ko.computed(function () {
                 if (problem()) {
                     return problem().Quizzes()[current()];
                 }
-            })            
+            })
         };
 
         //answer.subscribe (function (newValue) {           
@@ -31,6 +31,7 @@
 
         //#region Internal Methods
         function activate(id) {
+            //TODO: fetch saved quiz answers from userquiz table so students do not need to re-do existing answers. 
             data.getproblem(id).then(function (pdata) {
                 var p = pdata.results[0];
 
@@ -50,6 +51,7 @@
 
             current(0);
             $("#goback").css({ display: "block" });
+            $("#refresh").css({ display: "none" });
 
         }
         
@@ -84,8 +86,8 @@
             if (current() == 0)
                 document.getElementById('previous').disabled = false;
             */
-
-            current(current() + 1);
+            if (current() != total() - 1)//single selection go to next after checked, block last one.
+                current(current() + 1);
             /*
             if (current() == total()-1) {
                 document.getElementById('next').disabled = true;
@@ -136,15 +138,16 @@
                 if (q.answer() != null) {
                    
                     submituserquiz(uid, qid, q);
-
-                    // check if student has answered the quiz before by querying UserQuiz table
                 }
-                else {
-                    alert('问题: ' + q.Challenge() + ' 没有回答');
-                }
+                //else {
+                  //  alert('问题: ' + q.Challenge() + ' 没有回答');
+                //}
             }
 
+            updateProgress(problem);
+
             $dialog.modal('hide');
+
             backtolist();
         }
 
@@ -172,6 +175,8 @@
                     data.save(userQuiz).then(function () {
                         logger.log('userQuiz:' + uid + '/' + qid + ' with answer: ' + a());
 
+                        updateProgress(q.Prblem());
+
                     }).fail(function (err) {
                         for (var i = 0; i < err.length; i++) {
                             logger.log(err[i]);
@@ -181,6 +186,7 @@
                 else {// if yes, overwirte previous answer
                     results.results[0].Answer(a());
                     data.save(results.results[0]).then(function () {
+                        updateProgress(q.Problem());
                         logger.log('userQuiz:' + uid + '/' + qid + ' with answer: ' + a());
 
                     }).fail(function (err) {
@@ -191,6 +197,28 @@
                 }
             }).fail(function (err) {
                 alert(err.message);
+            });
+        }
+
+        function updateProgress(problem) {
+            //update progress field for UserExercise
+            var eid = problem().ExersizeSection().ExersizeId();
+            var uid = data.user().Id();
+
+            data.getUserExerciseQuizs(uid, eid).then(function (result) {
+                var progress = result.results.length;
+                data.getuserexersize(uid, eid).then(function (result) {
+                    var ue = result.results[0];
+                    ue.Progress(progress);
+                    data.save(ue).then(function () {
+                        logger.log(uid + '/' + eid + ' progress updated to: ' + ue.Progress());
+
+                    }).fail(function (err) {
+                        for (var i = 0; i < err.length; i++) {
+                            logger.log(err[i]);
+                        }
+                    });
+                });
             });
         }
         //#endregion
