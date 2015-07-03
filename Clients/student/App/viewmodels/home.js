@@ -29,6 +29,7 @@
             server.getCurrentUser().then(function () {
                 var uid = server.user().Id();
                 router.navigate('/#exersizes/' + uid);
+                //router.navigate('/#ex_shell');
             })
         }
         //#endregion

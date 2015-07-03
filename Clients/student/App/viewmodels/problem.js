@@ -139,12 +139,15 @@
                    
                     submituserquiz(uid, qid, q);
                 }
-                else {
-                    alert('问题: ' + q.Challenge() + ' 没有回答');
-                }
+                //else {
+                  //  alert('问题: ' + q.Challenge() + ' 没有回答');
+                //}
             }
 
+            updateProgress(problem);
+
             $dialog.modal('hide');
+
             backtolist();
         }
 
@@ -199,14 +202,14 @@
 
         function updateProgress(problem) {
             //update progress field for UserExercise
-            var eid = problem.ExersizeSection().ExersizeId();
+            var eid = problem().ExersizeSection().ExersizeId();
             var uid = data.user().Id();
 
             data.getUserExerciseQuizs(uid, eid).then(function (result) {
-                var workedarray = result.results;
+                var progress = result.results.length;
                 data.getuserexersize(uid, eid).then(function (result) {
                     var ue = result.results[0];
-                    ue.Progress(workedarray.length);
+                    ue.Progress(progress);
                     data.save(ue).then(function () {
                         logger.log(uid + '/' + eid + ' progress updated to: ' + ue.Progress());
 

@@ -14,17 +14,17 @@
                     { route: 'myclazz', moduleId: 'myclazz', title: '我的课程', nav: 3 },
                     { route: 'password', moduleId: 'password', title: '修改密码', nav: 3 },
                     { route: 'feedback', moduleId: 'feedback', title: '用户反馈', nav: 3 },
-                    { route: 'myreport', moduleId: 'myreport', title: '我的习题报告', nav: 3},
+                    { route: 'myreport', moduleId: 'myreport', title: '我的习题报告', nav: 3 },
+                    { route: 'ex_shell', moduleId: 'ex_shell', title: '新习题库', icon: 'glyphicon glyphicon-bell', nav: 3 },
+                    { route: 'ex_alterego', moduleId: 'ex_alterego', title: 'Alter Ego+', nav: 3 },
+                    { route: 'ex_reflets', moduleId: 'ex_reflets', title: 'Reflets', nav: 3 },
+                    { route: 'ex_saison', moduleId: 'ex_saison', title: 'Saison',  nav: 3 },
                     { route: 'announcements', moduleId: 'announcement', title: '通知', icon: 'glyphicon glyphicon-bell', nav: 11 },
                     { route: 'exersizes/:uid', moduleId: 'exersize', title: '习题库', icon: 'glyphicon glyphicon-list-alt', nav: 12 },
                     { route: 'questions', moduleId: 'question', title: '知识库', icon: 'glyphicon glyphicon-education', nav: 13 },
                     { route: 'me', moduleId: 'me', title: '我', icon: 'glyphicon glyphicon-user', nav: 14 },
-                    { route: 'msgEx', moduleId: 'msgEx', title: '习题管理', icon: '', nav: 3 },
-                    { route: 'uploadQA', moduleId: 'uploadQA', title: '答疑管理', icon: '', nav: 3 },
-                    { route: 'msgclazz', moduleId: 'msgclazz', title: '课程管理', icon: '', nav: 3 },
-                    { route: 'editclazz', moduleId: 'editclazz', title: '编辑课程', icon: '', nav: 3 },
-                    { route: 'report', moduleId: 'report', title: '习题报告', icon: '', nav: 3 },
-                    { route: 'exersizeassign/:eid', moduleId: 'exersizeassign', title: '分配习题', nav: 3 },
+                    { route: 'report', moduleId: 'report', title: '习题报告', icon: 'glyphicon glyphicon-bell', nav: 3 },
+
             ];
 
         return routes
@@ -32,7 +32,10 @@
     return {
         data:data,
         routes: new routes(),
-        quiztypename: quiztypename
+        quiztypename: quiztypename,
+        categories: [{ value: 0, label: 'Alter Ego+' },
+                        { value: 1, label: 'Reflets' },
+                        { value: 2, label: 'Saison' },]
     }
 
     function quiztypename(id) {
@@ -55,4 +58,5 @@
                 break;
         }
     }
+
 });
