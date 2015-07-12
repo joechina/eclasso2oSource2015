@@ -1,0 +1,19 @@
+﻿
+<div data-bind="if: router.activeInstruction() && router.activeInstruction().config.nav > 10">
+    <ul class="g-nav-bottom" data-bind="foreach: router.navigationModel">
+        <!-- ko if: nav > 10-->
+        <li data-bind="css: { active: isActive }">
+            <a data-bind="attr: { href: hash}">
+                <i data-bind="attr:{class: icon }"></i>
+                <span data-bind="html: title"></span>
+            </a>
+        </li>
+        <!--/ko-->
+    </ul>
+</div>
+
+<!--div class="nav-inner">
+    <div class="navbar-inner center-block">
+        <p class="legal_slf">© 2015 eClassO2O&nbsp;&nbsp;&nbsp;&nbsp;All rights reserved&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../tou.html">Terms</a></p>
+    </div>
+</!--div>-->

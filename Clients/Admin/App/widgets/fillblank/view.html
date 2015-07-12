@@ -1,0 +1,30 @@
+﻿<!--填空题需填写问题和对应的答案。-->
+
+<div class="widget">
+    <!--ko if: isediting() == false-->
+    
+    <br />
+    <span data-bind="text:settings.item.Challenge()"></span>
+    <br />
+    <br />
+    <input style="font-size:18px" data-bind="value:settings.item.answer" class="form-control input-lg">
+
+    <br />
+    <!-- /ko-->
+    <!--ko if: isediting() == true -->
+
+    <label>问题: <input data-bind="value: settings.item.Challenge" class="form-control input-lg"></label>
+    <br />
+    <label>标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-lg" /></label>
+    <!-- /ko-->
+
+    <!--ko if: isreporting()-->
+
+    <span data-bind="text:settings.item.Challenge()"></span>
+    <br />
+    <label class="block">标准答案: <span data-bind="text:settings.item.Answer()" /></label>
+    <br/>
+    <label class="block" style="color:blue">学生回答: <span data-bind="text:settings.item.answer()"></span></label>
+    <br />
+    <!-- /ko-->
+</div>

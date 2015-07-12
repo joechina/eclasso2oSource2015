@@ -1,0 +1,28 @@
+﻿
+<div class="container-fluid">
+    <br />
+    <div class="form-group">
+        <label>选择已递交的习题: </label>
+        <select id='exersize' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: exersizes(),
+                                                                                                            optionsText: 'Name',
+                                                                                                            value: ex,
+                                                                                                            optionsCaption: '请选择...'"></select>
+    </div>
+
+    <!-- ko if: exersize()-->
+    <br />
+    <div data-bind="with:exersize">
+        <div class="list-group list-full-with" data-bind="foreach:Sections">
+            <h2 data-bind="text:Name()"></h2>
+            <br />
+            <div class="list-group-item" href="#" data-bind="foreach:Problems">
+                <span data-bind="text:GeneralInfo()"></span>
+                <div data-bind="widget: { kind: 'media', item: $data}"></div>
+                <div class="list-group-item" href="#" data-bind="foreach:Quizzes">
+                    <div data-bind="widget: { kind: $root.quiztypename(QuizType()), item: $data, isreporting:true, isediting:null, uid:$root.user().Id()}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ko-->
+</div>

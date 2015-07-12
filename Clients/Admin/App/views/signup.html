@@ -1,0 +1,60 @@
+﻿
+<div class="container-fluid">
+
+    <!--div style="margin:0 auto;width:300px" class="front">-->
+    <div class="error">
+        <ul data-bind="foreach: errs">
+            <li><span data-bind="text: $data"></span></li>
+        </ul>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+        <label class="control-label" for="userid">登录名</label>
+        <div>
+            <input id="userid" name="userid" type="text" placeholder="手机号码/邮箱" data-bind="value: userid" class="form-control input-lg">
+        </div>
+    </div>
+    <!-- Display Name input-->
+    <div class="form-group">
+        <label class="control-label" for="username">姓名</label>
+        <div>
+            <input id="username" name="username" type="text" placeholder="姓名" data-bind="value: username" class="form-control input-lg">
+        </div>
+    </div>
+    <!-- Password input-->
+    <div class="form-group">
+        <label class="control-label" for="password">密码</label>
+        <div>
+            <input id="password" name="password" type="password" data-bind="value: password" placeholder="至少 6 个字符" class="form-control input-lg">
+        </div>
+    </div>
+    <!-- Password input-->
+    <div class="form-group">
+        <label class="control-label" for="password">确认密码</label>
+        <div>
+            <input id="password1" name="textinput" type="password" data-bind="value: password2" placeholder="确认密码" class="form-control input-lg">
+        </div>
+    </div>
+    <!-- Multiple Checkboxes -->
+    <!--<div class="form-group">
+        <label class="control-label" for="checkboxes">Remember me</label>
+        <div>
+            <div class="checkbox">
+                <label for="checkboxes-0">
+                    <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
+                </label>
+            </div>
+        </div>
+    </div>-->
+    <!-- Button -->
+    <div class="form-group">
+        <div>
+            <button id="signup" name="singlebutton" class="btn btn-primary btn-block" data-bind="click: signup">注册</button>
+            <br />
+            <br />
+            <span>单击“注册”即表示您已阅读并同意<a href="../../tou.html"> 使用条款 </a></span>
+        </div>
+    </div>
+
+</div>

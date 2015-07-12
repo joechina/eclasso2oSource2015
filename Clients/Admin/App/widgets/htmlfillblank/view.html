@@ -1,0 +1,33 @@
+﻿<!--html 填空题: 问题会直接显示为 html 段落，学生直接编辑 html 段落内容。-->
+
+<div class="widget">
+    <!--ko if: isediting()==false -->
+  
+    <div style="border-style:solid;border-width:1px;padding:15px 15px 15px" data-bind="html:settings.item.Challenge()"></div>
+        <br />
+
+        <h4>答案：(用分号 ; 断开） </h4>
+
+        <input data-bind="value:settings.item.answer" class="form-control input-lg">
+        <br />
+    
+    <!-- /ko-->
+    
+    <!--ko if: isediting() == true -->
+    
+    <label>问题: <textarea data-bind="wysiwyg: settings.item.Challenge, wysiwygConfig: { menubar: false }" class="form-control input-lg"/></label>
+    <br />
+    <label>标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-lg" /></label>   
+   <!-- /ko-->
+
+    <!--ko if: isreporting() -->
+
+    <span data-bind="html: settings.item.Challenge()" ></span>
+    <br />
+
+    <label class="block">标准答案: <span data-bind="text:settings.item.Answer()" /></label>
+    <br />
+    <label class="block" style="color:blue">学生回答: <span data-bind="text:settings.item.answer()"></span></label>
+    <br />
+    <!-- /ko-->
+</div>

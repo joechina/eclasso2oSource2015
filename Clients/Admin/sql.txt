@@ -1,0 +1,19 @@
+﻿select:
+
+select a.Id, count(d.Id) from exersizes a
+inner join exersizesections b on a.id = b.exersizeId
+inner join problems c on b.Id = c.exersizesectionid
+inner join quizs d on c.Id = d.problemId
+group by a.Id
+
+
+update
+
+update exersizes
+set totalquizzes = f.cnt
+from (select a.Id, count(d.Id) as cnt from exersizes a
+inner join exersizesections b on a.id = b.exersizeId
+inner join problems c on b.Id = c.exersizesectionid
+inner join quizs d on c.Id = d.problemId
+group by a.Id) f
+where exersizes.Id = f.Id

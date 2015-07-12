@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Parrot Admin</title>
+</head>
+
+<body style="overflow:hidden">
+    <div data-bind="compose: { view: 'header'}"></div>
+    <section id="content" data-bind="router: { cacheViews: true }"></section>
+    <!--<footer data-bind="compose: { view: 'footer' },visible: router.activeInstruction() && router.activeInstruction().config.nav > 0"></footer>-->
+    <footer data-bind="compose: { view: 'footer' }" ></footer>
+    <div class="loader" data-bind="css: { active: router.isNavigating }">
+        <img src="../../Content/images/loader.gif" />
+    </div>
+</body>
+</html>

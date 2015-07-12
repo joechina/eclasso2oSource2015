@@ -1,0 +1,21 @@
+﻿
+<div class="container" style="height:600px; overflow:auto">
+    <div>
+        <div class="form-group" data-bind="with:question">
+            <label class="control-label" for="title">
+                问题标题:<input id="title" name="title" data-bind="value: QuestionDetail" class="form-control input-lg" autofocus="autofocus">
+            </label>
+            <br/>
+            <br/>
+            <label class="control-label" for="answer">
+                回答：<textarea id="answer" data-bind="wysiwyg : Answer"></textarea>
+            </label>
+        </div>
+
+        <div id="buttons">
+            <button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:upload">上传</button>
+            <button id="back" name="singlebutton" class="btn btn-primary" data-bind="click:back">返回</button>
+            <button id="new" name="singlebutton" class="btn btn-primary" type="reset">清除</button>
+        </div>
+    </div>
+</div>
