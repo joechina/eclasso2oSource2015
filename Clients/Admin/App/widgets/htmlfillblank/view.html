@@ -17,7 +17,10 @@
     
     <label>问题: <textarea data-bind="wysiwyg: settings.item.Challenge, wysiwygConfig: { menubar: false }" class="form-control input-lg"/></label>
     <br />
-    <label>标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-lg" /></label>   
+    <label>标准答案: <textarea data-bind="wysiwyg: settings.item.Answer, wysiwygConfig: { menubar: false }" class="form-control input-lg" /></label>
+    <br/>
+    <label>注释: <textarea row="3" data-bind="wysiwyg:settings.item.Comment" class="form-control input-lg" /></label>
+    <br />
    <!-- /ko-->
 
     <!--ko if: isreporting() -->
@@ -25,7 +28,7 @@
     <span data-bind="html: settings.item.Challenge()" ></span>
     <br />
 
-    <label class="block">标准答案: <span data-bind="text:settings.item.Answer()" /></label>
+    <label class="block">标准答案: <span data-bind="html:settings.item.Answer()" /></label>
     <br />
     <label class="block" style="color:blue">学生回答: <span data-bind="text:settings.item.answer()"></span></label>
     <br />

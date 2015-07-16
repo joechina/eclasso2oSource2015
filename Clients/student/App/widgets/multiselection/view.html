@@ -36,9 +36,11 @@
         </li>
     </ul>
 
-    <label class="block">标准答案: <span data-bind="text:settings.item.Answer()" /></label>
+    <label class="block">标准答案: <span style="font-weight:normal" data-bind="html:settings.item.Answer()" /></label>
     <br />
-    <label class="block" style="color:blue">学生回答: <span data-bind="text:settings.item.answer()"></span></label>
+    <label class="block">注释: <span style="font-weight:normal" data-bind="html:settings.item.Comment()" /></label>
+    <br />
+    <label class="block">学生回答: <span style="font-weight:normal; color:blue" data-bind="text:settings.item.answer()"></span></label>
     <br />
     <!-- /ko-->
 </div>

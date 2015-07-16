@@ -24,6 +24,7 @@ namespace Parrot.Model
         public int Score { get; set; }
         public string Key { get; set; }
         public string Answer { get; set; }
+        public string Comment { get; set; }
         public virtual Problem Problem { get; set; }
         public virtual List<UserQuiz> User { get; set; }
     }

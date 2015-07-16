@@ -22,7 +22,10 @@
         </li>
     </ul>
 
-    <label class="block">标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-lg" /></label>
+    <label class="block">标准答案: <input data-bind="value: settings.item.Answer" class="form-control input-lg" /></label>
+    <br/>
+    <label>注释: <textarea row="3" data-bind="wysiwyg:settings.item.Comment" class="form-control input-lg" /></label>
+    <br />
     <!-- /ko-->
 
     <!--ko if: isreporting()-->
@@ -37,6 +40,8 @@
     </ul>
 
     <label class="block">标准答案: <span data-bind="text:settings.item.Answer()" /></label>
+    <br />
+    <label class="block">注释: <span data-bind="html:settings.item.Comment()" /></label>
     <br />
     <label class="block" style="color:blue">学生回答: <span data-bind="text:settings.item.answer()"></span></label>
     <br />

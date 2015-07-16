@@ -21,13 +21,16 @@
    <!-- /ko-->
 
     <!--ko if: isreporting() -->
-
+    <label class="block" style="color:blueviolet">问题:</label>
     <span data-bind="html: settings.item.Challenge()" ></span>
     <br />
-
-    <label class="block">标准答案: <span data-bind="text:settings.item.Answer()" /></label>
+    <label class="block">标准答案: <span style="font-weight:normal" data-bind="html:settings.item.Answer()" /></label>
     <br />
-    <label class="block" style="color:blue">学生回答: <span data-bind="text:settings.item.answer()"></span></label>
+    <!-- ko if: settings.item.Comment() != null -->
+    <label class="block">注释: <span style="font-weight:normal" data-bind="html:settings.item.Comment()" /></label>
+    <br />
+    <!-- /ko-->
+    <label class="block">学生回答: <span style="color:green" data-bind="text:settings.item.answer()"></span></label>
     <br />
     <!-- /ko-->
 </div>
