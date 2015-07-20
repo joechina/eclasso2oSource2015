@@ -1,0 +1,108 @@
+﻿
+<div class="container" style="height:800px; overflow:auto">
+
+    <div>
+        <div class="form-group">
+            <ul data-bind="with: exercise">
+                <li>
+                    <label class="control-label">
+                        习题类别:<select class="form-control dropdown" data-observable="DepartmentId" data-bind="options: $parent.categories,
+                                                                                                                value: $parent.cat,
+                                                                                                                optionsCaption: '请选择...'"></select>
+                    </label>
+                    <label class="control-label">
+                        习题组名称:<input data-bind="value: Name" class="form-control input-lg col-xs-6" autofocus="autofocus">
+                    </label>
+                    <label class="control-label">
+                        习题组描述:<input data-bind="value: Description" class="form-control input-lg">
+                    </label>
+                    <label class="control-label">
+                        IsExam?&nbsp;<input data-bind="checked: IsExam" type="checkbox">
+                    </label>
+                    <label class="control-label">
+                        Visible?&nbsp;<input data-bind="checked: Visible" type="checkbox">
+                    </label>
+                    <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addSection">增加题项</button>
+
+                </li>
+                <li data-bind="visible: Sections().length > 0">
+                    <ul class="section" data-bind="foreach: Sections">
+                        <li>
+                            <label class="control-label">
+                                题项 <span data-bind="text:$index"></span> 名称:
+                                <input data-bind="value: Name" class="form-control input-lg">
+                            </label>
+
+                            <button id="problem" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addProblem">增加问题</button>
+                            <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteSection">删除题项</button>
+                        </li>
+                        <li data-bind="visible: Problems().length > 0">
+                            <ul class="problem" data-bind="foreach: Problems">
+                                <li>
+                                    <label class="control-label">
+                                        问题 <span data-bind="text:$parentContext.$index()+'_'+$index() "></span> 描述:
+                                        <input data-bind="value: GeneralInfo" class="form-control input-lg">
+                                    </label>
+                                    <br />
+                                    <div>
+                                        <label class="control-label" for="audioinput">
+                                            音频文件
+                                        </label>
+                                        <input id="mp3file" name="audioinput" type="file" class="form-control input-md" data-bind="event: { change: function() { $root.uploadmedia($data, $element.files[0]) } }">
+                                        <audio controls id='audio' />
+                                    </div>
+                                    <br />
+                                    <!--div>
+                                        <label class="control-label" for="textinput">
+                                            阅读文章
+                                        </label>
+                                        <textarea id="txt" name="textinput" class="form-control input-md" data-bind="event: { change: function() { $root.uploadtext($data) } }, wysiwyg:$root.text, wysiwygConfig: { menubar: false }"></textarea>
+                                    </!--div>-->
+                                    <br />
+                                    <div>
+                                        <label class="control-label" for="imageinput">
+                                            图像
+                                        </label>
+                                        <input id="picfile" type="file" class="form-control input-md" data-bind="event: { change: function() {  $root.uploadimage($data, $element.files[0])} }">
+                                        <img id="image" />
+                                    </div>
+                                    <br />
+
+                                    <button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:$root.addQuiz">增加提问</button>
+                                    <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteProblem">删除问题</button>
+                                </li>
+                                <li data-bind="visible: Quizzes().length > 0">
+                                    <ul class="quiz" data-bind="foreach: Quizzes">
+                                        <li>
+                                            <label class="control-label">问题 <span data-bind="text:$parentContext.$parentContext.$index()+'_'+ $parentContext.$index() +'_'+ $index()"></span></label>
+                                            <button id="section" name="singlebutton" class="btn btn-primary" data-bind="click:$root.deleteQuiz" style="margin-left:30px;">删除提问</button>
+                                            <label>
+                                                问题类型:
+                                                <select id='quiztype' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: $root.quizTypes,
+                                                                                                                                                optionsText: 'label',
+                                                                                                                                                optionsValue: 'value',
+                                                                                                                                                value: QuizType,
+                                                                                                                                                optionsCaption: '请选择...'"></select>
+                                            </label>
+                                            <div data-bind="widget: { kind: $root.global.quiztypename($data.QuizType()), item: $data, isediting:true}"></div>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+                <button id="quiz" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:upload">保存</button>
+            </div>
+            <div class="col-xs-4">
+                <button id="back" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:cancel">返回</button>
+            </div>
+            <div class="col-xs-4">
+                <button id="new" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:init">清除</button>
+            </div>
+        </div>
+    </div>
+</div>

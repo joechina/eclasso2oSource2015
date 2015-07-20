@@ -25,9 +25,8 @@
     <!-- /ko-->
 
     <!--ko if: isreporting()-->
-    <br />
+     <label class="block" style="color:blueviolet">问题：</label>
     <span data-bind="text:settings.item.Challenge()"></span>
-    <br />
     <ul data-bind="foreach: settings.item.options" class="options">
         <li class="selectionoption">
             <input type="radio" name="group1" data-bind="attr: {value: $data.text}" />
@@ -35,10 +34,14 @@
         </li>
     </ul>
 
-    <label class="block">标准答案: <span data-bind="text:settings.item.Answer()" /></label>
-
-    <label class="block" style="color:blue">学生回答: <span data-bind="text:settings.item.answer()"></span></label>
-
+    <label class="block">标准答案: <span style="font-weight:normal" data-bind="html:settings.item.Answer()" /></label>
+    <br/>
+    <!-- ko if: settings.item.Comment() != null -->
+    <label class="block">注释: <span style="font-weight:normal" data-bind="html:settings.item.Comment()" /></label>
+    <br />
+    <!-- /ko-->
+    <label class="block">学生回答: <span style="color:green" data-bind="text:settings.item.answer()"></span></label>
+    <br/>
     <!-- /ko-->
 
 </div>

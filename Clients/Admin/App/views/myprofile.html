@@ -1,0 +1,57 @@
+﻿<div>
+    <div class="list-group list-full-with" style="font-size:large">
+        <div class="list-group-item">
+            <div class="row">
+                <div class="col-xs-4">
+                    登录名
+                </div>
+                <div class="col-xs-8">
+                    <h4 class="list-group-item-heading" data-bind="text: user().UserId()"></h4>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="row">
+                <div class="col-xs-4">
+                    显示名称
+                </div>
+                <div class="col-xs-8">
+                    <h4 class="list-group-item-heading" data-bind="text: user().Name()"></h4>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="row">
+                <div class="col-xs-4">
+                    邮箱地址
+                </div>
+                <div class="col-xs-8">
+                    <h4 class="list-group-item-heading" data-bind="text: user().Email()"></h4>
+                </div>
+            </div>
+        </div>
+        <div class="list-group-item">
+            <div class="row">
+                <div class="col-xs-4">
+                    手机号码
+                </div>
+                <div class="col-xs-8">
+                    <h4 class="list-group-item-heading" data-bind="text: user().Phone()"></h4>
+                </div>
+            </div>
+        </div>
+
+        <br/>
+        <div class="row" >
+            <div class="col-xs-4">
+                <button id="save" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:editprofile">编辑</button>
+            </div>
+            <div class="col-xs-4">
+                <button id="cancel" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:chgpwd">修改密码</button>
+            </div>
+            <div class="col-xs-4">
+                <button id="cancel" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:logout">注销</button>
+            </div>
+        </div>
+    </div>
+</div>

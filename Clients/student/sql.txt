@@ -32,3 +32,6 @@ inner join quizs d on c.Id = d.problemId
 inner join userquizs uq on uq.QuizId = d.Id
 where uq.UserId = 1
 group by a.Id
+
+==========================
+eclasso2o@outlook.com/Support_001

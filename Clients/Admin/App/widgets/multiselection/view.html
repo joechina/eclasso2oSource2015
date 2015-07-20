@@ -1,0 +1,49 @@
+﻿<!--多选题需填写问题，选项 (Key) 和答案。选项用逗号　","　分隔-->
+<div class="widget">
+    <!--ko if: isediting() == false -->
+    <br />
+    <span data-bind="text:settings.item.Challenge()"></span>
+    <br />
+    <ul data-bind="foreach: settings.item.options" class="options">
+        <li class="selectionoption">
+            <input type="checkbox" name="mgroup" data-bind="attr: {value: $data.text}" />
+            <span data-bind="text:text"></span>
+        </li>
+    </ul>
+    <!-- /ko-->
+
+    <!--ko if: isediting() == true-->
+    <label class="block">问题: <input data-bind="value: settings.item.Challenge" class="form-control input-lg"></label>
+    <label class="block">选项:<button id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:addoptions">加选项</button></label>
+    <ul data-bind="foreach: settings.item.options" class="options">
+        <li class="selectionoption">
+            <input type="text" data-bind="value: text" class="optioninput form-control input-lg" />
+            <a href="#" id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:$parent.deleteoption">删除</a>
+        </li>
+    </ul>
+
+    <label class="block">标准答案: <input data-bind="value: settings.item.Answer" class="form-control input-lg" /></label>
+    <br/>
+    <label>注释: <textarea row="3" data-bind="wysiwyg:settings.item.Comment" class="form-control input-lg" /></label>
+    <br />
+    <!-- /ko-->
+
+    <!--ko if: isreporting()-->
+    <br />
+    <span data-bind="text:settings.item.Challenge()"></span>
+    <br />
+    <ul data-bind="foreach: settings.item.options" class="options">
+        <li class="selectionoption">
+            <input type="checkbox" name="mgroup" data-bind="attr: {value: $data.text}" />
+            <span data-bind="text:text"></span>
+        </li>
+    </ul>
+
+    <label class="block">标准答案: <span data-bind="text:settings.item.Answer()" /></label>
+    <br />
+    <label class="block">注释: <span data-bind="html:settings.item.Comment()" /></label>
+    <br />
+    <label class="block" style="color:blue">学生回答: <span data-bind="text:settings.item.answer()"></span></label>
+    <br />
+    <!-- /ko-->
+</div>

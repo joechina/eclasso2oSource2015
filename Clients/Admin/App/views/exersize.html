@@ -1,0 +1,125 @@
+﻿
+<div class="container-fluid" style="padding-bottom:60px">
+
+    <span class="label label-danger" style="font-size:14px">注意：习题的答案在递交之后将无法再修改</span>
+    <br />
+    <br />
+    <!--ko ifnot: exersize()-->
+    <!--ko if : def_exersizes().length > 0-->
+    <span class="label label-info" style="font-size:18px">Alter Ego+ 习题</span>
+    <div data-bind="foreach: def_exersizes" class="list-group list-full-with">
+        <div data-bind="with:Exersize()">
+            <div  class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <img src="../../Content/images/alter-ego.jpg" />
+                    </div>
+                    <div class="col-xs-6" data-bind="event: {click: function() {$root.openexersize($data, $parent.Completed)}}">
+                        <span class="list-group-item-heading" data-bind="text: Name"></span>
+                        <p class="announcement-date" data-bind="text:Description() + ' - 共 ' + TotalQuizzes() + ' 题'"></p>
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="btn btn-primary btn-block" data-bind="disable: $parent.Completed, event: {click: function() {$root.submit($data)} }">递交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ko-->
+    <!--ko if : add_exersizes().length > 0-->
+    <br />
+    <br />
+    <span class="label label-info" style="font-size:18px">Reflets 习题</span>
+    <div data-bind="foreach: add_exersizes" class="list-group list-full-with">
+        <div data-bind="with:Exersize()">
+            <div  class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <img src="../../Content/images/reflets.jpg" />
+                    </div>
+                    <div class="col-xs-6" data-bind="click: $root.openexersize">
+                        <span class="list-group-item-heading" data-bind="text: Name"></span>
+                        <p class="announcement-date">
+                            共&nbsp;
+                            <span class="announcement-date" data-bind="text:TotalQuizzes() + ' 题'"></span>
+                        </p>
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="btn btn-primary btn-block" data-bind="disable: $parent.Completed, event: {click: function() {$root.submit($data)} }">递交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ko-->
+    <!--ko if : saison_exersizes().length > 0-->
+    <br />
+    <br />
+    <span class="label label-info" style="font-size:18px">Saison 习题</span>
+    <div data-bind="foreach: saison_exersizes" class="list-group list-full-with">
+        <div data-bind="with:Exersize()">
+            <div class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <img src="../../Content/images/logo.png" />
+                    </div>
+                    <div class="col-xs-6" data-bind="click: $root.openexersize">
+                        <span class="list-group-item-heading" data-bind="text: Name"></span>
+                        <p class="announcement-date" data-bind="text:Description() + ' - 共' + TotalQuizzes() + ' 题'"></p>
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="btn btn-primary btn-block" data-bind="disable: $parent.Completed, event: {click: function() {$root.submit($data)} }">递交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ko-->
+    <!--ko if : other_exersizes().length > 0-->
+    <br />
+    <br />
+    <span class="label label-info" style="font-size:18px">其它习题</span>
+    <div data-bind="foreach: other_exersizes" class="list-group list-full-with">
+        <div data-bind="with:Exersize()">
+            <div class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <img src="../../Content/images/logo.png" />
+                    </div>
+                    <div class="col-xs-6">
+                        <span class="list-group-item-heading" data-bind="text: Name, click: $root.openexersize"></span>
+                        <p class="announcement-date" data-bind="text:Description() + ' - 共' + TotalQuizzes() + ' 题'"></p>
+                    </div>
+                    <div class="col-xs-4">
+                        <button class="btn btn-primary btn-block" data-bind="disable: $parent.Completed, event: {click: function() {$root.submit($data)} }">递交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ko-->
+    <!--/ko-->
+    <!--ko if: exersize() -->
+    <h2 style="background-color:#59c1e8;" data-bind="text:exersize().Name"></h2>
+    <div class="panel panel-default" data-bind="foreach: exersize().Sections">
+        <div class="panel-heading" style="background-color:#b8e0ee;font-size:18px">
+            <span data-bind="text: Name"></span>
+        </div>
+        <div class="list-group" data-bind="foreach: Problems">
+            <a style="line-height:2" class="list-group-item" href="#" data-bind="attr: { href: '#problem/' + Id() }">
+                <div class="row" style="font-size:16px">
+                    <div class="col-xs-9">
+                        <span data-bind="text: GeneralInfo"></span>
+                    </div>
+                    <div class="col-xs-3">
+                        <span class="glyphicon glyphicon-menu-right"></span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <button name="singlebutton" class="btn btn-primary btn-block" data-bind="click:backtolist">返回</button>
+    </div>
+    <!--/ko-->
+</div>

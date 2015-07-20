@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <br />
     <div class="form-group">
-        <label>选择习题类型: </label>
+        <label class="announcement-title">选择习题类型: </label>
         <select id='exersize' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: categories,
                                                                                                             optionsText: 'label',
                                                                                                             optionsValue: 'value',
@@ -11,7 +11,7 @@
 
     </div>
     <div class="form-group">
-        <label>选择已递交的习题: </label>
+        <label class="announcement-title">选择已递交的习题: </label>
         <select id='exersize' class="form-control dropdown" data-observable="DepartmentId" data-bind="options: exersizes(),
                                                                                                             optionsText: function(item) {
                                                                                                                 if (item.Description() != null)
@@ -35,6 +35,7 @@
                 <div class="list-group-item" href="#" data-bind="foreach:Quizzes">
                     <div data-bind="widget: { kind: $root.quiztypename(QuizType()), item: $data, isreporting:true, isediting:null, uid:$root.user().Id()}"></div>
                 </div>
+                <br/>
             </div>
         </div>
     </div>
