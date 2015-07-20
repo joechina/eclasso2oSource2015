@@ -11,7 +11,7 @@
 
         <!-- ko if: problem().Media() && problem().Media().Type() == 'mp3'-->
         <br>
-        <audio controls data-bind="attr: {src: problem().Media().Content}" />
+        <audio class="audio" controls data-bind="attr: {src: problem().Media().Content}" />
         <br />
         <br />
         <!-- /ko-->

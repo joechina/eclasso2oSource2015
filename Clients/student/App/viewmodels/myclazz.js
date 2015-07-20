@@ -13,6 +13,7 @@
             userclazzes:userclazzes,
             activate: activate,
             quitclazz: quitclazz,
+            join:join,
             router: router,
         };
 
@@ -54,5 +55,7 @@
             // TODO: delete this record from UserClasses table
         }
 
+        function join() {
+        }
         //#endregion
     });
