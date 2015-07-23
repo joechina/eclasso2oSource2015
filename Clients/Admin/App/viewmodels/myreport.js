@@ -36,8 +36,10 @@
                 if (newValue != null) {
                     var eid = newValue.Id();
 
-                    data.getexersize(eid).then(function (data) {
-                        exersize(data.results[0]);
+                    data.getexersize(eid).then(function (sd) {
+                        var ex = sd.results[0];
+                        data.keepExerciseSeq(ex);
+                        exersize(ex);
                     })
                 }
             });

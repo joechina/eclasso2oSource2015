@@ -13,7 +13,7 @@ namespace Parrot.Model
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
+        
         public int ProblemId { get; set; }
         public int seq { get; set; }
 
