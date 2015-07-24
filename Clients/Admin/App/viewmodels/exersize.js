@@ -63,8 +63,10 @@
         function openexersize(selected, c) {
             if (!c()) { // if not completed
                 var id = selected.Id();
-                data.getexersize(id).then(function (data) {
-                    exersize(data.results[0]);
+                data.getexersize(id).then(function (sd) {
+                    var ex = sd.results[0];
+                    data.keepExerciseSeq(ex);
+                    exersize(ex);
                 });
             }
             else {

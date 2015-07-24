@@ -13,11 +13,10 @@ namespace Parrot.Model
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
         public string Name { get; set; }
 
         public int ExersizeId { get; set; }
-
+        public int Seq { get; set; }
         public virtual Exersize Exersize {get; set;}
 
         public virtual List<Problem> Problems { get; set; }

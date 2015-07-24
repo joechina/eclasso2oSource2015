@@ -45,8 +45,10 @@
             }
             else {
                 vm.exercise(null);
-                data.getexersize(eid).then(function (data) {
-                    vm.exercise(data.results[0]);
+                data.getexersize(eid).then(function (sd) {
+                    var ex = sd.results[0];
+                    data.keepExerciseSeq(ex);
+                    vm.exercise(ex);
                     var cur_eid = vm.exercise().Id();
                 });
             }
