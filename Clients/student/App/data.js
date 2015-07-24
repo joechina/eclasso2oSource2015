@@ -47,16 +47,13 @@
             getStudents: getStudents,
             getuser:getuser,
             getUserQuizs: getUserQuizs,
-            getUserExerciseQuizs : getUserExerciseQuizs,
+            getUserExerciseQuizs: getUserExerciseQuizs,
+            getManager: getManager,
             create: create,
             user: user,
         }
 
         return data;
-
-        function create(entityname) {
-            return manager.createEntity(entityname);
-        }
 
         function canDeactivate() {
             if (manager.hasChanges()) {
@@ -317,6 +314,10 @@
             if (islocal === true) {
                 //export to local storage
             }
+        }
+
+        function getManager() {
+            return manager;
         }
 
         function create(entity) {
