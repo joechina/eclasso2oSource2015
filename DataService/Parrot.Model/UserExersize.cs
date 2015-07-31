@@ -18,7 +18,7 @@ namespace Parrot.Model
         public string Progress { get; set; }
         public string Result { get; set; } //Structure including - user answers and scores
         public bool IsOwner { get; set; }
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public bool Completed { get; set; }
         public int ExersizeId { get; set; }
         //public virtual User User { get; set; }
