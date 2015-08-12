@@ -32,6 +32,7 @@
             getuserannouncements: getuserannouncements,
             getuserexersize: getuserexersize,
             getuserexersizes: getuserexersizes,
+            getclassexersizes: getclassexersizes,
             getuserexersizes_status: getuserexersizes_status,
             getallexersizes: getallexersizes,
             getexersize: getexersize,
@@ -158,6 +159,11 @@
 
         function getallexersizes() {
             var query = breeze.EntityQuery.from('Exersizes');
+            return manager.executeQuery(query);
+        }
+
+        function getclassexersizes(cid) {
+            var query = breeze.EntityQuery.from('UserExersizes').where("ClassId", "==", cid).orderBy('ExersizeId');
             return manager.executeQuery(query);
         }
 
