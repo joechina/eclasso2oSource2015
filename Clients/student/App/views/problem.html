@@ -11,7 +11,9 @@
 
         <!-- ko if: currentMedia() && currentMedia().Type() == 'mp3'-->
         <br>
+
         <audio controls data-bind="attr: {src: currentMedia().Content()}" />
+
         <br />
         <br />
         <!-- /ko-->

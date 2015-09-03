@@ -403,3 +403,7 @@ ul.options {
 .widget {
     font-size:18px;
 }
+
+.audio {
+    width:100%;
+}

@@ -28,14 +28,15 @@
             getCurrentUser: getCurrentUser,
             getquestions: getquestions,
             getallannouncements: getallannouncements,
-            getsentannouncements:getsentannouncements,
+            getsentannouncements: getsentannouncements,
             getuserannouncements: getuserannouncements,
             getuserexersize: getuserexersize,
             getuserexersizes: getuserexersizes,
+            getclassexersizes: getclassexersizes,
             getuserexersizes_status: getuserexersizes_status,
             getallexersizes: getallexersizes,
-            getexersize:getexersize,
-            getproblem:getproblem,
+            getexersize: getexersize,
+            getproblem: getproblem,
             getsections: getsections,
             getClasses: getClasses,
             getClass: getClass,
@@ -45,10 +46,11 @@
             getUsers: getUsers,
             getTeachers: getTeachers,
             getStudents: getStudents,
-            getuser:getuser,
+            getuser: getuser,
             getUserQuizs: getUserQuizs,
             getUserExerciseQuizs: getUserExerciseQuizs,
             keepExerciseSeq: keepExerciseSeq,
+            getManager: getManager,
             create: create,
             user: user,
         }
@@ -58,14 +60,10 @@
             ex.Sections().sort(function (left, right) { return left.Seq() < right.Seq() ? -1 : 1 });
             ex.Sections().forEach(function (s) {
                 s.Problems().sort(function (left, right) { return left.Seq() < right.Seq() ? -1 : 1 });
-                s.Problems().forEach(function(q) {
+                s.Problems().forEach(function (q) {
                     q.Quizzes().sort(function (left, right) { return left.Seq() < right.Seq() ? -1 : 1 });
                 })
             })
-        }
-
-        function create(entityname) {
-            return manager.createEntity(entityname);
         }
 
         function canDeactivate() {
@@ -122,12 +120,12 @@
         }
 
         function getsentannouncements() {
-            var query = breeze.EntityQuery.from('Announcements').where("Draft","==","0");
+            var query = breeze.EntityQuery.from('Announcements').where("Draft", "==", "0");
             return manager.executeQuery(query);
         }
 
         function getuserannouncements(id) {
-            
+
             var query = breeze.EntityQuery.from('UserAnnouncements');
             return manager.executeQuery(query);
         }
@@ -159,8 +157,13 @@
             return manager.executeQuery(query);
         }
 
-        function getallexersizes () {
+        function getallexersizes() {
             var query = breeze.EntityQuery.from('Exersizes');
+            return manager.executeQuery(query);
+        }
+
+        function getclassexersizes(cid) {
+            var query = breeze.EntityQuery.from('UserExersizes').where("ClassId", "==", cid).orderBy('ExersizeId');
             return manager.executeQuery(query);
         }
 
@@ -231,7 +234,7 @@
             var query = breeze.EntityQuery.from('Users').where("Id", "==", id);
             return manager.executeQuery(query);
         }
-        
+
         function save(entity) {
             if (entity.quizCount) {
                 if (entity.quizCount() !== entity.TotalQuizzes()) {
@@ -276,7 +279,7 @@
                     'name': username,
                     'password': password,
                     'confirmPassword': password2,
-                    'role':role
+                    'role': role
                 },
                 error: function (err) {
                     errs.push(err.responseText);
@@ -312,7 +315,7 @@
 
         function setAccessToken(accessToken) {
             if (accessToken === "") {
-                localStorage.setItem("lastsignin",undefined);
+                localStorage.setItem("lastsignin", undefined);
             }
             sessionStorage.setItem("accessToken", accessToken);
         };
@@ -327,6 +330,10 @@
             if (islocal === true) {
                 //export to local storage
             }
+        }
+
+        function getManager() {
+            return manager;
         }
 
         function create(entity) {
@@ -375,8 +382,7 @@
         function QuizInit(self) {
             self.options = ko.observableArray();
             self.type = ko.computed(function () {
-                switch(self.QuizType())
-                {
+                switch (self.QuizType()) {
                     case 0:
                         return 'fillblank';
                     case 1:

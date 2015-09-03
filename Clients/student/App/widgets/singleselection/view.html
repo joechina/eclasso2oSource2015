@@ -33,15 +33,16 @@
             <span data-bind="text:text"></span>
         </li>
     </ul>
-
+    <br />
+    <label class="block">学生回答: <span style="color:green" data-bind="text:settings.item.answer()"></span></label>
+    <br />
     <label class="block">标准答案: <span style="font-weight:normal" data-bind="html:settings.item.Answer()" /></label>
     <br/>
     <!-- ko if: settings.item.Comment() != null -->
-    <label class="block">注释: <span style="font-weight:normal" data-bind="html:settings.item.Comment()" /></label>
-    <br />
+    <label class="block">录音全文: <span style="font-weight:normal" data-bind="html:settings.item.Comment()" /></label>
+
     <!-- /ko-->
-    <label class="block">学生回答: <span style="color:green" data-bind="text:settings.item.answer()"></span></label>
-    <br/>
+
     <!-- /ko-->
 
 </div>
