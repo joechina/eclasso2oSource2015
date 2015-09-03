@@ -16,6 +16,10 @@
             router: router,
         };
 
+        b_shouter.subscribe(function (newValue) {
+            back();
+        }, this, "back_viewmodels/myclazz");
+
         return vm;
 
         //#region Internal Methods
@@ -52,6 +56,10 @@
             clazz(selected);
 
             // TODO: delete this record from UserClasses table
+        }
+
+        function back() {
+            router.navigateBack();
         }
 
         //#endregion

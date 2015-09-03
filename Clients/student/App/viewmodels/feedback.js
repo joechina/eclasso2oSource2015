@@ -15,6 +15,9 @@
             categories: ['通知', '习题', 'Q&A','其它'],
         };
 
+        b_shouter.subscribe(function (newValue) {
+            back();
+        }, this, "back_viewmodels/feedback");
         return vm;
 
         function activate() {
@@ -45,5 +48,9 @@
                     logger.log(err[i]);
                 }
             });
+        }
+
+        function back() {
+            router.navigateBack();
         }
     });

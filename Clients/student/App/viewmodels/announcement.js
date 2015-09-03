@@ -20,6 +20,10 @@
             logger.log('reload announcement');
         }, this, "refresh_viewmodels/announcement");
 
+        b_shouter.subscribe(function (newValue) {
+            backtolist();
+        }, this, "back_viewmodels/announcement");
+
         return login;
 
         //#region Internal Methods
@@ -45,15 +49,20 @@
             logger.log('announcements activated');
         }
 
+        function detached() {
+            backtolist();
+        }
+
         function openmsg(selected) {
             announcement(selected);
+            $("#goback").css({ display: "block" });
             $("#refresh").css({ display: "none" });
         }
 
         function backtolist() {
             announcement(undefined);
+            $("#goback").css({ display: "none" });
             $("#refresh").css({ display: "inline" });
-
         }
 
         function newmsg() {

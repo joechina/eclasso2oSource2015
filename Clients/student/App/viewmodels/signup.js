@@ -19,6 +19,10 @@
             errs: errs
         };
 
+        b_shouter.subscribe(function (newValue) {
+            back();
+        }, this, "back_viewmodels/signup");
+
         return vm;
 
         //#region Internal Methods
@@ -39,7 +43,7 @@
             }
         }
 
-        function backtolist() {
+        function back() {
             router.navigate('/#signin');
         }
 

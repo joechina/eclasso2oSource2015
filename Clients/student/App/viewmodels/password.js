@@ -15,7 +15,7 @@
             password: password,
             password2: password2,
             savepwd: savepwd,
-            cancel:cancel,
+            back:back,
             router: router,
             errs: errs
         };
@@ -28,7 +28,9 @@
             if (data.user()) {
                 username(data.user().Name());
             }
-            $("#goback").css({ display: "none" });
+            $("#goback").css({ display: "block" });
+            $("#refresh").css({ display: "none" });
+
             logger.log('password page activated');
         }
 
@@ -71,8 +73,8 @@
             }
         }
 
-        function cancel() {
-            router.navigate('/#');
+        function back() {
+            router.navigateBack();
         }
         //#endregion
     });

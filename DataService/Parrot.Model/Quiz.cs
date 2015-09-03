@@ -15,7 +15,7 @@ namespace Parrot.Model
         public int Id { get; set; }
         
         public int ProblemId { get; set; }
-        public int seq { get; set; }
+        public int Seq { get; set; }
 
         public int QuizType { get; set; }
 

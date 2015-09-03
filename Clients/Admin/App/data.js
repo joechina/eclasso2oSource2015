@@ -4,9 +4,9 @@
     'q'],
     function (breeze, $, Q) {
 
-        //var host = 'http://localhost:56360/';
+        var host = 'http://localhost:56360/';
         //var host = 'http://eclasso2oasia.azurewebsites.net/';
-        var host = 'http://eclasso2o.chinacloudsites.cn/';
+        //var host = 'http://eclasso2o.chinacloudsites.cn/';
 
         var manager = new breeze.EntityManager(host + 'breeze/eClassO2OApi');
         var islocal = false;
@@ -32,6 +32,7 @@
             getuserannouncements: getuserannouncements,
             getuserexersize: getuserexersize,
             getuserexersizes: getuserexersizes,
+
             getuserexersizes_status: getuserexersizes_status,
             getallexersizes: getallexersizes,
             getexersize:getexersize,
@@ -47,7 +48,8 @@
             getStudents: getStudents,
             getuser:getuser,
             getUserQuizs: getUserQuizs,
-            getUserExerciseQuizs : getUserExerciseQuizs,
+            getUserExerciseQuizs: getUserExerciseQuizs,
+            keepExerciseSeq: keepExerciseSeq,
             create: create,
             user: user,
         }
@@ -180,6 +182,16 @@
         function getexersize(eid) {
             var query = breeze.EntityQuery.from('Exersizes').where("Id", "==", eid);
             return manager.executeQuery(query);
+        }
+
+        function keepExerciseSeq(ex) {
+            ex.Sections().sort(function (left, right) { return left.Seq() < right.Seq() ? -1 : 1 });
+            ex.Sections().forEach(function (s) {
+                s.Problems().sort(function (left, right) { return left.Seq() < right.Seq() ? -1 : 1 });
+                s.Problems().forEach(function (q) {
+                    q.Quizzes().sort(function (left, right) { return left.Seq() < right.Seq() ? -1 : 1 });
+                })
+            })
         }
 
         function getClasses() {

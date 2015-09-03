@@ -11,6 +11,10 @@
             logout: logout,
         };
 
+        b_shouter.subscribe(function (newValue) {
+            back();
+        }, this, "back_viewmodels/myprofile");
+
         return me;
 
         //#region Internal Methods
@@ -36,6 +40,10 @@
         function logout() {
             data.setAccessToken('');
             router.navigate('/#signin');
+        }
+
+        function back() {
+            router.navigateBack();
         }
         //#endregion
     });

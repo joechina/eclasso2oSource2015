@@ -29,10 +29,16 @@
             },
 
         };
+
         shouter.subscribe(function (newValue) {
             activate();
             logger.log('reload QA');
         }, this, "refresh_viewmodels/question");
+
+        b_shouter.subscribe(function (newValue) {
+            backtolist();
+        }, this, "back_viewmodels/question");
+
         return login;
 
         //#region Internal Methods
@@ -48,13 +54,19 @@
             logger.log('question activated');
         }
 
+        function detached() {
+            question(undefined);
+        }
+
         function openanswer(selected) {
             question(selected);
+            $("#goback").css({ display: "block" });
             $("#refresh").css({ display: "none" });
         }
 
         function backtolist() {
             question(undefined);
+            $("#goback").css({ display: "none" });
             $("#refresh").css({ display: "inline" });
 
             //router.navigateBack();

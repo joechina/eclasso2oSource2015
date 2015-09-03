@@ -1,15 +1,18 @@
 ﻿define(['plugins/router', 'knockout', 'data', 'logger'],
     function (router, ko, data, logger) {
         var user = ko.observable();
-        var user1 = ko.observable();
 
         var me = {
             user: user,
             activate: activate,
             router: router,
             save: save,
-            cancel: cancel,
+            back: back,
         };
+
+        b_shouter.subscribe(function (newValue) {
+            back();
+        }, this, "back_viewmodels/editprofile");
 
         return me;
 
@@ -20,6 +23,7 @@
             user(data.user());
 
             $("#goback").css({ display: "block" });
+            $("#refresh").css({ display: "none" });
 
             logger.log('edit profile page activated');
         }
@@ -36,7 +40,7 @@
             });
         }
 
-        function cancel() {
+        function back() {
             router.navigateBack();
         }
         //#endregion
