@@ -34,7 +34,7 @@
 
             $("#goback").css({ display: "block" });
             $("#refresh").css({ display: "none" });
-            logger.log('msg clazzes activated');
+            logger.log('join clazzes activated');
         }
 
         function openclazz(selected) {
@@ -43,27 +43,6 @@
             return true;
         }
 
-        function newclazz() {
-            router.navigate('/#newclazz');
-        }
-
-        function editclazz() {
-            selectedUsers([]);
-            clazz().Users().forEach(function (user) {
-                selectedUsers.push(user.UserId().toString());
-            });
-            data.getTeachers().then(function (data) {
-                teachers(data.results);
-            });
-            data.getStudents().then(function (data) {
-                students(data.results);
-            });
-            showclazz(true);
-        }
-
-        function delclazz() {
-            var class_id = clazz().Id();
-        }
 
         function save() {
             var cid = clazz().Id();
