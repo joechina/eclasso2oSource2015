@@ -23,7 +23,8 @@
                     { route: 'exersizes/:uid', moduleId: 'exersize', title: '习题库', icon: 'glyphicon glyphicon-list-alt', nav: 12 },
                     { route: 'questions', moduleId: 'question', title: '知识库', icon: 'glyphicon glyphicon-education', nav: 13 },
                     { route: 'me', moduleId: 'me', title: '我', icon: 'glyphicon glyphicon-user', nav: 14 },
-                    { route: 'report', moduleId: 'report', title: '习题报告', icon: 'glyphicon glyphicon-bell', nav: 3 },
+                    { route: 'report', moduleId: 'report', title: '习题报告', nav: 3 },
+                    { route: 'joinclazz', moduleId: 'joinclazz', title: '加入课程', nav: 3 },
 
             ];
 

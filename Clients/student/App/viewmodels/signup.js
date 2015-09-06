@@ -15,7 +15,7 @@
             password2: password2,
             signup: signup,
             router: router,
-            backtolist: backtolist,
+            back: back,
             errs: errs
         };
 
