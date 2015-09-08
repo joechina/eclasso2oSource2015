@@ -18,7 +18,7 @@
         </div>
         <div class="col-xs-1">
             <label class="control-label">
-                全选
+                状态
             </label>
         </div>
     </div>
@@ -38,25 +38,9 @@
                 <span data-bind="text:teacher"></span>
             </div>
             <div class="col-xs-1">
-                <input type="checkbox" data-bind="attr: {value:Id()}, checked:$parent.selectedclazzes, enable:$parent.is_enabled(Id())">
+                <span data-bind="text: state" />
             </div>
         </div>
     </div>
     <br />
-    <!--div class="form-group">
-        <label class="control-label">
-            参与学生：
-        </label>
-        <ul style="list-style-type:none" data-bind="foreach:students">
-            <li>
-                <input type="checkbox" data-bind="attr: {value:Id()}, checked:$parent.selectedUsers">
-                <span data-bind="text: Name"></span>
-            </li>
-        </ul>
-    </!--div>-->
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <button class="btn btn-primary btn-block" data-bind="click:join, enable:is_joinable()" style="font-size:medium">加入课程</button>
-    </div>
 </div>

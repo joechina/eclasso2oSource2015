@@ -1,89 +1,161 @@
 ﻿define(['plugins/router', 'knockout', 'data', 'logger'],
     function (router, ko, data, logger) {
+        var userclazzes = ko.observableArray();
+        var selectedclazzes = ko.observableArray();
         var clazzes = ko.observableArray();
-        var clazz = ko.observable();
-        var students = ko.observableArray();
-        var teachers = ko.observableArray();
-        var selectedUsers = ko.observableArray();
-        var showclazz = ko.observable(false);
+        var classes_list = ko.observableArray();
+        var check_newclass = ko.observable();
+        var auto_approve = [];
+        var assigned_exersizes = [];
+        var new_exersizes = [];
+        //var students = ko.observableArray();
+        //var teachers = ko.observableArray();
+
         var vm = {
             clazzes: clazzes,
-            clazz: clazz,
-            students: students,
-            teachers: teachers,
-            selectedUsers: selectedUsers,
-            showclazz: showclazz,
+            userclazzes: userclazzes,
+            classes_list: classes_list,
+            selectedclazzes: selectedclazzes,
+            check_newclass: check_newclass,
+            auto_approve: auto_approve,
+            new_exersizes: new_exersizes,
+            assigned_exersizes: assigned_exersizes,
             activate: activate,
-            openclazz: openclazz,
-            delclazz: delclazz,
-            editclazz: editclazz,
+            quitclazz: quitclazz,
+            join: join,
             router: router,
-            backtolist: backtolist,
-            newclazz: newclazz,
-            save: save,
+            is_joinable: is_joinable,
+            is_enabled: is_enabled,
+            add_exercises: ko.computed(function () {
+                if (check_newclass() == 1 && selectedclazzes().length == classes_list().length) {
+                    if (new_exersizes.length) {
+                        new_exersizes.forEach(function (exercise) {
+                            data.getManager().attachEntity(exercise, exercise.entityAspect.entityState);
+                        });
+                        data.getManager().saveChanges().then(function () {
+                            new_exersizes.forEach(function (exercise) {
+                                assigned_exersizes.push(exercise.ExersizeId());
+                            });
+                        });
+                        new_exersizes = [];
+                    }
+                    check_newclass(0);
+                }
+            }),
         };
 
-        var self = vm;
         return vm;
 
         //#region Internal Methods
+        function makeCallBack(index) {
+            return function (teacher) {
+                if (teacher.results.length > 0) {
+                    clazzes()[index].teacher(teacher.results[0].Name());
+                }
+            };
+        }
         function activate() {
-            data.getClasses().then(function (data) {
-                clazzes(data.results);
+            var uid = data.user().Id();
+            check_newclass(0);
+            data.getClasses().then(function (clazz_result) {
+                auto_approve = [];
+                clazzes.removeAll();
+                clazz_result.results.forEach(function (cur_clazz) {
+                    cur_clazz.teacher = ko.observable();
+                    var callback_fun = makeCallBack(clazzes().length)
+                    if (cur_clazz.autoApproved())
+                        auto_approve.push(cur_clazz.Id());
+                    clazzes.push(cur_clazz);
+                    var tid = cur_clazz.TeacherId();
+                    data.getuser(tid).then(callback_fun);
+                });
+
+                data.getUserClasses(uid).then(function (result) {
+                    userclazzes(result.results);
+                    selectedclazzes([]);
+                    classes_list([]);
+                    result.results.forEach(function (my_clazz) {
+                        var clazz_id = my_clazz.ClassId().toString();
+                        selectedclazzes.push(clazz_id);
+                        classes_list.push(clazz_id);
+                    });
+                });
+                data.getuserexersizes(uid).then(function (result) {
+                    if (result.results && result.results.length) {
+                        result.results.forEach(function (exersize) {
+                            assigned_exersizes.push(exersize.ExersizeId());
+                        });
+                    }
+                });
             });
 
             $("#goback").css({ display: "block" });
             $("#refresh").css({ display: "none" });
-            logger.log('join clazzes activated');
+
+            logger.log('my clazzes activated');
         }
 
-        function openclazz(selected) {
-            clazz(selected);
-            $("#goback").css({ display: "block" });
-            return true;
+        function quitclazz(selected) {
+            var uid = data.user().Id();
+            var cid = selected().Id();
+
+            // TODO: delete this record from UserClasses table
         }
 
+        function is_joinable() {
+            return selectedclazzes().length > classes_list().length;
+        }
 
-        function save() {
-            var cid = clazz().Id();
-            var user_list = selectedUsers();
-            data.getClassUserIds(cid).then(function (result) {
-                var need_commit = false;
-                var class_users = new Array();
-                for (i = 0; i < result.results.length; ++i)
-                    class_users.push(result.results[i].UserId);
-                for (i = user_list.length-1; i >= 0; --i) {
-                    var uid = parseInt(user_list[i], 10);
-                    if (class_users.length == 0 || class_users.indexOf(uid) < 0) {
-                        var userclass = data.create("UserClass");
-                        userclass.UserId(uid);
-                        userclass.ClassId(cid);
+        function join() {
+            var uid = data.user().Id();
+            var need_commit = false;
+            check_newclass(1);
+            selectedclazzes().forEach(function (id) {
+                if (classes_list().indexOf(id) < 0) {
+                    var cid = parseInt(id, 10);
+                    var userclass = data.create("UserClass");
+                    userclass.UserId(uid);
+                    userclass.ClassId(cid);
+                    if (auto_approve.indexOf(cid) >= 0) {
+                        check_newclass(check_newclass() + 1);
                         userclass.Approved('true');
-                        result.entityManager.attachEntity(userclass, userclass.entityAspect.entityState);
-                        need_commit = true;
+                        data.getclassexersizes(cid).then(function (exersizes) {
+                            exersizes.results.forEach(function (exersize) {
+                                eid = exersize.ExersizeId();
+                                if (assigned_exersizes.indexOf(eid) < 0) {
+                                    var userexersize = data.create("UserExersize");
+                                    userexersize.UserId(uid);
+                                    userexersize.ExersizeId(exersize.ExersizeId());
+                                    new_exersizes.push(userexersizes);
+                                }
+                            });
+                            check_newclass(check_newclass() - 1);
+                        }).fail(function (err) {
+                            check_newclass(check_newclass() - 1);
+                        });
                     }
-                }
-                if (need_commit) {
-                    result.entityManager.saveChanges().then(function () {
-                        alert('课程已更新结束');
-                    }).fail(function (err) {
-                        for (var i = 0; i < err.length; i++) {
-                            logger.log(err[i]);
-                        }
-                    });
+                    else
+                        userclass.Approved('false');
+                    data.getManager().attachEntity(userclass, userclass.entityAspect.entityState);
+                    need_commit = true;
                 }
             });
-            backtolist();
+
+            if (need_commit) {
+                data.getManager().saveChanges().then(function () {
+                    alert('课程已更新结束');
+                    classes_list(selectedclazzes());
+                }).fail(function (err) {
+                    for (var i = 0; i < err.length; i++) {
+                        logger.log(err[i]);
+                    }
+                });
+            }
         }
 
-        function backtolist() {
-            showclazz(false);
-            clazz(null);
-            selectedUsers([]);
-            teachers([]);
-            students([]);
-            //router.navigateBack();
+        function is_enabled(id) {
+            var index = classes_list().indexOf(id.toString());
+            return index < 0;
         }
-
         //#endregion
     });
