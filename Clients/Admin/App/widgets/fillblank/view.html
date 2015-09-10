@@ -2,7 +2,7 @@
 
 <div class="widget">
     <!--ko if: isediting() == false-->
-    
+
     <br />
     <span data-bind="text:settings.item.Challenge()"></span>
     <br />
@@ -11,25 +11,29 @@
 
     <br />
     <!-- /ko-->
+
     <!--ko if: isediting() == true -->
 
     <label>问题: <input data-bind="value: settings.item.Challenge" class="form-control input-lg"></label>
     <br />
     <label>标准答案: <input data-bind="value: settings.item.Answer" class="form-control input-lg" /></label>
-    <br/>
-    <label>注释: <textarea row="3" data-bind="wysiwyg:settings.item.Comment" class="form-control input-lg" /></label>
+    <br />
+    <label>录音全文: <textarea row="3" data-bind="wysiwyg:settings.item.Comment, wysiwygConfig: { menubar: forecolor }" class="form-control input-lg" /></label>
     <br />
     <!-- /ko-->
 
     <!--ko if: isreporting()-->
-
+    <label class="block" style="color:blueviolet">问题:</label>
     <span data-bind="text:settings.item.Challenge()"></span>
     <br />
-    <label class="block">标准答案: <span data-bind="text:settings.item.Answer()" /></label>
-    <br/>
-    <label class="block">注释: <span data-bind="html:settings.item.Comment()" /></label>
     <br />
-    <label class="block" style="color:blue">学生回答: <span data-bind="text:settings.item.answer()"></span></label>
+    <label class="block">学生回答: <span style="color:green" data-bind="text:settings.item.answer()"></span></label>
     <br />
+    <label class="block">标准答案: <span style="font-weight:normal" data-bind="text:settings.item.Answer()" /></label>
+    <br />
+    <!-- ko if: settings.item.Comment() != null -->
+    <label class="block">录音全文: <span style="font-weight:normal" data-bind="html:settings.item.Comment()" /></label>
+    <br />
+    <!-- /ko-->
     <!-- /ko-->
 </div>

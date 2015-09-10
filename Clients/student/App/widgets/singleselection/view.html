@@ -25,6 +25,7 @@
     <!-- /ko-->
 
     <!--ko if: isreporting()-->
+    
      <label class="block" style="color:blueviolet">问题：</label>
     <span data-bind="text:settings.item.Challenge()"></span>
     <ul data-bind="foreach: settings.item.options" class="options">
@@ -40,7 +41,7 @@
     <br/>
     <!-- ko if: settings.item.Comment() != null -->
     <label class="block">录音全文: <span style="font-weight:normal" data-bind="html:settings.item.Comment()" /></label>
-
+    <br />
     <!-- /ko-->
 
     <!-- /ko-->
