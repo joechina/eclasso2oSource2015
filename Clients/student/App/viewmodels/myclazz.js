@@ -32,6 +32,7 @@
 
         function activate() {
             var uid = data.user().Id();
+            clazzes.removeAll();
             /*
             var now = new Date();
             data.getClasses().then(function (clazz_result) {
@@ -59,6 +60,21 @@
 
                 data.getUserClasses(uid).then(function (result) {
                     userclazzes(result.results);
+
+                    for (i = 0; i < userclazzes().length; i++) {
+                        var cid = userclazzes()[i].ClassId();
+                        data.getClass(cid).then(function (result) {
+                            var c = result.results[0];
+                            var tid = c.TeacherId();
+                            data.getuser(tid).then(function (data) {
+                                var s = data.results[0].Name();
+                                c.teacher = s;
+
+                                clazzes.push(c);
+                            });
+
+                        });
+                    }
                     /*
                     result.results.forEach(function (my_clazz) {
                         var index = clazzes_ids.indexOf(my_clazz.ClassId());
@@ -75,6 +91,7 @@
             logger.log('my clazzes activated');
         }
 
+        // will we allow students to quit a clazz so he will not see exercises any more? TBD
         function quitclazz(selected) {
             var uid = data.user().Id();
             var cid = selected().Id();
@@ -82,6 +99,9 @@
             // TODO: delete this record from UserClasses table
         }
 
+        function join() {
+            router.navigate('/#joinclazz');
+        }
 
         function back() {
             router.navigateBack();

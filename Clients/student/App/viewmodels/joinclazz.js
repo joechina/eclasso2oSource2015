@@ -21,7 +21,6 @@
             new_exersizes: new_exersizes,
             assigned_exersizes: assigned_exersizes,
             activate: activate,
-            quitclazz: quitclazz,
             join: join,
             router: router,
             is_joinable: is_joinable,
@@ -43,6 +42,10 @@
                 }
             }),
         };
+
+        b_shouter.subscribe(function (newValue) {
+            back();
+        }, this, "back_viewmodels/joinclazz");
 
         return vm;
 
@@ -93,13 +96,6 @@
             $("#refresh").css({ display: "none" });
 
             logger.log('my clazzes activated');
-        }
-
-        function quitclazz(selected) {
-            var uid = data.user().Id();
-            var cid = selected().Id();
-
-            // TODO: delete this record from UserClasses table
         }
 
         function is_joinable() {
@@ -156,6 +152,10 @@
         function is_enabled(id) {
             var index = classes_list().indexOf(id.toString());
             return index < 0;
+        }
+
+        function back() {
+            router.navigateBack();
         }
         //#endregion
     });

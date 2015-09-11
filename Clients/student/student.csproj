@@ -64,11 +64,7 @@
     <Content Include="App\viewmodels\announcement.js" />
     <Content Include="App\viewmodels\editclazz.js" />
     <Content Include="App\viewmodels\editprofile.js" />
-    <Content Include="App\viewmodels\ex_saison.js" />
-    <Content Include="App\viewmodels\ex_reflets.js" />
-    <Content Include="App\viewmodels\ex_alterego.js" />
     <Content Include="App\viewmodels\exersizeassign.js" />
-    <Content Include="App\viewmodels\ex_shell.js" />
     <Content Include="App\viewmodels\feedback.js" />
     <Content Include="App\viewmodels\msgEx.js" />
     <Content Include="App\viewmodels\myclazz.js" />
@@ -91,13 +87,9 @@
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\viewmodels\signin.js" />
     <Content Include="App\viewmodels\uploadQA.js" />
-    <Content Include="App\views\ex_saison.html" />
-    <Content Include="App\views\ex_reflets.html" />
-    <Content Include="App\views\ex_alterego.html" />
     <Content Include="App\views\announcement.html" />
     <Content Include="App\views\editclazz.html" />
     <Content Include="App\views\exersizeassign.html" />
-    <Content Include="App\views\ex_shell.html" />
     <Content Include="App\views\feedback.html" />
     <Content Include="App\views\joinclazz.html" />
     <Content Include="App\views\editprofile.html" />
