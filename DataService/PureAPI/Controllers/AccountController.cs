@@ -47,18 +47,18 @@ namespace PureAPI.Controllers
         [AllowAnonymous]
         [Route("Test")]
         [HttpGet]
-        public List<User> Test()
+        public List<UserClass> Test()
         {
             var repo = new Repository();
             try
             {
-                return repo.Users.ToList();
+                return repo.UserClasses.ToList();
             }
             catch (Exception ex)
             {
-                User u = new User();
-                //u.Progress = ex.Message;
-                List<User> result = new List<User>();
+                UserClass u = new UserClass();
+                //u.Description = ex.Message;
+                List<UserClass> result = new List<UserClass>();
                 result.Add(u);
                 return result;
             }

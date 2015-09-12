@@ -15,8 +15,8 @@ namespace Parrot.Model
         public int Id { get; set; }
         public int UserId { get; set; }
         public int ClassId { get; set; }
-        public bool Approved { get; set; }
-        public virtual User User { get; set; }
-        //public virtual Class Class { get; set; }
+        public int Status { get; set; }
+        //public virtual User User { get; set; }
+        public virtual Class Class { get; set; }
     }
 }
