@@ -1,54 +1,45 @@
 ﻿<!-- list of classes and new/edit class -->
-<div class="container-fluid">
-    <!--h2>已加入: <span data-bind="text:userclazzes().length"></span> 门课程 </!--h2>-->
+<ion-content class="mine-view scroll-content ionic-scroll has-header has-tabs">
+    <!--ko ifnot: clazz()-->
     <br />
-    <div class="row" style="font-size:18px">
-        <div class="col-xs-3">
-            <label class="control-label">课程</label>
-        </div>
-        <div class="col-xs-3">
-            <label class="control-label">
-                授课时间
-            </label>
-        </div>
-        <div class="col-xs-3">
-            <label class="control-label">
-                授课老师
-            </label>
-        </div>
-        <div class="col-xs-3">
-            <label class="control-label">
-                状态
-            </label>
-        </div>
-    </div>
+    <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+        <div class="list mine-nav" data-bind="foreach:clazzes, click:openclazz">
+            <div class="row item">
+                <div class="col col-50">
+                    <span data-bind="text: Name" />
+                </div>
 
+                <div class="col col-25" data-bind="text: Teacher().Name"></div>
 
-    <div class="list-group list-full-with" data-bind="foreach:myclasses">
-        <div class="list-group-item">
-            <div class="row">
-                <div class="col-xs-3">
-                    <span data-bind="text: Class().Name" />
-                    <p class="announcement-date" data-bind="text: Class().Description"></p>
+                <!--ko if: state == "0" -->
+                <div class="col col-25">
+                    <button class="button button-small button-outline button-stable disabled">未批准</button>
                 </div>
-                <div class="col-xs-3">
-                    <span data-bind="text: duration" />
+                <!--/ko-->
+                <!--ko if: state == "1" -->
+                <div class="col col-25">
+                    <button class="button button-small button-outline button-balanced disabled">已加入</button>
                 </div>
-                <div class="col-xs-3">
-                    <span data-bind="text:Class().TeacherId"></span>
+                <!--/ko-->
+                <!--ko if: state == "2" -->
+                <div class="col col-25">
+                    <button class="button button-small button-outline button-stable disabled">等待批准</button>
                 </div>
-                <div class="col-xs-3">
-                    <span data-bind="text: state" />
+                <!--/ko-->
+                <!--ko if: state == "-1" -->
+                <div class="col col-25" >
+                    <button class="button button-small button-ouline button-royal">申请加入</button>
                 </div>
+                <!--/ko-->
             </div>
-
-            <br />
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-xs-12">
-            <button class="btn btn-primary btn-block" data-bind="click:join" style="font-size:medium">查看所有课程</button>
-        </div>
     </div>
-</div>
+    <!--/ko-->
+    <!--ko if: clazz()-->
+    <div class="list mine-nav" data-bind="with: clazz()">
+        课程：
+
+    </div>
+    <!--/ko-->
+</ion-content>

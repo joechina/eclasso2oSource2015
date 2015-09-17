@@ -24,8 +24,9 @@ namespace Parrot.Model
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
 
-        //public virtual List<UserClass> Users { get; set; }
+        public virtual List<UserClass> Users { get; set; }
         public int TeacherId { get; set; }
+        public virtual User Teacher { get; set; }
         public bool autoApproved { get; set; }
     }
 }

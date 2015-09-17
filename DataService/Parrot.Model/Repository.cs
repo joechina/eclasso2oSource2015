@@ -30,7 +30,7 @@ namespace Parrot.Model
         {
             get
             {
-                return Context.Classes;
+                return Context.Classes.Include("Users").Include("Teacher");
             }
         }
 
