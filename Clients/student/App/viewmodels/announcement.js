@@ -3,7 +3,7 @@
         var announcement = ko.observable();
         var announcements = ko.observableArray();
         var myannouncements = ko.observableArray();
-        //var usermsg = ko.observableArray();
+        var previous_title = ko.observable();
 
         var login = {
             announcement: announcement,
@@ -11,10 +11,12 @@
             activate: activate,
             openmsg: openmsg,
             router: router,
+            previous_title : previous_title,
             backtolist: backtolist,
             newmsg: newmsg,
            // usermsg:usermsg
         };
+
         shouter.subscribe(function (newValue) {
             activate();
             logger.log('reload announcement');
@@ -40,28 +42,44 @@
             });
             */
 
+            if (announcement()) {
+                $("#main_title").css({ float: "left", position: "relative" });
+
+                $("#goback").css({ display: "block" });
+                $("#refresh").css({ display: "none" });
+            } else {
+                $("#main_title").css({ float: "center", position: "absolute" });
+                $("#goback").css({ display: "none" });
+                $("#refresh").css({ display: "inline" });
+            }
+
+            announcements.removeAll();
             data.getsentannouncements().then(function (data) {
                 announcements(data.results);
             });
 
-            $("#goback").css({ display: "none" });
-            $("#refresh").css({ display: "inline" });
             logger.log('announcements activated');
-        }
-
-        function detached() {
-            backtolist();
         }
 
         function openmsg(selected) {
             announcement(selected);
+            
+            //
+            //var le = document.getElementById("goback").currentStyle.lineHeight;
+            //$("#goback")[0].currentStyle.lineHeight;
+
+            $("#main_title").css({float: "left", position:"relative"});
+
             $("#goback").css({ display: "block" });
             $("#refresh").css({ display: "none" });
         }
 
         function backtolist() {
             announcement(undefined);
+            $("#main_title").css({ float: "center", position: "absolute" });
+
             $("#goback").css({ display: "none" });
+
             $("#refresh").css({ display: "inline" });
         }
 

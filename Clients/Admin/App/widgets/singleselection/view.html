@@ -23,7 +23,7 @@
 
     <label class="block">标准答案: <input data-bind="value: settings.item.Answer" class="form-control input-lg" /></label>
     <br/>
-    <label>录音全文: <textarea row="3" data-bind="wysiwyg:settings.item.Comment" class="form-control input-lg" /></label>
+    <label>录音全文: <textarea row="3" data-bind="wysiwyg:settings.item.Comment, wysiwygConfig: { toolbar: 'undo redo | bold italic | bullist numlist | forecolor', plugins: [ 'textcolor' ]}" class="form-control input-lg" /></label>
     <br />
     <!-- /ko-->
 

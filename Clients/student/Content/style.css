@@ -42,12 +42,14 @@ h1, h2 {
     text-align: center;
     font-family: 'Microsoft YaHei UI', Arial, sans-serif !important;
 }
-h2{
-    font-size:22px !important;
-    font-weight:normal;
-    color:#222;
-    padding:10px 15px;
+
+h2 {
+    font-size: 22px !important;
+    font-weight: normal;
+    color: #222;
+    padding: 10px 15px;
 }
+
 select {
     font-family: sans-serif;
 }
@@ -167,6 +169,7 @@ a[data-transition].ui-icon-star:after {
 }
 
 .title {
+    /*padding-top: .5em;*/
     font-size: 1.5em;
 }
 
@@ -212,24 +215,31 @@ footer .g-nav-bottom {
         box-flex: 1.0;
     }
 
-        footer .g-nav-bottom > li > a {
+        footer .g-nav-bottom > a {
             display: block;
             width: 100%;
             height: 49px;
             line-height: 50px;
             font-size: 18px;
-            font-weight:normal;
+            font-weight: normal;
             font-family: 'Microsoft YaHei UI';
             text-decoration: none;
-            color: #fff;
-            background-color: #64A6EA;
+            color: #000000;
+            background-color:#ffffff
+            /*background-color: #64A6EA;*/
         }
 
-        footer .g-nav-bottom > li.active > a {
-            background: #b8e0ee;
-            color: #526065;
+        footer .g-nav-bottom > a.active > i {
+            background: #fff;
+            font-weight:500;
+            color: #387ef5;
         }
 
+       footer .g-nav-bottom > a.active > span {
+            background: #fff;
+            font-weight:bold;
+            color: #387ef5;
+        }
 .submenu {
     background-color: darkgray;
     color: white;
@@ -292,7 +302,7 @@ ul.options {
 
     ul.options li {
         margin: 14px 0;
-        font-size:18px;
+        font-size: 18px;
     }
 
 .list-full-with {
@@ -304,7 +314,7 @@ ul.options {
 .list-group-item {
     font-family: 'Microsoft YaHei UI', Arial, sans-serif;
     font-size: 18px !important;
-    line-height:1.5;
+    line-height: 1.5;
 }
 
 .list-group-item-heading {
@@ -334,27 +344,34 @@ ul.options {
     margin: 10px 0 30px;
     color: #222;
 }
+.announcement-target {
+    font-size: 16px;
+    margin: 10px 0 30px;
+    color: #0000ff;
+}
+
 
 .popup {
     margin-left: -70px;
 }
 
 .es-navbar {
-    background-color: #fff !important;
+    background-color: #387ef5  !important;
 }
 
     .es-navbar .title {
-        font-size: 24px;
-        color: #333;
+        font-size: 17px;
+        color: #fff;
         font-weight: normal;
         font-family: 'Microsoft Yahei UI';
+        transform:translate3d(0px, 0px, 0px);
     }
 
 .announcement-item-title {
     display: block;
-    font-size: 18px;
+    font-size: 16px;
     color: #222;
-    font-weight:bold;
+    font-weight: normal;
 }
 
 .announcement-item-date {
@@ -364,11 +381,11 @@ ul.options {
 }
 
 .announcement-title {
-    font-size: 18px;
+    font-size: 16px;
     color: #222222;
-    margin-top: 16px;
-    display: inline-block;
-    font-weight:bold;
+    /*margin-top: 10px;*/
+    display: block;
+    font-weight: bold;
 }
 
 .announcement-date {
@@ -386,24 +403,26 @@ ul.options {
 }
 
     .btn.btn-primary[disabled] {
-        background-color: #e7e7e7  !important;
-        color: #b8b8b8  !important;
+        background-color: #e7e7e7 !important;
+        color: #b8b8b8 !important;
         font-family: 'Microsoft Yahei UI';
         font-size: 18px;
         border: none;
     }
+
     .btn.btn-primary:focus {
-        background-color:#64A6EA;
+        background-color: #64A6EA;
         color: #FFFFFF;
     }
+
 .list-group-item-info {
-    background-color:#FFFFFF !important;
+    background-color: #FFFFFF !important;
 }
 
 .widget {
-    font-size:18px;
+    font-size: 18px;
 }
 
 .audio {
-    width:100%;
+    width: 100%;
 }

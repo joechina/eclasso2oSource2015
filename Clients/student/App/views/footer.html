@@ -1,15 +1,15 @@
 ﻿
 <div data-bind="if: router.activeInstruction() && router.activeInstruction().config.nav > 10">
-    <ul class="g-nav-bottom" data-bind="foreach: router.navigationModel">
+    <div class="g-nav-bottom tabs tabs-icon-top" data-bind="foreach: router.navigationModel">
         <!-- ko if: nav > 10-->
-        <li data-bind="css: { active: isActive }">
-            <a data-bind="attr: { href: hash}">
-                <i data-bind="attr:{class: icon }"></i>
-                <span data-bind="html: title"></span>
-            </a>
-        </li>
+
+        <a class="tab-item" data-bind="attr: { href: hash}, css: { active: isActive }">
+            <i data-bind="attr:{class: icon }"></i>
+            <span class="tab-title" data-bind="html: title"></span>
+        </a>
+
         <!--/ko-->
-    </ul>
+    </div>
 </div>
 
 <!--div class="nav-inner">

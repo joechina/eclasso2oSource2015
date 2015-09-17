@@ -1,12 +1,11 @@
 ﻿define(['plugins/router', 'knockout', 'data', 'logger'],
     function (router, ko, data, logger) {
-        var userclasses = ko.observableArray();
         var myclasses = ko.observableArray();
 
         var vm = {
             myclasses: myclasses,
-            userclasses: userclasses,
             activate: activate,
+            join:join,
             router: router,
         };
 
@@ -17,16 +16,10 @@
         return vm;
 
         //#region Internal Methods
-        function makeCallBack(index){
-            return function (teacher) {
-                if (teacher.results.length > 0) {
-                    clazzes()[index].teacher(teacher.results[0].Name());
-                }
-            };
-        }
 
         function activate() {
             var uid = data.user().Id();
+            myclasses.removeAll();
 
             data.getUserClasses(uid).then(function (result) {
                 result.results.forEach(function (c) {

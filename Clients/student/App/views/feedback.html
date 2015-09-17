@@ -25,7 +25,7 @@
             <label class="control-label">
                 内容:
             </label>
-            <textarea rows="3" data-bind="wysiwyg: feedback().Comment" class="form-control input-lg"></textarea>
+            <textarea rows="3" data-bind="wysiwyg: feedback().Comment, wysiwygConfig: {menubar: false, toolbar: 'undo redo | bold italic | bullist numlist | forecolor', plugins: [ 'textcolor' ]}" class="form-control input-lg"></textarea>
         </div>
 
         <div class="row">
