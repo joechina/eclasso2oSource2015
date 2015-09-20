@@ -13,7 +13,10 @@
         };
 
         b_shouter.subscribe(function (newValue) {
-            backtolist();
+            if (clazz())
+                backtolist();
+            else
+                back();
         }, this, "back_viewmodels/myclazz");
 
         return vm;
@@ -44,6 +47,11 @@
                             c.state = u.Status();
                         }
                     });
+
+                    if (c.autoApproved)
+                        c.approve = "是";
+                    else
+                        c.approve = "否";
 
                     clazzes.push(c);
                 };
@@ -84,12 +92,18 @@
         }
 
         function backtolist() {
-            if (clazz() == undefined) {
-                router.navigate('/#me');
-            }
-                else {
+
                 clazz(undefined);
-            }
+                $("#main_title").css({ float: "center", position: "absolute" });
+
+                $("#goback").css({ display: "block" });
+
+                $("#refresh").css({ display: "inline" });
+
+        }
+
+        function back() {
+            router.navigate('/#me');
         }
         //#endregion
     });

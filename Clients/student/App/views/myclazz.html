@@ -3,32 +3,38 @@
     <!--ko ifnot: clazz()-->
     <br />
     <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
-        <div class="list mine-nav" data-bind="foreach:clazzes, click:openclazz">
-            <div class="row item">
-                <div class="col col-50">
-                    <span data-bind="text: Name" />
-                </div>
+        <div class="list mine-nav" data-bind="foreach:clazzes">
+            <div class="row item item-icon-right" data-bind="click:$parent.openclazz">
+                <span class="col col-50" style="margin-top:15px" data-bind="text: Name"></span>
 
-                <div class="col col-25" data-bind="text: Teacher().Name"></div>
+                <span class="col col-25" style="margin-top:15px" data-bind="text: Teacher().Name"></span>
 
                 <!--ko if: state == "0" -->
                 <div class="col col-25">
-                    <button class="button button-small button-outline button-stable disabled">未批准</button>
+                    <button class="button button-small button-outline button-block button-stable disabled">
+                        <span class="announcement-content">未批准</span>
+                    </button>
                 </div>
                 <!--/ko-->
                 <!--ko if: state == "1" -->
                 <div class="col col-25">
-                    <button class="button button-small button-outline button-balanced disabled">已加入</button>
+                    <button class="button button-small button-outline button-block button-balanced disabled">
+                        <span class="announcement-content">已加入</span>
+                    </button>
                 </div>
                 <!--/ko-->
                 <!--ko if: state == "2" -->
                 <div class="col col-25">
-                    <button class="button button-small button-outline button-stable disabled">等待批准</button>
+                    <button class="button button-small button-outline button-block button-stable disabled">
+                        <span class="announcement-content">等待批准</span>
+                    </button>
                 </div>
                 <!--/ko-->
                 <!--ko if: state == "-1" -->
-                <div class="col col-25" >
-                    <button class="button button-small button-ouline button-royal">申请加入</button>
+                <div class="col col-25">
+                    <button class="button button-small button-ouline button-block button-royal">
+                        <span style="font-size:16px">申请加入</span>
+                    </button>
                 </div>
                 <!--/ko-->
             </div>
@@ -38,8 +44,26 @@
     <!--/ko-->
     <!--ko if: clazz()-->
     <div class="list mine-nav" data-bind="with: clazz()">
-        课程：
-
+        <a class="item ">
+            <span>课程名称: &nbsp;</span>
+            <span class="pull-right" data-bind="text:Name"></span>
+        </a>
+        <a class="item ">
+            <span>课程描述:</span>
+            <span class="pull-right" data-bind="text: Description"></span>
+        </a>
+        <a class="item ">
+            <span>课程时间:</span>
+            <span class="pull-right" data-bind="text:duration"></span>
+        </a>
+        <a class="item ">
+            <span>授课老师:</span>
+            <span class="pull-right" data-bind="text: Teacher().Name"></span>
+        </a>
+        <a class="item ">
+            <span>公共课程:</span>
+            <span class="pull-right" data-bind="text: approve"></span>
+        </a>
     </div>
     <!--/ko-->
 </ion-content>

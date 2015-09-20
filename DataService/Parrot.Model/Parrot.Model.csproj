@@ -69,17 +69,9 @@
     <Compile Include="ExersizeSection.cs" />
     <Compile Include="Feedback.cs" />
     <Compile Include="Media.cs" />
-    <Compile Include="Migrations\201509171648132_userclasses.cs" />
-    <Compile Include="Migrations\201509171648132_userclasses.Designer.cs">
-      <DependentUpon>201509171648132_userclasses.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509171652191_teacher.cs" />
-    <Compile Include="Migrations\201509171652191_teacher.Designer.cs">
-      <DependentUpon>201509171652191_teacher.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201509171702362_fk.cs" />
-    <Compile Include="Migrations\201509171702362_fk.Designer.cs">
-      <DependentUpon>201509171702362_fk.cs</DependentUpon>
+    <Compile Include="Migrations\201509200326349_aaa.cs" />
+    <Compile Include="Migrations\201509200326349_aaa.Designer.cs">
+      <DependentUpon>201509200326349_aaa.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Problem.cs" />
@@ -98,14 +90,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201509171648132_userclasses.resx">
-      <DependentUpon>201509171648132_userclasses.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509171652191_teacher.resx">
-      <DependentUpon>201509171652191_teacher.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201509171702362_fk.resx">
-      <DependentUpon>201509171702362_fk.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509200326349_aaa.resx">
+      <DependentUpon>201509200326349_aaa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
