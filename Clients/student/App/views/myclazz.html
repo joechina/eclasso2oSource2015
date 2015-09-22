@@ -4,39 +4,17 @@
     <br />
     <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
         <div class="list mine-nav" data-bind="foreach:clazzes">
-            <div class="row item item-icon-right" data-bind="click:$parent.openclazz">
-                <span class="col col-50" style="margin-top:15px" data-bind="text: Name"></span>
+            <div class="row item item-icon-right">
+                <span class="col col-50" style="margin-top:15px" data-bind="text: Name, click:$parent.openclazz"></span>
 
                 <span class="col col-25" style="margin-top:15px" data-bind="text: Teacher().Name"></span>
 
-                <!--ko if: state == "0" -->
                 <div class="col col-25">
-                    <button class="button button-small button-outline button-block button-stable disabled">
-                        <span class="announcement-content">未批准</span>
+                    <button data-bind="attr:{'class':button}, click:$parent.join">
+                        <span data-bind="text: state"></span>
                     </button>
                 </div>
-                <!--/ko-->
-                <!--ko if: state == "1" -->
-                <div class="col col-25">
-                    <button class="button button-small button-outline button-block button-balanced disabled">
-                        <span class="announcement-content">已加入</span>
-                    </button>
-                </div>
-                <!--/ko-->
-                <!--ko if: state == "2" -->
-                <div class="col col-25">
-                    <button class="button button-small button-outline button-block button-stable disabled">
-                        <span class="announcement-content">等待批准</span>
-                    </button>
-                </div>
-                <!--/ko-->
-                <!--ko if: state == "-1" -->
-                <div class="col col-25">
-                    <button class="button button-small button-ouline button-block button-royal">
-                        <span style="font-size:16px">申请加入</span>
-                    </button>
-                </div>
-                <!--/ko-->
+
             </div>
         </div>
 
@@ -64,6 +42,15 @@
             <span>公共课程:</span>
             <span class="pull-right" data-bind="text: approve"></span>
         </a>
+        <div class="list mine-nav">
+            <a data-bind="attr:{'class':button}, click:$parent.join">
+                <span data-bind="text: state"></span>
+            </a>
+
+            <!--/ko-->
+        </div>
     </div>
+
+
     <!--/ko-->
 </ion-content>

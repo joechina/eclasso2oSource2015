@@ -70,6 +70,14 @@ namespace Parrot.Model
             }
         }
 
+        public DbQuery<ClassExersize> ClassExersizes
+        {
+            get
+            {
+                return Context.ClassExersizes;
+            }
+        }
+
         public DbQuery<Exersize> Exersizes
         {
             get

@@ -50,7 +50,7 @@
         function validate() {
             errs.removeAll();
             if (!userid() || userid().length === 0) {
-                errs.push('missing UserName');
+                errs.push('missing UserID');
             }
             if (!username() || username().length === 0) {
                 errs.push('missing UserName');

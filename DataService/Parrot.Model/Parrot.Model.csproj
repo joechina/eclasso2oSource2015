@@ -69,9 +69,9 @@
     <Compile Include="ExersizeSection.cs" />
     <Compile Include="Feedback.cs" />
     <Compile Include="Media.cs" />
-    <Compile Include="Migrations\201509200326349_aaa.cs" />
-    <Compile Include="Migrations\201509200326349_aaa.Designer.cs">
-      <DependentUpon>201509200326349_aaa.cs</DependentUpon>
+    <Compile Include="Migrations\201509210135087_aaa.cs" />
+    <Compile Include="Migrations\201509210135087_aaa.Designer.cs">
+      <DependentUpon>201509210135087_aaa.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Problem.cs" />
@@ -90,8 +90,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201509200326349_aaa.resx">
-      <DependentUpon>201509200326349_aaa.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201509210135087_aaa.resx">
+      <DependentUpon>201509210135087_aaa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

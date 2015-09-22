@@ -14,6 +14,7 @@
         var user = ko.observable();
         var store;
         var data = {
+            manager:manager,
             metadataStore: store,
             initalize: initalize,
             switchconnection: switchconnection,
@@ -42,6 +43,7 @@
             getClass: getClass,
             getClassUserIds: getClassUserIds,
             getUserClasses: getUserClasses,
+            getuserclass:getuserclass,
             getMedia: getMedia,
             getUsers: getUsers,
             getTeachers: getTeachers,
@@ -166,7 +168,7 @@
         }
 
         function getclassexersizes(cid) {
-            var query = breeze.EntityQuery.from('UserExersizes').where("ClassId", "==", cid).orderBy('ExersizeId');
+            var query = breeze.EntityQuery.from('ClassExersizes').where("ClassId", "==", cid).orderBy('ExersizeId');
             return manager.executeQuery(query);
         }
 
@@ -215,6 +217,15 @@
 
         function getUserClasses(uid) {
             var query = breeze.EntityQuery.from('UserClasses').where("UserId", "==", uid);
+            return manager.executeQuery(query);
+        }
+
+        function getuserclass(uid, cid) {
+            var Predicate = breeze.Predicate;
+            var p1 = new Predicate("UserId", "==", uid);
+            var p2 = new Predicate("ClassId", "==", cid);
+
+            var query = breeze.EntityQuery.from('UserClasses').where(p1.and(p2));
             return manager.executeQuery(query);
         }
 

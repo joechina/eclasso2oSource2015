@@ -1,6 +1,5 @@
 ﻿
 <ion-content class="mine-view scroll-content ionic-scroll has-header has-tabs">
-    <!--div style="padding:30px;margin:0 auto;width:300px;" class="front">-->
     <div class="error">
         <ul data-bind="foreach: errs">
             <li title="error messages:">
@@ -9,17 +8,21 @@
         </ul>
     </div>
 
-    <div class="form-group">
+    <div class="list mine-nav">
+        <div class="item item-input">
+            <p class="input-label">登录名</p>
+            <input id="username" type="text" data-bind="value: username" required="required">
+        </div>
+        <div class="item item-input">
+            <p class="input-label">密码</p>
+            <input id="password" type="password" data-bind="value: password" required="required">
+        </div>
+    </div>
 
-        <input id="username" type="text" data-bind="value: username" placeholder="登录名" class="form-control input-lg" required="required">
-        <br />
-        <input id="password" type="password" data-bind="value: password" placeholder="密码" class="form-control input-lg" required="required">
-        <br />
-        <button id="signin" name="singlebutton" class="btn btn-primary btn-block" data-bind="click: signin">登录</button>
-        <br />
-        <br />
+    <div class="padding">
+        <button class="button button-block button-calm" data-bind="click: signin">登录</button>
+        <br/>
         <a href="#signup" style="text-decoration:underline;">免费注册</a>
-
     </div>
 
 </ion-content>
