@@ -1,6 +1,6 @@
 ﻿<div class="widget">
     <!-- ko if: Media() && Media().Type() === 'mp3'-->
-    <audio controls data-bind="attr: {src: Media().Content()}" />
+    <audio class="audio" controls data-bind="attr: {src: Media().Content()}" />
     <!-- /ko-->
     <!-- ko if: Media() && Media().Type() === 'txt'-->
     <label data-bind="html:Media().Content()" />

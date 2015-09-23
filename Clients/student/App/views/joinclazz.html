@@ -1,0 +1,51 @@
+﻿<!-- list of classes and new/edit class -->
+<div class="container-fluid">
+    <!--h2>已加入: <span data-bind="text:userclazzes().length"></span> 门课程 </!--h2>-->
+    <br />
+    <div class="row" style="font-size:18px">
+        <div class="col-xs-4">
+            <label class="control-label">课程</label>
+        </div>
+        <div class="col-xs-4">
+            <label class="control-label">
+                时间
+            </label>
+        </div>
+        <div class="col-xs-3">
+            <label class="control-label">
+                授课老师
+            </label>
+        </div>
+        <div class="col-xs-1">
+            <label class="control-label">
+                全选
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="list-group list-full-with" data-bind="foreach:clazzes">
+    <div class="list-group-item">
+        <div class="row">
+            <div class="col-xs-4">
+                <span data-bind="text: Name" />
+                <p class="announcement-date" data-bind="text: Description"></p>
+            </div>
+            <div class="col-xs-4">
+                <span data-bind="text: Start().getFullYear() + '/' + Start().getMonth() + '/' + Start().getDate() + '/ - ' + End().getFullYear() + '/' + End().getMonth() + '/' + End().getDate()" />
+            </div>
+            <div class="col-xs-3">
+                <span data-bind="text:teacher"></span>
+            </div>
+            <div class="col-xs-1">
+                <input type="checkbox" data-bind="attr: {value:Id()}, checked:$parent.selectedclazzes, enable:$parent.is_enabled(Id())">
+            </div>
+        </div>
+    </div>
+    <br />
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-primary btn-block" data-bind="click:join, enable:is_joinable()" style="font-size:medium">加入</button>
+    </div>
+</div>

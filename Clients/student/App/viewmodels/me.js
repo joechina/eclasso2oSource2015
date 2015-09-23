@@ -19,6 +19,7 @@
             router: router,
             logout:logout,
         };
+
         shouter.subscribe(function (newValue) {
             activate();
             logger.log('reload me');
@@ -55,6 +56,7 @@
 
             $("#goback").css({ display: "none" });
             $("#refresh").css({ display: "inline" });
+            $("#main_title").css({ float: "center", position: "absolute" });
 
             logger.log('me page activated');
         }

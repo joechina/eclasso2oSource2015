@@ -15,22 +15,25 @@
     
     <!--ko if: isediting() == true -->
     
-    <label>问题: <textarea data-bind="wysiwyg: settings.item.Challenge, wysiwygConfig: { menubar: false }" class="form-control input-lg"/></label>
+    <label>问题: <textarea data-bind="wysiwyg: settings.item.Challenge, wysiwygConfig: { menubar: false }, wysiwygConfig: { toolbar: 'undo redo | bold italic | bullist numlist | forecolor', plugins: [ 'textcolor' ]}" class="form-control input-lg" /></label>
     <br />
     <label>标准答案: <textarea data-bind="wysiwyg: settings.item.Answer, wysiwygConfig: { menubar: false }" class="form-control input-lg" /></label>
     <br/>
-    <label>注释: <textarea row="3" data-bind="wysiwyg:settings.item.Comment" class="form-control input-lg" /></label>
+    <label>录音全文: <textarea row="3" data-bind="wysiwyg:settings.item.Comment, wysiwygConfig: { toolbar: 'undo redo | bold italic | bullist numlist | forecolor', plugins: [ 'textcolor' ]}" class="form-control input-lg" /></label>
     <br />
    <!-- /ko-->
 
     <!--ko if: isreporting() -->
-
-    <span data-bind="html: settings.item.Challenge()" ></span>
+    <label class="block" style="color:blueviolet">问题:</label>
+    <span data-bind="html: settings.item.Challenge()"></span>
     <br />
-
-    <label class="block">标准答案: <span data-bind="html:settings.item.Answer()" /></label>
+    <label class="block">学生回答: <span style="color:green" data-bind="text:settings.item.answer()"></span></label>
     <br />
-    <label class="block" style="color:blue">学生回答: <span data-bind="text:settings.item.answer()"></span></label>
+    <label class="block">标准答案: <span style="font-weight:normal" data-bind="html:settings.item.Answer()" /></label>
     <br />
+    <!-- ko if: settings.item.Comment() != null -->
+    <label class="block">录音全文: <span style="font-weight:normal" data-bind="html:settings.item.Comment()" /></label>
+    <br />
+    <!-- /ko-->
     <!-- /ko-->
 </div>

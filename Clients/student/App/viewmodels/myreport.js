@@ -25,60 +25,79 @@
             back: back,
         };
 
+        shouter.subscribe(function (newValue) {
+            init();
+            activate();
+            logger.log('reload my report');
+        }, this, "refresh_viewmodels/myreport");
+
+        b_shouter.subscribe(function (newValue) {
+            back();
+        }, this, "back_viewmodels/myreport");
+
+        cat.subscribe(function (newValue) {
+            if (exersizes().length != 0)
+                exersizes.removeAll();
+
+            switch (newValue) {
+                case 0: // 0 - alter ego+
+                    exersizes(ex_alter);
+                    break;
+                case 1: // 1 - reflets
+                    exersizes(ex_reflets);
+                    break;
+                default:
+                    exersizes(ex_saison);
+                    break;
+            }
+
+        });
+
+        ex.subscribe(function (newValue) {
+            if (newValue != null) {
+                var eid = newValue.Id();
+
+                data.getexersize(eid).then(function (sd) {
+                    var ex = sd.results[0];
+                    data.keepExerciseSeq(ex);
+                    exersize(ex);
+                })
+            }
+        });
+
         return vm;
 
         function activate() {
 
             user(data.user());
-
-            data.getuserexersizes_status(user().Id(), true).then(function (data) {
-                for (var i = 0; i < data.results.length; i++) {
-                    var ex = data.results[i].Exersize();
-                    if (ex.Category() == '0') {
-                        ex_alter.push(ex);
+            if (!exersize()) {
+                data.getuserexersizes_status(user().Id(), true).then(function (data) {
+                    for (var i = 0; i < data.results.length; i++) {
+                        var ex = data.results[i].Exersize();
+                        if (ex.Category() == '0') {
+                            ex_alter.push(ex);
+                        }
+                        else if (ex.Category() == '1') {
+                            ex_reflets.push(ex);
+                        }
+                        else if (ex.Category() == '2') {
+                            ex_saison.push(ex);
+                        }
                     }
-                    else if (ex.Category() == '1') {
-                        ex_reflets.push(ex);
-                    }
-                    else if (ex.Category() == '2') {
-                        ex_saison.push(ex);
-                    }
-                }
-            });
+                });
 
-            cat.subscribe(function (newValue) {
-                if (exersizes().length != 0)
-                    exersizes.removeAll();
+                $("#goback").css({ display: "block" });
+                $("#refresh").css({ display: "inline" });
+            }
+        }
 
-                switch (newValue) {
-                    case 0: // 0 - alter ego+
-                        exersizes(ex_alter);
-                        break;
-                    case 1: // 1 - reflets
-                        exersizes(ex_reflets);
-                        break;
-                    default:
-                        exersizes(ex_saison);
-                        break;
-                }
-
-            });
-
-            ex.subscribe(function (newValue) {
-                if (newValue != null) {
-                    var eid = newValue.Id();
-
-                    data.getexersize(eid).then(function (sd) {
-                        var ex = sd.results[0];
-                        data.keepExerciseSeq(ex);
-                        exersize(ex);
-                    })
-                }
-            });
-
-            $("#goback").css({ display: "block" });
-            $("#refresh").css({ display: "none" });
-
+        function init() {
+            exersize(undefined);
+            ex(undefined);
+            cat(undefined);
+            ex_alter.removeAll();
+            ex_reflets.removeAll();
+            ex_saison.removeAll();
         }
 
         function back() {

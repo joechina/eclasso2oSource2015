@@ -3,6 +3,7 @@
         var problem = ko.observable();
         var current = ko.observable(0);
         var total = ko.observable(0);
+        var currentMedia = ko.observable();
 
         var vm = {
             problem: problem,
@@ -16,6 +17,7 @@
             next: next,
             total: total,
             current: current,
+            currentMedia:currentMedia,
             currentQuiz: ko.computed(function () {
                 if (problem()) {
                     return problem().Quizzes()[current()];
@@ -27,6 +29,10 @@
         //    problem().Quizzes()[current()].answer = newValue;
         //});
 
+        b_shouter.subscribe(function (newValue) {
+            backtolist();
+        }, this, "back_viewmodels/problem");
+
         return vm;
 
         //#region Internal Methods
@@ -37,7 +43,7 @@
 
                 if (p.MediaId() > 0) {
                     data.getMedia(p.MediaId()).then(function (mdata) {
-                        p.Media(mdata.results[0]);
+                        currentMedia(mdata.results[0]);
   
                     })
                 }
@@ -61,6 +67,7 @@
 
         function backtolist() {
             problem(undefined);
+            currentMedia(undefined);
             router.navigateBack();
         }
 

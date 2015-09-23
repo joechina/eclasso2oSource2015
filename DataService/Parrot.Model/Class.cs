@@ -26,5 +26,7 @@ namespace Parrot.Model
 
         public virtual List<UserClass> Users { get; set; }
         public int TeacherId { get; set; }
+        public virtual User Teacher { get; set; }
+        public bool autoApproved { get; set; }
     }
 }

@@ -30,7 +30,7 @@ namespace Parrot.Model
         {
             get
             {
-                return Context.Classes.Include("Users");
+                return Context.Classes.Include("Users").Include("Teacher");
             }
         }
 
@@ -67,6 +67,14 @@ namespace Parrot.Model
             get
             {
                 return Context.UserExersizes.Include("Exersize");
+            }
+        }
+
+        public DbQuery<ClassExersize> ClassExersizes
+        {
+            get
+            {
+                return Context.ClassExersizes;
             }
         }
 
@@ -129,7 +137,7 @@ namespace Parrot.Model
         {
             get
             {
-                return Context.UserClasses;
+                return Context.UserClasses.Include("Class");
             }
         }
 

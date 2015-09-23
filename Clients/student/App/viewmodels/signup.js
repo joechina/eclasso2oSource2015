@@ -15,9 +15,13 @@
             password2: password2,
             signup: signup,
             router: router,
-            backtolist: backtolist,
+            back: back,
             errs: errs
         };
+
+        b_shouter.subscribe(function (newValue) {
+            back();
+        }, this, "back_viewmodels/signup");
 
         return vm;
 
@@ -39,14 +43,14 @@
             }
         }
 
-        function backtolist() {
+        function back() {
             router.navigate('/#signin');
         }
 
         function validate() {
             errs.removeAll();
             if (!userid() || userid().length === 0) {
-                errs.push('missing UserName');
+                errs.push('missing UserID');
             }
             if (!username() || username().length === 0) {
                 errs.push('missing UserName');

@@ -1,70 +1,48 @@
 ﻿<!--list of setting: Classes, UI language, login/logout, account info, etc. -->
 
-<div class="container-fluid">
-    <div class="list-group list-full-with">
-        <div class="list-group-item">
-            <div class="row" data-bind="click:myprofile">
-                <div class="col-xs-4">
-                    个人资料
-                </div>
-                <div class="col-xs-5">
-                    <h4 class="list-group-item-heading" data-bind="text: user().UserId()"></h4>
-                </div>
-                <div class="col-xs-3">
-                    <span class="glyphicon glyphicon-menu-right" />
-                </div>
-            </div>
+<ion-content class="mine-view scroll-content ionic-scroll has-header has-tabs">
+    <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+        <div class="list mine-nav">
+            <a class="mine-info item item-icon-left item-icon-right" data-bind="click:myprofile">
+                <i class="mine-head icon">
+                    <img src="../../Content/images/introduce.jpg">
+                </i>
+                <span style="padding-left:1.2rem" data-bind="text:user().Name"></span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </a>
         </div>
-        <div class="list-group-item">
-            <div class="row" data-bind="click:myreport">
-                <div class="col-xs-4">
-                    我的报告
-                </div>
-                <div class="col-xs-5">
-                    <h4 class="list-group-item-heading" data-bind="text: totalex()"></h4>
-                </div>
-                <div class="col-xs-3">
-                    <span class="glyphicon glyphicon-menu-right" />
-                </div>
-            </div>
+        <br />
+        <div class="list mine-nav">
+            <a class="item item-icon-left item-icon-right" data-bind="click:myreport">
+                <i class="icon ion-ios-book-outline"></i>
+                <span>我的报告</span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </a>
+            <a class="item item-icon-left item-icon-right" data-bind="click: myclazz">
+                <i class="icon ion-university"></i>
+                <span>我的课程</span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </a>
         </div>
-        <div class="list-group-item">
-            <div class="row" data-bind="click: myclazz">
-                <div class="col-xs-4">
-                    我的课程
-                </div>
-                <div class="col-xs-5">
-                    <h4 class="list-group-item-heading" data-bind="text: Classes().length"></h4>
-                </div>
-                <div class="col-xs-3">
-                    <span class="glyphicon glyphicon-menu-right" />
-                </div>
-            </div>
+        <br />
+        <div class="list mine-nav">
+            <a class="item item-icon-left item-icon-right" data-bind="click: feedback">
+                <i class="icon ion-compose"></i>
+                <span>用户反馈</span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </a>
+            <a class="item item-icon-left item-icon-right" href="../../tou.html">
+                <i class="icon ion-ios-information-outline"></i>
+                <span>关于 Parrot</span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </a>
         </div>
-        <div class="list-group-item">
-            <div class="row" data-bind="click: feedback">
-                <div class="col-xs-9">
-                    用户反馈
-                </div>
-                <div class="col-xs-3">
-                    <span class="glyphicon glyphicon-menu-right" />
-                </div>
-            </div>
-        </div>
-        <div class="list-group-item">
-            <div class="row" data-bind="click:aboutparrot">
-                <div class="col-xs-9">
-                    关于 Parrot
-                </div>
-                <div class="col-xs-3">
-                    <span class="glyphicon glyphicon-menu-right" />
-                </div>
-            </div>
+        <br />
+        <div class="list mine-nav">
+            <a class="item text-center" data-bind="click:logout">
+                <i class="icon ion-power"></i>
+                <span>退出登录</span>
+            </a>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <button class="btn btn-primary btn-block" data-bind="click:logout" style="font-size:medium">注销</button>
-        </div>
-    </div>
-</div>
+</ion-content>

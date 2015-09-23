@@ -9,21 +9,23 @@
             </h2>
         </div>
 
-        <!-- ko if: problem().Media() && problem().Media().Type() == 'mp3'-->
+        <!-- ko if: currentMedia() && currentMedia().Type() == 'mp3'-->
         <br>
-        <audio controls data-bind="attr: {src: problem().Media().Content}" />
+
+        <audio controls data-bind="attr: {src: currentMedia().Content()}" />
+
         <br />
         <br />
         <!-- /ko-->
-        <!-- ko if: problem().Media() && problem().Media().Type() == 'txt'-->
+        <!-- ko if: currentMedia() && currentMedia().Type() == 'txt'-->
         <br />
-        <label data-bind="html:problem().Media().Content()" />
+        <label data-bind="html:currentMedia().Content()" />
         <br />
         <br />
         <!-- /ko-->
-        <!-- ko if: problem().Media() && problem().Media().Type() == 'img'-->
+        <!-- ko if: currentMedia() && currentMedia().Type() == 'img'-->
         <br />
-        <img cotrols data-bind="attr: {src: problem().Media().Content}" />
+        <img cotrols data-bind="attr: {src: currentMedia().Content()}" />
         <br />
         <br />
         <!-- /ko-->

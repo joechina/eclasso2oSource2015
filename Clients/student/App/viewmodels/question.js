@@ -3,6 +3,7 @@
         var question = ko.observable();
         var questions = ko.observableArray();
         var search = ko.observable();
+
         var login = {
             question: question,
             questions:questions,
@@ -29,32 +30,59 @@
             },
 
         };
+
         shouter.subscribe(function (newValue) {
             activate();
             logger.log('reload QA');
         }, this, "refresh_viewmodels/question");
+
+        b_shouter.subscribe(function (newValue) {
+            backtolist();
+        }, this, "back_viewmodels/question");
+
         return login;
 
         //#region Internal Methods
         function activate() {
             //var questionid = parseInt(id)
             //if (questionid > 0)
+
+            questions.removeAll();
+
             data.getquestions().then(function (data) {
                 questions(data.results);
             });
 
-            $("#goback").css({ display: "none" });
-            $("#refresh").css({ display: "inline" });
+            if (question()) {
+                $("#main_title").css({ float: "left", position: "relative" });
+
+                $("#goback").css({ display: "block" });
+                $("#refresh").css({ display: "none" });
+            } else {
+                $("#main_title").css({ float: "center", position: "absolute" });
+                $("#goback").css({ display: "none" });
+                $("#refresh").css({ display: "inline" });
+            }
+
+
             logger.log('question activated');
         }
 
         function openanswer(selected) {
             question(selected);
+
+            $("#main_title").css({ float: "left", position: "relative" });
+
+            $("#goback").css({ display: "block" });
             $("#refresh").css({ display: "none" });
         }
 
         function backtolist() {
             question(undefined);
+
+            $("#main_title").css({ float: "center", position: "absolute" });
+
+            $("#goback").css({ display: "none" });
             $("#refresh").css({ display: "inline" });
 
             //router.navigateBack();

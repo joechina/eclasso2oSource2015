@@ -13,7 +13,7 @@ namespace Parrot.Model
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public bool IsPractise { get; set; }
+        public bool? IsPractise { get; set; }
         [ForeignKey("Class")]
         public int ClassId { get; set; }
         [ForeignKey("Exersize")]

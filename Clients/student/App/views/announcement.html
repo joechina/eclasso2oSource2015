@@ -1,26 +1,42 @@
-﻿
-<div>
-    <!-- list of messages -->
+﻿    <!-- list of messages -->
+<ion-content class="scroll-content ionic-scroll has-header has-tabs">
     <!--ko ifnot: announcement()-->
-    <div class="list-group list-full-with" data-bind="foreach: announcements">
-        <a class="list-group-item" href="#" data-bind="click: $parent.openmsg">
-            <span class="announcement-item-title" data-bind="text: Title"></span>
-            <span class="announcement-item-date" data-bind="text:CreateDate().toLocaleString()"></span>
-        </a>
-    </div>
-    <!--/ko-->
-    <!--ko if: announcement()-->
-    <div class="container-fluid">
-        <div data-bind="with:announcement()" class="col-xs-12">
-            <span class="announcement-title" data-bind="text: Title"></span>
-            <p class="announcement-date" data-bind="text: CreateDate().toLocaleString()"></p>
-            <p class="announcement-content" data-bind="html: Content"></p>
+    <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+
+        <div class="disable-user-behavior list mine-nav" data-bind="foreach: announcements">
+
+            <a class="item-icon-left item item-icon-right" href="#" data-bind="click: $parent.openmsg">
+
+                <span class="announcement-item-title" data-bind="text: Title"></span>
+                <span class="item-note pull-left" data-bind="text:CreateDate().toLocaleString()"></span>
+
+                <i class="icon ion-ios-arrow-right pull-right"></i>
+
+            </a>
+
         </div>
     </div>
-    <div class="col-xs-12">
 
-        <button id="Button1" name="singlebutton" class="btn btn-primary btn-block" data-bind="click: backtolist">返回</button>
+    <!--/ko-->
+    <!--ko if: announcement()-->
+    <div class="list mine-nav" data-bind="with:announcement()">
+        <div class="item ">
+            <p>
+                发件人:&nbsp; <span class="announcement-target" data-bind="text: From"></span>
+            </p>
+            <p>
+                收件人:&nbsp; <span class="announcement-target" data-bind="text: Target"></span>
+            </p>
+        </div>
+        <div class="item ">
+            <span class="announcement-item-title" data-bind="text: Title"></span>
+            <span class="announcement-date pull-left" data-bind="text: CreateDate().toLocaleString()"></span>
+        </div>
+        <div class="item" style="border-bottom-style:hidden">
+            <span class="announcement-content" data-bind="html: Content"></span>
+        </div>
     </div>
 
     <!--/ko-->
-</div>
+
+</ion-content>
