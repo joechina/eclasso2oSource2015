@@ -31,17 +31,18 @@
         function save() {
             data.save(user()).then(function () {
                 alert('个人资料已保存');
-                router.navigateBack();
             }).fail(function (err) {
                 for (var i = 0; i < err.length; i++) {
                     alert(err[i]);
                     logger.log(err[i]);
                 }
             });
+
+            back();
         }
 
         function back() {
-            router.navigateBack();
+            router.navigate('/#myprofile');
         }
         //#endregion
     });

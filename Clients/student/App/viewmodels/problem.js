@@ -133,12 +133,13 @@
 
             $dialog.modal();
 
+            var uid = data.user().Id(); // get current user id
             // TODO: student might submit part of answers, then re-submit. need to check if an answer exists to avoid duplicated records in UserQuiz table. 
             for (i = 0; i < problem().Quizzes().length;i++) {
                 var text_string = 'width: ' + Math.round(i * 10 / problem().Quizzes().length) * 10 + '%';
                 $dialog.find('.progress-bar').attr('style', text_string);
 
-                var uid = data.user().Id(); // get current user id
+
                 var q = problem().Quizzes()[i];
                 var qid = q.Id(); // get current quiz id
 

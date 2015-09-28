@@ -13,7 +13,8 @@
         var user = ko.observable();
 
         var vm = {
-            exersizes: exersizes,
+            ex_alter: ex_alter,
+            ex_reflets:ex_reflets,
             exersize: exersize,
             user:user,
             ex: ex,
@@ -21,8 +22,10 @@
             router: router,
             quiztypename: global.quiztypename,
             categories: global.categories,
-            cat:cat,
+            cat: cat,
+            openex:openex,
             back: back,
+
         };
 
         shouter.subscribe(function (newValue) {
@@ -32,7 +35,12 @@
         }, this, "refresh_viewmodels/myreport");
 
         b_shouter.subscribe(function (newValue) {
-            back();
+            if (exersize()) {
+                backtolist();
+            }
+            else
+                back();
+
         }, this, "back_viewmodels/myreport");
 
         cat.subscribe(function (newValue) {
@@ -70,8 +78,9 @@
         function activate() {
 
             user(data.user());
-            if (!exersize()) {
+            init();
                 data.getuserexersizes_status(user().Id(), true).then(function (data) {
+                    exersizes(data.results);
                     for (var i = 0; i < data.results.length; i++) {
                         var ex = data.results[i].Exersize();
                         if (ex.Category() == '0') {
@@ -88,7 +97,7 @@
 
                 $("#goback").css({ display: "block" });
                 $("#refresh").css({ display: "inline" });
-            }
+
         }
 
         function init() {
@@ -100,8 +109,21 @@
             ex_saison.removeAll();
         }
 
-        function back() {
-            router.navigateBack();
+        function openex(selected) {
+            var eid = selected.Id();
+
+            data.getexersize(eid).then(function (sd) {
+                var ex = sd.results[0];
+                data.keepExerciseSeq(ex);
+                exersize(ex);
+            })
         }
 
+        function back() {
+            router.navigate('/#me');
+        }
+
+        function backtolist() {
+            exersize(undefined);
+        }
     });

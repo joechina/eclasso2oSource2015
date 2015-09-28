@@ -3,6 +3,7 @@
         var clazz = ko.observable();
         var clazzes = ko.observableArray();
         var assigned_exersizes = [];
+        var count = 0;
 
         var vm = {
             clazzes: clazzes,
@@ -35,14 +36,14 @@
                     var curr_uid = data.user().Id();
 
                     // reformat class date
-                    var s = result.results[i].Start();
-                    var e = result.results[i].End();
+                    var s = c.Start();
+                    var e = c.End();
                     c.duration = s.getFullYear() + '/' + s.getMonth() + '/' + s.getDate() + '/ - ' + e.getFullYear() + '/' + e.getMonth() + '/' + e.getDate();
 
                     // get status of class joining status: 0:"未批准"; 1: "已加入"; 2:"等待批准"; -1: "申请加入"
                     c.state = "申请加入";
                     c.button = "button button-small button-block button-royal";
-                    result.results[i].Users().forEach(function (u) {
+                    c.Users().forEach(function (u) {
                         var uid = u.UserId();
 
                         if (curr_uid == uid) {
@@ -107,32 +108,26 @@
             var uid = data.user().Id();
             var cid = selected.Id();
 
-            data.manager.saveOptions.allowConcurrentSaves = true;
+
+            //data.manager.saveOptions.allowConcurrentSaves = true;
 
             if (selected.autoApproved()) {// if auto approved (i.e. public) class, we will assign exercises directly to the student
+                var userclass = data.create("UserClass");
+                userclass.UserId(uid);
+                userclass.ClassId(cid);
+                userclass.Status(1); // Status: -1:"未批准"; 1: "已加入"; 0:"等待批准";
 
-                //data.getuserclass(uid, cid).then(function (result) {
-                   // if (result.results.length ==0) {
-                        //create userclass record
-                        var userclass = data.create("UserClass");
-                        userclass.UserId(uid);
-                        userclass.ClassId(cid);
-                        userclass.Status(1); // Status: -1:"未批准"; 1: "已加入"; 0:"等待批准";
-
-                        data.save(userclass).then(function () {
-
-                            alert('欢迎加入: ' + selected.Name() + '!');
-
-                        }).fail(function (err) {
-                            for (var i = 0; i < err.length; i++) {
-                                alert(err[i]);
-                                logger.log(err[i]);
-                            }
-                        });
-                   // }
-               // });
+                data.save(userclass).then(function () {
+                    alert('欢迎加入: ' + selected.Name() + '!');
+                }).fail(function (err) {
+                    for (var i = 0; i < err.length; i++) {
+                        alert(err[i]);
+                        logger.log(err[i]);
+                    }
+                });
 
                 // assign exercises
+                
                 data.getclassexersizes(cid).then(function (exersizes) {
 
                     exersizes.results.forEach(function (exersize) {
@@ -163,6 +158,7 @@
                         });// loop on exersizes assigend to a class
                     });// get a list of exersizes assigned to a class
                 });
+                
             }
             else {// if not public class, we need to wait for teacher's approval. no exercises will be assigned here. 
                 var userclass = data.create("UserClass");
@@ -179,6 +175,7 @@
                 });
             }
 
+            activate();
         }
 
         function openclazz(selected) {

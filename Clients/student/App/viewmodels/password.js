@@ -20,6 +20,10 @@
             errs: errs
         };
 
+        b_shouter.subscribe(function (newValue) {
+            back();
+        }, this, "back_viewmodels/password");
+
         return vm;
 
         //#region Internal Methods
