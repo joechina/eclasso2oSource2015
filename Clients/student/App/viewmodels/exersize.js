@@ -20,10 +20,15 @@
             router: router,
             backtolist: backtolist,
         };
+
         shouter.subscribe(function (newValue) {
             activate();
             logger.log('reload exersize');
         }, this, "refresh_viewmodels/exersize");
+
+        b_shouter.subscribe(function (newValue) {
+            backtolist();
+        }, this, "back_viewmodels/exersize");
 
         return login;
 
@@ -53,8 +58,14 @@
                     exersizes().forEach(loaduserquiz);
                 });
             }
-            
-            $("#goback").css({ display: "none" });
+
+            if (!exersize()) {
+                $("#goback").css({ display: "none" });
+            }
+            else {
+                $("#goback").css({ display: "block" });
+            }
+
             $("#refresh").css({display:"inline"});
                         
             logger.log('exersizes activated');
@@ -68,6 +79,9 @@
                     data.keepExerciseSeq(ex);
                     exersize(ex);
                 });
+
+                $("#goback").css({ display: "block" });
+
                 $("#refresh").css({ display: "none" });
             }
             else {
@@ -86,7 +100,7 @@
         function backtolist() {
             exersize(undefined);
             $("#refresh").css({ display: "inline" });
-
+            $("#goback").css({ display: "none" });
         }
 
         function submit(ex) {

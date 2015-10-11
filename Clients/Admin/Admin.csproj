@@ -127,8 +127,6 @@
     <Content Include="App\widgets\singleselection\viewmodel.js" />
     <Content Include="App\widgets\truefalse\view.html" />
     <Content Include="App\widgets\truefalse\viewmodel.js" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\alter-ego.JPG" />
@@ -138,14 +136,8 @@
     <Content Include="Content\images\reflets.JPG" />
     <Content Include="Content\jquery.mobile-1.4.4.min.css" />
     <Content Include="Content\jquery.mobile-icon-extend.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Icon.png" />
     <Content Include="packages.config" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\eclasso2oclient - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\eclasso2oteacher - FTP.pubxml" />
@@ -155,7 +147,6 @@
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\knockout-3.3.0.debug.js" />
     <Content Include="Scripts\knockout-3.3.0.js" />
-    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\packages.config" />
     <None Include="Properties\PublishProfiles\eclasso2oclient.pubxml" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />

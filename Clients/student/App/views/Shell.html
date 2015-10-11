@@ -5,12 +5,13 @@
 </head>
 
 <body style="overflow:hidden">
-    <div data-bind="compose: { view: 'header'}"></div>
+    <ion-nav-bar data-bind="compose: { view: 'header'}"></ion-nav-bar>
     <section id="content" data-bind="router: { cacheViews: true }"></section>
-    <!--<footer data-bind="compose: { view: 'footer' },visible: router.activeInstruction() && router.activeInstruction().config.nav > 0"></footer>-->
-    <footer data-bind="compose: { view: 'footer' }" ></footer>
+    <!--ion-nav-view animation="slide-left-right" class="view-container" nav-view-transition="ios" nav-view-direction="none" nav-swipe data-bind="router: { cacheViews: true }"></!--ion-nav-view>-->
+    <footer data-bind="compose: { view: 'footer' },visible: router.activeInstruction() && router.activeInstruction().config.nav > 0"></footer>
+    <!--footer data-bind="compose: { view: 'footer' }" ></!--footer>
     <div class="loader" data-bind="css: { active: router.isNavigating }">
-        <img src="../../Content/images/loader.gif" />
-    </div>
+        <img src="Content/images/loader.gif" />
+    </div>-->
 </body>
 </html>

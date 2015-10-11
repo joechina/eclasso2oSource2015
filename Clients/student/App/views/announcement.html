@@ -1,11 +1,11 @@
 ﻿    <!-- list of messages -->
-<ion-content class="scroll-content ionic-scroll has-header has-tabs">
+<ion-content class="container-fluid scroll-content has-header has-tabs">
     <!--ko ifnot: announcement()-->
     <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
 
         <div class="disable-user-behavior list mine-nav" data-bind="foreach: announcements">
 
-            <a class="item-icon-left item item-icon-right" href="#" data-bind="click: $parent.openmsg">
+            <a class="item item-icon-right" href="#" data-bind="click: $parent.openmsg">
 
                 <span class="announcement-item-title" data-bind="text: Title"></span>
                 <span class="item-note pull-left" data-bind="text:CreateDate().toLocaleString()"></span>

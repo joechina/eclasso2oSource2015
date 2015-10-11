@@ -1,6 +1,6 @@
 ﻿    <!-- list of Q&A -->
 
-<ion-content class="scroll-content ionic-scroll has-header has-tabs">
+<ion-content class="container-fluid scroll-content has-header has-tabs" style="padding-bottom:60px; overflow:auto">
     <!--ko ifnot: question()-->
     <div class="list list-inset">
         <label class="item item-input">
@@ -19,15 +19,17 @@
     <!--/ko-->
     <!--/ko-->
     <!--ko if: question()-->
-    <div class="list mine-nav" data-bind="with:question()">
-        <div class="item">
-            <h2 class="title" data-bind="text:QuestionDetail"></h2>
-        </div>
-        <div class="item">
-            <span class="item-content" data-bind="html:Answer"></span>
-            <br />
+    <div data-bind="with:question()">
+        <div class="card">
+            <div class="item item-divider">
+                <h2 class="title" data-bind="text:QuestionDetail"></h2>
+            </div>
+            <div class="item item-text-wrap">
+                <span data-bind="html:Answer"></span>
+            </div>
         </div>
     </div>
+
     <!--/ko-->
 
 </ion-content>

@@ -2,14 +2,11 @@
 
 <div class="widget">
     <!--ko if: isediting() == false-->
-    
-    <br />
+
     <span data-bind="text:settings.item.Challenge()"></span>
     <br />
     <br />
     <input style="font-size:18px" data-bind="value:settings.item.answer" class="form-control input-lg">
-
-    <br />
     <!-- /ko-->
     <!--ko if: isediting() == true -->
 
@@ -21,14 +18,13 @@
     <!--ko if: isreporting()-->
     <label class="block" style="color:blueviolet">问题:</label>
     <span data-bind="text:settings.item.Challenge()"></span>
-    <br/><br/>
-    <label class="block">学生回答: <span style="color:green" data-bind="text:settings.item.answer()"></span></label>
-    <br />
-    <label class="block">标准答案: <span style="font-weight:normal" data-bind="text:settings.item.Answer()" /></label>
     <br/>
+    <label class="block">学生回答: <span style="color:green" data-bind="text:settings.item.answer()"></span></label>
+
+    <label class="block">标准答案: <span style="color:blue" data-bind="text:settings.item.Answer()" /></label>
+
     <!-- ko if: settings.item.Comment() != null -->
     <label class="block">录音全文: <span style="font-weight:normal" data-bind="html:settings.item.Comment()" /></label>
-    <br/>
     <!-- /ko-->
 
     <!-- /ko-->

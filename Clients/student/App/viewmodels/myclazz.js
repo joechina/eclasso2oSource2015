@@ -109,7 +109,7 @@
             var cid = selected.Id();
 
 
-            //data.manager.saveOptions.allowConcurrentSaves = true;
+            data.manager.saveOptions.allowConcurrentSaves = true;
 
             if (selected.autoApproved()) {// if auto approved (i.e. public) class, we will assign exercises directly to the student
                 var userclass = data.create("UserClass");
@@ -129,7 +129,6 @@
                 // assign exercises
                 
                 data.getclassexersizes(cid).then(function (exersizes) {
-
                     exersizes.results.forEach(function (exersize) {
                         var eid = exersize.ExersizeId();
 
@@ -156,6 +155,8 @@
                                 logger.log(uid + "/" + eid + "exist already");
                             }
                         });// loop on exersizes assigend to a class
+
+                        activate();
                     });// get a list of exersizes assigned to a class
                 });
                 
@@ -175,7 +176,7 @@
                 });
             }
 
-            activate();
+            //activate();
         }
 
         function openclazz(selected) {
