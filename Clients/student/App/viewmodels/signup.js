@@ -50,19 +50,25 @@
         function validate() {
             errs.removeAll();
             if (!userid() || userid().length === 0) {
-                errs.push('missing UserID');
+                errs.push('登录名不能为空');
             }
             if (!username() || username().length === 0) {
-                errs.push('missing UserName');
+                errs.push('用户姓名不能为空');
             }
             if (!password() || password().length === 0) {
-                errs.push('missing Password');
+                errs.push('密码不能为空');
+            }
+            else if (password().length < 6) {
+                errs.push('密码长度至少为 6 个字符');
             }
             if (!password2() || password2().length === 0) {
-                errs.push('missing Confirm Password');
+                errs.push('确认密码不能为空');
+            }
+            else if (password2().length < 6) {
+                errs.push('确认密码长度至少为 6 个字符');
             }
             if (password() && password2() && password() !== password2()) {
-                errs.push('Passwords do not match');
+                errs.push('密码不匹配');
             }
         }
         //#endregion

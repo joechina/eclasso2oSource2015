@@ -55,7 +55,8 @@
                         else
                             other_exersizes.push(e);
                     }
-                    exersizes().forEach(loaduserquiz);
+
+                    //exersizes().forEach(loaduserquiz);
                 });
             }
 
@@ -130,7 +131,7 @@
                     data.save(result.results[0]).then(function () {
                         alert('习题: ' + eid + ' 已提交');
                         logger.log('学生: ' + uid + '习题: ' + eid + '已提交');
-
+                        updateExerciseResult(eid);
                     }).fail(function (err) {
                         for (var i = 0; i < err.length; i++) {
                             logger.log(err[i]);
@@ -155,6 +156,36 @@
                     })
                     data.user().userexercizeanswer[exercise.ExersizeId()] = userquiz;
                 })
+            }
+        }
+
+        function updateExerciseResult(eid) {
+            var manual = 0, correct_ans = 0, wrong_ans = 0, no_ans = 0;
+            var answers = data.user().userexercizeanswer[eid];
+            data.getexersize(eid).then(function (result) {
+                results.results[0].ExersizeSection().forEach(function (section) {
+                    section.Problem().forEach(function (problem) {
+                        problem.Quiz().forEach(function (quiz) {
+                            if (quiz.QuizType() == 1 || quiz.QuizType() == 2 || quiz.QuizType() == 3) {
+                                if (answers[quiz.Id()] == null)
+                                    ++no_ans
+                                else if (answers[quiz.Id()] == quiz.Answer())//need case sensitive test?
+                                    ++correct_ans;
+                                else
+                                    ++wrong_ans;
+                            }
+                            else
+                                ++manual;
+                        });
+                    });
+                });
+            });
+            if (manual + correct_ans + wrong_ans + no_ans > 0) {
+                var ue = data.create('UserExersize');
+                ue.UserId(data.user().Id());
+                ue.ExersizeId(eid);
+                ue.Result('Correct: ' + correct_ans + 'Wrong: ' + 'No answer' + no_ans + 'Manual check' + manual);
+                data.save(ue);
             }
         }
     });

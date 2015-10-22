@@ -107,9 +107,8 @@
         function join(selected) {
             var uid = data.user().Id();
             var cid = selected.Id();
-
-
-            data.manager.saveOptions.allowConcurrentSaves = true;
+            
+            //data.manager.saveOptions.allowConcurrentSaves = true;
 
             if (selected.autoApproved()) {// if auto approved (i.e. public) class, we will assign exercises directly to the student
                 var userclass = data.create("UserClass");
@@ -127,39 +126,48 @@
                 });
 
                 // assign exercises
-                
                 data.getclassexersizes(cid).then(function (exersizes) {
-                    exersizes.results.forEach(function (exersize) {
-                        var eid = exersize.ExersizeId();
+                    var total = exersizes.results.length;
+                    var count = 0;
 
-                        data.getuserexersize(uid, eid).then(function (result) {
-                            if (result.results.length == 0) {
-                                var userexersize = data.create("UserExersize");
-                                userexersize.UserId(uid);
-                                userexersize.ExersizeId(eid);
-                                userexersize.Assigned(new Date());
-                                //userexersize.Deadline(selected.End);
-                                userexersize.Progress(0);
-                                userexersize.Completed('false');
+                    function createUE(uid, eid) {
 
-                                data.save(userexersize).then(function () {
-                                    logger.log('create userexerise: ' + uid + '/' + eid);
+                        return function (result) {
+                            if (result.results.length <= 0) {
+                                var userExersize = data.create('UserExersize');
+                                userExersize.UserId(uid);
+                                userExersize.ExersizeId(eid);
+                                userExersize.Assigned(new Date());
+                                userExersize.Progress(0);
+                                userExersize.Completed('false');
+                                result.entityManager.attachEntity(userExersize, userExersize.entityAspect.entityState);
+                                count++;
+                            }
+                            else
+                                count++;
 
+                            if (total == count) {
+                                result.entityManager.saveChanges().then(function () {
+                                    logger.log('exersizes for class ' + cid + ' assignement is completed');
                                 }).fail(function (err) {
                                     for (var i = 0; i < err.length; i++) {
                                         logger.log(err[i]);
                                     }
                                 });
-                            }// check if user exersize record exists
-                            else {
-                                logger.log(uid + "/" + eid + "exist already");
                             }
-                        });// loop on exersizes assigend to a class
+                        }
+                    }
+                    for (var i = 0; i < total; i++){
+                        var exersize = exersizes.results[i];
+                        var eid = exersize.ExersizeId();
 
-                        activate();
-                    });// get a list of exersizes assigned to a class
-                });
-                
+                        var callback = createUE(uid, eid);
+                        var record = data.getuserexersize(uid, eid).then(callback);
+
+                        //activate();
+                    };// get a list of exersizes assigned to a class
+
+                });                
             }
             else {// if not public class, we need to wait for teacher's approval. no exercises will be assigned here. 
                 var userclass = data.create("UserClass");
@@ -175,9 +183,10 @@
                     }
                 });
             }
-
             //activate();
         }
+
+
 
         function openclazz(selected) {
             clazz(selected);

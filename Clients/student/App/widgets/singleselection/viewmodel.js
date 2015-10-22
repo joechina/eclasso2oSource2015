@@ -18,14 +18,14 @@
 
         this.isChecked.subscribe(function (newValue) {
             this.settings.item.answer(newValue);
-            this.settings.to_next();
+            //this.settings.to_next();
         }, this);
     }
 
     ctor.prototype.activate = function (settings) {
         this.settings = settings;
 
-        if (!this.settings.item.answer) {
+        if (this.settings.item.answer == null) {
             this.settings.item.answer = ko.observable();
         }
 

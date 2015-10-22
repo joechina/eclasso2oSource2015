@@ -57,7 +57,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app.js" />
     <Content Include="App\data.js" />
     <Content Include="App\global.js" />
     <Content Include="App\logger.js" />
@@ -1193,6 +1192,7 @@
     <Content Include="Scripts\tinymce\themes\modern\theme.min.js" />
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
+    <Content Include="Scripts\wysiwyg.min.js" />
     <Content Include="sql.txt" />
     <Content Include="tou.html" />
     <Content Include="Web.config">

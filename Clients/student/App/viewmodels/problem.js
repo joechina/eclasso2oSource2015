@@ -17,7 +17,8 @@
             next: next,
             total: total,
             current: current,
-            currentMedia:currentMedia,
+            currentMedia: currentMedia,
+            play:play,
             currentQuiz: ko.computed(function () {
                 if (problem()) {
                     return problem().Quizzes()[current()];
@@ -49,6 +50,20 @@
                 }
 
                 problem(p);
+                eid = p.ExersizeSection().ExersizeId();
+                data.getexersize(eid).then(function (result) {
+                    if (result.results[0].TotalQuizzes() > 0)
+                        e_total_quizzes = result.results[0].TotalQuizzes();
+                    else {
+                        result.results[0].Sections().forEach(section)
+                        {
+                            section.Problems().forEach(l_problem)
+                            {
+                                e_total_quizzes += l_problem.Quizzes().length;
+                            }
+                        }
+                    }
+                });
 
                 total(p.Quizzes().length);
 
@@ -109,7 +124,7 @@
             var n = 0;
             for (i = 0; i < problem().Quizzes().length; i++) {
                 var q = problem().Quizzes()[i];
-                if (q.answer() == null) {
+                if ((q.answer == null) || (q.answer() == null)) {
                     ++n;
                 }
             }
@@ -143,16 +158,15 @@
                 var q = problem().Quizzes()[i];
                 var qid = q.Id(); // get current quiz id
 
-                if (q.answer() != null) {
-                   
-                    submituserquiz(uid, qid, q);
+                if ((q.answer != null) && (q.answer() != null)){
+                        submituserquiz(uid, qid, q);
                 }
                 //else {
                   //  alert('问题: ' + q.Challenge() + ' 没有回答');
                 //}
             }
 
-            updateProgress(problem);
+            //updateProgress(problem);
 
             $dialog.modal('hide');
 
@@ -195,7 +209,7 @@
                     results.results[0].Answer(a());
                     data.save(results.results[0]).then(function () {
                         updateProgress(q.Problem());
-                        logger.log('userQuiz:' + uid + '/' + qid + ' with answer: ' + a());
+                        logger.log('userQuiz:' + uid + '/' + qid + ' updated with answer: ' + a());
 
                     }).fail(function (err) {
                         for (var i = 0; i < err.length; i++) {
@@ -210,7 +224,7 @@
 
         function updateProgress(problem) {
             //update progress field for UserExercise
-            var eid = problem().ExersizeSection().ExersizeId();
+            var eid = problem.ExersizeSection().ExersizeId();
             var uid = data.user().Id();
 
             data.getUserExerciseQuizs(uid, eid).then(function (result) {
