@@ -3,12 +3,10 @@
     <button class="button button-icon ion-ios-arrow-left header-item" id="goback" style="color:#fff; min-width:0px" data-bind="click:back"></button>
 
     <!--line height to be aligned with button-icon -->
-    <div id="main_title" class="title title-center header-item" style="line-height: 32px" data-bind="text: title"></div>
-
-    <!--button id="refresh" class="btn btn-link" data-bind="click:refresh" style="color:#fff">
-        <span class="ion-refresh"></span>
-    </!--button-->
-
+    <div class="title title-center header-item">
+        <span id="main_title" style="line-height: 32px" data-bind="text: title"></span>
+        <button id="refresh" class="button button-icon button-small ion-ios-refresh-empty" data-bind="click:refresh" style="color:#fff; vertical-align:baseline"></button>
+    </div>
     <ul id="shortcut" class="nav buttons pull-right" style="display:none">
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -19,6 +17,6 @@
                 <li><a href="#myreport">查看报告</a></li>
             </ul>
         </li>
-        </ul>
+    </ul>
 
 </ion-header-bar>

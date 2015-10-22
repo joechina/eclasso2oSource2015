@@ -31,6 +31,7 @@
         shouter.subscribe(function (newValue) {
             init();
             activate();
+            alert("reloading");
             logger.log('reload my report');
         }, this, "refresh_viewmodels/myreport");
 
@@ -76,9 +77,9 @@
         return vm;
 
         function activate() {
-
             user(data.user());
-            init();
+
+            if (exersizes().length == 0) {
                 data.getuserexersizes_status(user().Id(), true).then(function (data) {
                     exersizes(data.results);
                     for (var i = 0; i < data.results.length; i++) {
@@ -94,10 +95,10 @@
                         }
                     }
                 });
+            }
 
-                $("#goback").css({ display: "block" });
-                $("#refresh").css({ display: "inline" });
-
+            $("#goback").css({ display: "block" });
+            $("#refresh").css({ display: "inline" });
         }
 
         function init() {
@@ -107,6 +108,7 @@
             ex_alter.removeAll();
             ex_reflets.removeAll();
             ex_saison.removeAll();
+            exersizes.removeAll();
         }
 
         function openex(selected) {
@@ -117,6 +119,8 @@
                 data.keepExerciseSeq(ex);
                 exersize(ex);
             })
+
+            $("#refresh").css({ display: "none" });
         }
 
         function back() {

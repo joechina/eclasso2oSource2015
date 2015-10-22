@@ -54,24 +54,22 @@
             });
 
             if (question()) {
-                $("#main_title").css({ float: "left", position: "relative" });
+                //$("#main_title").css({ float: "left", position: "relative" });
 
                 $("#goback").css({ display: "block" });
                 $("#refresh").css({ display: "none" });
             } else {
-                $("#main_title").css({ float: "center", position: "absolute" });
+                //$("#main_title").css({ float: "center", position: "absolute" });
                 $("#goback").css({ display: "none" });
                 $("#refresh").css({ display: "inline" });
             }
-
-
             logger.log('question activated');
         }
 
         function openanswer(selected) {
             question(selected);
 
-            $("#main_title").css({ float: "left", position: "relative" });
+            //$("#main_title").css({ float: "left", position: "relative" });
 
             $("#goback").css({ display: "block" });
             $("#refresh").css({ display: "none" });
@@ -80,7 +78,7 @@
         function backtolist() {
             question(undefined);
 
-            $("#main_title").css({ float: "center", position: "absolute" });
+            //$("#main_title").css({ float: "center", position: "absolute" });
 
             $("#goback").css({ display: "none" });
             $("#refresh").css({ display: "inline" });

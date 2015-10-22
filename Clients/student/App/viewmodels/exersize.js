@@ -17,6 +17,7 @@
             activate: activate,
             openexersize: openexersize,
             submit: submit,
+            report:report,
             router: router,
             backtolist: backtolist,
         };
@@ -141,6 +142,10 @@
             })
 
             router.navigate('/#exersize');
+        }
+
+        function report() {
+            router.navigate('/#myreport');
         }
 
         //#endregion

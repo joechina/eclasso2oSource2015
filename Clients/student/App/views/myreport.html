@@ -2,27 +2,35 @@
 <ion-content class="container-fluid scroll-content has-header has-tabs" style="padding-bottom:60px; overflow:auto">
     <!-- ko ifnot: exersize()-->
     <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
-        <div class="list mine-nav" data-bind="foreach: categories">
+        <div class="list list-inset" data-bind="foreach: categories">
             <!-- ko if: value == 0-->
-            <div class="item item-divider">
-                <img src="../../Content/images/alter-ego.jpg" />
-                <span data-bind="text:label"></span>
+            <div class="item item-divider row">
+                <i>
+                    <img src="../../Content/images/alter-ego.jpg" />
+                </i>
+                <div class="col col-center">
+                    <h3>Alter Ego+ 习题</h3>
+                </div>
             </div>
             <div data-bind="visible:$parent.ex_alter().length > 0,foreach:$parent.ex_alter()">
-                <a class="item item-icon-left item-icon-right" data-bind="click:$root.openex" href="#">
-                    <span data-bind="text: Name()"></span>
+                <a class="item item-icon-right" data-bind="click:$root.openex" href="#">
+                    <h3 data-bind="text: Name()"></h3>
                     <i class="icon ion-ios-arrow-right pull-right"></i>
                 </a>
             </div>
             <!--/ko-->
             <!-- ko if: value == 1-->
-            <div class="item item-divider">
-                <img src="../../Content/images/reflets.jpg" />
-                <span data-bind="text:label"></span>
+            <div class="item item-divider row">
+                <i>
+                    <img src="../../Content/images/reflets.jpg" />
+                </i>
+                <div class="col col-center">
+                    <h3 data-bind="text:label"></h3>
+                </div>
             </div>
             <div data-bind="visible:$parent.ex_reflets().length > 0,foreach:$parent.ex_reflets()">
-                <a class="item item-icon-left item-icon-right" data-bind="click:$root.openex">
-                    <span data-bind="text: Name()"></span>
+                <a class="item item-icon-right" data-bind="click:$root.openex">
+                    <h3 data-bind="text: Name()"></h3>
                     <i class="icon ion-ios-arrow-right pull-right"></i>
                 </a>
                 <!--/ko-->
@@ -34,7 +42,8 @@
     <!-- ko if: exersize()-->
     <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
         <div class="list mine-nav" data-bind="with:exersize()">
-            <h2 data-bind="text:Name()"></h2>
+            <br />
+            <h1 class="title" data-bind="text:Name()"></h1>
             <div data-bind="foreach:Sections">
                 <a class="item item-divider">
                     <h3 data-bind="text:Name()"></h3>

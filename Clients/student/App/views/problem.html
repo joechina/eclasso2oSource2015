@@ -4,7 +4,7 @@
     <div class="list card mine-nav">
         <div class="item">
             <h2 data-bind="text:problem().GeneralInfo"></h2>
-            <p style="text-align:center">(共&nbsp;<span data-bind="text:total"></span>&nbsp;题)</p>
+            <p style="text-align:center">(共<span data-bind="text:total"></span>&nbsp;题)</p>
         </div>
 
         <!-- ko if: currentMedia() && currentMedia().Type() == 'mp3'-->
@@ -28,11 +28,11 @@
         <!-- /ko -->
         
         <div class="item tabs tabs-secondary tabs-icon-left">
-            <a class="tab-item" href="#" data-bind="click:previous, disable: current() == 0">
+            <a class="tab-item" data-bind="click:previous, disable: current() == 0">
                 <i class="icon ion-chevron-left"></i>
                 上一题
             </a>
-            <a class="tab-item" href="#" data-bind="click:saveanswer">
+            <a class="tab-item" data-bind="click:saveanswer">
                 保存
             </a>
             <a class="tab-item" href="#" data-bind="click: next, disable: current() == total() -1">

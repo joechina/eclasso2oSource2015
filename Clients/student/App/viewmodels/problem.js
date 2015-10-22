@@ -18,7 +18,6 @@
             total: total,
             current: current,
             currentMedia: currentMedia,
-            play:play,
             currentQuiz: ko.computed(function () {
                 if (problem()) {
                     return problem().Quizzes()[current()];
@@ -129,7 +128,7 @@
                 }
             }
             if (n > 0) {
-                var msg = '有' + n + '道题没回答，继续递交吗？'
+                var msg = '有' + n + '道题没回答，继续保存吗？'
                 var r = confirm(msg);
                 if (r == false)
                     return;

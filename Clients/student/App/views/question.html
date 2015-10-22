@@ -10,7 +10,7 @@
     </div>
 
     <!--ko if: displayquestions().length > 0-->
-    <div class="list mine-nav" data-bind="foreach: displayquestions">
+    <div class="list list-inset" data-bind="foreach: displayquestions">
         <a class="item item-icon-right" href="#" data-bind="click: $parent.openanswer">
             <span data-bind="text: QuestionDetail"></span>
             <i class="icon ion-ios-arrow-right"></i>

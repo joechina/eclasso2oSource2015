@@ -56,7 +56,7 @@
 
             $("#goback").css({ display: "none" });
             $("#refresh").css({ display: "inline" });
-            $("#main_title").css({ float: "center", position: "absolute" });
+            //$("#main_title").css({ float: "center", position: "absolute" });
 
             logger.log('me page activated');
         }
