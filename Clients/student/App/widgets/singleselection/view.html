@@ -9,6 +9,16 @@
             <span data-bind="text:text"></span>
         </li>
     </ul>
+    <!--div>
+        <label class="item item-radio" data-bind="foreach: settings.item.options">
+            <input type="radio" name="group" data-bind="attr: {value: text}, checked: $parent.ischecked" />
+            <div class="item-content disable-pointer-events">
+                <span data-bind="text:text"></span>
+            </div>
+            <i class="radio-icon icon ion-checkmark"></i>
+        </label>
+    </!--div>-->
+
     <!-- /ko-->
     <!--ko if: isediting()== true -->
     <label class="block">问题: <input data-bind="value: settings.item.Challenge" class="form-control input-lg"></label>

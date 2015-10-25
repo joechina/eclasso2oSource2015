@@ -26,7 +26,7 @@
             uploadimage: uploadimage,
             init:init,
             cancel: cancel,
-            categories: ['Alter Ego+','Reflets','Saison'],
+            categories: ['Alter Ego+','简单问答','Reflets'],
             quizTypes: [{ value: 0, label: '纯文本填空题' },
                         { value: 1, label: '单选题' },
                         { value: 2, label: '对错题' },
@@ -164,10 +164,10 @@
                     exercise().Category(0);
                     break;
                 case 'Reflets':
-                    exercise().Category(1);
-                    break;
-                case 'Saison':
                     exercise().Category(2);
+                    break;
+                case '简单问答':
+                    exercise().Category(1);
                     break;
 
             }

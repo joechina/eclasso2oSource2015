@@ -3,7 +3,7 @@
         var exersizes = ko.observableArray();
         var ex_alter = ko.observableArray();
         var ex_reflets = ko.observableArray();
-        var ex_saison = ko.observableArray();
+        var ex_simple = ko.observableArray();
         var exersize = ko.observable();
         var sections = ko.observableArray();
         var problem = ko.observable();
@@ -14,7 +14,8 @@
 
         var vm = {
             ex_alter: ex_alter,
-            ex_reflets:ex_reflets,
+            ex_reflets: ex_reflets,
+            ex_simple:ex_simple,
             exersize: exersize,
             user:user,
             ex: ex,
@@ -31,7 +32,6 @@
         shouter.subscribe(function (newValue) {
             init();
             activate();
-            alert("reloading");
             logger.log('reload my report');
         }, this, "refresh_viewmodels/myreport");
 
@@ -43,36 +43,6 @@
                 back();
 
         }, this, "back_viewmodels/myreport");
-
-        cat.subscribe(function (newValue) {
-            if (exersizes().length != 0)
-                exersizes.removeAll();
-
-            switch (newValue) {
-                case 0: // 0 - alter ego+
-                    exersizes(ex_alter);
-                    break;
-                case 1: // 1 - reflets
-                    exersizes(ex_reflets);
-                    break;
-                default:
-                    exersizes(ex_saison);
-                    break;
-            }
-
-        });
-
-        ex.subscribe(function (newValue) {
-            if (newValue != null) {
-                var eid = newValue.Id();
-
-                data.getexersize(eid).then(function (sd) {
-                    var ex = sd.results[0];
-                    data.keepExerciseSeq(ex);
-                    exersize(ex);
-                })
-            }
-        });
 
         return vm;
 
@@ -88,10 +58,10 @@
                             ex_alter.push(ex);
                         }
                         else if (ex.Category() == '1') {
-                            ex_reflets.push(ex);
+                            ex_simple.push(ex);
                         }
                         else if (ex.Category() == '2') {
-                            ex_saison.push(ex);
+                            ex_reflets.push(ex);
                         }
                     }
                 });
@@ -107,7 +77,7 @@
             cat(undefined);
             ex_alter.removeAll();
             ex_reflets.removeAll();
-            ex_saison.removeAll();
+            ex_simple.removeAll();
             exersizes.removeAll();
         }
 
@@ -129,5 +99,9 @@
 
         function backtolist() {
             exersize(undefined);
+
+            $("#goback").css({ display: "block" });
+
+            $("#refresh").css({ display: "inline" });
         }
     });

@@ -25,24 +25,60 @@
                     <!--ko ifnot: Description()-->
                     <h3 data-bind="text: Name()"></h3>
                     <!--/ko-->
-                    <!--p class="item-note pull-left">
-                        共
-                        <span data-bind="text:TotalQuizzes() + ' 题 - 已完成 ' + $parent.Progress() + ' 题'"></span>
-                    </!--p>-->
                     <p class="item-note pull-left">
                         共
-                        <span data-bind="text:TotalQuizzes() + ' 题'"></span>
+                        <span data-bind="text:TotalQuizzes() + ' 题 - 已完成 ' + $parent.Progress() + ' 题'"></span>
                     </p>
+                    <!--p class="item-note pull-left">
+                        共
+                        <span data-bind="text:TotalQuizzes() + ' 题'"></span>
+                    </!--p>-->
 
                 </div>
                 <!--ko ifnot : $parent.Completed -->
                 <div class="col col-xs-25">
-                    <button class="button button-calm button-full" data-bind="event: {click: function() {$root.submit($data)} }">递交</button>
+                    <a class="button button-calm button-full" data-bind="event: {click: function() {$root.submit($data)} }">递交</a>
                 </div>
                 <!--/ko-->
                 <!--ko if : $parent.Completed -->
                 <div class="col col-xs-25">
-                    <button class="button button-balanced button-full" href="/#myreport">查看报告</button>
+                    <a class="button button-balanced button-full" href="/#myreport">查看报告</a>
+                </div>
+                <!--/ko-->
+            </div>
+        </div>
+        <!--/ko-->
+        <!--ko if : simple_exersizes().length > 0-->
+        <div class="item item-divider row" style="width:initial">
+            <i>
+                <img src="../../Content/images/logo.png" />
+            </i>
+            <div class="col col-center">
+                <h3>简易问答题</h3>
+            </div>
+        </div>
+        <div data-bind="foreach: simple_exersizes">
+            <div data-bind="with:Exersize()" class="item row" style="width:initial" href="#">
+                <div class="col col-75 col-center" data-bind="event: {click: function() {$root.openexersize($data, $parent.Completed)}}">
+                    <!--ko if: Description()-->
+                    <h3 data-bind="text: Name() + ' - ' + Description()"></h3>
+                    <!--/ko-->
+                    <!--ko ifnot: Description()-->
+                    <h3 data-bind="text: Name()"></h3>
+                    <!--/ko-->
+                    <p class="item-note pull-left">
+                        共
+                        <span data-bind="text:TotalQuizzes() + ' 题 - 已完成 ' + $parent.Progress() + ' 题'"></span>
+                    </p>
+                </div>
+                <!--ko ifnot : $parent.Completed -->
+                <div class="col col-xs-25">
+                    <a class="button button-calm button-full" data-bind="event: {click: function() {$root.submit($data)} }">递交</a>
+                </div>
+                <!--/ko-->
+                <!--ko if : $parent.Completed -->
+                <div class="col col-xs-25">
+                    <a class="button button-balanced button-full" href="/#myreport">查看报告</a>
                 </div>
                 <!--/ko-->
             </div>
@@ -50,8 +86,9 @@
         <!--/ko-->
         <!--ko if : add_exersizes().length > 0-->
         <div class="item item-divider row" style="width:initial">
-
-            <i><img src="../../Content/images/reflets.jpg" /></i>
+            <i>
+                <img src="../../Content/images/reflets.jpg" />
+            </i>
             <div class="col col-center">
                 <h3>Reflets 习题</h3>
             </div>
@@ -83,51 +120,7 @@
             </div>
         </div>
         <!--/ko-->
-        <!--ko if : saison_exersizes().length > 0-->
-        <div class="item item-divider">Saison 习题</div>
-        <div data-bind="foreach: saison_exersizes">
-            <div data-bind="with:Exersize()" class="item row" href="#">
-                <div class="col col-33">
-                    <img src="../../Content/images/logo.png" />
-                </div>
-                <div class="col col-33" data-bind="event: {click: function() {$root.openexersize($data, $parent.Completed)}}">
-                    <span data-bind="text: Name"></span>
-                    <p data-bind="text:Description() + ' - 共' + TotalQuizzes() + ' 题'"></p>
-                </div>
-                <!--ko if : Completed == False -->
-                <div class="col-xs-4">
-                    <button class="btn btn-primary btn-block" data-bind="event: {click: function() {$root.submit($data)} }">递交</button>
-                </div>
-                <!--/ko-->
-                <!--ko if : Completed == True -->
-                <div class="col-xs-4">
-                    <button class="btn btn-primary btn-block" data-bind="event: {click: function() {$root.report($data)} }">查看报告</button>
-                </div>
-                <!--/ko-->
-            </div>
-        </div>
-        <!--/ko-->
-        <!--ko if : other_exersizes().length > 0-->
-        <div class="item item-divider">其它习题</div>
-        <div data-bind="foreach: other_exersizes" class="list-group list-full-with">
-            <div data-bind="with:Exersize()">
-                <div class="list-group-item">
-                    <div class="row">
-                        <div class="col-xs-2">
-                            <img src="../../Content/images/logo.png" />
-                        </div>
-                        <div class="col-xs-6">
-                            <span class="list-group-item-heading" data-bind="text: Name, click: $root.openexersize"></span>
-                            <p class="announcement-date" data-bind="text:Description() + ' - 共' + TotalQuizzes() + ' 题'"></p>
-                        </div>
-                        <div class="col-xs-4">
-                            <button class="btn btn-primary btn-block" data-bind="disable: $parent.Completed, event: {click: function() {$root.submit($data)} }">递交</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/ko-->
+
     </div>
     <!--/ko-->
     <!--ko if: exersize() -->

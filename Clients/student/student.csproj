@@ -91,7 +91,6 @@
     <Content Include="App\views\announcement.html" />
     <Content Include="App\views\editclazz.html" />
     <Content Include="App\views\exersizeassign.html" />
-    <Content Include="App\views\ex_main.html" />
     <Content Include="App\views\feedback.html" />
     <Content Include="App\views\joinclazz.html" />
     <Content Include="App\views\editprofile.html" />

@@ -9,7 +9,7 @@
                     <img src="../../Content/images/alter-ego.jpg" />
                 </i>
                 <div class="col col-center">
-                    <h3>Alter Ego+ 习题</h3>
+                    <h3 data-bind="text:label"></h3>
                 </div>
             </div>
             <div data-bind="visible:$parent.ex_alter().length > 0,foreach:$parent.ex_alter()">
@@ -18,8 +18,26 @@
                     <i class="icon ion-ios-arrow-right pull-right"></i>
                 </a>
             </div>
+            <br/>
             <!--/ko-->
             <!-- ko if: value == 1-->
+            <div class="item item-divider row">
+                <i>
+                    <img src="../../Content/images/logo.png" />
+                </i>
+                <div class="col col-center">
+                    <h3 data-bind="text:label"></h3>
+                </div>
+            </div>
+            <div data-bind="visible:$parent.ex_simple().length > 0,foreach:$parent.ex_simple()">
+                <a class="item item-icon-right" data-bind="click:$root.openex">
+                    <h3 data-bind="text: Name()"></h3>
+                    <i class="icon ion-ios-arrow-right pull-right"></i>
+                </a>
+            </div>
+            <br/>
+            <!--/ko-->
+            <!-- ko if: value == 2-->
             <div class="item item-divider row">
                 <i>
                     <img src="../../Content/images/reflets.jpg" />
@@ -33,7 +51,6 @@
                     <h3 data-bind="text: Name()"></h3>
                     <i class="icon ion-ios-arrow-right pull-right"></i>
                 </a>
-                <!--/ko-->
             </div>
             <!--/ko-->
         </div>

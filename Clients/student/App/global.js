@@ -34,9 +34,9 @@
         data:data,
         routes: new routes(),
         quiztypename: quiztypename,
-        categories: [{ value: 0, label: 'Alter Ego+' },
-                        { value: 1, label: 'Reflets' },
-                        { value: 2, label: 'Saison' },]
+        categories: [{ value: 0, label: 'Alter Ego+ 习题' },
+                        { value: 1, label: '简单问答' },
+                        { value: 2, label: 'Reflets 习题' }, ]
     }
 
     function quiztypename(id) {

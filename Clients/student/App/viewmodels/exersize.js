@@ -4,14 +4,14 @@
         var exersizes = ko.observableArray(null);
         var def_exersizes = ko.observableArray(null);
         var add_exersizes = ko.observableArray(null);
-        var saison_exersizes = ko.observableArray(null);
+        var simple_exersizes = ko.observableArray(null);
         var other_exersizes = ko.observableArray(null);
 
         var login = {
             exersizes: exersizes,
             def_exersizes: def_exersizes,
             add_exersizes: add_exersizes,
-            saison_exersizes: saison_exersizes,
+            simple_exersizes: simple_exersizes,
             other_exersizes:other_exersizes,
             exersize:exersize,
             activate: activate,
@@ -47,11 +47,11 @@
                         if (e.Exersize().Category() == "0") { // Alter Ego+ 习题
                             def_exersizes.push(e);
                         }
-                        else if (e.Exersize().Category() == "1") { // Festival 习题
+                        else if (e.Exersize().Category() == "2") { // Festival 习题
                             add_exersizes.push(e);
                         }
-                        else if (e.Exersize().Category() == "2") { // Saison 习题
-                            saison_exersizes.push(e);
+                        else if (e.Exersize().Category() == "1") { // 简易问答 习题
+                            simple_exersizes.push(e);
                         }
                         else
                             other_exersizes.push(e);
@@ -95,7 +95,7 @@
             exersizes.removeAll();
             def_exersizes.removeAll();
             add_exersizes.removeAll();
-            saison_exersizes.removeAll();
+            simple_exersizes.removeAll();
             other_exersizes.removeAll();
         }
 
@@ -116,7 +116,7 @@
                     ue.Completed('true');
 
                     data.save(ue).then(function () {
-                        alert('习题 已提交');
+                        alert('习题: ' + ex.Name() + ' 已提交');
                         logger.log('学生: ' + uid + '习题: ' + eid + '已提交');
 
                     }).fail(function (err) {
@@ -130,7 +130,7 @@
                     result.results[0].Completed('true');
 
                     data.save(result.results[0]).then(function () {
-                        alert('习题: ' + eid + ' 已提交');
+                        alert('习题: ' + ex.Name() + ' 已提交');
                         logger.log('学生: ' + uid + '习题: ' + eid + '已提交');
                         updateExerciseResult(eid);
                     }).fail(function (err) {
