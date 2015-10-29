@@ -15,13 +15,11 @@
                     { route: 'password', moduleId: 'password', title: '修改密码', nav: 3 },
                     { route: 'feedback', moduleId: 'feedback', title: '用户反馈', nav: 3 },
                     { route: 'msgEx', moduleId: 'msgEx', title: '习题管理', icon: 'glyphicon glyphicon-bell', nav: 11 },
-                    { route: 'uploadQA', moduleId: 'uploadQA', title: '上传答疑文档', nav: 3 },
+                    { route: 'uploadQA', moduleId: 'uploadQA', title: '答疑管理', icon: 'glyphicon glyphicon-bell', nav: 12 },
                     { route: 'msgclazz', moduleId: 'msgclazz', title: '课程管理', icon: 'glyphicon glyphicon-bell', nav: 13 },
                     { route: 'editclazz', moduleId: 'editclazz', title: '编辑课程', icon: '', nav: 3 },
                     { route: 'report', moduleId: 'report', title: '习题报告', icon: 'glyphicon glyphicon-bell', nav: 14},
                     { route: 'exersizeassign/:eid', moduleId: 'exersizeassign', title: '分配习题', nav: 3 },
-                    { route: 'msgQA', moduleId: 'msgQA', title: '答疑管理', icon: 'glyphicon glyphicon-bell', nav: 12 },
-                    { route: 'editqa/:qid', moduleId: 'editqa', title: '编辑答疑', nav: 3 },
             ];
 
         return routes

@@ -13,6 +13,7 @@
 
         return vm;
 
+
         //#region Internal Methods
         function activate() {
             vm.question = data.create('Question');
@@ -40,7 +41,7 @@
         }
         
         function back() {
-            router.navigate('/#msgQA');
+            router.navigate('/#uploadQA');
         }
 
         function reset() {
