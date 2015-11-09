@@ -2,22 +2,24 @@
     function (router, ko, data, logger) {
         var exersize = ko.observable(null);
         var exersizes = ko.observableArray(null);
-        var def_exersizes = ko.observableArray(null);
-        var add_exersizes = ko.observableArray(null);
-        var simple_exersizes = ko.observableArray(null);
+        var alt_exersizes = ko.observableArray(null);
+        var ref_exersizes = ko.observableArray(null);
+        var sim_exersizes = ko.observableArray(null);
+        var fes_exersizes = ko.observableArray(null);
         var other_exersizes = ko.observableArray(null);
 
         var login = {
             exersizes: exersizes,
-            def_exersizes: def_exersizes,
-            add_exersizes: add_exersizes,
-            simple_exersizes: simple_exersizes,
-            other_exersizes:other_exersizes,
-            exersize:exersize,
+            alt_exersizes: alt_exersizes,
+            ref_exersizes: ref_exersizes,
+            sim_exersizes: sim_exersizes,
+            fes_exersizes:fes_exersizes,
+            other_exersizes: other_exersizes,
+            exersize: exersize,
             activate: activate,
             openexersize: openexersize,
             submit: submit,
-            report:report,
+            report: report,
             router: router,
             backtolist: backtolist,
         };
@@ -45,19 +47,20 @@
                     for (var i = 0; i < exersizes().length; i++) {
                         var e = exersizes()[i];
                         if (e.Exersize().Category() == "0") { // Alter Ego+ 习题
-                            def_exersizes.push(e);
+                            alt_exersizes.push(e);
                         }
                         else if (e.Exersize().Category() == "2") { // Festival 习题
-                            add_exersizes.push(e);
+                            fes_exersizes.push(e);
                         }
                         else if (e.Exersize().Category() == "1") { // 简易问答 习题
-                            simple_exersizes.push(e);
+                            sim_exersizes.push(e);
+                        }
+                        else if (e.Exersize().Category() == "3") { // Reflets 习题
+                            ref_exersizes.push(e);
                         }
                         else
                             other_exersizes.push(e);
                     }
-
-                    //exersizes().forEach(loaduserquiz);
                 });
             }
 
@@ -68,19 +71,46 @@
                 $("#goback").css({ display: "block" });
             }
 
-            $("#refresh").css({display:"inline"});
-                        
+            $("#refresh").css({ display: "inline" });
+
             logger.log('exersizes activated');
         }
 
         function openexersize(selected, c) {
             if (!c()) { // if not completed
                 var id = selected.Id();
-                data.getexersize(id).then(function (sd) {
-                    var ex = sd.results[0];
-                    data.keepExerciseSeq(ex);
-                    exersize(ex);
-                });
+                if (data.exerciseList[id] == null) {
+                    data.getexersize(id).then(function (sd) {
+                        data.exerciseQuizIdList[id] = [];
+                        data.exerciseList[id] = sd.results[0];
+                        var ex = sd.results[0];
+                        data.keepExerciseSeq(ex);
+                        ex.Sections().forEach(function (s) {
+                            s.Problems().forEach(function (p) {
+                                data.problemList[p.Id()] = p;
+                                p.Quizzes().forEach(function (q) {
+                                    if (data.exerciseQuizIdList[id].indexOf(q.Id()) < 0)
+                                        data.exerciseQuizIdList[id].push(q.Id());
+                                });
+                            });
+                        });
+                        if (data.user().answerextracted[id] == null || data.user().answerextracted[id] == false)
+                            data.getUserExerciseQuizs(data.user().Id(), id).then(function (result) {
+                                result.results.forEach(function (usrQuiz) {
+                                    data.user().userquizanswersSaved[usrQuiz.QuizId()] = usrQuiz.Answer();
+                                    data.user().userquizanswers[usrQuiz.QuizId()] = usrQuiz.Answer();
+                                });
+                                data.user().answerextracted[id] = true;
+                                exersize(ex);
+                            }).fail(function (err) {
+                                exersize(ex);
+                            });
+                        else
+                            exersize(ex);
+                    });
+                }
+                else
+                    exersize(data.exerciseList[id]);
 
                 $("#goback").css({ display: "block" });
 
@@ -93,9 +123,10 @@
 
         function init() {
             exersizes.removeAll();
-            def_exersizes.removeAll();
-            add_exersizes.removeAll();
-            simple_exersizes.removeAll();
+            alt_exersizes.removeAll();
+            ref_exersizes.removeAll();
+            sim_exersizes.removeAll();
+            fes_exersizes.removeAll();
             other_exersizes.removeAll();
         }
 
@@ -106,41 +137,41 @@
         }
 
         function submit(ex) {
+            //TODO: Remind users if there is any quiz not answered, and get confirmed for submission.
             var uid = data.user().Id();
             var eid = ex.Id();
             data.getuserexersize(uid, eid).then(function (result) {
+                var ue;
                 if (result.results.length == 0) {//if not exist, create a new record
-                    var ue = data.create('UserExersize');
+                    ue = data.create('UserExersize');
                     ue.UserId(uid);
                     ue.ExersizeId(eid);
-                    ue.Completed('true');
-
-                    data.save(ue).then(function () {
-                        alert('习题: ' + ex.Name() + ' 已提交');
-                        logger.log('学生: ' + uid + '习题: ' + eid + '已提交');
-
-                    }).fail(function (err) {
-                        for (var i = 0; i < err.length; i++) {
-                            logger.log(err[i]);
-                        }
-                    });
-                
                 }
-                else {// if record exists, update the Completed field
-                    result.results[0].Completed('true');
+                else
+                    ue = result.results[0];
+                ue.Completed('true');
 
-                    data.save(result.results[0]).then(function () {
-                        alert('习题: ' + ex.Name() + ' 已提交');
-                        logger.log('学生: ' + uid + '习题: ' + eid + '已提交');
-                        updateExerciseResult(eid);
-                    }).fail(function (err) {
-                        for (var i = 0; i < err.length; i++) {
-                            logger.log(err[i]);
-                        }
-                    });
-                }
-            })
-
+                data.save(ue).then(function () {
+                    alert('习题: ' + ex.Name() + ' 已提交');
+                    logger.log('学生: ' + uid + '习题: ' + eid + '已提交');
+                    if (data.user().answerextracted[eid] == null || data.user().answerextracted[eid] == false) {
+                        data.getUserExerciseQuizs(data.user().Id(), eid).then(function (result) {
+                            result.results.forEach(function (usrQuiz) {
+                                data.user().userquizanswersSaved[usrQuiz.QuizId()] = usrQuiz.Answer();
+                                data.user().userquizanswers[usrQuiz.QuizId()] = usrQuiz.Answer();
+                            });
+                            data.user().answerextracted[eid] = true;
+                            updateExerciseResult(eid, ue);
+                        });
+                    }
+                    else
+                        updateExerciseResult(eid, ue);
+                }).fail(function (err) {
+                    for (var i = 0; i < err.length; i++) {
+                        logger.log(err[i]);
+                    }
+                });
+            }, eid);
             router.navigate('/#exersize');
         }
 
@@ -149,47 +180,56 @@
         }
 
         //#endregion
-        function loaduserquiz(exercise) {
-            var uid = data.user().Id();
-            var eid = exercise.ExersizeId();
-            if (data.user().userexercizeanswer[eid] == null) {
-                data.getUserExerciseQuizs(uid, eid).then(function (result) {
-                    var workedarray = result.results;
-                    var userquiz = {};
-                    workedarray.forEach(function (data) {
-                        userquiz[data.Id()] = data;// get related user quiz: data.Id() => userquiz.Id
-                    })
-                    data.user().userexercizeanswer[exercise.ExersizeId()] = userquiz;
-                })
+        function updateExerciseResult(eid, ue) {
+            if (data.exerciseList[eid] == null) {
+                data.getexersize(eid).then(function (sd) {
+                    data.exerciseQuizIdList[eid] = [];
+                    data.exerciseList[eid] = sd.results[0];
+                    var ex = sd.results[0];
+                    data.keepExerciseSeq(ex);
+                    ex.Sections().forEach(function (s) {
+                        s.Problems().forEach(function (p) {
+                            data.problemList[p.Id()] = p;
+                            p.Quizzes().forEach(function (q) {
+                                if (data.exerciseQuizIdList[eid].indexOf(q.Id()) < 0)
+                                    data.exerciseQuizIdList[eid].push(q.Id());
+                            });
+                        });
+                    });
+                    calculateExerciseResult(eid, ue)
+                });
             }
+            else
+                calculateExerciseResult(eid, ue)
         }
 
-        function updateExerciseResult(eid) {
+        function calculateExerciseResult(eid, ue){
             var manual = 0, correct_ans = 0, wrong_ans = 0, no_ans = 0;
-            var answers = data.user().userexercizeanswer[eid];
-            data.getexersize(eid).then(function (result) {
-                results.results[0].ExersizeSection().forEach(function (section) {
-                    section.Problem().forEach(function (problem) {
-                        problem.Quiz().forEach(function (quiz) {
-                            if (quiz.QuizType() == 1 || quiz.QuizType() == 2 || quiz.QuizType() == 3) {
-                                if (answers[quiz.Id()] == null)
-                                    ++no_ans
-                                else if (answers[quiz.Id()] == quiz.Answer())//need case sensitive test?
-                                    ++correct_ans;
-                                else
-                                    ++wrong_ans;
-                            }
+            var answers = data.user().userquizanswersSaved;
+            var s = data.exerciseList[eid].Sections();
+            data.exerciseList[eid].Sections().forEach(function (s) {
+                s.Problems().forEach(function (p) {
+                    p.Quizzes().forEach(function (quiz) {
+                        if (answers[quiz.Id()] == null || answers[quiz.Id()] == "")
+                            ++no_ans
+                        else if (quiz.QuizType() == 1 || quiz.QuizType() == 2 || quiz.QuizType() == 3) {
+                            if (answers[quiz.Id()] == quiz.Answer())//need case sensitive test?
+                                ++correct_ans;
                             else
-                                ++manual;
-                        });
+                                ++wrong_ans;
+                        }
+                        else
+                            ++manual;
                     });
                 });
             });
             if (manual + correct_ans + wrong_ans + no_ans > 0) {
-                var ue = data.create('UserExersize');
-                ue.UserId(data.user().Id());
-                ue.ExersizeId(eid);
-                ue.Result('Correct: ' + correct_ans + 'Wrong: ' + 'No answer' + no_ans + 'Manual check' + manual);
+                var result = "正确 " + correct_ans + ", 错误 " + wrong_ans;
+                if (no_ans)
+                    result += ", 没回答 " + no_ans;
+                if (manual)
+                    result += ", 等待批改 " + manual;
+                ue.Result(result);
                 data.save(ue);
             }
         }

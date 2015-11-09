@@ -8,7 +8,7 @@
 
     <h4>答案：(用分号 ; 断开） </h4>
 
-    <input data-bind="value:settings.item.answer, valueUpdate:'afterkeydown'" class="form-control input-lg">
+    <input data-bind="value:filledTxt, valueUpdate:'afterkeydown'" class="form-control input-lg">
     <br />
 
     <!-- /ko-->
@@ -22,7 +22,7 @@
     <label class="block" style="color:blueviolet">问题:</label>
     <span data-bind="html: settings.item.Challenge()"></span>
     <br />
-    <label class="block">学生回答: <span style="color:green" data-bind="text:settings.item.answer()"></span></label>
+    <label class="block">学生回答: <span style="color:green" data-bind="text:filledTxt"></span></label>
 
     <label class="block">标准答案: <span style="color:blue" data-bind="html:settings.item.Answer()" /></label>
 

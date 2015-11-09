@@ -5,13 +5,13 @@
     <br />
     <ul data-bind="foreach: settings.item.options" class="options">
         <li class="selectionoption">
-            <input type="radio" name="group1" data-bind="attr: {value: $data.text}, checked: $parent.isChecked" />
-            <span data-bind="text:text"></span>
+            <input type="radio" name="group1" data-bind="attr: {value: $data}, checked: $parent.isChecked" />
+            <span data-bind="text:$data"></span>
         </li>
     </ul>
     <!--div>
         <label class="item item-radio" data-bind="foreach: settings.item.options">
-            <input type="radio" name="group" data-bind="attr: {value: text}, checked: $parent.ischecked" />
+            <input type="radio" name="group" data-bind="attr: {value: text}, checked: $parent.isChecked" />
             <div class="item-content disable-pointer-events">
                 <span data-bind="text:text"></span>
             </div>
@@ -38,12 +38,12 @@
     <span data-bind="text:settings.item.Challenge()"></span>
     <ul data-bind="foreach: settings.item.options" class="options">
         <li class="selectionoption">
-            <input type="radio" name="group1" data-bind="attr: {value: $data.text}" />
-            <span data-bind="text:text"></span>
+            <input type="radio" name="group1" data-bind="attr: {value: $data}" />
+            <span data-bind="text:$data"></span>
         </li>
     </ul>
     <br />
-    <label class="block">学生回答: <span style="color:green" data-bind="text:settings.item.answer()"></span></label>
+    <label class="block">学生回答: <span data-bind="text:useranswer(), style: {color:answercolor}"></span></label>
 
     <label class="block">标准答案: <span style="color:blue" data-bind="html:settings.item.Answer()" /></label>
 

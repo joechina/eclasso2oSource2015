@@ -1,10 +1,10 @@
 ﻿
 <ion-content class="container-fluid scroll-content has-header has-tabs" style="padding-bottom:50px; overflow:auto; padding-right:0px">
-    <!--span class="label label-danger">注意：习题的标准答案在递交之后请至 “我->我的报告” 查看</!--span>-->
+    <span class="label label-danger">注意：习题的标准答案在递交之后点击 “查看报告” </span>
     <br />
     <!--ko ifnot: exersize()-->
     <div class="list">
-        <!--ko if : def_exersizes().length > 0-->
+        <!--ko if : alt_exersizes().length > 0-->
         <div class="item item-divider row" style="width:initial">
             <i>
                 <img src="../../Content/images/alter-ego.jpg" />
@@ -13,7 +13,7 @@
                 <h3>Alter Ego+ 习题</h3>
             </div>
         </div>
-        <div data-bind="foreach: def_exersizes">
+        <div data-bind="foreach: alt_exersizes">
             <div data-bind="with:Exersize()" class="item row" style="width:initial" href="#">
                 <!--div class="col col-10">
                     <img src="../../Content/images/alter-ego.jpg" />
@@ -48,7 +48,7 @@
             </div>
         </div>
         <!--/ko-->
-        <!--ko if : simple_exersizes().length > 0-->
+        <!--ko if : sim_exersizes().length > 0-->
         <div class="item item-divider row" style="width:initial">
             <i>
                 <img src="../../Content/images/logo.png" />
@@ -57,7 +57,7 @@
                 <h3>简易问答题</h3>
             </div>
         </div>
-        <div data-bind="foreach: simple_exersizes">
+        <div data-bind="foreach: sim_exersizes">
             <div data-bind="with:Exersize()" class="item row" style="width:initial" href="#">
                 <div class="col col-75 col-center" data-bind="event: {click: function() {$root.openexersize($data, $parent.Completed)}}">
                     <!--ko if: Description()-->
@@ -84,16 +84,52 @@
             </div>
         </div>
         <!--/ko-->
-        <!--ko if : add_exersizes().length > 0-->
+        <!--ko if : fes_exersizes().length > 0-->
         <div class="item item-divider row" style="width:initial">
             <i>
                 <img src="../../Content/images/reflets.jpg" />
             </i>
             <div class="col col-center">
-                <h3>Reflets 习题</h3>
+                <h3>Festival 听力题</h3>
             </div>
         </div>
-        <div data-bind="foreach: add_exersizes">
+        <div data-bind="foreach: fes_exersizes">
+            <div data-bind="with:Exersize()" class="item row" style="width:initial" href="#">
+                <div class="col col-75 col-center" data-bind="event: {click: function() {$root.openexersize($data, $parent.Completed)}}">
+                    <!--ko if: Description()-->
+                    <h3 data-bind="text: Name() + ' - ' + Description()"></h3>
+                    <!--/ko-->
+                    <!--ko ifnot: Description()-->
+                    <h3 data-bind="text: Name()"></h3>
+                    <!--/ko-->
+                    <p>
+                        共
+                        <span data-bind="text:TotalQuizzes() + ' 题 - 已完成 ' + $parent.Progress() + ' 题'"></span>
+                    </p>
+                </div>
+                <!--ko ifnot : $parent.Completed -->
+                <div class="col col-xs-25">
+                    <a class="button button-calm button-full" data-bind="event: {click: function() {$root.submit($data)} }">递交</a>
+                </div>
+                <!--/ko-->
+                <!--ko if : $parent.Completed -->
+                <div class="col col-xs-25">
+                    <a class="button button-balanced button-full" href="/#myreport">查看报告</a>
+                </div>
+                <!--/ko-->
+            </div>
+        </div>
+        <!--/ko-->
+        <!--ko if : ref_exersizes().length > 0-->
+        <div class="item item-divider row" style="width:initial">
+            <i>
+                <img src="../../Content/images/reflets.jpg" />
+            </i>
+            <div class="col col-center">
+                <h3>Reflets 听力题</h3>
+            </div>
+        </div>
+        <div data-bind="foreach: ref_exersizes">
             <div data-bind="with:Exersize()" class="item row" style="width:initial" href="#">
                 <div class="col col-75 col-center" data-bind="event: {click: function() {$root.openexersize($data, $parent.Completed)}}">
                     <!--ko if: Description()-->

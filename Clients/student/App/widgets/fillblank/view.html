@@ -7,7 +7,7 @@
     <br />
     <br />
     <label class="item item-input">
-        <input style="font-size:18px" type="text" data-bind="value:settings.item.answer, valueUpdate:'afterkeydown'" placeholder=" 回答">
+        <input style="font-size:18px" type="text" data-bind="value:filledTxt, valueUpdate:'afterkeydown'" placeholder=" 回答">
     </label>
     <!-- /ko-->
     <!--ko if: isediting() == true -->
@@ -21,7 +21,7 @@
     <label class="block" style="color:blueviolet">问题:</label>
     <span data-bind="text:settings.item.Challenge()"></span>
     <br/>
-    <label class="block">学生回答: <span style="color:green" data-bind="text:settings.item.answer()"></span></label>
+    <label class="block">学生回答: <span style="color:green" data-bind="text:filledTxt"></span></label>
 
     <label class="block">标准答案: <span style="color:blue" data-bind="text:settings.item.Answer()" /></label>
 

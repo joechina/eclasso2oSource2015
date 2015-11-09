@@ -83,13 +83,35 @@
 
         function openex(selected) {
             var eid = selected.Id();
-
-            data.getexersize(eid).then(function (sd) {
-                var ex = sd.results[0];
-                data.keepExerciseSeq(ex);
-                exersize(ex);
-            })
-
+            if (data.exerciseList[eid] == null) {
+                data.getexersize(eid).then(function (sd) {
+                    var ex = sd.results[0];
+                    data.keepExerciseSeq(ex);
+                    data.exerciseList[eid] = ex;
+                    data.exerciseQuizIdList[eid] = [];
+                    ex.Sections().forEach(function (s) {
+                        s.Problems().forEach(function (p) {
+                            data.problemList[p.Id()] = p;
+                            p.Quizzes().forEach(function (q) {
+                                if (data.exerciseQuizIdList[eid].indexOf(q.Id()) < 0)
+                                    data.exerciseQuizIdList[eid].push(q.Id());
+                            });
+                        });
+                    });
+                    data.getUserExerciseQuizs(data.user().Id(), eid).then(function (result) {
+                        result.results.forEach(function (usrQuiz) {
+                            data.user().userquizanswersSaved[usrQuiz.QuizId()] = usrQuiz.Answer();
+                            data.user().userquizanswers[usrQuiz.QuizId()] = usrQuiz.Answer();
+                        });
+                        data.user().answerextracted[eid] = true;
+                        exersize(ex);
+                    }).fail(function (err) {
+                        exersize(ex);
+                    });
+                })
+            }
+            else
+                exersize(data.exerciseList[eid]);
             $("#refresh").css({ display: "none" });
         }
 
