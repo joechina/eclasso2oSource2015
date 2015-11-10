@@ -4,6 +4,7 @@
         var ex_alter = ko.observableArray();
         var ex_reflets = ko.observableArray();
         var ex_simple = ko.observableArray();
+        var ex_festival = ko.observableArray();
         var exersize = ko.observable();
         var sections = ko.observableArray();
         var problem = ko.observable();
@@ -15,7 +16,8 @@
         var vm = {
             ex_alter: ex_alter,
             ex_reflets: ex_reflets,
-            ex_simple:ex_simple,
+            ex_simple: ex_simple,
+            ex_festival:ex_festival,
             exersize: exersize,
             user:user,
             ex: ex,
@@ -61,6 +63,9 @@
                             ex_simple.push(ex);
                         }
                         else if (ex.Category() == '2') {
+                            ex_festival.push(ex);
+                        }
+                        else if (ex.Category() == '3') {
                             ex_reflets.push(ex);
                         }
                     }
@@ -78,6 +83,7 @@
             ex_alter.removeAll();
             ex_reflets.removeAll();
             ex_simple.removeAll();
+            ex_festival.removeAll();
             exersizes.removeAll();
         }
 

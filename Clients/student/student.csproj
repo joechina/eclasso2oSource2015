@@ -82,7 +82,6 @@
     <Content Include="App\viewmodels\question.js" />
     <Content Include="App\viewmodels\me.js" />
     <Content Include="App\viewmodels\setting.js" />
-    <Content Include="App\viewmodels\uploadEx.js" />
     <Content Include="App\viewmodels\signup.js" />
     <Content Include="App\viewmodels\home.js" />
     <Content Include="App\viewmodels\shell.js" />
@@ -91,6 +90,7 @@
     <Content Include="App\views\announcement.html" />
     <Content Include="App\views\editclazz.html" />
     <Content Include="App\views\exersizeassign.html" />
+    <Content Include="App\views\ex_main.html" />
     <Content Include="App\views\feedback.html" />
     <Content Include="App\views\joinclazz.html" />
     <Content Include="App\views\editprofile.html" />
@@ -111,7 +111,6 @@
     <Content Include="App\views\question.html" />
     <Content Include="App\views\me.html" />
     <Content Include="App\views\setting.html" />
-    <Content Include="App\views\uploadEx.html" />
     <Content Include="App\views\signup.html" />
     <Content Include="App\views\Shell.html" />
     <Content Include="App\views\signin.html" />
@@ -130,6 +129,7 @@
     <Content Include="App\widgets\truefalse\viewmodel.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\festival.jpg" />
     <Content Include="Content\images\alter-ego.JPG" />
     <Content Include="Content\images\headbg.png" />
     <Content Include="Content\images\introduce.jpg" />

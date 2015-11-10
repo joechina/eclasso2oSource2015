@@ -15,12 +15,9 @@
                     { route: 'password', moduleId: 'password', title: '修改密码', nav: 3 },
                     { route: 'feedback', moduleId: 'feedback', title: '用户反馈', nav: 3 },
                     { route: 'myreport', moduleId: 'myreport', title: '习题报告', nav: 3 },
-                    { route: 'ex_shell', moduleId: 'ex_shell', title: '新习题库', icon: 'ion-ios-bell', nav: 3 },
-                    { route: 'ex_alterego', moduleId: 'ex_alterego', title: 'Alter Ego+', nav: 3 },
-                    { route: 'ex_reflets', moduleId: 'ex_reflets', title: 'Reflets', nav: 3 },
-                    { route: 'ex_saison', moduleId: 'ex_saison', title: 'Saison',  nav: 3 },
+                    { route: 'ex_main', moduleId: 'ex_main', title: '习题库', icon: 'icon ion-ios-list-outline', nav: 12 },
                     { route: 'announcements', moduleId: 'announcement', title: '通知', icon: 'icon ion-ios-bell-outline', nav: 11 },
-                    { route: 'exersizes/:uid', moduleId: 'exersize', title: '习题库', icon: 'icon ion-ios-list-outline', nav: 12 },
+                    { route: 'exersizes/:cat', moduleId: 'exersize', title: '习题', nav: 3 },
                     { route: 'questions', moduleId: 'question', title: '知识库', icon: 'icon ion-ios-book-outline', nav: 13 },
                     { route: 'me', moduleId: 'me', title: '我', icon: 'icon ion-ios-person-outline', nav: 14 },
                     { route: 'report', moduleId: 'report', title: '习题报告', nav: 3 },
@@ -34,9 +31,12 @@
         data:data,
         routes: new routes(),
         quiztypename: quiztypename,
-        categories: [{ value: 0, label: 'Alter Ego+ 习题' },
-                        { value: 1, label: '简单问答' },
-                        { value: 2, label: 'Reflets 习题' }, ]
+        categories: [
+            { value: 0, label: 'Alter Ego+ 习题', image: '../../Content/images/alter-ego.jpg' },
+            { value: 1, label: '简易问答题', image: '../../Content/images/logo.png' },
+            { value: 2, label: 'Festival 听力题', image: '../../Content/images/festival.jpg' },
+            { value: 3, label: 'Reflets 听力题', image: '../../Content/images/reflets.jpg' }
+        ]
     }
 
     function quiztypename(id) {

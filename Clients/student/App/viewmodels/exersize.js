@@ -1,20 +1,12 @@
 ﻿define(['plugins/router', 'knockout', 'data', 'logger'],
     function (router, ko, data, logger) {
         var exersize = ko.observable(null);
-        var exersizes = ko.observableArray(null);
-        var alt_exersizes = ko.observableArray(null);
-        var ref_exersizes = ko.observableArray(null);
-        var sim_exersizes = ko.observableArray(null);
-        var fes_exersizes = ko.observableArray(null);
-        var other_exersizes = ko.observableArray(null);
+        var exersizes = ko.observableArray(null); // all exersizes assigned to a student
+        var myexersizes = ko.observableArray(null); // exersizes assigned to a student with a specific category
 
         var login = {
             exersizes: exersizes,
-            alt_exersizes: alt_exersizes,
-            ref_exersizes: ref_exersizes,
-            sim_exersizes: sim_exersizes,
-            fes_exersizes:fes_exersizes,
-            other_exersizes: other_exersizes,
+            myexersizes: myexersizes,
             exersize: exersize,
             activate: activate,
             openexersize: openexersize,
@@ -30,46 +22,35 @@
         }, this, "refresh_viewmodels/exersize");
 
         b_shouter.subscribe(function (newValue) {
-            backtolist();
+            if (exersize()) {
+                backtolist();
+            }
+            else {
+                router.navigate('/#ex_main');
+            }
         }, this, "back_viewmodels/exersize");
 
         return login;
 
         //#region Internal Methods
-        function activate() {
+        function activate(cat) {
             var uid = data.user().Id();
             if (!exersize()) {
                 init();
                 data.getuserexersizes(uid).then(function (data) {
                     exersizes(data.results);
 
-                    //get exersizes assigned to a user: 0 refers to exercises related to lessons, 1 refers to additional exercises
+                    //get exersizes assigned to a user based on category selected.
                     for (var i = 0; i < exersizes().length; i++) {
                         var e = exersizes()[i];
-                        if (e.Exersize().Category() == "0") { // Alter Ego+ 习题
-                            alt_exersizes.push(e);
+                        if (e.Exersize().Category() == cat) {
+                            myexersizes.push(e);
                         }
-                        else if (e.Exersize().Category() == "2") { // Festival 习题
-                            fes_exersizes.push(e);
-                        }
-                        else if (e.Exersize().Category() == "1") { // 简易问答 习题
-                            sim_exersizes.push(e);
-                        }
-                        else if (e.Exersize().Category() == "3") { // Reflets 习题
-                            ref_exersizes.push(e);
-                        }
-                        else
-                            other_exersizes.push(e);
                     }
                 });
             }
 
-            if (!exersize()) {
-                $("#goback").css({ display: "none" });
-            }
-            else {
-                $("#goback").css({ display: "block" });
-            }
+            $("#goback").css({ display: "block" });
 
             $("#refresh").css({ display: "inline" });
 
@@ -123,17 +104,13 @@
 
         function init() {
             exersizes.removeAll();
-            alt_exersizes.removeAll();
-            ref_exersizes.removeAll();
-            sim_exersizes.removeAll();
-            fes_exersizes.removeAll();
-            other_exersizes.removeAll();
+            myexersizes.removeAll();
         }
 
         function backtolist() {
             exersize(undefined);
             $("#refresh").css({ display: "inline" });
-            $("#goback").css({ display: "none" });
+            $("#goback").css({ display: "block" });
         }
 
         function submit(ex) {
@@ -172,7 +149,8 @@
                     }
                 });
             }, eid);
-            router.navigate('/#exersize');
+            //router.navigate('/#exersize');
+            backtolist();
         }
 
         function report() {

@@ -4,15 +4,19 @@
     'q'],
     function (breeze, $, Q) {
 
-        //var host = 'http://localhost:56360/';
+        var host = 'http://localhost:56360/';
         //var host = 'http://eclasso2oasia.azurewebsites.net/';
-        var host = 'http://eclasso2o.chinacloudsites.cn/';
+        //var host = 'http://eclasso2o.chinacloudsites.cn/';
 
         var manager = new breeze.EntityManager(host + 'breeze/eClassO2OApi');
         var islocal = false;
         var isconnected = true;
         var user = ko.observable();
         var store;
+        var exerciseList = [];
+        var problemList = [];
+        var mediaList = [];
+        var exerciseQuizIdList = [];
         var data = {
             manager:manager,
             metadataStore: store,
@@ -54,6 +58,10 @@
             keepExerciseSeq: keepExerciseSeq,
             create: create,
             user: user,
+            exerciseList: exerciseList,
+            problemList: problemList,
+            mediaList: mediaList,
+            exerciseQuizIdList: exerciseQuizIdList,
         }
 
         return data;
@@ -100,7 +108,9 @@
             var query = breeze.EntityQuery.from('currentUser');
             return manager.executeQuery(query).then(function (result) {
                 var curuser = result.results[0];
-                curuser.userexercizeanswer = {};
+                curuser.userquizanswersSaved = [];
+                curuser.userquizanswers = [];
+                curuser.answerextracted = [];
                 user(curuser);
             }).fail(function (err) {
                 alert(err.message);
@@ -344,10 +354,6 @@
             if (islocal === true) {
                 //export to local storage
             }
-        }
-
-        function create(entity) {
-            return manager.createEntity(entity);
         }
 
         function initalize() {

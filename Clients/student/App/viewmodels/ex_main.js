@@ -1,17 +1,13 @@
-﻿define(['plugins/router', 'knockout', 'data', 'logger'],
-    function (router, ko, data, logger) {
+﻿define(['plugins/router', 'knockout', 'data', 'logger', 'global'],
+    function (router, ko, data, logger, global) {
         var categories = ko.observableArray();
 
         var vm = {
             activate: activate,
-            openexersize: openexersize,
+            goexercise: goexercise,
             router: router,
 
-            categories: [
-                { value: 0, label: 'Alter Ego+', image: '../../Content/images/alter-ego[2].jpg' },
-                { value: 1, label: 'Reflets', image: '../../Content/images/reflets.jpg' },
-                { value: 2, label: 'Saison', image: '../../Content/images/logo.png' }
-            ]
+            categories: global.categories,
         };
 
         shouter.subscribe(function (newValue) {
@@ -30,7 +26,7 @@
             logger.log('ex_main activated');
         }
 
-        function openexersize(selected) {
+        function goexercise() {
             router.navigate("/#exersize");
         }
 

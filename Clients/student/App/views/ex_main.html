@@ -1,0 +1,17 @@
+﻿<!--show list of exercises database at high level -->
+
+<ion-content class="mine-view scroll-content has-header has-tabs" style="padding-bottom:50px;overflow:auto">
+    <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+        <br />
+        <div class="list mine-nav" data-bind="foreach: categories" >
+            <a class="item item-icon-left item-icon-right" data-bind="attr: { href: '#exersizes/' + value }">
+                <i>
+                    <img data-bind="attr: {src: image}">
+                </i>
+                <span data-bind="text: label"></span>
+                <i class="icon ion-ios-arrow-right"></i>
+            </a>
+        </div>
+        <br />
+    </div>
+</ion-content>

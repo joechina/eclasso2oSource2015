@@ -40,6 +40,23 @@
             <!-- ko if: value == 2-->
             <div class="item item-divider row">
                 <i>
+                    <img src="../../Content/images/festival.jpg" />
+                </i>
+                <div class="col col-center">
+                    <h3 data-bind="text:label"></h3>
+                </div>
+            </div>
+            <div data-bind="visible:$parent.ex_festival().length > 0,foreach:$parent.ex_festival()">
+                <a class="item item-icon-right" data-bind="click:$root.openex">
+                    <h3 data-bind="text: Name()"></h3>
+                    <i class="icon ion-ios-arrow-right pull-right"></i>
+                </a>
+            </div>
+            <br />
+            <!--/ko-->
+            <!-- ko if: value == 3-->
+            <div class="item item-divider row">
+                <i>
                     <img src="../../Content/images/reflets.jpg" />
                 </i>
                 <div class="col col-center">
