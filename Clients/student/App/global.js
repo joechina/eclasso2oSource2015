@@ -18,7 +18,8 @@
                     { route: 'ex_main', moduleId: 'ex_main', title: '习题库', icon: 'icon ion-ios-list-outline', nav: 12 },
                     { route: 'announcements', moduleId: 'announcement', title: '通知', icon: 'icon ion-ios-bell-outline', nav: 11 },
                     { route: 'exersizes/:cat', moduleId: 'exersize', title: '习题', nav: 3 },
-                    { route: 'questions', moduleId: 'question', title: '知识库', icon: 'icon ion-ios-book-outline', nav: 13 },
+                    { route: 'qa_main', moduleId: 'qa_main', title: '知识库', icon: 'icon ion-ios-book-outline', nav: 13 },
+                    { route: 'questions/:cat', moduleId: 'question', title: 'Q & A', nav: 3 },
                     { route: 'me', moduleId: 'me', title: '我', icon: 'icon ion-ios-person-outline', nav: 14 },
                     { route: 'report', moduleId: 'report', title: '习题报告', nav: 3 },
                     { route: 'joinclazz', moduleId: 'joinclazz', title: '所有课程', nav: 3 },
@@ -31,12 +32,19 @@
         data:data,
         routes: new routes(),
         quiztypename: quiztypename,
+
         categories: [
             { value: 0, label: 'Alter Ego+ 习题', image: '../../Content/images/alter-ego.jpg' },
             { value: 1, label: '简易问答题', image: '../../Content/images/logo.png' },
             { value: 2, label: 'Festival 听力题', image: '../../Content/images/festival.jpg' },
             { value: 3, label: 'Reflets 听力题', image: '../../Content/images/reflets.jpg' }
-        ]
+        ],
+
+        qa_cat: [
+        { value: 0, label: '语法规则', image: '../../Content/images/logo.png' },
+            { value: 1, label: '语音规则', image: '../../Content/images/logo.png' },
+
+        ],
     }
 
     function quiztypename(id) {

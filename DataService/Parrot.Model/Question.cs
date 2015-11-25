@@ -13,6 +13,7 @@ namespace Parrot.Model
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+         public int? Category { get; set; }
         public string QuestionDetail { get; set; }
         public string Answer { get; set; }
         public DateTime Create { get; set; }

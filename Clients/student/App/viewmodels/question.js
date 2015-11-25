@@ -37,32 +37,31 @@
         }, this, "refresh_viewmodels/question");
 
         b_shouter.subscribe(function (newValue) {
-            backtolist();
+            if (question()) {
+                backtolist();
+            }
+            else {
+                router.navigate('/#qa_main');
+            }
+
         }, this, "back_viewmodels/question");
 
         return login;
 
         //#region Internal Methods
-        function activate() {
+        function activate(cat) {
             //var questionid = parseInt(id)
             //if (questionid > 0)
 
             questions.removeAll();
 
-            data.getquestions().then(function (data) {
+            data.getquestions(cat).then(function (data) {
                 questions(data.results);
             });
+            
+            $("#goback").css({ display: "block" });
+            $("#refresh").css({ display: "inline" });
 
-            if (question()) {
-                //$("#main_title").css({ float: "left", position: "relative" });
-
-                $("#goback").css({ display: "block" });
-                $("#refresh").css({ display: "none" });
-            } else {
-                //$("#main_title").css({ float: "center", position: "absolute" });
-                $("#goback").css({ display: "none" });
-                $("#refresh").css({ display: "inline" });
-            }
             logger.log('question activated');
         }
 
@@ -80,7 +79,7 @@
 
             //$("#main_title").css({ float: "center", position: "absolute" });
 
-            $("#goback").css({ display: "none" });
+            $("#goback").css({ display: "block" });
             $("#refresh").css({ display: "inline" });
 
             //router.navigateBack();

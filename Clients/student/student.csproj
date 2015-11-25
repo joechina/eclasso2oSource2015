@@ -73,6 +73,7 @@
     <Content Include="App\viewmodels\msgProb.js" />
     <Content Include="App\viewmodels\myreport.js" />
     <Content Include="App\viewmodels\password.js" />
+    <Content Include="App\viewmodels\qa_main.js" />
     <Content Include="App\viewmodels\report.js" />
     <Content Include="App\viewmodels\joinclazz.js" />
     <Content Include="App\viewmodels\newclazz.js" />
@@ -100,6 +101,7 @@
     <Content Include="App\views\msgProb.html" />
     <Content Include="App\views\myreport.html" />
     <Content Include="App\views\password.html" />
+    <Content Include="App\views\qa_main.html" />
     <Content Include="App\views\report.html" />
     <Content Include="App\views\newclazz.html" />
     <Content Include="App\views\problem.html" />

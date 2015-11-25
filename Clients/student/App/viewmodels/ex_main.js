@@ -4,7 +4,6 @@
 
         var vm = {
             activate: activate,
-            goexercise: goexercise,
             router: router,
 
             categories: global.categories,
@@ -21,13 +20,9 @@
         function activate() {
            
             $("#goback").css({ display: "none" });
-            $("#refresh").css({ display: "inline" });
+            $("#refresh").css({ display: "none" });
 
             logger.log('ex_main activated');
-        }
-
-        function goexercise() {
-            router.navigate("/#exersize");
         }
 
         //#endregion
