@@ -16,6 +16,7 @@ namespace Parrot.Model
          public int? Category { get; set; }
         public string QuestionDetail { get; set; }
         public string Answer { get; set; }
+        public string Image { get; set; }
         public DateTime Create { get; set; }
         public bool IsPublic { get; set; }
         public int? UserId { get; set; }

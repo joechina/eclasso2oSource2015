@@ -10,6 +10,15 @@
             <label class="control-label" for="answer">
                 回答：<textarea id="answer" data-bind="wysiwyg : Answer"></textarea>
             </label>
+
+            <br />
+            <div>
+                <label class="control-label">
+                    图像
+                </label>
+                <input id="picfile" type="file" class="form-control input-md" data-bind="event: { change: function() {  $root.uploadimage($element.files[0])} }">
+                <img id="image" />
+            </div>
         </div>
 
         <div id="buttons">

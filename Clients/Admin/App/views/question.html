@@ -33,6 +33,11 @@
         <h2 style="background-color:#add8e6;" data-bind="text:question().QuestionDetail"></h2>
         <br />
         <span class="announcement-content" data-bind="html:question().Answer"></span>
+
+        <div class="item item-body">
+            <img cotrols data-bind="attr: {src: question().Image()}" />
+        </div>
+
         <br/>
         <div class="col-xs-12">
             <button name="singlebutton" class="btn btn-primary btn-block" data-bind="click:backtolist">返回</button>
