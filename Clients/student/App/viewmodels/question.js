@@ -3,6 +3,7 @@
         var question = ko.observable();
         var questions = ko.observableArray();
         var search = ko.observable();
+        var category = ko.observable();
 
         var login = {
             question: question,
@@ -32,7 +33,7 @@
         };
 
         shouter.subscribe(function (newValue) {
-            activate();
+            activate(category);
             logger.log('reload QA');
         }, this, "refresh_viewmodels/question");
 
@@ -52,6 +53,7 @@
         function activate(cat) {
             //var questionid = parseInt(id)
             //if (questionid > 0)
+            category = cat;
 
             questions.removeAll();
 

@@ -3,7 +3,7 @@
         var errs = ko.observableArray();
         var username = ko.observable(null);
         var password = ko.observable();
-        var password2 = ko.observable();
+        var password1 = ko.observable();
         var oldpassword = ko.observable();
         var userid = ko.observable();
 
@@ -13,7 +13,7 @@
             username: username,
             oldpassword:oldpassword,
             password: password,
-            password2: password2,
+            password1: password1,
             savepwd: savepwd,
             back:back,
             router: router,
@@ -58,10 +58,10 @@
             if (!password() || password().length === 0) {
                 errs.push('请输入新密码 ');
             }
-            if (!password2() || password2().length === 0) {
+            if (!password1() || password1().length === 0) {
                 errs.push('请输入确认的新密码 ');
             }
-            if (password() && password2() && password() !== password2()) {
+            if (password() && password1() && password() !== password1()) {
                 errs.push('两次输入的新密码不一致 ');
             }
             if (oldpassword() == password()) {

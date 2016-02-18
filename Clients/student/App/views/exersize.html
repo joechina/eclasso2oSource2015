@@ -1,66 +1,60 @@
-﻿
-<ion-content class="container-fluid scroll-content has-header has-tabs" style="padding-bottom:50px; overflow:auto; padding-right:0px">
-    <span class="label label-danger">注意：习题的标准答案在递交之后点击 “查看报告” </span>
-    <br />
-    <!--ko ifnot: exersize()-->
-    <div class="list">
-        <!--ko if : myexersizes().length > 0-->
-        <div data-bind="foreach: myexersizes">
-            <div data-bind="with:Exersize()" class="item row" style="width:initial" href="#">
-                <!--div class="col col-10">
-                    <img src="../../Content/images/alter-ego.jpg" />
-                </!--div>-->
-                <div class="col col-75 col-center" data-bind="event: {click: function() {$root.openexersize($data, $parent.Completed)}}">
-                    <!--ko if: Description()-->
-                    <h3 data-bind="text: Name() + ' - ' + Description()"></h3>
-                    <!--/ko-->
-                    <!--ko ifnot: Description()-->
-                    <h3 data-bind="text: Name()"></h3>
-                    <!--/ko-->
-                    <p class="item-note pull-left">
+﻿<ion-content class="container-fluid scroll-content has-header has-tabs" style="padding-bottom:50px; overflow:auto; padding-right:0px">
+	<span class="label label-danger">注意：习题的标准答案在递交之后点击 “报告” </span>
+	<br />
+	<!--ko ifnot: exersize()-->
+	<div class="list">
+		<!--ko if : myexersizes().length > 0-->
+		<div data-bind="foreach: myexersizes">
+			<div data-bind="with:Exersize()" class="item row" style="width:initial" href="#">
+				<!--div class="col col-10">
+				<img src="../../Content/images/alter-ego.jpg" />
+				</!--div>-->
+				<div class="col col-75 col-center" href="#" data-bind="event: {click: function() {$root.openexersize($data, $parent.Completed)}}">
+					<!--ko if: Description()-->
+					<h3 data-bind="text: Name() + ' - ' + Description()"></h3>
+					<!--/ko-->
+					<!--ko ifnot: Description()-->
+					<h3 data-bind="text: Name()"></h3>
+					<!--/ko-->
+                    <span class="pull-left note" >
                         共
-                        <span data-bind="text:TotalQuizzes() + ' 题 - 已完成 ' + $parent.Progress() + ' 题'"></span>
-                    </p>
-                    <!--p class="item-note pull-left">
-                        共
-                        <span data-bind="text:TotalQuizzes() + ' 题'"></span>
-                    </!--p>-->
-                </div>
-                <!--ko ifnot : $parent.Completed -->
-                <div class="col col-xs-25">
-                    <a class="button button-calm button-full" data-bind="event: {click: function() {$root.submit($data)} }">递交</a>
-                </div>
-                <!--/ko-->
-                <!--ko if : $parent.Completed -->
-                <div class="col col-xs-25">
-                    <a class="button button-balanced button-full" href="/#myreport">查看报告</a>
-                </div>
-                <!--/ko-->
-            </div>
-        </div>
-        <!--/ko-->
-    </div>
-    <!--/ko-->
-    <!--ko if: exersize() -->
-    <div class="list">
-        <h2 class="title" data-bind="text:exersize().Name"></h2>
-        <div data-bind="foreach: exersize().Sections">
-            <div class="item item-divider">
-                <span data-bind="text: Name"></span>
-            </div>
-            <div data-bind="foreach: Problems">
-                <a class="item" data-bind="attr: { href: '#problem/' + Id() }">
-                    <div class="row">
-                        <div class="col-xs-9">
-                            <span data-bind="text: GeneralInfo"></span>
-                        </div>
-                        <div class="col-xs-3">
-                            <span class="glyphicon glyphicon-menu-right"></span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-    <!--/ko-->
+                        <span class="pull-left note" data-bind="text:$parent.Progress()+'/'+TotalQuizzes() + '题'"></span>
+                    </span>
+				</div>
+				<!--ko ifnot : $parent.Completed -->
+				<div class="col col-xs-25">
+					<a class="button button-calm button-full button-small" data-bind="event: {click: function() {$root.submit($data)} }">递交</a>
+				</div>
+				<!--/ko-->
+				<!--ko if : $parent.Completed -->
+				<div class="col col-xs-25">
+					<a class="button button-balanced button-full button-small" data-bind="click:$root.myreport">报告</a>
+				</div>
+				<!--/ko-->
+			</div>
+		</div>
+		<!--/ko-->
+	</div>
+	<!--/ko-->
+	<!--ko if: exersize() -->
+	<div class="list">
+		<h2 class="title" data-bind="text:exersize().Name"></h2>
+		<div data-bind="foreach: exersize().Sections">
+			<div class="item item-divider">
+				<span data-bind="text: Name"></span>
+			</div>
+			<div data-bind="foreach: Problems">
+				<a class="item" data-bind="attr: { href: '#problem/' + Id() }">
+				<div class="row">
+					<div class="col-xs-9">
+						<span data-bind="text: GeneralInfo"></span>
+					</div>
+					<div class="col-xs-3">
+						<span class="glyphicon glyphicon-menu-right"></span>
+					</div>
+				</div> </a>
+			</div>
+		</div>
+	</div>
+	<!--/ko-->
 </ion-content>

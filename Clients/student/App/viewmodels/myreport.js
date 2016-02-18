@@ -122,7 +122,8 @@
         }
 
         function back() {
-            router.navigate('/#me');
+            //router.navigate('/#me');
+            router.navigateBack();
         }
 
         function backtolist() {

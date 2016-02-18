@@ -1,6 +1,6 @@
 ﻿body {
     padding-top: 50px;
-    font-family: 'Microsoft YaHei UI', Arial, sans-serif !important;
+    font-family: 'Microsoft YaHei UI', Arial, sans-serif,Alphonetic !important;
 }
 
 .loader {
@@ -48,6 +48,10 @@ h2 {
     font-weight: normal;
     color: #222;
     padding: 10px 15px;
+}
+
+td {
+    border:1px solid gray!important;
 }
 
 select {

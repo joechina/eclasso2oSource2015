@@ -15,7 +15,9 @@ build/
 [Bb]in/
 [Oo]bj/
 packages/
-[Aa]dmin/
+Admin/
+.metadata/
+.settings/
 
 # Enable "build/" folder in the NuGet Packages folder since NuGet packages use it for MSBuild targets
 !packages/*/build/
@@ -161,8 +163,6 @@ $RECYCLE.BIN/
 *.ldf
 *.mdf
 *.ldf
-DataService/PureAPI/App_Data/local.mdf
-DataService/PureAPI/App_Data/local_log.ldf
 
 *.dacpac
 *.rar

@@ -1,11 +1,13 @@
 ﻿<!--header class="navbar navbar-default navbar-fixed-top es-navbar"-->
-<ion-header-bar class="bar-positive bar bar-header disable-user-behavior" align-title="center">
+<ion-header-bar class="bar-positive bar bar-header disable-user-behavior" align-title="center" style="height: 50px">
+
+	<!--div class="button back" id="goback" tapmode="highlight" style="color:#fff; min-width:0px" data-bind="click:back"></div>-->
     <a class="button button-icon ion-ios-arrow-left header-item" id="goback" style="color:#fff; min-width:0px" data-bind="click:back"></a>
 
     <!--line height to be aligned with button-icon -->
     <div class="title title-center header-item">
         <span id="main_title" data-bind="text: title"></span>
-        <a id="refresh" class="button-icon ion-refresh" data-bind="click:refresh" style="color:#fff;"></a>
+        <!--a id="refresh" class="button-icon ion-refresh" data-bind="click:refresh" style="color:#fff;"></a>-->
     </div>
     <ul id="shortcut" class="nav buttons pull-right" style="display:none">
         <li class="dropdown">

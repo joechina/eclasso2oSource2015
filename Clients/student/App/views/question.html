@@ -20,17 +20,17 @@
     <!--/ko-->
     <!--ko if: question()-->
     <div data-bind="with:question()">
-        <div class="card">
+        <div class="list mine-nav">
             <div class="item item-divider">
                 <h2 class="title" data-bind="text:QuestionDetail"></h2>
             </div>
             <!--ko if: Answer()-->
             <div class="item item-text-wrap">
-                <h3 data-bind="html:Answer"></h3>
+                <span data-bind="html:Answer"></span>
             </div>
             <!--/ko-->
-            <div class="item item-body" style="text-align:center">
-                <img cotrols data-bind="attr: {src: Image}" />
+            <div class="item item-image">
+                <img data-bind="attr: {src: Image}" />
             </div>
         </div>
     </div>

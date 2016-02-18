@@ -295,7 +295,7 @@
             }
         }
 
-        function register(userid, username, password, password2, errs, role) {
+        function register(userid, username, password, password1, errs, role) {
             return $.ajax({
                 url: host + 'api/account/register',
                 type: 'POST',
@@ -304,11 +304,12 @@
                     'username': userid,
                     'name': username,
                     'password': password,
-                    'confirmPassword': password2,
+                    'confirmPassword': password1,
                     'role':role
                 },
                 error: function (err) {
                     errs.push(err.responseText);
+                    alert(err.responseText);
                     console.log(err.responseText);
                 }
             });

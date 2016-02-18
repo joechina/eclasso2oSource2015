@@ -83,15 +83,7 @@
             });
 
             $("#goback").css({ display: "block" });
-
-
-            if (clazz()) {
-                $("#main_title").css({ float: "left", position: "relative" });
-                $("#refresh").css({ display: "none" });
-            } else {
-                $("#main_title").css({ float: "center", position: "absolute" });
-                $("#refresh").css({ display: "inline" });
-            }
+            $("#refresh").css({ display: "inline" });
 
             logger.log('my clazzes activated');
         }
@@ -191,7 +183,7 @@
         function openclazz(selected) {
             clazz(selected);
 
-            $("#main_title").css({ float: "left", position: "relative" });
+            //$("#main_title").css({ float: "left", position: "relative" });
 
             $("#goback").css({ display: "block" });
             $("#refresh").css({ display: "none" });

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parrot.Model", "Parrot.Model\Parrot.Model.csproj", "{43F68D87-8335-4C2E-9BC4-CFCD9548FD60}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureAPI", "PureAPI\PureAPI.csproj", "{85A8D0FB-89B4-4720-9CCE-7E068EBB02F8}"

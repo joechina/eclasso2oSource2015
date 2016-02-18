@@ -1,45 +1,39 @@
-﻿
-<ion-content class="container-fluid scroll-content has-header has-tabs" style="padding-bottom:50px; overflow:auto">
-    <!-- ko if: problem()-->
-    <div class="list card mine-nav">
-        <div class="item">
-            <h2 data-bind="text:problem().GeneralInfo"></h2>
-            <p style="text-align:center">(共<span data-bind="text:total"></span>&nbsp;题)</p>
-        </div>
-
-        <!-- ko if: currentMedia() && currentMedia().Type() == 'mp3'-->
-        <div class="item item-body">
-            <audio controls data-bind="attr: {src: currentMedia().Content()}" />
-        </div>
-        <!-- /ko-->
-        <!-- ko if: currentMedia() && currentMedia().Type() == 'txt'-->
-        <br />
-        <label data-bind="html:currentMedia().Content()" />
-        <!-- /ko-->
-        <!-- ko if: currentMedia() && currentMedia().Type() == 'img'-->
-        <div class="item item-body">
-            <img cotrols data-bind="attr: {src: currentMedia().Content()}" />
-        </div>
-        <!-- /ko-->
-        <!-- ko with: currentQuiz-->
-        <div class="item item-body">
-            <div data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false, answer: $parent.answer, to_next: $parent.next}"></div>
-        </div>
-        <!-- /ko -->
-        
-        <div class="item tabs tabs-secondary tabs-icon-left">
-            <a class="tab-item" data-bind="click:previous, disable: current() == 0">
-                <i class="icon ion-chevron-left"></i>
-                上一题
-            </a>
-            <!--a class="tab-item" data-bind="click:saveanswer">
-                保存
-            </!--a>-->
-            <a class="tab-item" href="#" data-bind="click: next, disable: current() == total() -1">
-                下一题
-                <i class="icon ion-chevron-right"></i>
-            </a>
-        </div>
-    </div>
-    <!-- /ko -->
+﻿<ion-content class="container-fluid scroll-content has-header has-tabs" style="padding-bottom:50px; overflow:auto">
+	<!-- ko if: problem()-->
+	<div class="list card mine-nav">
+		<div class="item">
+			<h2 data-bind="text:problem().GeneralInfo"></h2>
+			<p style="text-align:center">
+				(共<span data-bind="text:total"></span>&nbsp;题)
+			</p>
+		</div>
+		<!-- ko if: currentMedia() && currentMedia().Type() == 'mp3'-->
+		<div class="item item-body">
+			<audio controls data-bind="attr: {src: currentMedia().Content()}" />
+		</div>
+		<!-- /ko-->
+		<!-- ko if: currentMedia() && currentMedia().Type() == 'txt'-->
+		<br />
+		<label data-bind="html:currentMedia().Content()" />
+		<!-- /ko-->
+		<!-- ko if: currentMedia() && currentMedia().Type() == 'img'-->
+		<div class="item item-body">
+			<img cotrols data-bind="attr: {src: currentMedia().Content()}" />
+		</div>
+		<!-- /ko-->
+		<!-- ko with: currentQuiz-->
+		<div class="item item-body">
+			<div data-bind="widget: { kind: $parent.quiztypename(QuizType()), item: $data, isediting:false, answer: $parent.answer, to_next: $parent.next}"></div>
+		</div>
+		<!-- /ko -->
+		<div class="item tabs tabs-secondary tabs-icon-left">
+			<a class="tab-item" data-bind="click:previous, disable: current() == 0"> <i class="icon ion-chevron-left"></i> 上一题 </a>
+			<!--a class="tab-item" data-bind="click:saveanswer">
+			保存
+			</!--a>-->
+			<a class="tab-item" href="#" data-bind="click: next, visible: current() < total() -1"> 下一题 <i class="icon ion-chevron-right"></i> </a>
+			<a class="tab-item" href="#" data-bind="click: saveanswer, visible: current() == total() -1"> 保存并返回 <i class="icon ion-chevron-right"></i> </a>
+		</div>
+	</div>
+	<!-- /ko -->
 </ion-content>

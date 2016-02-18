@@ -7,7 +7,7 @@
         <a class="item item-icon-right" href="#" data-bind="click: $parent.openmsg">
 
             <span class="announcement-item-title" data-bind="text: Title"></span>
-            <span class="item-note pull-left" data-bind="text:CreateDate().toLocaleString()"></span>
+            <span class="announcement-item-date pull-left" data-bind="text:CreateDate().toLocaleString()"></span>
 
             <i class="icon ion-ios-arrow-right pull-right"></i>
 
@@ -23,6 +23,7 @@
             <span>
                 发件人:&nbsp; <span class="announcement-target" data-bind="text: From"></span>
             </span>
+            <br/>
             <span>
                 收件人:&nbsp; <span class="announcement-target" data-bind="text: Target"></span>
             </span>

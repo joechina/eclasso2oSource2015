@@ -11,7 +11,7 @@
             activate: activate,
             openexersize: openexersize,
             submit: submit,
-            report: report,
+            myreport: myreport,
             router: router,
             backtolist: backtolist,
         };
@@ -44,6 +44,9 @@
                     for (var i = 0; i < exersizes().length; i++) {
                         var e = exersizes()[i];
                         if (e.Exersize().Category() == cat) {
+                            /*if (e.Exersize().Description().length > 5) {
+                                e.Exersize().Description(e.Exersize().Description().substring(0, 5) + "...");
+                            }*/
                             myexersizes.push(e);
                         }
                     }
@@ -98,7 +101,8 @@
                 $("#refresh").css({ display: "none" });
             }
             else {
-                alert('习题已递交，请查看我的报告');
+                //alert('习题已递交，请查看报告');
+                myreport();
             }
         }
 
@@ -153,7 +157,7 @@
             backtolist();
         }
 
-        function report() {
+        function myreport() {
             router.navigate('/#myreport');
         }
 

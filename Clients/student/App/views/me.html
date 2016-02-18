@@ -11,9 +11,6 @@
                 <span style="padding-left:1.2rem" data-bind="text:user().Name"></span>
                 <i class="icon ion-ios-arrow-right"></i>
             </a>
-        </div>
-        <br />
-        <div class="list mine-nav">
             <a class="item item-icon-left item-icon-right" data-bind="click:myreport">
                 <i class="icon ion-ios-book-outline"></i>
                 <span>我的报告</span>
@@ -26,6 +23,14 @@
             </a>
         </div>
         <br />
+        <div class="list mine-nav">
+            <a class="mine-info item item-icon-left" data-bind="click:clearcache">
+                <i class="icon ion-ios-trash-outline"></i>
+                <span>清除缓存</span>     
+                <span class="item-note" data-bind="text:cacheSize()">Kb</span>
+            </a>
+        </div>
+        <br/>
         <div class="list mine-nav">
             <a class="item item-icon-left item-icon-right" data-bind="click: feedback">
                 <i class="icon ion-compose"></i>

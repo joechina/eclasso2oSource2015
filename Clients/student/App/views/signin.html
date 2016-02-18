@@ -16,7 +16,7 @@
 
         <div class="item item-input item-stacked-label">
             <h3 class="input-label">密码</h3>
-            <input id="password" type="password" data-bind="value: password" required="required">
+            <input id="password" type="password" data-bind="value: password,valueUpdate:'afterkeydown'" required="required">
         </div>
     </div>
 
@@ -25,5 +25,12 @@
         <br/>
         <a href="#signup" style="text-decoration:underline;">免费注册</a>
     </div>
-
+	<!--script type="text/javascript">
+		api.addEventListener({
+			name : 'keyback'
+		}, function(ret, err) {
+		alert("keyback");
+			api.closeWidget();
+		});
+	</!--script>-->
 </ion-content>

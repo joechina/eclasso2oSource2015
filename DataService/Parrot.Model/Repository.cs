@@ -21,8 +21,8 @@ namespace Parrot.Model
         {
             get
             {
-                
-                return Context.Users.Include("Exersizes").Include("Exersizes.Exersize");
+                return Context.Users;
+                //return Context.Users.Include("Exersizes").Include("Exersizes.Exersize");
             }
         }
 
