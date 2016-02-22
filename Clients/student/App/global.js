@@ -14,7 +14,7 @@
                     { route: 'myclazz', moduleId: 'myclazz', title: '课程', nav: 3 },
                     { route: 'password', moduleId: 'password', title: '修改密码', nav: 3 },
                     { route: 'feedback', moduleId: 'feedback', title: '用户反馈', nav: 3 },
-                    { route: 'myreport', moduleId: 'myreport', title: '习题报告', nav: 3 },
+                    { route: 'myreport/:eid', moduleId: 'myreport', title: '习题报告', nav: 3 },
                     { route: 'ex_main', moduleId: 'ex_main', title: '习题库', icon: 'icon ion-ios-list-outline', nav: 12 },
                     { route: 'announcements', moduleId: 'announcement', title: '通知', icon: 'icon ion-ios-bell-outline', nav: 11 },
                     { route: 'exersizes/:cat', moduleId: 'exersize', title: '习题', nav: 3 },

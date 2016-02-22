@@ -51,7 +51,7 @@ h2 {
 }
 
 td {
-    border:1px solid gray!important;
+    border: 1px solid gray !important;
 }
 
 select {
@@ -175,7 +175,7 @@ a[data-transition].ui-icon-star:after {
 .title {
     /*padding-top: .5em;*/
     font-size: 1.5em;
-    margin-left:0px;
+    margin-left: 0px;
 }
 
 header {
@@ -220,31 +220,32 @@ footer .g-nav-bottom {
         box-flex: 1.0;
     }
 
-        footer .g-nav-bottom > a {
-            display: block;
-            width: 100%;
-            height: 49px;
-            line-height: 50px;
-            font-size: 18px;
-            font-weight: normal;
-            font-family: 'Microsoft YaHei UI';
-            text-decoration: none;
-            color: #000000;
-            background-color:#ffffff
-            /*background-color: #64A6EA;*/
-        }
+    footer .g-nav-bottom > a {
+        display: block;
+        width: 100%;
+        height: 49px;
+        line-height: 50px;
+        font-size: 18px;
+        font-weight: normal;
+        font-family: 'Microsoft YaHei UI';
+        text-decoration: none;
+        color: #000000;
+        background-color: #ffffff;
+        /*background-color: #64A6EA;*/
+    }
 
         footer .g-nav-bottom > a.active > i {
             background: #fff;
-            font-weight:500;
+            font-weight: 500;
             color: #387ef5;
         }
 
-       footer .g-nav-bottom > a.active > span {
+        footer .g-nav-bottom > a.active > span {
             background: #fff;
-            font-weight:bold;
+            font-weight: bold;
             color: #387ef5;
         }
+
 .submenu {
     background-color: darkgray;
     color: white;
@@ -349,6 +350,7 @@ ul.options {
     margin: 10px 0 30px;
     color: #222;
 }
+
 .announcement-target {
     font-size: 16px;
     margin: 10px 0 30px;
@@ -361,7 +363,7 @@ ul.options {
 }
 
 .es-navbar {
-    background-color: #387ef5  !important;
+    background-color: #387ef5 !important;
 }
 
     .es-navbar .title {
@@ -369,7 +371,7 @@ ul.options {
         color: #fff;
         font-weight: normal;
         font-family: 'Microsoft Yahei UI';
-        transform:translate3d(0px, 0px, 0px);
+        transform: translate3d(0px, 0px, 0px);
     }
 
 .announcement-item-title {
@@ -431,3 +433,44 @@ ul.options {
 .audio {
     width: 100%;
 }
+
+.ionic .item-radio {
+    padding: 0;
+}
+
+    .ionic .item-radio:hover {
+        cursor: pointer;
+    }
+
+    .ionic .item-radio .item-content {
+        /* give some room to the right for the checkmark icon */
+        padding-right: 64px;
+    }
+
+    .ionic .item-radio .radio-icon {
+        /* checkmark icon will be hidden by default */
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 3;
+        visibility: hidden;
+        padding: 14px;
+        height: 100%;
+        font-size: 24px;
+    }
+
+    .ionic .item-radio input {
+        /* hide any radio button inputs elements (the ugly circles) */
+        position: absolute;
+        left: -9999px;
+    }
+
+        .ionic .item-radio input:checked + .radio-content .item-content {
+            /* style the item content when its checked */
+            background: #f7f7f7;
+        }
+
+        .ionic .item-radio input:checked + .radio-content .radio-icon {
+            /* show the checkmark icon when its checked */
+            visibility: visible;
+        }

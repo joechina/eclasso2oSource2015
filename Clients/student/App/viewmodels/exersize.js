@@ -119,6 +119,10 @@
 
         function submit(ex) {
             //TODO: Remind users if there is any quiz not answered, and get confirmed for submission.
+            if (!confirm('确定提交习题: ' + ex.Name() + ' ?')) {
+                return;
+            }
+
             var uid = data.user().Id();
             var eid = ex.Id();
             data.getuserexersize(uid, eid).then(function (result) {
@@ -133,7 +137,7 @@
                 ue.Completed('true');
 
                 data.save(ue).then(function () {
-                    alert('习题: ' + ex.Name() + ' 已提交');
+                    //alert('习题: ' + ex.Name() + ' 已提交');
                     logger.log('学生: ' + uid + '习题: ' + eid + '已提交');
                     if (data.user().answerextracted[eid] == null || data.user().answerextracted[eid] == false) {
                         data.getUserExerciseQuizs(data.user().Id(), eid).then(function (result) {

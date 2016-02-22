@@ -167,6 +167,7 @@
     <Content Include="Content\jquery.mobile-icon-extend.css" />
     <Content Include="Content\mine.css" />
     <Content Include="css\api.css" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\ionicons.svg" />
     <Content Include="fonts\ionicons.woff" />
     <Content Include="fonts\ionicons.ttf" />

@@ -48,7 +48,7 @@
 
         return vm;
 
-        function activate() {
+        function activate(eid) {
             user(data.user());
 
             if (exersizes().length == 0) {
@@ -56,6 +56,7 @@
                     exersizes(data.results);
                     for (var i = 0; i < data.results.length; i++) {
                         var ex = data.results[i].Exersize();
+                        ex.Result= data.results[i].Result();
                         if (ex.Category() == '0') {
                             ex_alter.push(ex);
                         }
@@ -70,6 +71,11 @@
                         }
                     }
                 });
+            }
+
+            if (eid != 0) {
+                openex(eid);
+                return;
             }
 
             $("#goback").css({ display: "block" });
@@ -87,8 +93,8 @@
             exersizes.removeAll();
         }
 
-        function openex(selected) {
-            var eid = selected.Id();
+        function openex(eid) {
+       
             if (data.exerciseList[eid] == null) {
                 data.getexersize(eid).then(function (sd) {
                     var ex = sd.results[0];

@@ -1,23 +1,19 @@
 ﻿<!--单选题需填写问题，选项 (Key) 和答案。选项用逗号　","　分隔-->
 <div class="widget">
     <!--ko if: isediting() == false -->
-    <span data-bind="text:settings.item.Challenge()"></span>
-    <br />
-    <ul data-bind="foreach: settings.item.options" class="options">
-        <li class="selectionoption">
-            <input type="radio" name="group1" data-bind="attr: {value: $data}, checked: $parent.isChecked" />
-            <span data-bind="text:$data"></span>
-        </li>
-    </ul>
-    <!--div>
-        <label class="item item-radio" data-bind="foreach: settings.item.options">
-            <input type="radio" name="group" data-bind="attr: {value: text}, checked: $parent.isChecked" />
-            <div class="item-content disable-pointer-events">
-                <span data-bind="text:text"></span>
-            </div>
-            <i class="radio-icon icon ion-checkmark"></i>
-        </label>
-    </!--div>-->
+    <div>
+        <ion-list-header data-bind="text:settings.item.Challenge()"></ion-list-header>
+        <br />
+        <div data-bind="foreach: settings.item.options" class="list">
+            <label class="item item-radio">
+                <input type="radio" data-bind="attr: {value: $data}, checked: $parent.isChecked" />
+                <div class="radio-content">
+                    <div class="item-content" data-bind="text:$data, click:$parent.isChecked" />
+                </div>
+                <i class="radio-icon ion-checkmark" data-bind="visible:$parent.isChecked"></i>
+            </label>
+        </div>
+    </div>
 
     <!-- /ko-->
     <!--ko if: isediting()== true -->
@@ -29,11 +25,9 @@
             <a href="#" id="quiz" name="singlebutton" class="btn btn-primary" data-bind="click:$parent.deleteoption">删除</a>
         </li>
     </ul>
-
     <label class="block">标准答案: <input data-bind="value:settings.item.Answer" class="form-control input-lg" /></label>
     <!-- /ko-->
     <!--ko if: isreporting()-->
-
     <label class="block" style="color:blueviolet">问题：</label>
     <span data-bind="text:settings.item.Challenge()"></span>
     <ul data-bind="foreach: settings.item.options" class="options">
@@ -43,13 +37,10 @@
         </li>
     </ul>
     <br />
-    <label class="block">学生回答: <span data-bind="text:useranswer(), style: {color:answercolor}"></span></label>
-
+    <label class="block bold">学生回答: <span data-bind="text:useranswer(), style: {color:answercolor}"></span></label>
     <label class="block">标准答案: <span style="color:blue" data-bind="html:settings.item.Answer()" /></label>
-
-    <!-- ko if: settings.item.Comment() != null -->
+    <!-- ko if: settings.item.Comment() != "" -->
     <label class="block">录音全文: <span style="font-weight:normal" data-bind="html:settings.item.Comment()" /></label>
     <!-- /ko-->
     <!-- /ko-->
-
 </div>
