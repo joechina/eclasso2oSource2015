@@ -19,10 +19,9 @@
                     { route: 'announcements', moduleId: 'announcement', title: '通知', icon: 'icon ion-ios-bell-outline', nav: 11 },
                     { route: 'exersizes/:cat', moduleId: 'exersize', title: '习题', nav: 3 },
                     { route: 'qa_main', moduleId: 'qa_main', title: '知识库', icon: 'icon ion-ios-book-outline', nav: 13 },
-                    { route: 'questions/:cat', moduleId: 'question', title: 'Q & A', nav: 3 },
+                    { route: 'questions/:cat', moduleId: 'question', title: '知识库', nav: 3 },
                     { route: 'me', moduleId: 'me', title: '我', icon: 'icon ion-ios-person-outline', nav: 14 },
                     { route: 'report', moduleId: 'report', title: '习题报告', nav: 3 },
-                    { route: 'joinclazz', moduleId: 'joinclazz', title: '所有课程', nav: 3 },
                     { route: 'firstexp', moduleId: 'firstexp', title:'课程设置', nav:3 },
 
             ];

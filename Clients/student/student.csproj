@@ -76,7 +76,6 @@
     <Content Include="App\viewmodels\password.js" />
     <Content Include="App\viewmodels\qa_main.js" />
     <Content Include="App\viewmodels\report.js" />
-    <Content Include="App\viewmodels\joinclazz.js" />
     <Content Include="App\viewmodels\newclazz.js" />
     <Content Include="App\viewmodels\problem.js" />
     <Content Include="App\viewmodels\exersize.js" />
@@ -95,7 +94,6 @@
     <Content Include="App\views\ex_main.html" />
     <Content Include="App\views\feedback.html" />
     <Content Include="App\views\firstexp.html" />
-    <Content Include="App\views\joinclazz.html" />
     <Content Include="App\views\editprofile.html" />
     <Content Include="App\views\msgEx.html" />
     <Content Include="App\views\myclazz.html" />
@@ -168,14 +166,14 @@
     <Content Include="Content\mine.css" />
     <Content Include="css\api.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
     <Content Include="fonts\ionicons.svg" />
+    <Content Include="packages\repositories.config" />
+    <Content Include="packages\RequireJS.2.1.11\RequireJS.2.1.11.nupkg" />
     <Content Include="fonts\ionicons.woff" />
     <Content Include="fonts\ionicons.ttf" />
     <Content Include="fonts\ionicons.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="packages\repositories.config" />
-    <Content Include="packages\RequireJS.2.1.11\RequireJS.2.1.11.nupkg" />
     <None Include="Properties\PublishProfiles\eclasso2oclient - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\eclasso2oclient - Web Deploy.pubxml" />
     <Content Include="packages\RequireJS.2.1.11\content\Scripts\r.js" />
@@ -210,15 +208,6 @@
     <Content Include="Scripts\angular-sanitize.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
-    <Content Include="Scripts\errors.json" />
-    <Content Include="Scripts\angular-touch.min.js.map" />
-    <Content Include="Scripts\angular-route.min.js.map" />
-    <Content Include="Scripts\angular-resource.min.js.map" />
-    <Content Include="Scripts\angular-messages.min.js.map" />
-    <Content Include="Scripts\angular-message-format.min.js.map" />
-    <Content Include="Scripts\angular-loader.min.js.map" />
-    <Content Include="Scripts\angular-cookies.min.js.map" />
-    <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-et.js" />
@@ -969,9 +958,8 @@
     <Content Include="Scripts\ionic.bundle.min.js" />
     <Content Include="Scripts\ionic.js" />
     <Content Include="Scripts\ionic.min.js" />
-    <None Include="Scripts\jquery-2.2.0.intellisense.js" />
-    <Content Include="Scripts\jquery-2.2.0.js" />
-    <Content Include="Scripts\jquery-2.2.0.min.js" />
+    <Content Include="Scripts\jquery-2.2.1.js" />
+    <Content Include="Scripts\jquery-2.2.1.min.js" />
     <Content Include="Scripts\knockout-3.4.0.debug.js" />
     <Content Include="Scripts\knockout-3.4.0.js" />
     <Content Include="Scripts\packages.config" />
@@ -982,8 +970,17 @@
     <Content Include="Scripts\tinymce\plugins\codesample\css\prism.css" />
     <Content Include="Scripts\tinymce\plugins\codesample\plugin.js" />
     <Content Include="Scripts\tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="Scripts\jquery-2.2.1.min.map" />
     <Content Include="Scripts\version.json" />
-    <Content Include="Scripts\jquery-2.2.0.min.map" />
+    <Content Include="Scripts\errors.json" />
+    <Content Include="Scripts\angular-touch.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-resource.min.js.map" />
+    <Content Include="Scripts\angular-messages.min.js.map" />
+    <Content Include="Scripts\angular-message-format.min.js.map" />
+    <Content Include="Scripts\angular-loader.min.js.map" />
+    <Content Include="Scripts\angular-cookies.min.js.map" />
+    <Content Include="Scripts\angular-aria.min.js.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

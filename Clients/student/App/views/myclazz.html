@@ -22,6 +22,7 @@
     <!--/ko-->
     <!--ko if: clazz()-->
     <div class="list mine-nav" data-bind="with: clazz()">
+        <br />
         <a class="item ">
             <span>课程名称: &nbsp;</span>
             <span class="pull-right" data-bind="text:Name"></span>
@@ -42,7 +43,7 @@
             <span>公共课程:</span>
             <span class="pull-right" data-bind="text: approve"></span>
         </a>
-        <div class="list mine-nav">
+        <div class="list">
             <a data-bind="attr:{'class':button}, click:$parent.join">
                 <span data-bind="text: state"></span>
             </a>

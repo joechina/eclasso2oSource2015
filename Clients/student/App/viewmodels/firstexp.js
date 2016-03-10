@@ -182,11 +182,13 @@
 
         function openclazz(selected) {
             clazz(selected);
-
-            $("#main_title").css({ float: "left", position: "relative" });
-
+                       
             $("#goback").css({ display: "block" });
             $("#refresh").css({ display: "none" });
+        }
+
+        function back() {
+            router.navigateBack();
         }
         //#endregion
     });

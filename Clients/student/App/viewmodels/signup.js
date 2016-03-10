@@ -38,7 +38,7 @@
             if (errs().length == 0) {
                 data.register(userid(), username(), password(), password1(), errs,'S').then(function () {
                     data.signin(userid(), password(), errs).then(function (result) {
-                        localStorage.setItem("u", username());
+                        localStorage.setItem("u", userid());
                         localStorage.setItem("p", password());
                         localStorage.setItem("lastsignin", (new Date()).getTime());
 
@@ -60,6 +60,11 @@
             if (!userid() || userid().length === 0) {
                 errs.push('登录名不能为空');
             }
+            var emailFormat = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+            var mobileFormat = '/^(86)?((13\d{9})|(15[0,1,2,3,5,6,7,8,9]\d{8})|(18[0,5,6,7,8,9]\d{8}))$/';
+            if (!emailFormat.test(userid())) {
+                errs.push('登录名不是邮件地址');
+            }
             if (!username() || username().length === 0) {
                 errs.push('用户姓名不能为空');
             }
@@ -79,5 +84,10 @@
                 errs.push('密码不匹配');
             }
         }
+
+        function aboutparrot() {
+            router.navigate('/#tou');
+        }
+
         //#endregion
     });

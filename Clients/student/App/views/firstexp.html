@@ -2,6 +2,10 @@
 <ion-content class="mine-view scroll-content ionic-scroll has-header has-tabs">
     <!--ko ifnot: clazz()-->
     <br />
+    <div style="padding-bottom: 1rem;">
+        <a style="right: 2.2rem; text-decoration: underline; position: absolute;" href="#qa_main">跳过</a>
+    </div>
+    <br />
     <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
         <div class="list mine-nav" data-bind="foreach:clazzes">
             <div class="row item item-icon-right item-icon-left">
@@ -22,6 +26,7 @@
     <!--/ko-->
     <!--ko if: clazz()-->
     <div class="list mine-nav" data-bind="with: clazz()">
+        <br />
         <a class="item ">
             <span>课程名称: &nbsp;</span>
             <span class="pull-right" data-bind="text:Name"></span>

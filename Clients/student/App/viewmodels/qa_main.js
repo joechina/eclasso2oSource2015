@@ -18,7 +18,7 @@
 
         //#region Internal Methods
         function activate() {
-
+            document.getElementById('main_title').innerHTML = '知识库';
             $("#goback").css({ display: "none" });
             $("#refresh").css({ display: "none" });
 

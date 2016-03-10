@@ -192,7 +192,7 @@
         function backtolist() {
 
                 clazz(undefined);
-                $("#main_title").css({ float: "center", position: "absolute" });
+                //$("#main_title").css({ float: "center", position: "absolute" });
 
                 $("#goback").css({ display: "block" });
 

@@ -1,5 +1,5 @@
-﻿define(['plugins/router', 'knockout', 'data','logger'],
-    function (router, ko, data, logger) {
+﻿define(['plugins/router', 'knockout', 'data','global','logger'],
+    function (router, ko, data, global, logger) {
         var question = ko.observable();
         var questions = ko.observableArray();
         var search = ko.observable();
@@ -53,7 +53,10 @@
         function activate(cat) {
             //var questionid = parseInt(id)
             //if (questionid > 0)
-            category = cat;
+
+            //change title to QA category name
+            categoryName = global.qa_cat[cat].label;
+            document.getElementById('main_title').innerHTML = categoryName;
 
             questions.removeAll();
 

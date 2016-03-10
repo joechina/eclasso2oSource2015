@@ -35,6 +35,8 @@
 
 .mine-nav {
 	margin-bottom: .3rem;
+    /*padding-left:2rem;
+    padding-right:2rem;*/
 }
 .mine-nav .item {
 	color: #666;
