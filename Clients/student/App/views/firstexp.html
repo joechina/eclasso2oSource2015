@@ -1,0 +1,61 @@
+﻿<!-- list of classes and new/edit class -->
+<ion-content class="mine-view scroll-content ionic-scroll has-header has-tabs">
+    <!--ko ifnot: clazz()-->
+    <br />
+    <div style="padding-bottom: 1rem;">
+        <a style="right: 2.2rem; text-decoration: underline; position: absolute;" href="#qa_main">跳过</a>
+    </div>
+    <br />
+    <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+        <div class="list mine-nav" data-bind="foreach:clazzes">
+            <div class="row item item-icon-right item-icon-left">
+                <span class="col col-50" style="margin-top:15px" data-bind="text: Name, click:$parent.openclazz"></span>
+
+                <span class="col col-25" style="margin-top:15px" data-bind="text: Teacher().Name"></span>
+
+                <div class="col col-25">
+                    <a data-bind="attr:{'class':button}, click:$parent.join">
+                        <span data-bind="text: state"></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!--/ko-->
+    <!--ko if: clazz()-->
+    <div class="list mine-nav" data-bind="with: clazz()">
+        <br />
+        <a class="item ">
+            <span>课程名称: &nbsp;</span>
+            <span class="pull-right" data-bind="text:Name"></span>
+        </a>
+        <a class="item ">
+            <span>课程描述:</span>
+            <span class="pull-right" data-bind="text: Description"></span>
+        </a>
+        <a class="item ">
+            <span>课程时间:</span>
+            <span class="pull-right" data-bind="text:duration"></span>
+        </a>
+        <a class="item ">
+            <span>授课老师:</span>
+            <span class="pull-right" data-bind="text: Teacher().Name"></span>
+        </a>
+        <a class="item ">
+            <span>公共课程:</span>
+            <span class="pull-right" data-bind="text: approve"></span>
+        </a>
+        <div class="list mine-nav">
+            <a data-bind="attr:{'class':button}, click:$parent.join">
+                <span data-bind="text: state"></span>
+            </a>
+
+            <!--/ko-->
+        </div>
+    </div>
+
+
+    <!--/ko-->
+</ion-content>

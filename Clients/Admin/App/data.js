@@ -27,6 +27,7 @@
             save: save,
             getCurrentUser: getCurrentUser,
             getquestions: getquestions,
+            getquestion:getquestion,
             getallannouncements: getallannouncements,
             getsentannouncements:getsentannouncements,
             getuserannouncements: getuserannouncements,
@@ -100,6 +101,12 @@
             var query = breeze.EntityQuery.from('Questions').orderBy("QuestionDetail");
             return manager.executeQuery(query);
         }
+
+        function getquestion(qid) {
+            var query = breeze.EntityQuery.from('Questions').where("Id", "==", qid)
+            return manager.executeQuery(query);
+        }
+
 
         function searchQuestion(q) {
             var query = breeze.EntityQuery.from("Questions")

@@ -1,10 +1,12 @@
 ﻿define(['plugins/router', 'knockout', 'data', 'logger', 'global'],
     function (router, ko, data, logger, global) {
        
+       
         var vm = {
             activate: activate,
             //compositionComplete: compositionComplete,
             upload: upload,
+            uploadimage:uploadimage,
             router: router,
             global: global,
             back: back,
@@ -12,7 +14,6 @@
         };
 
         return vm;
-
 
         //#region Internal Methods
         function activate() {
@@ -39,9 +40,17 @@
                 }
             });
         }
+
+        function uploadimage(file) {
+            var FR = new FileReader();
+            FR.onload = function (e) {
+                vm.question.Image(e.target.result);
+            };
+            FR.readAsDataURL(file);
+        }
         
         function back() {
-            router.navigate('/#uploadQA');
+            router.navigate('/#msgQA');
         }
 
         function reset() {

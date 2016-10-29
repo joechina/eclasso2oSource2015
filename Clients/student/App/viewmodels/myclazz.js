@@ -3,6 +3,7 @@
         var clazz = ko.observable();
         var clazzes = ko.observableArray();
         var assigned_exersizes = [];
+        var count = 0;
 
         var vm = {
             clazzes: clazzes,
@@ -35,14 +36,14 @@
                     var curr_uid = data.user().Id();
 
                     // reformat class date
-                    var s = result.results[i].Start();
-                    var e = result.results[i].End();
+                    var s = c.Start();
+                    var e = c.End();
                     c.duration = s.getFullYear() + '/' + s.getMonth() + '/' + s.getDate() + '/ - ' + e.getFullYear() + '/' + e.getMonth() + '/' + e.getDate();
 
                     // get status of class joining status: 0:"未批准"; 1: "已加入"; 2:"等待批准"; -1: "申请加入"
                     c.state = "申请加入";
                     c.button = "button button-small button-block button-royal";
-                    result.results[i].Users().forEach(function (u) {
+                    c.Users().forEach(function (u) {
                         var uid = u.UserId();
 
                         if (curr_uid == uid) {
@@ -82,15 +83,7 @@
             });
 
             $("#goback").css({ display: "block" });
-
-
-            if (clazz()) {
-                $("#main_title").css({ float: "left", position: "relative" });
-                $("#refresh").css({ display: "none" });
-            } else {
-                $("#main_title").css({ float: "center", position: "absolute" });
-                $("#refresh").css({ display: "inline" });
-            }
+            $("#refresh").css({ display: "inline" });
 
             logger.log('my clazzes activated');
         }
@@ -106,63 +99,67 @@
         function join(selected) {
             var uid = data.user().Id();
             var cid = selected.Id();
-
-            data.manager.saveOptions.allowConcurrentSaves = true;
+            
+            //data.manager.saveOptions.allowConcurrentSaves = true;
 
             if (selected.autoApproved()) {// if auto approved (i.e. public) class, we will assign exercises directly to the student
+                var userclass = data.create("UserClass");
+                userclass.UserId(uid);
+                userclass.ClassId(cid);
+                userclass.Status(1); // Status: -1:"未批准"; 1: "已加入"; 0:"等待批准";
 
-                //data.getuserclass(uid, cid).then(function (result) {
-                   // if (result.results.length ==0) {
-                        //create userclass record
-                        var userclass = data.create("UserClass");
-                        userclass.UserId(uid);
-                        userclass.ClassId(cid);
-                        userclass.Status(1); // Status: -1:"未批准"; 1: "已加入"; 0:"等待批准";
-
-                        data.save(userclass).then(function () {
-
-                            alert('欢迎加入: ' + selected.Name() + '!');
-
-                        }).fail(function (err) {
-                            for (var i = 0; i < err.length; i++) {
-                                alert(err[i]);
-                                logger.log(err[i]);
-                            }
-                        });
-                   // }
-               // });
+                data.save(userclass).then(function () {
+                    alert('欢迎加入: ' + selected.Name() + '!');
+                }).fail(function (err) {
+                    for (var i = 0; i < err.length; i++) {
+                        alert(err[i]);
+                        logger.log(err[i]);
+                    }
+                });
 
                 // assign exercises
                 data.getclassexersizes(cid).then(function (exersizes) {
+                    var total = exersizes.results.length;
+                    var count = 0;
 
-                    exersizes.results.forEach(function (exersize) {
-                        var eid = exersize.ExersizeId();
+                    function createUE(uid, eid) {
 
-                        data.getuserexersize(uid, eid).then(function (result) {
-                            if (result.results.length == 0) {
-                                var userexersize = data.create("UserExersize");
-                                userexersize.UserId(uid);
-                                userexersize.ExersizeId(eid);
-                                userexersize.Assigned(new Date());
-                                //userexersize.Deadline(selected.End);
-                                userexersize.Progress(0);
-                                userexersize.Completed('false');
+                        return function (result) {
+                            if (result.results.length <= 0) {
+                                var userExersize = data.create('UserExersize');
+                                userExersize.UserId(uid);
+                                userExersize.ExersizeId(eid);
+                                userExersize.Assigned(new Date());
+                                userExersize.Progress(0);
+                                userExersize.Completed('false');
+                                result.entityManager.attachEntity(userExersize, userExersize.entityAspect.entityState);
+                                count++;
+                            }
+                            else
+                                count++;
 
-                                data.save(userexersize).then(function () {
-                                    logger.log('create userexerise: ' + uid + '/' + eid);
-
+                            if (total == count) {
+                                result.entityManager.saveChanges().then(function () {
+                                    logger.log('exersizes for class ' + cid + ' assignement is completed');
                                 }).fail(function (err) {
                                     for (var i = 0; i < err.length; i++) {
                                         logger.log(err[i]);
                                     }
                                 });
-                            }// check if user exersize record exists
-                            else {
-                                logger.log(uid + "/" + eid + "exist already");
                             }
-                        });// loop on exersizes assigend to a class
-                    });// get a list of exersizes assigned to a class
-                });
+                        }
+                    }
+                    for (var i = 0; i < total; i++){
+                        var exersize = exersizes.results[i];
+                        var eid = exersize.ExersizeId();
+
+                        var callback = createUE(uid, eid);
+                        var record = data.getuserexersize(uid, eid).then(callback);
+
+                        //activate();
+                    };// get a list of exersizes assigned to a class
+
+                });                
             }
             else {// if not public class, we need to wait for teacher's approval. no exercises will be assigned here. 
                 var userclass = data.create("UserClass");
@@ -178,13 +175,15 @@
                     }
                 });
             }
-
+            //activate();
         }
+
+
 
         function openclazz(selected) {
             clazz(selected);
 
-            $("#main_title").css({ float: "left", position: "relative" });
+            //$("#main_title").css({ float: "left", position: "relative" });
 
             $("#goback").css({ display: "block" });
             $("#refresh").css({ display: "none" });
@@ -193,7 +192,7 @@
         function backtolist() {
 
                 clazz(undefined);
-                $("#main_title").css({ float: "center", position: "absolute" });
+                //$("#main_title").css({ float: "center", position: "absolute" });
 
                 $("#goback").css({ display: "block" });
 

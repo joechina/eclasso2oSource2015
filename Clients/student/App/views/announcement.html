@@ -1,32 +1,32 @@
 ﻿    <!-- list of messages -->
-<ion-content class="scroll-content ionic-scroll has-header has-tabs">
+<ion-content class="scroll-content has-header has-tabs">
+    <br/>
     <!--ko ifnot: announcement()-->
-    <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+    <div class="list" data-bind="foreach: announcements">
 
-        <div class="disable-user-behavior list mine-nav" data-bind="foreach: announcements">
+        <a class="item item-icon-right" href="#" data-bind="click: $parent.openmsg">
 
-            <a class="item-icon-left item item-icon-right" href="#" data-bind="click: $parent.openmsg">
+            <span class="announcement-item-title" data-bind="text: Title"></span>
+            <span class="announcement-item-date pull-left" data-bind="text:CreateDate().toLocaleString()"></span>
 
-                <span class="announcement-item-title" data-bind="text: Title"></span>
-                <span class="item-note pull-left" data-bind="text:CreateDate().toLocaleString()"></span>
+            <i class="icon ion-ios-arrow-right pull-right"></i>
 
-                <i class="icon ion-ios-arrow-right pull-right"></i>
+        </a>
 
-            </a>
 
-        </div>
     </div>
 
     <!--/ko-->
     <!--ko if: announcement()-->
     <div class="list mine-nav" data-bind="with:announcement()">
         <div class="item ">
-            <p>
+            <span>
                 发件人:&nbsp; <span class="announcement-target" data-bind="text: From"></span>
-            </p>
-            <p>
+            </span>
+            <br/>
+            <span>
                 收件人:&nbsp; <span class="announcement-target" data-bind="text: Target"></span>
-            </p>
+            </span>
         </div>
         <div class="item ">
             <span class="announcement-item-title" data-bind="text: Title"></span>

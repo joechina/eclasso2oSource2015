@@ -6,8 +6,8 @@
     <br />
     <ul data-bind="foreach: settings.item.options" class="options">
         <li class="selectionoption">
-            <input type="checkbox" name="mgroup" data-bind="attr: {value: $data.text}" />
-            <span data-bind="text:text"></span>
+            <input type="checkbox" name="mgroup" data-bind="attr: {value: $index()+1}, checked:$parent.useranswer" />
+            <span data-bind="text:$data"></span>
         </li>
     </ul>
     <!-- /ko-->
@@ -31,12 +31,12 @@
     <br />
     <ul data-bind="foreach: settings.item.options" class="options">
         <li class="selectionoption">
-            <input type="checkbox" name="mgroup" data-bind="attr: {value: $data.text}" />
-            <span data-bind="text:text"></span>
+            <input type="checkbox" name="mgroup" data-bind="attr: {value: $data}" />
+            <span data-bind="text:$data"></span>
         </li>
     </ul>
     <br />
-    <label class="block">学生回答: <span style="font-weight:normal; color:blue" data-bind="text:settings.item.answer()"></span></label>
+    <label class="block">学生回答: <span style="font-weight:normal; color:blue" data-bind="text:useranswertxt()"></span></label>
     <br />
     <label class="block">标准答案: <span style="font-weight:normal" data-bind="html:settings.item.Answer()" /></label>
     <br />

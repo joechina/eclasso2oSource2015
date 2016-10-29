@@ -32,7 +32,7 @@
 
                 server.user().lastSignin(new Date());
                 server.save(server.user()).then(function () {
-                    logger.log('last sign in ' + now);
+                    logger.log('last sign in ');
                 }).fail(function (err) {
                     for (var i = 0; i < err.length; i++) {
                         alert(err[i]);

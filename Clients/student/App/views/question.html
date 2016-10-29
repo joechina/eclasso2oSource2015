@@ -1,37 +1,41 @@
 ﻿    <!-- list of Q&A -->
 
-<ion-content class="scroll-content ionic-scroll has-header has-tabs">
+<ion-content class="container-fluid scroll-content has-header has-tabs" style="padding-bottom:60px; overflow:auto">
     <!--ko ifnot: question()-->
-    <div class="list list-inset mine-nav" id="searchcretiria">
-        <label class="item-input">
-            <input class="form-control" id="search" name="search" data-bind="value:search,valueUpdate: 'keyup'" placeholder="搜索关键字" type="search">
+    <div class="list list-inset">
+        <label class="item item-input">
+            <input id="search" name="search" data-bind="value:search,valueUpdate: 'keyup'" placeholder="搜索关键字" type="search">
             <i class="js-inputclear" href="#" aria-controls="search" data-bind="click:clearsearch">            </i>
         </label>
     </div>
-    <br />
 
     <!--ko if: displayquestions().length > 0-->
-    <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
-        <div class="disable-user-behavior list list-inset" data-bind="foreach: displayquestions">
-            <a class="item-icon-left item item-icon-right" href="#" data-bind="click: $parent.openanswer">
-                <span data-bind="text: QuestionDetail"></span>
-                <i class="icon ion-ios-arrow-right"></i>
-            </a>
-        </div>
-
-
+    <div class="list list-inset" data-bind="foreach: displayquestions">
+        <a class="item item-icon-right" href="#" data-bind="click: $parent.openanswer">
+            <span data-bind="text: QuestionDetail"></span>
+            <i class="icon ion-ios-arrow-right"></i>
+        </a>
+    </div>
     <!--/ko-->
     <!--/ko-->
     <!--ko if: question()-->
-        <div class="bar bar-header bar-light">
-            <h2 class="title" data-bind="text:question().QuestionDetail"></h2>
-            <br />
-        </div>
-        <div>
-            <span class="item-content" data-bind="html:question().Answer"></span>
-            <br />
+    <div data-bind="with:question()">
+        <br />
+        <div class="list mine-nav">
+            <div class="item item-divider">
+                <h2 class="title" data-bind="text:QuestionDetail"></h2>
+            </div>
+            <!--ko if: Answer()-->
+            <div class="item item-text-wrap">
+                <span data-bind="html:Answer"></span>
+            </div>
+            <!--/ko-->
+            <div class="item item-image">
+                <img data-bind="attr: {src: Image}" />
+            </div>
         </div>
     </div>
+
     <!--/ko-->
 
 </ion-content>

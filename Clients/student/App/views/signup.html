@@ -9,31 +9,32 @@
     </div>
 
     <!-- Text input-->
-    <div class="list mine-nav">
-        <div class="item item-input item-stacked-label" for="userid">
-            <p class="input-label">登录名</p>
-            <input id="userid" name="userid" type="text" placeholder="手机号码/邮箱" data-bind="value: userid">
-        </div>
+    <i class="list mine-nav">
+        <a class="item item-input item-stacked-label" for="userid">
+            <label class="input-label">登录名</label>
+            <input id="userid" name="userid" type="text" placeholder="邮箱地址" data-bind="value: userid">
+        </a>
 
-        <div class="item item-input item-stacked-label" for="username">
-            <p class="input-label">姓名</p>
+        <a class="item item-input item-stacked-label" for="username">
+            <label class="input-label">用户姓名</label>
             <input id="username" name="username" type="text" placeholder="姓名" data-bind="value: username">
-        </div>
+        </a>
 
-        <div class="item item-input item-stacked-label" for="password">
-            <p class="input-label">密码</p>
+        <a class="item item-input item-stacked-label" for="password">
+            <label class="input-label">密码</label>
             <input id="password" name="password" type="password" data-bind="value: password" placeholder="至少 6 个字符" >
-        </div>
+        </a>
 
-        <div class="item item-input item-stacked-label" for="password1">
-            <p class="input-label">确认密码</p>
-            <input id="password1" name="textinput" type="password" data-bind="value: password2" placeholder="至少 6 个字符" >
-        </div>
-    </div>
+        <a class="item item-input item-stacked-label" for="password1">
+            <label class="input-label">确认密码</label>
+            <input id="password1" name="textinput" type="password" data-bind="value: password1,valueUpdate:'afterkeydown'" placeholder="至少 6 个字符">
+        </a>
+
+    </i>
 
     <div class="padding">
 
-        <button id="signup" name="singlebutton" class="button button-block button-calm" data-bind="click: signup">注册</button>
+        <a id="signup" class="button button-small button-block button-calm" data-bind="click: signup">注册</a>
         <br />
         <br />
         <span>单击“注册”即表示您已阅读并同意<a href="../../tou.html"> 使用条款 </a></span>

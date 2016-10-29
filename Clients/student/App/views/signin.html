@@ -9,20 +9,27 @@
     </div>
 
     <div class="list mine-nav">
-        <div class="item item-input">
-            <p class="input-label">登录名</p>
+        <div class="item item-input item-stacked-label">
+            <h3 class="input-label">登录名</h3>
             <input id="username" type="text" data-bind="value: username" required="required">
         </div>
-        <div class="item item-input">
-            <p class="input-label">密码</p>
-            <input id="password" type="password" data-bind="value: password" required="required">
-        </div>
-    </div>
 
-    <div class="padding">
-        <button class="button button-block button-calm" data-bind="click: signin">登录</button>
-        <br/>
+        <div class="item item-input item-stacked-label">
+            <h3 class="input-label">密码</h3>
+            <input id="password" type="password" data-bind="value: password,valueUpdate:'afterkeydown'" required="required">
+        </div>
+
+        <button class="button button-small button-block button-calm" data-bind="click: signin">登录</button>
+        <br />
         <a href="#signup" style="text-decoration:underline;">免费注册</a>
     </div>
 
+	<!--script type="text/javascript">
+		api.addEventListener({
+			name : 'keyback'
+		}, function(ret, err) {
+		alert("keyback");
+			api.closeWidget();
+		});
+	</!--script>-->
 </ion-content>

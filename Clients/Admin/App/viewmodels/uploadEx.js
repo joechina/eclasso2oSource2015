@@ -1,4 +1,4 @@
-﻿define(['plugins/router', 'knockout', 'data','logger','global'],
+﻿define(['plugins/router', 'knockout', 'data', 'logger', 'global'],
     function (router, ko, data, logger, global) {
         var audio = ko.observable();
         var text = ko.observable();
@@ -13,25 +13,28 @@
             audio: audio,
             exercise: exercise,
             text: text,
-            cat:cat,
-            global:global,
+            cat: cat,
+            global: global,
             addSection: addSection,
             deleteSection: deleteSection,
             deleteProblem: deleteProblem,
-            deleteQuiz:deleteQuiz,
+            deleteQuiz: deleteQuiz,
             addProblem: addProblem,
             addQuiz: addQuiz,
             uploadmedia: uploadmedia,
             uploadtext: uploadtext,
             uploadimage: uploadimage,
-            init:init,
+            init: init,
             cancel: cancel,
-            categories: ['Alter Ego+','Reflets','Saison'],
+            categories: [{ value: 0, label: 'Alter Ego+' },
+                          {value: 1, label: '简易问答题' },
+                          { value: 2, label: 'Festival' },
+                           { value: 3, label: 'Reflets' }],
             quizTypes: [{ value: 0, label: '纯文本填空题' },
                         { value: 1, label: '单选题' },
                         { value: 2, label: '对错题' },
                         { value: 3, label: '多选题' },
-                        { value: 4, label: 'html 填空题' },]
+                        { value: 4, label: 'html 填空题' }, ]
         };
 
         return vm;
@@ -45,14 +48,14 @@
             }
             else {
                 vm.exercise(null);
-                data.getexersize(eid).then(function (sd) {
+                return data.getexersize(eid).then(function (sd) {
                     var ex = sd.results[0];
                     data.keepExerciseSeq(ex);
                     vm.exercise(ex);
                     var cur_eid = vm.exercise().Id();
                 });
             }
-            return true;
+            //return true;
         }
 
         function init() {
@@ -121,19 +124,18 @@
                 s.Problems().forEach(function (p) {
 
                     p.Quizzes().forEach(function (q) {
-                        switch(q.QuizType())
-                        {
+                        switch (q.QuizType()) {
                             case 0: //纯文本填空题
                                 break;
                             case 1: //单选题
                                 var d = [];
                                 for (var j = 0; j < q.options().length; j++) {
                                     if (q.options()[j].text) {
-                                        d.push(q.options()[j].text);
-                                    }
-                                    else if (q.options()[j].text()) {
                                         d.push(q.options()[j].text());
                                     }
+                                    //else if (q.options()[j].text()) {
+                                    //    d.push(q.options()[j].text());
+                                    //}
                                 }
                                 q.QuizDetail(d.join(','));
 
@@ -156,9 +158,9 @@
                                 break;
                         }
                     })
-                })                
+                })
             });
-            
+
             switch (cat()) {
                 case 'Alter Ego+':
                     exercise().Category(0);
@@ -171,7 +173,7 @@
                     break;
 
             }
-            
+
 
             data.save(vm.exercise()).then(function () {
                 alert('习题已保存');
@@ -180,42 +182,63 @@
                 for (var i = 0; i < err.length; i++) {
                     logger.log(err[i]);
                 }
-            });            
+            });
         }
 
         function addProblem(sec) {
             var newprob = data.create('Problem');
+            newprob.Seq(sec.Problems().length);
             //newprob.ExersizeSection(sec);
             sec.Problems.push(newprob);
         }
 
         function deleteProblem(prob) {
+            var seq = prob.Seq();
             prob.ExersizeSection().Problems.remove(prob);
+            prob.ExersizeSection().Problems().forEach(function (p) {
+                if (p.Seq() > seq) {
+                    p.Seq(p.Seq() - 1);
+                }
+            });
             prob.entityAspect.setDeleted();
         }
 
         function deleteSection(sec) {
+            var seq = sec.Seq();
             sec.Exersize().Sections.remove(sec);
+            sec.Exersize().Sections().forEach(function (s) {
+                if (s.Seq() > seq) {
+                    s.Seq(s.Seq() - 1);
+                }
+            })
             sec.entityAspect.setDeleted();
         }
 
         function deleteQuiz(quiz) {
+            var seq = quiz.Seq();
             quiz.Problem().Quizzes.remove(quiz);
+            quiz.Problem().Quizzes().forEach(function (q) {
+                if (q.Seq() > seq) {
+                    q.Seq(q.Seq() - 1);
+                }
+            })
             quiz.entityAspect.setDeleted();
         }
 
         function addSection(exec) {
             var newsec = data.create('ExersizeSection');
+            newsec.Seq(exec.Sections().length);
             //newsec.Exersize(exec);
             exec.Sections.push(newsec);
         }
 
         function addQuiz(prob) {
             var newquiz = data.create('Quiz');
+            newquiz.Seq(prob.Quizzes().length);
             //newquiz.Problem(prob);
             prob.Quizzes.push(newquiz);
         }
-        
+
         function cancel() {
             init();
             router.navigateBack();

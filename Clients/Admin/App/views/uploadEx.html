@@ -6,8 +6,10 @@
             <ul data-bind="with: exercise">
                 <li>
                     <label class="control-label">
-                        习题类别:<select class="form-control dropdown" data-observable="DepartmentId" data-bind="options: $parent.categories,
-                                                                                                                value: $parent.cat,
+                        习题类别:<select class="form-control dropdown" data-observable="DepartmentId" data-bind="options: $root.categories,
+                                                                                                                optionsText:'label',
+                                                                                                                optionsValue:'value',
+                                                                                                                value: Category,
                                                                                                                 optionsCaption: '请选择...'"></select>
                     </label>
                     <label class="control-label">

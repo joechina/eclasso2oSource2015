@@ -1,0 +1,103 @@
+﻿.mine-view {
+	background: #F8F8F8;
+}
+.mine-info {
+	height: 3em;
+	background-size: cover;
+	color: #ffffff;
+	text-align: left;
+}
+.mine-info .mine-head {
+	display: inline-block;
+	width: 2.7rem;
+	height: 2.7rem;
+	/*margin: .2rem auto .2rem;*/
+	border-radius: 50%;
+	border: solid 2px #ffffff;
+	overflow: hidden;
+}
+.mine-info .mine-head > img {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+.note {
+    margin-left:0px!important;
+    font-size:0.8rem!important;
+}
+
+.item span {
+	margin-left: 5px;
+    margin-bottom:0px;
+	font-size: 1rem;
+}
+
+
+.mine-nav {
+	margin-bottom: .3rem;
+    /*padding-left:2rem;
+    padding-right:2rem;*/
+}
+.mine-nav .item {
+	color: #666;
+	font-size: 1rem;
+	border-color: #F2F2F2;
+}
+.mine-nav .item > .icon {
+	font-size: 1.3rem;
+}
+.mine-nav .item.item-icon-right {
+	padding-right: 2.2rem;
+}
+.mine-nav .item.item-icon-left {
+	padding-left: 2.2rem;
+}
+
+.row .col > img {
+	padding-right: 2.2rem;
+}
+.row .col > img {
+	padding-left: 2.2rem;
+}
+
+
+.ionic .item-radio {
+    padding: 0;
+}
+
+    .ionic .item-radio:hover {
+        cursor: pointer;
+    }
+
+    .ionic .item-radio .item-content {
+        /* give some room to the right for the checkmark icon */
+        padding-right: 64px;
+    }
+
+    .ionic .item-radio .radio-icon {
+        /* checkmark icon will be hidden by default */
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 3;
+        visibility: hidden;
+        padding: 14px;
+        height: 100%;
+        font-size: 24px;
+    }
+
+    .ionic .item-radio input {
+        /* hide any radio button inputs elements (the ugly circles) */
+        position: absolute;
+        left: -9999px;
+    }
+
+        .ionic .item-radio input:checked + .radio-content .item-content {
+            /* style the item content when its checked */
+            background: #f7f7f7;
+        }
+
+        .ionic .item-radio input:checked + .radio-content .radio-icon {
+            /* show the checkmark icon when its checked */
+            visibility: visible;
+        }

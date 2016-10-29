@@ -1,8 +1,9 @@
-﻿define(['plugins/router', 'knockout', 'data','logger'],
-    function (router, ko, data, logger) {
+﻿define(['plugins/router', 'knockout', 'data','global','logger'],
+    function (router, ko, data, global, logger) {
         var question = ko.observable();
         var questions = ko.observableArray();
         var search = ko.observable();
+        var category = ko.observable();
 
         var login = {
             question: question,
@@ -32,38 +33,39 @@
         };
 
         shouter.subscribe(function (newValue) {
-            activate();
+            activate(category);
             logger.log('reload QA');
         }, this, "refresh_viewmodels/question");
 
         b_shouter.subscribe(function (newValue) {
-            backtolist();
+            if (question()) {
+                backtolist();
+            }
+            else {
+                router.navigate('/#qa_main');
+            }
+
         }, this, "back_viewmodels/question");
 
         return login;
 
         //#region Internal Methods
-        function activate() {
+        function activate(cat) {
             //var questionid = parseInt(id)
             //if (questionid > 0)
 
+            //change title to QA category name
+            categoryName = global.qa_cat[cat].label;
+            document.getElementById('main_title').innerHTML = categoryName;
+
             questions.removeAll();
 
-            data.getquestions().then(function (data) {
+            data.getquestions(cat).then(function (data) {
                 questions(data.results);
             });
-
-            if (question()) {
-                $("#main_title").css({ float: "left", position: "relative" });
-
-                $("#goback").css({ display: "block" });
-                $("#refresh").css({ display: "none" });
-            } else {
-                $("#main_title").css({ float: "center", position: "absolute" });
-                $("#goback").css({ display: "none" });
-                $("#refresh").css({ display: "inline" });
-            }
-
+            
+            $("#goback").css({ display: "block" });
+            $("#refresh").css({ display: "inline" });
 
             logger.log('question activated');
         }
@@ -71,7 +73,7 @@
         function openanswer(selected) {
             question(selected);
 
-            $("#main_title").css({ float: "left", position: "relative" });
+            //$("#main_title").css({ float: "left", position: "relative" });
 
             $("#goback").css({ display: "block" });
             $("#refresh").css({ display: "none" });
@@ -80,9 +82,9 @@
         function backtolist() {
             question(undefined);
 
-            $("#main_title").css({ float: "center", position: "absolute" });
+            //$("#main_title").css({ float: "center", position: "absolute" });
 
-            $("#goback").css({ display: "none" });
+            $("#goback").css({ display: "block" });
             $("#refresh").css({ display: "inline" });
 
             //router.navigateBack();

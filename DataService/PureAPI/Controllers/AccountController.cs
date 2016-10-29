@@ -47,18 +47,18 @@ namespace PureAPI.Controllers
         [AllowAnonymous]
         [Route("Test")]
         [HttpGet]
-        public List<ClassExersize> Test()
+        public List<Question> Test()
         {
             var repo = new Repository();
             try
             {
-                return repo.ClassExersizes.ToList();
+                return repo.Questions.ToList();
             }
             catch (Exception ex)
             {
-                ClassExersize u = new ClassExersize();
-                //u.Name = ex.Message;
-                List<ClassExersize> result = new List<ClassExersize>();
+                Question u = new Question();
+                u.Answer = ex.Message;
+                List<Question> result = new List<Question>();
                 result.Add(u);
                 return result;
             }

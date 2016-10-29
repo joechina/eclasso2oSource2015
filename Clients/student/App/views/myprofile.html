@@ -1,57 +1,41 @@
-﻿<div class="container-fluid">
-    <div class="list-group list-full-with" style="font-size:large">
-        <div class="list-group-item">
-            <div class="row">
-                <div class="col-xs-4">
-                    登录名
-                </div>
-                <div class="col-xs-8">
-                    <h4 class="list-group-item-heading" data-bind="text: user().UserId()"></h4>
-                </div>
-            </div>
-        </div>
-        <div class="list-group-item">
-            <div class="row">
-                <div class="col-xs-4">
-                    显示名称
-                </div>
-                <div class="col-xs-8">
-                    <h4 class="list-group-item-heading" data-bind="text: user().Name()"></h4>
-                </div>
-            </div>
-        </div>
-        <div class="list-group-item">
-            <div class="row">
-                <div class="col-xs-4">
-                    邮箱地址
-                </div>
-                <div class="col-xs-8">
-                    <h4 class="list-group-item-heading" data-bind="text: user().Email()"></h4>
-                </div>
-            </div>
-        </div>
-        <div class="list-group-item">
-            <div class="row">
-                <div class="col-xs-4">
-                    手机号码
-                </div>
-                <div class="col-xs-8">
-                    <h4 class="list-group-item-heading" data-bind="text: user().Phone()"></h4>
-                </div>
-            </div>
-        </div>
+﻿<ion-content class="mine-view scroll-content ionic-scroll has-header has-tabs">
+    <br />
+    <i class="list mine-nav">
+        <a class="item item-icon-left item-icon-right">
 
-        <br />
-        <div class="row">
-            <div class="col-xs-4">
-                <button id="save" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:editprofile">编辑</button>
-            </div>
-            <div class="col-xs-4">
-                <button id="cancel" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:chgpwd">修改密码</button>
-            </div>
-            <div class="col-xs-4">
-                <button id="cancel" name="singlebutton" class="btn btn-primary btn-block" data-bind="click:logout">注销</button>
-            </div>
+            <i class="item-content">登录名:</i>
+
+            <span class="item-note" data-bind="text: user().UserId()"></span>
+
+        </a>
+        <a class="item item-icon-left item-icon-right">
+
+            <i class="item-content">显示名称:</i>
+            <span class="item-note" data-bind="text: user().Name()" />
+
+        </a>
+        <a class="item item-icon-left item-icon-right">
+
+            <i class="item-content">邮箱地址</i>
+
+            <span class="item-note" data-bind="text: user().Email()"></span>
+        </a>
+        <a class="item item-icon-left item-icon-right">
+
+            <i class="item-content">手机号码</i>
+
+            <span class="item-note" data-bind="text: user().Phone()"></span>
+
+        </a>
+    </i>
+    <br />
+    <div class="list mine-nav">
+        <div class="button-bar">
+            <a id="editprofile" class="button ion-edit button-full button-calm" data-bind="click:editprofile">编辑</a>
+            <a></a>
+            <a id="chgpwd" class="button button-full button-calm" data-bind="click:chgpwd">修改密码</a>
+
         </div>
     </div>
-</div>
+
+</ion-content>

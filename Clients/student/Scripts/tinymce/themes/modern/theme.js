@@ -12,7 +12,7 @@
 
 tinymce.ThemeManager.add('modern', function(editor) {
 	var self = this, settings = editor.settings, Factory = tinymce.ui.Factory,
-		each = tinymce.each, DOM = tinymce.DOM, Rect = tinymce.ui.Rect;
+		each = tinymce.each, DOM = tinymce.DOM, Rect = tinymce.ui.Rect, FloatPanel = tinymce.ui.FloatPanel;
 
 	// Default menus
 	var defaultMenus = {
@@ -28,7 +28,7 @@ tinymce.ThemeManager.add('modern', function(editor) {
 	var defaultToolbar = "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | " +
 		"bullist numlist outdent indent | link image";
 
-	function createToolbar(items) {
+	function createToolbar(items, size) {
 		var toolbarItems = [], buttonGroup;
 
 		if (!items) {
@@ -88,12 +88,7 @@ tinymce.ThemeManager.add('modern', function(editor) {
 				buttonGroup = null;
 			} else {
 				if (Factory.has(item)) {
-					item = {type: item};
-
-					if (settings.toolbar_items_size) {
-						item.size = settings.toolbar_items_size;
-					}
-
+					item = {type: item, size: size};
 					toolbarItems.push(item);
 					buttonGroup = null;
 				} else {
@@ -112,10 +107,7 @@ tinymce.ThemeManager.add('modern', function(editor) {
 						}
 
 						item.type = item.type || 'button';
-
-						if (settings.toolbar_items_size) {
-							item.size = settings.toolbar_items_size;
-						}
+						item.size = size;
 
 						item = Factory.create(item);
 						buttonGroup.items.push(item);
@@ -140,14 +132,15 @@ tinymce.ThemeManager.add('modern', function(editor) {
 	/**
 	 * Creates the toolbars from config and returns a toolbar array.
 	 *
+	 * @param {String} size Optional toolbar item size.
 	 * @return {Array} Array with toolbars.
 	 */
-	function createToolbars() {
+	function createToolbars(size) {
 		var toolbars = [];
 
 		function addToolbar(items) {
 			if (items) {
-				toolbars.push(createToolbar(items));
+				toolbars.push(createToolbar(items, size));
 				return true;
 			}
 		}
@@ -480,7 +473,9 @@ tinymce.ThemeManager.add('modern', function(editor) {
 
 		function repositionHandler() {
 			function execute() {
-				reposition(findFrontMostMatch(editor.selection.getNode()));
+				if (editor.selection) {
+					reposition(findFrontMostMatch(editor.selection.getNode()));
+				}
 			}
 
 			if (window.requestAnimationFrame) {
@@ -557,7 +552,7 @@ tinymce.ThemeManager.add('modern', function(editor) {
 			return null;
 		}
 
-		editor.on('click keyup blur', function() {
+		editor.on('click keyup', function() {
 			// Needs to be delayed to avoid Chrome img focus out bug
 			window.setTimeout(function() {
 				var match;
@@ -574,6 +569,8 @@ tinymce.ThemeManager.add('modern', function(editor) {
 				}
 			}, 0);
 		});
+
+		editor.on('blur hide', hideAllContextToolbars);
 
 		editor.on('ObjectResizeStart', function() {
 			var match = findFrontMostMatch(editor.selection.getNode());
@@ -639,10 +636,7 @@ tinymce.ThemeManager.add('modern', function(editor) {
 				panel.hide();
 
 				// All other autohidden float panels will be closed below.
-				// Need to check for hideAll since it might be a normal panel
-				if (panel.hideAll) {
-					panel.hideAll();
-				}
+				FloatPanel.hideAll();
 
 				DOM.removeClass(editor.getBody(), 'mce-edit-focus');
 			}
@@ -671,7 +665,7 @@ tinymce.ThemeManager.add('modern', function(editor) {
 				border: 1,
 				items: [
 					settings.menubar === false ? null : {type: 'menubar', border: '0 0 1 0', items: createMenuButtons()},
-					createToolbars()
+					createToolbars(settings.toolbar_items_size)
 				]
 			});
 
@@ -748,7 +742,7 @@ tinymce.ThemeManager.add('modern', function(editor) {
 			border: 1,
 			items: [
 				settings.menubar === false ? null : {type: 'menubar', border: '0 0 1 0', items: createMenuButtons()},
-				createToolbars(),
+				createToolbars(settings.toolbar_items_size),
 				{type: 'panel', name: 'iframe', layout: 'stack', classes: 'edit-area', html: '', border: '1 0 0 0'}
 			]
 		});

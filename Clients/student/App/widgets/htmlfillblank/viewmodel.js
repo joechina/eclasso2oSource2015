@@ -3,33 +3,50 @@
         var self = this;
         this.isediting = ko.observable(null);
         this.isreporting = ko.observable(null);
+        this.filledTxt = ko.observable();
+        this.isInit = false;
+
+        this.filledTxt.subscribe(function (newValue) {
+            if (this.isInit)
+                return;
+            data.user().userquizanswers[this.settings.item.Id()] = newValue;
+            //this.settings.to_next();
+        }, this);
     }
 
     ctor.prototype.activate = function (settings) {
+        this.isInit = true;
         this.settings = settings;
-        if (!this.settings.item.answer) {
-            this.settings.item.answer = ko.observable();
-        }
+        var qid = settings.item.Id();
+        if (data.user().userquizanswers[qid] != null && data.user().userquizanswers[qid] != "")
+            this.filledTxt(data.user().userquizanswers[qid]);
+        this.isInit = false;
 
         if (settings.isediting != null) {
             this.isediting(settings.isediting);
         }
 
-        if (settings.isreporting) {
+        if (settings.isreporting != null && settings.isreporting) {
             this.isreporting(settings.isreporting);
-            var uid = data.user().Id();
-            var qid = settings.item.Id();
-            data.getUserQuizs(uid, qid).then(function (data) {
-                if (data.results.length > 0) {
-                    settings.item.answer(data.results[0].Answer());
-                    logger.log(settings.item.answer());
-                }
-                else {
-                    settings.item.answer("无回答");
-                }
-            }).fail(function (err) {
-                alert(err.message);
-            });
+            if (this.filledTxt() == null)
+                this.filledTxt("无回答");
+            if (data.user().userquizanswers[qid] == null) {
+                var uid = data.user().Id();
+                var a = this;
+                data.getUserQuizs(uid, qid).then(function (result) {
+                    if (result.results.length > 0) {
+                        data.user().userquizanswers[qid] = result.results[0].Answer();
+                        a.filledTxt(result.results[0].Answer());
+                        logger.log(settings.item.answer());
+                    }
+                    else {
+                        data.user().userquizanswers[qid] = "";
+                    }
+                }).fail(function (err) {
+                    alert(err.message);
+                });
+
+            }
 
         }
     };

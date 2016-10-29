@@ -4,7 +4,8 @@
         var self = this;
         this.isediting = ko.observable(null);
         this.isreporting = ko.observable(null);
-        this.useranswer = ko.observable();
+        this.useranswer = ko.observableArray();
+        this.useranswertxt = ko.observable();
 
         //this.options = options;
         this.addoptions = function () {
@@ -18,50 +19,51 @@
 
         this.compositionComplete = function () {
             $('input[type="checkbox"]').on('change', function (e) {
-                self.settings.item.answer.push(e.target.value);
+                if (self.useranswer().length)
+                    data.user().userquizanswers[self.settings.item.Id()] = self.useranswer().sort().join(', ');
+                else
+                    data.user().userquizanswers[self.settings.item.Id()] = "";
             });
         }
     }
 
     ctor.prototype.activate = function (settings) {
         this.settings = settings;
-        if (!this.settings.item.answer) {
-            this.settings.item.answer = ko.observableArray();
-        }
 
         var details = settings.item.QuizDetail();
-        if (details && settings.item.options().length===0) {
-            var detailbd = details.split(',');
-            for (var i = 0; i < detailbd.length; i++) {
-                var o = {};
-                o.text = detailbd[i];
-                settings.item.options.push(o);
-            }
+        if (details && settings.item.options().length === 0) {
+            settings.item.options( details.split(','));
         }
         //settings.item.options = options;
         if (settings.isediting != null) {
             this.isediting(settings.isediting);
         }
 
-        if (settings.isreporting != null) {
+        var qid = settings.item.Id();
+        if (settings.isreporting != null && settings.isreporting) {
             this.isreporting(settings.isreporting);
+            this.filledTxt("无回答");
 
-            var uid = data.user().Id();
-            var qid = settings.item.Id();
-            data.getUserQuizs(uid, qid).then(function (data) {
-                if (data.results.length > 0) {
-   
-                    settings.item.answer(data.results[0].Answer());
-                    logger.log(settings.item.answer());
-                }
-                else {
-                    settings.item.answer("无回答");
-                }
-
-            }).fail(function (err) {
+            if (data.user().userquizanswers[qid] == null) {
+                var a = this
+                var uid = data.user().Id();
+                data.getUserQuizs(uid, qid).then(function (result) {
+                    if (result.results.length > 0) {
+                        data.user().userquizanswers[qid] = result.results[0].Answer();
+                        a.useranswertxt(result.results[0].Answer());
+                        logger.log(a.useranswertxt());
+                    }
+                    else
+                        data.user().userquizanswers[qid] = "";
+                }).fail(function (err) {
                     alert(err.message);
-            });
+                });
+            }
+            else if (data.user().userquizanswers[qid] != "")
+                this.useranswertxt(data.user().userquizanswers[qid]);
         }
+        else if (data.user().userquizanswers[qid] != null)
+            this.useranswer(data.user().userquizanswers[qid].split(", "));
         
     };
     

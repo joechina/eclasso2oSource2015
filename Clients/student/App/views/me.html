@@ -1,7 +1,8 @@
 ﻿<!--list of setting: Classes, UI language, login/logout, account info, etc. -->
 
-<ion-content class="mine-view scroll-content ionic-scroll has-header has-tabs">
+<ion-content class="mine-view scroll-content has-header has-tabs" style="padding-bottom:50px;overflow:auto">
     <div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+        <br />
         <div class="list mine-nav">
             <a class="mine-info item item-icon-left item-icon-right" data-bind="click:myprofile">
                 <i class="mine-head icon">
@@ -10,10 +11,7 @@
                 <span style="padding-left:1.2rem" data-bind="text:user().Name"></span>
                 <i class="icon ion-ios-arrow-right"></i>
             </a>
-        </div>
-        <br />
-        <div class="list mine-nav">
-            <a class="item item-icon-left item-icon-right" data-bind="click:myreport">
+            <a class="item item-icon-left item-icon-right" data-bind="attr: { href: '#myreport/0' }">
                 <i class="icon ion-ios-book-outline"></i>
                 <span>我的报告</span>
                 <i class="icon ion-ios-arrow-right"></i>
@@ -25,6 +23,14 @@
             </a>
         </div>
         <br />
+        <div class="list mine-nav">
+            <a class="mine-info item item-icon-left" data-bind="click:clearcache">
+                <i class="icon ion-ios-trash-outline"></i>
+                <span>清除缓存</span>     
+                <span class="item-note" data-bind="text:cacheSize()">Kb</span>
+            </a>
+        </div>
+        <br/>
         <div class="list mine-nav">
             <a class="item item-icon-left item-icon-right" data-bind="click: feedback">
                 <i class="icon ion-compose"></i>

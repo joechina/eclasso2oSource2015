@@ -14,11 +14,11 @@
             previous_title : previous_title,
             backtolist: backtolist,
             newmsg: newmsg,
-           // usermsg:usermsg
         };
 
         shouter.subscribe(function (newValue) {
             activate();
+            alert("reloading...");
             logger.log('reload announcement');
         }, this, "refresh_viewmodels/announcement");
 
@@ -43,12 +43,12 @@
             */
 
             if (announcement()) {
-                $("#main_title").css({ float: "left", position: "relative" });
+                //$("#main_title").css({ float: "left", position: "relative" });
 
                 $("#goback").css({ display: "block" });
                 $("#refresh").css({ display: "none" });
             } else {
-                $("#main_title").css({ float: "center", position: "absolute" });
+                //$("#main_title").css({ float: "center", position: "absolute" });
                 $("#goback").css({ display: "none" });
                 $("#refresh").css({ display: "inline" });
             }
@@ -68,7 +68,7 @@
             //var le = document.getElementById("goback").currentStyle.lineHeight;
             //$("#goback")[0].currentStyle.lineHeight;
 
-            $("#main_title").css({float: "left", position:"relative"});
+            //$("#main_title").css({float: "left", position:"relative"});
 
             $("#goback").css({ display: "block" });
             $("#refresh").css({ display: "none" });
@@ -76,7 +76,7 @@
 
         function backtolist() {
             announcement(undefined);
-            $("#main_title").css({ float: "center", position: "absolute" });
+            //$("#main_title").css({ float: "center", position: "absolute" });
 
             $("#goback").css({ display: "none" });
 
